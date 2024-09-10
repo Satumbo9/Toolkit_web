@@ -26,6 +26,7 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -190,6 +191,7 @@ const Tasks = () => {
               </DialogHeader>
               <NewTask type="New" />
             </DialogContent>
+            <DialogDescription />
           </Dialog>
           <Pagination className="justify-end">
             <PaginationContent>
