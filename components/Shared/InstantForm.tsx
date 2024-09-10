@@ -27,6 +27,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Switch } from "../ui/switch";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { AgentSetupTabs } from "@/constants";
 
 export const InputForm = <
   T extends z.ZodType<any, any>,
@@ -475,7 +477,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
               />
             </div>
           ) : item.type === "switch" ? (
-            <div key={item.id} className="my-2 w-full content-center">
+            <div key={item.id} className="my-2 w-full content-end">
               <SwitchForm
                 control={formControl}
                 formName={item.formName}
@@ -667,6 +669,87 @@ export const NorthFormGeneration = ({
               ),
             )}
           </div>
+        </section>
+      ))}
+    </React.Fragment>
+  );
+};
+
+/**
+ * @formControl formControl - Used for the (form.control) parameter.
+ * @formFields - Receive a component with sections and cards.
+ * @gridCols A string with a number of how many cols you want on the form.
+ *  */
+export const FormGenerator = ({
+  formControl,
+  formFields,
+  gridCols,
+}: {
+  gridCols: string;
+  formFields: {
+    formTitle: string;
+    description: string;
+    tabs: {
+      id: number;
+      tabName: string;
+      value: string;
+      section: {
+        sectionName: string;
+        cards: {
+          title: string;
+          colQty: string;
+          fields: {
+            id: number;
+            formName: string;
+            title: string;
+            type: string;
+            placeholder: string;
+            value: string;
+          }[];
+          title2?: string;
+          fields2?: {
+            id: number;
+            formName: string;
+            title: string;
+            type: string;
+            placeholder: string;
+            value: string;
+          }[];
+        }[];
+      }[];
+    }[];
+    
+  };
+  formControl: any;
+}) => {
+  // Splitting by two to show the grid cols in the mobile view.
+  // const gridColsMobile = Number(gridCols) / 2;
+  // const roundedCols = Math.round(gridColsMobile);
+
+  return (
+    <React.Fragment>
+      <div className="h-screen w-auto">
+        <Tabs
+          defaultValue="residuals"
+          className="flex-auto rounded-md border border-solid border-gray-400 p-4 shadow-md"
+        >
+          <TabsList className="">
+            {AgentSetupTabs.map((tab) => (
+              <TabsTrigger
+                // onClick={() => handleClick(tab.value)}
+                key={tab.id}
+                value={tab.value}
+              >
+                <p className="text-sm">{tab.title}</p>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {/* {RenderSetupComponents(activeItem || "residuals")} */}
+        </Tabs>
+      </div>
+      {formFields.tabs.map((tab) => (
+        <section key={tab.id}>
+          
         </section>
       ))}
     </React.Fragment>

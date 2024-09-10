@@ -4,7 +4,6 @@ import {
   createColumns,
 } from "@/components/Shared/DataTable/Columns";
 import DataTable from "@/components/Shared/DataTable/DataTable";
-import { Button } from "@/components/ui/button";
 import {
   adjustmentTable,
   displayResidualsTable,
@@ -23,6 +22,7 @@ import {
   SelectForm,
   TextAreaForm,
 } from "../Shared/InstantForm";
+import CustomButtons from "../Shared/CustomButtons";
 
 const RawData = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
@@ -38,27 +38,23 @@ const RawData = () => {
   const columns = createColumns(columnsConfig);
 
   return (
-    <>
-      <section className="gap-2 text-start">
-        <div className="grid grid-cols-1 overflow-auto">
-          <DataTable
-            columns={columns}
-            data={adjustmentTable}
-            enableSorting={true}
-            enableColumnFilter={true}
-            filteredBy="brand"
-          />
-        </div>
-      </section>
-    </>
+    <section className="gap-2 text-start">
+      <div className="grid grid-cols-1 overflow-auto">
+        <DataTable
+          columns={columns}
+          data={adjustmentTable}
+          enableSorting={true}
+          enableColumnFilter={true}
+          filteredBy="DBA"
+        />
+      </div>
+    </section>
   );
 };
 
 const RawRefunds = () => {
   return (
-    <>
-      <section className="mt-4 gap-2 text-start max-2xl:flex-wrap"></section>
-    </>
+    <section className="mt-4 gap-2 text-start max-2xl:flex-wrap"></section>
   );
 };
 
@@ -89,19 +85,17 @@ const ResidualPayments = () => {
   const columns = createColumns(columnsConfig);
 
   return (
-    <>
-      <section className="text-start">
-        <div className="mt-5 grid grid-cols-1 overflow-auto">
-          <h3 className="m-2 text-lg font-bold">Agent: Tony Stark</h3>
-          <DataTable
-            columns={columns}
-            data={merchResidualPaymentsTable}
-            enableSorting={true}
-            enableColumnFilter={false}
-          />
-        </div>
-      </section>
-    </>
+    <section className="text-start">
+      <div className="mt-5 grid grid-cols-1 overflow-auto">
+        <h3 className="m-2 text-lg font-bold">Agent: Tony Stark</h3>
+        <DataTable
+          columns={columns}
+          data={merchResidualPaymentsTable}
+          enableSorting={true}
+          enableColumnFilter={false}
+        />
+      </div>
+    </section>
   );
 };
 
@@ -156,83 +150,83 @@ const EnterAdjustments = () => {
   ];
 
   return (
-    <>
-      <section className="mt-5 flex gap-2 text-start max-xl:flex-wrap">
-        <div className="grid flex-1 grid-cols-1 overflow-auto">
-          <DataTable
-            columns={columns}
-            data={displayResidualsTable}
-            enableSorting={true}
-            enableColumnFilter={true}
-            filteredBy="brand"
-          />
-        </div>
-        <div className="flex-1">
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="m-auto w-3/4 space-y-3"
-            >
-              <SelectForm
-                control={form.control}
-                formName="Agent"
-                label="Agent"
-                content={AdjustTypeSelect}
-                placeholder="Select an Agent"
-                valueKey="id"
-                displayKey="name"
-                disabled={false}
-                className=""
-              />
-              <DatePickerForm
-                control={form.control}
-                formName="DataDate"
-                label="Data Date"
-                placeholder="Pick a date"
-              />
-              <DatePickerForm
-                control={form.control}
-                formName="DisplayDate"
-                label="Display Date"
-                placeholder="Pick a date"
-              />
-              <SelectForm
-                control={form.control}
-                formName="AdjustType"
-                label="Adjust Type"
-                content={AdjustTypeSelect}
-                placeholder="Select Adjust Type"
-                valueKey="id"
-                displayKey="name"
-                disabled={false}
-                className=""
-              />
-              <TextAreaForm
-                control={form.control}
-                formName="Notes"
-                label="Notes"
-                placeholder="Add your notes here"
-              />
+    <section className="mt-5 flex gap-2 text-start max-xl:flex-wrap">
+      <div className="grid flex-1 grid-cols-1 overflow-auto">
+        <DataTable
+          columns={columns}
+          data={displayResidualsTable}
+          enableSorting={true}
+          enableColumnFilter={true}
+          filteredBy="AgentName"
+        />
+      </div>
+      <div className="flex-1">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="m-auto w-3/4 space-y-3"
+          >
+            <SelectForm
+              control={form.control}
+              formName="Agent"
+              label="Agent"
+              content={AdjustTypeSelect}
+              placeholder="Select an Agent"
+              valueKey="id"
+              displayKey="name"
+              disabled={false}
+              className=""
+            />
+            <DatePickerForm
+              control={form.control}
+              formName="DataDate"
+              label="Data Date"
+              placeholder="Pick a date"
+            />
+            <DatePickerForm
+              control={form.control}
+              formName="DisplayDate"
+              label="Display Date"
+              placeholder="Pick a date"
+            />
+            <SelectForm
+              control={form.control}
+              formName="AdjustType"
+              label="Adjust Type"
+              content={AdjustTypeSelect}
+              placeholder="Select Adjust Type"
+              valueKey="id"
+              displayKey="name"
+              disabled={false}
+              className=""
+            />
+            <TextAreaForm
+              control={form.control}
+              formName="Notes"
+              label="Notes"
+              placeholder="Add your notes here"
+            />
+            <InputForm
+              control={form.control}
+              formName="AdjustAmount"
+              label="Adjust Amount"
+              placeholder=""
+            />
+            <div className="w-1/3">
               <InputForm
                 control={form.control}
-                formName="AdjustAmount"
-                label="Adjust Amount"
+                formName="Split"
+                label="Split %"
                 placeholder=""
               />
-              <div className="w-1/3">
-                <InputForm
-                  control={form.control}
-                  formName="Split"
-                  label="Split %"
-                  placeholder=""
-                />
-              </div>
-              <Button className="bg-blue-500">Enter Adjustment</Button>
-            </form>
-          </Form>
-        </div>
-      </section>
-    </>
+            </div>
+            <CustomButtons btnType="default" className="">
+              Enter Adjustment
+            </CustomButtons>
+          </form>
+        </Form>
+      </div>
+    </section>
   );
 };
 
@@ -272,35 +266,35 @@ const CalculateResiduals = () => {
   };
 
   return (
-    <>
-      <section className="mt-5 flex gap-2 text-start max-xl:flex-wrap">
-        <div className="grid flex-1 grid-cols-1 overflow-auto">
-          <DataTable
-            columns={columns}
-            data={displayResidualsTable}
-            enableSorting={true}
-            enableColumnFilter={true}
-            filteredBy="brand"
-          />
-        </div>
-        <div className="flex-1">
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="flex items-end justify-center gap-4 space-y-3"
-            >
-              <DatePickerForm
-                control={form.control}
-                formName="ResidualMonth"
-                label="(Residual Month)"
-                placeholder="Pick a date"
-              />
-              <Button className="bg-blue-500">Enter Adjustment</Button>
-            </form>
-          </Form>
-        </div>
-      </section>
-    </>
+    <section className="mt-5 flex gap-2 text-start max-xl:flex-wrap">
+      <div className="grid flex-1 grid-cols-1 overflow-auto">
+        <DataTable
+          columns={columns}
+          data={displayResidualsTable}
+          enableSorting={true}
+          enableColumnFilter={true}
+          filteredBy="AgentName"
+        />
+      </div>
+      <div className="flex-1">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex items-end justify-center gap-4 space-y-3"
+          >
+            <DatePickerForm
+              control={form.control}
+              formName="ResidualMonth"
+              label="(Residual Month)"
+              placeholder="Pick a date"
+            />
+            <CustomButtons btnType="default" className="">
+              Enter Adjustment
+            </CustomButtons>
+          </form>
+        </Form>
+      </div>
+    </section>
   );
 };
 export default function RenderMerchResidualsComponents(value: string) {

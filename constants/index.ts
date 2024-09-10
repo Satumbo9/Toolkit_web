@@ -204,7 +204,7 @@ export const serviceMainTabs = [
   },
 ];
 
-export const finanialMainTabs = [
+export const financialMainTabs = [
   {
     id: 1,
     title: "Find",
@@ -230,7 +230,7 @@ export const finanialMainTabs = [
     path: "/financial/importData",
   },
   {
-    id: 4,
+    id: 5,
     title: "Vendors",
     value: "vendors",
     path: "/financial/vendors",
@@ -2038,6 +2038,122 @@ export const documentsTable: DataTypes[] = [
   },
 ];
 
+export const productFeeForm = [
+  {
+    id: 1,
+    formName: "MerchantAnnual",
+    title: "Merchant Annual",
+    placeholder: "",
+    type: "checkbox",
+    value: "",
+  },
+  {
+    id: 2,
+    formName: "PciAnnual",
+    title: "PCI Annual",
+    placeholder: "",
+    type: "checkbox",
+    value: "",
+  },
+  {
+    id: 3,
+    formName: "PciMonthly",
+    title: "PCI Monthly",
+    placeholder: "",
+    type: "checkbox",
+    value: "",
+  },
+  {
+    id: 4,
+    formName: "RateIncreases",
+    title: "Rate Increase",
+    placeholder: "",
+    type: "checkbox",
+    value: "",
+  },
+]
+
+export const amountForm = [
+  {
+    id: 1,
+    formName: "AmountAnnual",
+    title: "",
+    placeholder: "",
+    type: "input",
+    value: "",
+  },
+  {
+    id: 2,
+    formName: "PciAmountAnnual",
+    title: "",
+    placeholder: "",
+    type: "input",
+    value: "",
+  },
+  {
+    id: 3,
+    formName: "PciAmountMonthly",
+    title: "",
+    placeholder: "",
+    type: "input",
+    value: "",
+  },
+] 
+
+export const billingMonthForm = [
+  {
+    id: 1,
+    formName: "BillingMonthAnnual",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+  {
+    id: 2,
+    formName: "PciBillingMonthAnnual",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+] 
+
+export const statusNonBillingForm = [
+  {
+    id: 1,
+    formName: "StatusNonBillingAnnual",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+  {
+    id: 2,
+    formName: "PciStatusNonBillingAnnual",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+  {
+    id: 3,
+    formName: "PciStatusNonBillingMonthly",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+  {
+    id: 4,
+    formName: "RateStatusNonBilling",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+] 
+
 export const merchResidualsTabs = [
   {
     id: "1",
@@ -2060,12 +2176,12 @@ export const merchResidualsTabs = [
     value: "accountAnalysis",
   },
   {
-    id: "4",
+    id: "5",
     title: "Enter Adjustments",
     value: "enterAdjustments",
   },
   {
-    id: "4",
+    id: "6",
     title: "Calculate Residuals",
     value: "calculateResiduals",
   },
@@ -2974,11 +3090,11 @@ export const adminMainTabs = [
     value: "adHoc",
     route: "/admin/adHoc",
   },
-  // {
-  //   title: "DB Operations",
-  //   value: "dbOperations",
-  //   route: "/admin/dbOperations",
-  // },
+  {
+    title: "DB Operations",
+    value: "dbOperations",
+    route: "/admin/dbOperations",
+  },
   {
     title: "User Admin",
     value: "userAdmin",
@@ -6697,7 +6813,7 @@ export const prevPocessorNorthBoardingForm = [
   },
 ];
 
-export const northBoadingForm = {
+export const northBoardingForm = {
   formTitle: "North Boarding",
   description: "",
   section: [
@@ -10205,13 +10321,14 @@ export const UserRoleList = [
 ];
 
 export const DepartmentList = [
-  { id: 1, name: "User", value: "User" },
-  { id: 2, name: "Admin", value: "Admin" },
+  { id: 1, name: "Customer", value: "Customer" },
+  { id: 2, name: "IT", value: "IT" },
   { id: 3, name: "Equipment", value: "Equipment" },
   { id: 4, name: "Support", value: "Support" },
   { id: 5, name: "Sales", value: "Sales" },
   { id: 6, name: "Agent", value: "Agent" },
   { id: 7, name: "External Agent", value: "ExternalAgent" },
+  { id: 8, name: "Finance", value: "Finance" },
 ];
 
 export const addNewUserForm = [
@@ -10285,12 +10402,12 @@ export const addNewUserForm = [
   },
   {
     id: 9,
-    title: "User Role:",
+    title: "Department:",
     type: "input",
-    placeholder: "Select User Role",
+    placeholder: "Select a Department",
     formName: "RoleId",
     value: "",
-    content: UserRoleList,
+    content: DepartmentList,
   },
   {
     id: 10,
@@ -10359,3 +10476,162 @@ export const testForm = [
     value: false
   },
 ];
+
+
+export const testingForm = {
+  formTitle: "Testing form",
+  description: "",
+  tabs: [
+    // TAB 1 
+    {
+      id: 1,
+      tabName: "Tab One",
+      value: "tab1",
+      section: [
+        // FIRST SECTION
+        {
+        sectionName: "",
+        cards: [
+          // 1. TEST CARD
+          {
+            title: "1. Zone",
+            colQty: "1",
+            fields: [
+              {
+                id: 1,
+                formName: "TimeZone",
+                title: "Time Zone",
+                type: "input",
+                placeholder: "",
+                value: "",
+              }
+            ]
+          },
+        ]
+        },
+        // SECOND SECTION
+        {
+          sectionName: "Information",
+          cards: [
+            // - 
+          {
+            title: "Testing second one card",
+            colQty: "4",
+            fields: [
+              {
+                id: 1,
+                formName: "DaysToSubmitTransactions",
+                title: "0-3",
+                type: "radio",
+                placeholder: "0-3",
+                value: "",
+              },
+              {
+                id: 2,
+                formName: "DaysToSubmitTransactions",
+                title: "4-7",
+                type: "radio",
+                placeholder: "4-7",
+                value: "",
+              },
+              {
+                id: 3,
+                formName: "DaysToSubmitTransactions",
+                title: "8-14",
+                type: "radio",
+                placeholder: "8-14",
+                value: "",
+              },
+              {
+                id: 4,
+                formName: "DaysToSubmitTransactions",
+                title: "12-14",
+                type: "radio",
+                placeholder: "12-14",
+                value: "",
+              },
+            ]
+          },
+            
+          ]
+        },
+      ]
+    },
+    // TAB 2
+    {
+      id: 2,
+      tabName: "Tab Two",
+      value: "tab2",
+      section: [
+        // FIRST SECTION
+        {
+        sectionName: "",
+        cards: [
+          // 1. TEST CARD
+          {
+            title: "1. Zone",
+            colQty: "1",
+            fields: [
+              {
+                id: 1,
+                formName: "TimeZone",
+                title: "Time Zone",
+                type: "input",
+                placeholder: "",
+                value: "",
+              }
+            ]
+          },
+        ]
+        },
+        // SECOND SECTION
+        {
+          sectionName: "Information",
+          cards: [
+            // - 
+          {
+            title: "Testing second one card",
+            colQty: "4",
+            fields: [
+              {
+                id: 1,
+                formName: "DaysToSubmitTransactions",
+                title: "0-3",
+                type: "radio",
+                placeholder: "0-3",
+                value: "",
+              },
+              {
+                id: 2,
+                formName: "DaysToSubmitTransactions",
+                title: "4-7",
+                type: "radio",
+                placeholder: "4-7",
+                value: "",
+              },
+              {
+                id: 3,
+                formName: "DaysToSubmitTransactions",
+                title: "8-14",
+                type: "radio",
+                placeholder: "8-14",
+                value: "",
+              },
+              {
+                id: 4,
+                formName: "DaysToSubmitTransactions",
+                title: "12-14",
+                type: "radio",
+                placeholder: "12-14",
+                value: "",
+              },
+            ]
+          },
+            
+          ]
+        },
+      ]
+    },
+  
+  ],
+}

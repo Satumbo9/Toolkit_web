@@ -14,7 +14,7 @@ const OrderPaymentsReportForm = ({ type }: Props) => {
     switch (type) {
       case "DateType":
         return (
-          <>
+          <div>
             <Select>
               <SelectTrigger>Date, Type</SelectTrigger>
               <SelectContent>
@@ -44,11 +44,11 @@ const OrderPaymentsReportForm = ({ type }: Props) => {
               <Button variant="destructive">Reset</Button>
               <Button variant="default">Submit</Button>
             </div>
-          </>
+          </div>
         );
       case "DateTypeAgent":
         return (
-          <>
+          <div>
             <Select>
               <SelectTrigger>Date, Type, Agent</SelectTrigger>
               <SelectContent>
@@ -84,11 +84,11 @@ const OrderPaymentsReportForm = ({ type }: Props) => {
               <Button variant="destructive">Reset</Button>
               <Button variant="default">Submit</Button>
             </div>
-          </>
+          </div>
         );
       case "Date":
         return (
-          <>
+          <div>
             <Select>
               <SelectTrigger>Date</SelectTrigger>
               <SelectContent>
@@ -104,11 +104,11 @@ const OrderPaymentsReportForm = ({ type }: Props) => {
               <Button variant="destructive">Reset</Button>
               <Button variant="default">Submit</Button>
             </div>
-          </>
+          </div>
         );
       case "SumAgent":
         return (
-          <>
+          <div>
             <div className="pb-5">
               <Select>
                 <SelectTrigger>Agent</SelectTrigger>
@@ -133,11 +133,11 @@ const OrderPaymentsReportForm = ({ type }: Props) => {
               <Button variant="destructive">Reset</Button>
               <Button variant="default">Submit</Button>
             </div>
-          </>
+          </div>
         );
       case "Status":
         return (
-          <>
+          <div>
             <div className="pb-5">
               <Select>
                 <SelectTrigger>Status</SelectTrigger>
@@ -164,11 +164,11 @@ const OrderPaymentsReportForm = ({ type }: Props) => {
               <Button variant="destructive">Reset</Button>
               <Button variant="default">Submit</Button>
             </div>
-          </>
+          </div>
         );
       case "Process":
         return (
-          <>
+          <div>
             <Select>
               <SelectTrigger>In Process</SelectTrigger>
               <SelectContent>
@@ -177,11 +177,11 @@ const OrderPaymentsReportForm = ({ type }: Props) => {
                 <SelectItem value={"Process3"}>Process3</SelectItem>
               </SelectContent>
             </Select>
-          </>
+          </div>
         );
       case "SalesReport":
         return (
-          <>
+          <div>
             <div className="pb-5">
               <DatePickerWithRange />
             </div>
@@ -190,7 +190,7 @@ const OrderPaymentsReportForm = ({ type }: Props) => {
               <Button variant="destructive">Reset</Button>
               <Button variant="default">Submit</Button>
             </div>
-          </>
+          </div>
         );
     }
   };

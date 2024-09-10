@@ -24,7 +24,7 @@ import {
   flexRateFeesNorthForm,
   LegalAddressInfoInterForm,
   LegalInfoInterForm,
-  northBoadingForm,
+  northBoardingForm,
   OwnersTable,
   salesInterForm,
   serverFspForm,
@@ -899,7 +899,7 @@ const NorthInformation = () => {
           {/* GENERATION OF THE WHOLE NORTH FORM */}
           <NorthFormGeneration
             formControl={form.control}
-            formFields={northBoadingForm}
+            formFields={northBoardingForm}
             gridCols={"3"}
           />
 

@@ -1,10 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { z } from "zod";
-import { newMerchantSchema } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { rejectCollectionsTable1, rejectCollectionsTable2 } from "@/constants";
 import DataTable from "@/components/Shared/DataTable/DataTable";
 import {
@@ -13,51 +8,9 @@ import {
 } from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
 import { Status } from "@/components/Shared/DataTable/CellFormat";
+import CustomButtons from "@/components/Shared/CustomButtons";
 
 const page = () => {
-  // eslint-disable-next-line no-unused-vars, react-hooks/rules-of-hooks
-  const form = useForm<z.infer<typeof newMerchantSchema>>({
-    resolver: zodResolver(newMerchantSchema),
-    defaultValues: {
-      MID: "",
-      LegalName: "",
-      DBA: "",
-      Phone: "",
-      Status: "",
-      Approval: "",
-      Filter: "",
-      Processor: "",
-      Fitler2: "",
-      AgentID: 0,
-      SalesRep: "",
-      Split: 0,
-      SplitName: "",
-      SplitID: 0,
-      LeadSource: "",
-      SplitLead: 0,
-      EstAnnual: 0,
-      Transactions: 0,
-      Filter3: "",
-      Banks: "",
-      WAVItAccount: 0,
-      MCCCode: "",
-      Notice: "",
-      ChildMID: false,
-      WAVitAccount: false,
-      WAVitApp: false,
-      NewAccountTasks: false,
-      BusinessRetail: false,
-      BusinessEcommerce: false,
-      BusinessRestaurant: false,
-      BusinessMoTo: false,
-      DeployBy: "",
-    },
-  });
-
-  // eslint-disable-next-line no-unused-vars
-  const onSubmit = (value: z.infer<typeof newMerchantSchema>) => {
-    console.log(value);
-  };
 
   //  COSTUMIZATION OF THE COLUMN PRICE
   const Price = (row: any) => {
@@ -130,19 +83,19 @@ const page = () => {
             />
           </div>
           <div className="w-fit">
-            <Button className="mb-2 w-full bg-gradient-to-r from-[#14ADD6] to-[#384295] px-10 text-white hover:opacity-90">
+            <CustomButtons btnType="default" className="mb-2 w-full px-10 ">
               Create New Collection
-            </Button>
-            <Button className="mb-2 w-full bg-gradient-to-r from-[#14ADD6] to-[#384295] px-10 text-white hover:opacity-90">
+            </CustomButtons>
+            <CustomButtons btnType="default" className="mb-2 w-full">
               Edit Collection
-            </Button>
+            </CustomButtons>
             <hr className="my-5 border-transparent bg-transparent" />
-            <Button className="mb-2 w-full bg-gradient-to-r from-[#79CB6C] to-[#285C20] px-10 text-white hover:opacity-90">
+            <CustomButtons btnType="success" className="mb-2 w-full">
               Add Payment
-            </Button>
-            <Button className="mb-2 w-full bg-gradient-to-r from-[#FF3333] to-[#8F0000] px-10 text-white hover:opacity-90">
+            </CustomButtons>
+            <CustomButtons btnType="destructive" className="mb-2 w-full">
               Desactivate Collection
-            </Button>
+            </CustomButtons>
           </div>
         </div>
       </section>

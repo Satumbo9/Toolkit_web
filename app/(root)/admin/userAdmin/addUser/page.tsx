@@ -28,7 +28,8 @@ const Page = () => {
       ConfirmPassword: "",
       UserStatus: "",
       InProduction: "",
-      RoleId: "",
+      Role: "",
+      Department: "",
       Manager: false,
       Lock: "",
       PermissionCreate: false,
@@ -42,9 +43,6 @@ const Page = () => {
   });
 
   const onSubmit = (value: z.infer<typeof newAddNewUserSchema>) => {
-    alert(`The Passwords don't match.`);
-
-    // if (value.Password !== value.ConfirmPassword)
 
     console.log(value);
   };
@@ -114,7 +112,7 @@ const Page = () => {
                     />
                   </div>
                   {show && (
-                    <>
+                    <div>
                       <p className="my-2">If Boarding:</p>
                       <SwitchForm
                         control={form.control}
@@ -122,7 +120,7 @@ const Page = () => {
                         label="Make Manager"
                         className=""
                       />
-                    </>
+                    </div>
                   )}
                 </div>
               </div>
@@ -130,7 +128,7 @@ const Page = () => {
 
             {/* BUTTON SAVE CHANGES */}
             <div className="m-auto my-3 w-full text-center">
-              <CustomButtons btnType="default">Save New User</CustomButtons>
+              <CustomButtons btnType="default" type="submit">Save New User</CustomButtons>
             </div>
           </form>
         </Form>

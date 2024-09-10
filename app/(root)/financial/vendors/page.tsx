@@ -169,7 +169,7 @@ const FinancialVendors = () => {
     <div className="mb-5 rounded-r-sm rounded-bl-sm border shadow-sm">
       <div className="grid grid-cols-2 gap-3 px-4 py-10 max-xl:grid-cols-1 max-xl:space-y-5">
         <section className="flex flex-col">
-          <h1 className="text-3xl text-blue-500">Vendor Edit</h1>
+          <h1 className="text-3xl text-sky-500">Vendor Edit</h1>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <InputForm
@@ -187,8 +187,9 @@ const FinancialVendors = () => {
                 formName="ACHVendor"
                 label=""
                 placeholder="ACH Vendor"
+                className=""
               />
-              <div className="grid grid-cols-2 gap-5">
+              <div className="mt-3 grid grid-cols-2 gap-5">
                 <InputForm
                   control={form.control}
                   formName="bankRouting"

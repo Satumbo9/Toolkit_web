@@ -7,7 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { DatePickerForm, InputForm } from "@/components/Shared/InstantForm";
-import { Button } from "@/components/ui/button";
+import CustomButtons from "@/components/Shared/CustomButtons";
 
 const FinancialFind = () => {
   const financialFindSchema = z.object({
@@ -35,7 +35,7 @@ const FinancialFind = () => {
 
   return (
     <div className="my-10 flex items-center justify-center">
-      <Card>
+      <Card className="shadow-md">
         <CardHeader>
           <CardTitle className="text-center">Search Criteria</CardTitle>
         </CardHeader>
@@ -76,7 +76,7 @@ const FinancialFind = () => {
               </div>
 
               <div className="mt-5 flex items-center justify-center">
-                <Button type="submit">Search</Button>
+                <CustomButtons btnType="default" className="px-10" type="submit">Search</CustomButtons>
               </div>
             </form>
           </Form>

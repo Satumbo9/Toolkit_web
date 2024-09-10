@@ -12,27 +12,25 @@ const OrdersPaymentsTabContent = () => {
     setActiveItem(value);
   };
   return (
-    <>
-      <div className="">
-        <Tabs
-          defaultValue="fillOrders"
-          className="w-full space-y-4 rounded-md p-4 text-center"
-        >
-          <TabsList className="">
-            {ordersPaymentsTabs.map((tab) => (
-              <TabsTrigger
-                onClick={() => handleClick(tab.value)}
-                key={tab.id}
-                value={tab.value}
-              >
-                {tab.title}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          {RenderOrdersPaymentsComponents(activeItem || "fillOrders")}
-        </Tabs>
-      </div>
-    </>
+    <div className="">
+      <Tabs
+        defaultValue="fillOrders"
+        className="w-full space-y-4 rounded-md p-4 text-center"
+      >
+        <TabsList className="">
+          {ordersPaymentsTabs.map((tab) => (
+            <TabsTrigger
+              onClick={() => handleClick(tab.value)}
+              key={tab.id}
+              value={tab.value}
+            >
+              {tab.title}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        {RenderOrdersPaymentsComponents(activeItem || "fillOrders")}
+      </Tabs>
+    </div>
   );
 };
 

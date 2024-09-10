@@ -9,52 +9,25 @@ import { wavitSettingsTable, wavitTransactionsTable } from "@/constants";
 import { DataTypes } from "@/types";
 import { Form } from "../ui/form";
 import { CheckboxForm, DatePickerForm } from "../Shared/InstantForm";
-import { Button } from "../ui/button";
-import { newMerchantSchema } from "@/lib/utils";
+import { wavitTransactionsSchema } from "@/lib/utils";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import CustomButtons from "../Shared/CustomButtons";
 
 const Transactions = () => {
-  const form = useForm<z.infer<typeof newMerchantSchema>>({
-    resolver: zodResolver(newMerchantSchema),
+  const form = useForm<z.infer<typeof wavitTransactionsSchema>>({
+    resolver: zodResolver(wavitTransactionsSchema),
     defaultValues: {
-      MID: "",
-      LegalName: "",
-      DBA: "",
-      Phone: "",
-      Status: "",
-      Approval: "",
-      Filter: "",
-      Processor: "",
-      Fitler2: "",
-      AgentID: 0,
-      SalesRep: "",
-      Split: 0,
-      SplitName: "",
-      SplitID: 0,
-      LeadSource: "",
-      SplitLead: 0,
-      EstAnnual: 0,
-      Transactions: 0,
-      Filter3: "",
-      Banks: "",
-      WAVItAccount: 0,
-      MCCCode: "",
-      Notice: "",
-      ChildMID: false,
-      WAVitAccount: false,
-      WAVitApp: false,
-      NewAccountTasks: false,
-      BusinessRetail: false,
-      BusinessEcommerce: false,
-      BusinessRestaurant: false,
-      BusinessMoTo: false,
-      DeployBy: "",
+      FromDate: new Date(),
+      ToDate: new Date(),
+      LookForTrouble: false,
+      LookDebitBusiness: false,
+      SaveToC: false,
     },
   });
 
-  const onSubmit = (value: z.infer<typeof newMerchantSchema>) => {
+  const onSubmit = (value: z.infer<typeof wavitTransactionsSchema>) => {
     console.log(value);
   };
 
@@ -81,80 +54,45 @@ const Transactions = () => {
       <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-            <div className="mt-4 gap-0">
-              <div className="grid grid-cols-4 gap-2 max-2xl:grid-cols-2 max-lg:grid-cols-1">
-                <div className="flex content-center justify-end gap-4">
-                  <label className="w-1/3 content-center text-nowrap text-end text-sm font-medium">
-                    From Date
-                  </label>
-                  <div className="flex-auto">
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/2024"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-1">
-                  <div className="content-center justify-start text-nowrap">
-                    <CheckboxForm
-                      control={form.control}
-                      formName="ChildMID"
-                      label=""
-                      placeholder=""
-                    />
-                  </div>
-                  <span className="mt-1 content-center text-nowrap">
-                    Look for Trouble
-                  </span>
-                </div>
-                <div className="flex-1"></div>
-                <Button className="my-2 flex-1 bg-gradient-to-r from-[#14ADD6] to-[#384295] text-white hover:opacity-90">
+            <div className="mt-4 gap-0 text-start">
+              <div className="grid grid-cols-4 items-end gap-2 max-2xl:grid-cols-2 max-lg:grid-cols-1">
+                <DatePickerForm
+                  control={form.control}
+                  formName="FromDate"
+                  label="From Date"
+                  placeholder="mm/dd/2024"
+                />
+                <DatePickerForm
+                  control={form.control}
+                  formName="ToDate"
+                  label="To Date"
+                  placeholder="mm/dd/2024"
+                />
+                <CheckboxForm
+                  control={form.control}
+                  formName="LookForTrouble"
+                  label=""
+                  placeholder="Look for Trouble"
+                />
+                <CheckboxForm
+                  control={form.control}
+                  formName="LookDebitBusiness"
+                  label=""
+                  placeholder="Look for Debit Business (slow)"
+                  className="mb-2"
+                />
+                <CustomButtons btnType="default" className="my-2 w-full flex-1">
                   Update
-                </Button>
-                <div className="flex content-center justify-end gap-4">
-                  <label className="w-1/3 content-center text-nowrap text-end text-sm font-medium">
-                    To Date
-                  </label>
-                  <div className="flex-auto">
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/2024"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-1">
-                  <div className="content-center justify-start text-nowrap">
-                    <CheckboxForm
-                      control={form.control}
-                      formName="BusinessRetail"
-                      label=""
-                      placeholder=""
-                    />
-                  </div>
-                  <span className="mt-1 content-center text-nowrap">
-                    Look for Debit Business (slow)
-                  </span>
-                </div>
-                <div className="flex flex-1">
-                  <div className="content-center justify-start text-nowrap">
-                    <CheckboxForm
-                      control={form.control}
-                      formName="BusinessEcommerce"
-                      label=""
-                      placeholder=""
-                    />
-                  </div>
-                  <span className="mt-1 content-center text-nowrap">
-                    Save to c:\mcs_toolkit
-                  </span>
-                </div>
-                <Button className="my-2 flex-1 bg-gradient-to-r from-[#828282] to-[#353535] text-white hover:opacity-90">
+                </CustomButtons>
+                <CustomButtons btnType="primary" className="my-2 w-full flex-1">
                   Export Table
-                </Button>
+                </CustomButtons>
+                <CheckboxForm
+                  control={form.control}
+                  formName="SaveToC"
+                  label=""
+                  placeholder="Save to c:\mcs_toolkit"
+                />
               </div>
             </div>
           </form>
@@ -188,6 +126,7 @@ const Settings = () => {
           data={wavitSettingsTable}
           enableColumnFilter={false}
           actionsColumn={false}
+          pagination={false}
         />
       </div>
     </section>
@@ -195,7 +134,6 @@ const Settings = () => {
 };
 
 export default function RenderWavitInfoTabComponents(value: string) {
-  console.log(value);
   switch (value) {
     case "transactions":
       return <Transactions />;
