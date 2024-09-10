@@ -1,7 +1,7 @@
 "use client";
 
 import { JSX } from "react";
-import { DataTypes } from "@/types";
+import { DataTypes } from "../../../types/index";
 import {
   ColumnDef,
   createColumnHelper,

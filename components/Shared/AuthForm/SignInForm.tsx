@@ -10,13 +10,12 @@ import Link from "next/link";
 import { Button } from "../../ui/button";
 import CustomInput from "./CustomInput";
 import FormAlert from "./FormAlert";
-import { login } from "@/actions/authAction";
 import LineSeperator from "../../LineSeperator";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
-import { DEFAULT_LOGIN_REDIRECT } from "@/route";
+import { signIn } from "@/constants/actions/user.action";
+import LoadingButton from "../LoadingButton";
 
-const SignInForm = ({ type }: { type: string }) => {
+const SignInForm = () => {
   const [isPending, startPending] = useTransition();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -33,7 +32,7 @@ const SignInForm = ({ type }: { type: string }) => {
     setError("");
     setSuccess("");
     startPending(() => {
-      login(values).then((data) => {
+      signIn(values).then((data: any) => {
         setError(data?.error);
         setSuccess(data?.success);
       });
@@ -43,19 +42,18 @@ const SignInForm = ({ type }: { type: string }) => {
   return (
     <div>
       {/* Slack login */}
-      <Button
-        className="flex w-full items-center justify-between"
-        onClick={() => signIn("slack", { callbackUrl: DEFAULT_LOGIN_REDIRECT })}
-      >
-        <Image
-          src="/icon/slack.svg"
-          alt="slack"
-          width={30}
-          height={30}
-          priority
-        />
-        <span>Continue with Slack</span>
-      </Button>
+      <Link href="/login/slack">
+        <Button className="flex w-full items-center gap-5">
+          <Image
+            src="/icon/slack.svg"
+            alt="slack"
+            width={30}
+            height={30}
+            priority
+          />
+          <span>Continue with Slack</span>
+        </Button>
+      </Link>
 
       <div data-orientation="horizon" className="my-5 w-full border" />
 
@@ -83,9 +81,9 @@ const SignInForm = ({ type }: { type: string }) => {
           <div className="mt-7 flex flex-col">
             {error && <FormAlert message={error} type="error" />}
             {success && <FormAlert message={success} type="success" />}
-            <Button type="submit" disabled={isPending}>
-              {type === "sign-in" ? "Sign in" : "Sign up"}
-            </Button>
+            <LoadingButton loading={isPending} type="submit">
+              Sign in
+            </LoadingButton>
             <p className="my-5 cursor-pointer text-center">Forget password</p>
             <LineSeperator text="Or" />
           </div>

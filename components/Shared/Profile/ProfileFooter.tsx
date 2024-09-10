@@ -16,7 +16,7 @@ const ProfileFooter = () => {
       transition={{ type: "spring", stiffness: 300 }}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
-      className="inline-flex h-fit items-center overflow-hidden max-lg:absolute max-lg:right-40 max-lg:top-72"
+      className="mt-5 inline-flex h-fit items-center overflow-hidden max-lg:absolute max-lg:right-40 max-lg:top-72"
     >
       <Button>
         <Link href="/" className="flex w-fit">

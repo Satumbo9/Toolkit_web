@@ -7,82 +7,350 @@ datasource db {
   url      = env("TEST_DATABASE")
 }
 
+model EFMigrationsHistory {
+  migrationId    String @id
+  productVersion String @db.NVarChar(32)
+
+  @@map("__EFMigrationsHistory")
+}
+
+model ActivityLog {
+  activityID     Int      @id @default(autoincrement())
+  userId         String
+  sourceID       Int
+  sourceName     String
+  creationDate   DateTime
+  originalValues String
+  changedValues  String?
+  users          User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("activityLog")
+}
+
+model ApplicationStatus {
+  id         Int    @id @default(autoincrement())
+  statusName String
+
+  @@map("applicationStatus")
+}
+
+model Equipment {
+  id            Int        @id @default(autoincrement())
+  merchantID    Int?
+  equipmentName String?
+  equipmentType String?
+  serialNumber  String?
+  installedDate DateTime?
+  merchants     Merchants? @relation(fields: [merchantID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("equipment")
+}
+
+model Fields {
+  fieldID      Int          @id @default(autoincrement())
+  fieldName    String
+  fieldType    String
+  label        String
+  dataType     String
+  isRequired   Boolean      @default(false)
+  defaultValue String?
+  listValues   String?
+  createdAt    DateTime?    @default(now())
+  updatedAt    DateTime?    @default(now())
+  formFields   FormFields[]
+
+  @@map("fields")
+}
+
+model FormFields {
+  formFieldID Int         @id @default(autoincrement())
+  sectionID   Int
+  fieldID     Int
+  fieldOrder  Int
+  fields      Fields      @relation(fields: [fieldID], references: [fieldID], onUpdate: NoAction)
+  formSection FormSection @relation(fields: [sectionID], references: [id], onUpdate: NoAction)
+
+  @@map("formFields")
+}
+
+model Forms {
+  formID               Int                    @id @default(autoincrement())
+  formName             String
+  description          String?
+  formSection          FormSection[]
+  merchantApplications MerchantApplications[]
+
+  @@map("forms")
+}
+
+model FormSection {
+  id           Int          @id @default(autoincrement())
+  formID       Int
+  sectionName  String       @db.NVarChar(100)
+  sectionOrder Int
+  formFields   FormFields[]
+  forms        Forms        @relation(fields: [formID], references: [formID], onUpdate: NoAction)
+
+  @@map("formSelection")
+}
+
+model LeadDocuments {
+  id           Int       @id @default(autoincrement())
+  leadID       Int?
+  documentName String?
+  documentType String?
+  documentPath String?
+  uploadedDate DateTime? @default(now())
+  leads        Leads?    @relation(fields: [leadID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("leadDocuments")
+}
+
+model Leads {
+  id                   Int                    @id @default(autoincrement())
+  agentID              String?
+  merchantName         String
+  contactName          String?
+  contactPhone         String?
+  contactEmail         String?
+  status               String?
+  createdDate          DateTime?              @default(now())
+  leadDocuments        LeadDocuments[]
+  users                User?                  @relation(fields: [agentID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  merchantApplications MerchantApplications[]
+  merchants            Merchants[]
+
+  @@map("leads")
+}
+
+model MerchantApplications {
+  id         Int        @id @default(autoincrement())
+  leadID     Int?
+  merchantID Int?
+  formID     Int?
+  data       String?
+  createdAt  DateTime?  @default(now())
+  updatedAt  DateTime?  @default(now())
+  forms      Forms?     @relation(fields: [formID], references: [formID], onDelete: NoAction, onUpdate: NoAction)
+  leads      Leads?     @relation(fields: [leadID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  merchants  Merchants? @relation(fields: [merchantID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([formID])
+  @@index([leadID])
+  @@index([merchantID])
+  @@map("merchantApplications")
+}
+
+model MerchantDocuments {
+  id           Int        @id @default(autoincrement())
+  merchantID   Int?
+  documentName String?
+  documentType String?
+  documentPath String?
+  uploadedDate DateTime?  @default(now())
+  merchants    Merchants? @relation(fields: [merchantID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("merchantDocuments")
+}
+
+model Merchants {
+  id                   Int                    @id @default(autoincrement())
+  merchantName         String
+  contactName          String?
+  contactPhone         String?
+  contactEmail         String?
+  status               String?
+  createdDate          DateTime?              @default(now())
+  leadId               Int?
+  equipment            Equipment[]
+  merchantApplications MerchantApplications[]
+  merchantDocuments    MerchantDocuments[]
+  leads                Leads?                 @relation(fields: [leadId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  merchantSplits       MerchantSplits[]
+  tasks                Tasks[]
+
+  @@map("merchants")
+}
+
+model MerchantSplits {
+  id              Int        @id @default(autoincrement())
+  merchantId      Int?
+  agentId         String?
+  splitPercentage Decimal?
+  createdDate     DateTime?  @default(now())
+  users           User?      @relation(fields: [agentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  merchants       Merchants? @relation(fields: [merchantId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("merchantSplits")
+}
+
+model OrganizationAgents {
+  id             Int            @id @default(autoincrement())
+  organizationID Int?
+  agentID        String?        @unique()
+  users          User?          @relation(fields: [agentID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  organizations  Organizations? @relation(fields: [organizationID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("organizationAgents")
+}
+
+model Organizations {
+  id                 Int                  @id @default(autoincrement())
+  organizationName   String
+  contactName        String?
+  contactPhone       String?
+  contactEmail       String?
+  createdDate        DateTime?            @default(now())
+  organizationAgents OrganizationAgents[]
+  tasks              Tasks[]
+
+  @@map("organizations")
+}
+
+model RoleClaims {
+  id         Int     @id @default(autoincrement())
+  roleId     String
+  claimType  String?
+  claimValue String?
+  roles      Roles   @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([roleId])
+  @@map("rolesClaims")
+}
+
+model Roles {
+  id               String       @id
+  name             String?
+  normalizedName   String?
+  concurrencyStamp String?
+  roleClaims       RoleClaims[]
+  userRoles        UserRoles[]
+
+  @@map("roles")
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Task {
+  id            Int         @id
+  userID        String?
+  creationDate  DateTime?
+  completedDate DateTime?
+  taskStatusID  Int?
+  taskStatus    TaskStatus? @relation(fields: [taskStatusID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("task")
+}
+
+model Department {
+  id    String @id
+  title String
+  user  User[]
+
+  @@map("departments")
+}
+
+model Tasks {
+  taskID          Int            @id @default(autoincrement())
+  organizationID  Int?
+  agentID         String?
+  merchantID      Int?
+  taskDescription String
+  taskStatus      String?
+  dueDate         DateTime?
+  createdDate     DateTime?      @default(now())
+  users           User?          @relation(fields: [agentID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  merchants       Merchants?     @relation(fields: [merchantID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  organizations   Organizations? @relation(fields: [organizationID], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([agentID])
+  @@index([merchantID])
+  @@index([organizationID])
+  @@map("tasks")
+}
+
+model TaskStatus {
+  id          Int     @id
+  name        String?
+  description String?
+  task        Task[]
+
+  @@map("taskStatus")
+}
+
+model UserClaims {
+  id         Int     @id @default(autoincrement())
+  userId     String
+  claimType  String?
+  claimValue String?
+  users      User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([userId])
+  @@map("userClaims")
+}
+
+model UserLogins {
+  loginProvider       String
+  providerKey         String
+  providerDisplayName String?
+  userId              String
+  users               User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([loginProvider, providerKey])
+  @@index([userId])
+  @@map("userLogins")
+}
+
+model UserRoles {
+  userId String
+  roleId String
+  roles  Roles  @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users  User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([userId, roleId])
+  @@index([roleId])
+  @@map("userRoles")
+}
+
 model User {
-  id                String    @id @default(cuid())
-  firstname         String?
-  lastname          String?
-  name              String?
-  email             String    @unique
-  password          String?
-  phone             String?
-  image             String?
-  phoneVerified     Boolean   @default(false)
-  emailVerified     DateTime?
-  enabled2FA        Boolean   @default(true)
-  createdAtDateTime DateTime  @default(now())
-  updatedAtDateTime DateTime  @updatedAt
-  Profile           Profile?
-  Account           Account?
-  Group             Group?
-  Role              Role?
+  id                   String              @id
+  username             String?
+  normalizedUserName   String?
+  email                String?
+  normalizedEmail      String?
+  emailConfirmed       Boolean
+  passwordHash         String?
+  securityStamp        String?
+  concurrencyStamp     String?
+  phoneNumber          String?
+  phoneNumberConfirmed Boolean
+  image                String?
+  twoFactorEnabled     Boolean
+  lockoutEnd           DateTime?
+  language             String?
+  accessFailedCount    Int?
+  departmentId         String?
+  createdAt            DateTime            @default(now())
+  activityLog          ActivityLog[]
+  leads                Leads[]
+  merchantSplits       MerchantSplits[]
+  organizationAgents   OrganizationAgents?
+  sessions             Session[]
+  tasks                Tasks[]
+  userClaims           UserClaims[]
+  userLogins           UserLogins[]
+  userRoles            UserRoles[]
+  Department           Department?         @relation(fields: [departmentId], references: [id])
 
-  @@map("Users")
+  @@index([normalizedEmail])
+  @@map("users")
 }
 
-model Profile {
-  id     Int    @id @default(autoincrement())
-  user   User   @relation(fields: [userID], references: [id])
-  userID String @unique
-
-  @@map("Profile")
-}
-
-model Account {
-  id                       String  @id @default(cuid())
-  userId                   String  @unique
-  type                     String
-  provider                 String
-  providerAccountId        String
-  refresh_token            String? @db.Text
-  access_token             String? @db.Text
-  expires_at               Int?
-  token_type               String?
-  scope                    String?
-  id_token                 String? @db.Text
-  session_state            String?
-  refresh_token_expires_in Int?
-  user                     User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([provider, providerAccountId])
-  @@index([userId])
-}
-
-model Group {
-  id     Int    @id @default(autoincrement())
-  userId String @unique
-  title  String
-  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-model Role {
-  id     Int    @id @default(autoincrement())
-  userId String @unique
-  title  String
-  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-model VerificationToken {
-  id      String   @id @default(cuid())
-  email   String
-  token   String   @unique
-  expires DateTime
-
-  @@unique([email, token])
-}
+// Onboarding schemas

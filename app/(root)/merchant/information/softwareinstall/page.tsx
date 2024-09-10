@@ -1,9 +1,9 @@
-import React from 'react'
+"use client";
+import SoftwareInstall from "@/components/merchants/SoftwareInstall";
+import React from "react";
 
 const page = () => {
-  return (
-    <div>Software Install</div>
-  )
-}
+  return <SoftwareInstall />;
+};
 
-export default page
+export default page;

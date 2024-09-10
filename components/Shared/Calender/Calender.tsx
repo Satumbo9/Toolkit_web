@@ -28,9 +28,13 @@ export const datePicker = z.object({
     .optional(),
 });
 
-export default function DatePickerWithRange({
+export function DatePickerWithRange({
   className,
-}: React.HTMLAttributes<HTMLDivElement>) {
+  showDownload = false,
+}: {
+  className?: React.HTMLAttributes<HTMLDivElement>;
+  showDownload?: boolean;
+}) {
   // eslint-disable-next-line no-unused-vars
   const [date, setDate] = React.useState<DateRange | undefined>(undefined);
   const { toast } = useToast();
@@ -74,7 +78,7 @@ export default function DatePickerWithRange({
                             variant={"outline"}
                             className={cn(
                               "w-[300px] justify-start text-left font-normal",
-                              !field.value && "text-muted-foreground"
+                              !field.value && "text-muted-foreground",
                             )}
                           >
                             <CalendarIcon className="mr-2 size-4" />
@@ -115,9 +119,11 @@ export default function DatePickerWithRange({
             </FormItem>
           )}
         />
-        <div>
-          <Button type="submit">Download</Button>
-        </div>
+        {showDownload && (
+          <div>
+            <Button type="submit">Download</Button>
+          </div>
+        )}
       </form>
     </Form>
   );

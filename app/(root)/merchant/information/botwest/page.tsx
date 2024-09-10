@@ -1,212 +1,205 @@
 "use client";
-import React from 'react'
-import ExtremeDataTable from '@/components/Shared/DataTable/DataTable'
-import { Button } from "@/components/ui/button";
+import React from "react";
 import { z } from "zod";
-import { newMerchantSchema, cn, formatCurrency } from "@/lib/utils";
+import { bankOfTheWestSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { DatePickerForm, SelectForm, CheckboxForm, InputForm } from "@/components/Shared/InstantForm";
-import { equipmentTable1, equipmentTable2, equipmentTable3, equipmentList1, merchantProcessorList } from "@/constants";
+import { Form } from "@/components/ui/form";
+import { InputForm } from "@/components/Shared/InstantForm";
 
-const page = () => {
-  const form = useForm<z.infer<typeof newMerchantSchema>>({
-    resolver: zodResolver(newMerchantSchema),
+const Page = () => {
+  const form = useForm<z.infer<typeof bankOfTheWestSchema>>({
+    resolver: zodResolver(bankOfTheWestSchema),
     defaultValues: {
-      MID: "",
-      LegalName: "",
-      DBA: "",
-      Phone: "",
-      Status: "",
-      Approval: "",
-      Filter: "",
-      Processor: "",
-      Fitler2: "",
-      AgentID: 0,
-      SalesRep: "",
-      Split: 0,
-      SplitName: "",
-      SplitID: 0,
-      LeadSource: "",
-      SplitLead: 0,
-      EstAnnual: 0,
-      Transactions: 0,
-      Filter3: "",
-      Banks: "",
-      WAVItAccount: 0,
-      MCCCode: "",
-      Notice: "",
-      ChildMID: false,
-      WAVitAccount: false,
-      WAVitApp: false,
-      NewAccountTasks: false,
-      BusinessRetail: false,
-      BusinessEcommerce: false,
-      BusinessRestaurant: false,
-      BusinessMoTo: false,
-      DeployBy: "",
+      AgentRepName: "",
+      AgentRepCode: "",
+      BranchName: "",
+      BranchCode: "",
+      AbaRouting: "",
+      DdaCheckingAct: "",
+      FederalTaxId: "",
+      Banker: "",
+      BankerEmployeeId: "",
+      DivisionName: "",
+      DivisonLob: "",
+      RegionName: "",
+      Region: "",
+      SegmentName: "",
+      ReferralLead: "",
+      Entity: "",
+      ClientGroup: "",
     },
   });
 
-  const onSubmit = (value: z.infer<typeof newMerchantSchema>) => {
+  const onSubmit = (value: z.infer<typeof bankOfTheWestSchema>) => {
     console.log(value);
   };
-  const itemsList = [
+  const formList = [
     {
       id: 1,
       title: "Agent / Rep. Name",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 2,
-      title: "Branch Name",
+      title: "Agent / Rep. Code",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 3,
-      title: "ABA Routing #",
+      title: "Branch Name",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 4,
-      title: "DDA Checking Act. #",
+      title: "Branch Code",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 5,
-      title: "Federal Tax ID #",
+      title: "ABA Routing #",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 6,
-      title: "Banker",
+      title: "DDA Checking Act. #",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 7,
-      title: "Division Name",
+      title: "Federal Tax ID #",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 8,
-      title: "Region Name",
+      title: "Banker",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 9,
-      title: "Segment Name",
+      title: "Banker Employee ID",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 10,
-      title: "Referral Lead #",
+      title: "Division Name",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 11,
-      title: "Entity",
+      title: "Division / LOB #",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 12,
-      title: "Client Group",
+      title: "Region Name",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 13,
-      title: "Agent / Rep. Code",
+      title: "Region #",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 14,
-      title: "Branch Code",
+      title: "Segment Name",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 15,
-      title: "Banker Employee ID",
+      title: "Referral Lead #",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 16,
-      title: "Division / LOB #",
+      title: "Entity",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 17,
-      title: "Region #",
+      title: "Client Group",
+      formName: "",
+      placeholder: "",
       type: "input",
-      value: ""
+      value: "",
     },
-  ]
+  ];
 
   return (
-    <>
-      <section>
-        <h1 className='text-2xl text-sky-500 mb-3'>Bank of The West</h1>
+    <section>
+      <h1 className="mb-3 text-2xl text-sky-500">Bank of The West</h1>
 
+      {/* FIRST COLUMN */}
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          {/* Processor Information */}
+          <h1 className="m-auto text-center text-xl font-bold">Information</h1>
+          <div className="m-auto grid grid-flow-row grid-cols-2 gap-x-4 px-6 max-lg:grid-cols-1">
+            {formList.map((item) => {
+              return (
+                <div key={item.id} className="m-auto w-full gap-4">
+                  <InputForm
+                    control={form.control}
+                    formName={item.formName}
+                    label={item.title}
+                    placeholder={item.placeholder}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </form>
+      </Form>
+    </section>
+  );
+};
 
-        {/* FIRST COLUMN */}
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-            {/* Processor Information */}
-            <h1 className='text-xl font-bold text-center m-auto'>Information</h1>
-
-            <div className="grid grid-rows-10 grid-flow-col gap-2">
-              {itemsList.map((item) => {
-                return (
-                  <div className='flex gap-4 m-auto w-full'>
-                    <div className='w-2/4 text-end content-center'>
-                      <p className=''>{item.title}</p>
-                    </div>
-                    <div className='w-1/2'>
-                      <InputForm
-                        control={form.control}
-                        formName="Filter3"
-                        label=""
-                        placeholder='Enter text...'
-                      />
-                    </div>
-
-                  </div>
-
-                )
-              })}
-            </div>
-
-
-
-
-          </form>
-        </Form>
-
-      </section>
-    </>
-  )
-}
-
-export default page
+export default Page;

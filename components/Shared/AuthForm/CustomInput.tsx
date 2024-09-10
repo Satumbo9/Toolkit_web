@@ -4,13 +4,6 @@ import { Input } from "../../ui/input";
 import { Control, FieldPath } from "react-hook-form";
 import { z } from "zod";
 import { SignInSchema, SignUpSchema } from "@/schemas";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../ui/select";
 
 // declare type for interface, if the type is sign-in use SignInSchema.
 type SchemaType<Type extends string> = Type extends "sign-in"
@@ -32,9 +25,7 @@ const CustomInput = <Type extends "sign-in" | "sign-up">({
   label,
   nameHolder,
   type,
-  groups,
 }: CustomInputProps<Type>) => {
-  const isSignIn = type === "sign-in";
   return (
     <div>
       <FormField
@@ -47,36 +38,21 @@ const CustomInput = <Type extends "sign-in" | "sign-up">({
               {label}
             </FormLabel>
             <div className="flex w-full flex-col">
-              {!isSignIn && label === "Group" ? (
-                <>
-                  <Select onValueChange={(value) => field.onChange(value)}>
-                    <SelectTrigger className="dark:bg-white dark:text-black">
-                      <SelectValue placeholder="Select a department" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {["IT", "Hardware", "Sale", "Support", "Marketing"].map(
-                        (item) => (
-                          <SelectItem key={item} value={item}>
-                            {item}
-                          </SelectItem>
-                        )
-                      )}
-                    </SelectContent>
-                  </Select>
-                </>
-              ) : (
-                <>
-                  <FormControl>
-                    <Input
-                      key={name}
-                      placeholder={nameHolder}
-                      className="input-class placeholder:opacity-50"
-                      type={name === "password" ? "Password" : "Text"}
-                      {...field}
-                    />
-                  </FormControl>
-                </>
-              )}
+              <FormControl>
+                <Input
+                  key={name}
+                  placeholder={nameHolder}
+                  className="input-class placeholder:opacity-50"
+                  type={
+                    name === "password"
+                      ? "Password"
+                      : name === "email"
+                        ? "email"
+                        : "text"
+                  }
+                  {...field}
+                />
+              </FormControl>
               <FormMessage className="form-message mt-2" />
             </div>
           </div>

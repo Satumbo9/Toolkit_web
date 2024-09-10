@@ -1,68 +1,85 @@
-import NextAuth from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { Role, Group } from "@prisma/client";
-import { db } from "./lib/database";
-import authConfig from "./auth.config";
-import { getUserById } from "./data/user";
+import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
+import prisma from "./constants/connectToDB";
+import { Lucia, Session, User } from "lucia";
+import { cache } from "react";
+import { cookies } from "next/headers";
+import { Slack } from "arctic";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  pages: {
-    signIn: "/sign-in",
-    error: "/error",
-  },
-  events: {
-    async linkAccount({ user }) {
-      await db.user.update({
-        where: { id: user.id },
-        data: { emailVerified: new Date() },
-      });
+const adapter = new PrismaAdapter(prisma.session, prisma.user);
+
+export const lucia = new Lucia(adapter, {
+  sessionCookie: {
+    expires: false,
+    attributes: {
+      secure: process.env.NODE_ENV === "production",
     },
   },
-  callbacks: {
-    async signIn({ user, account }) {
-      // Allow OAuth without email verification
-      if (account?.provider !== "credentials") return true;
 
-      const existingUser = await getUserById(user.id);
-
-      // Prevent signin without email verification
-      if (!existingUser?.emailVerified) return false;
-
-      // TODO: Add 2FA check
-
-      return true;
-    },
-
-    async session({ token, session }) {
-      console.log({ SessionToken: token });
-      if (token.sub && session.user) {
-        session.user.id = token.sub;
-        session.user.role = token.role as Role; // Create the role for users
-        session.user.group = token.group as Group; // Create the group for users
-      }
-      return session;
-    },
-    async jwt({ token }) {
-      if (!token.sub) return token;
-
-      const existingUser = await getUserById(token.sub);
-
-      if (!existingUser) return token;
-
-      // Include role in the token
-      token.role = existingUser.Role; // Adjust according to the Role model
-
-      // Include group in the token
-      token.group = existingUser.Group; // Adjust according to the Group model
-
-      token.firstname = existingUser.firstname; // Adjust according to the User's firstname
-
-      token.lastname = existingUser.lastname;
-
-      return token;
-    },
+  getUserAttributes(databaseUserAttributes) {
+    return {
+      id: databaseUserAttributes.id,
+      username: databaseUserAttributes.username,
+      image: databaseUserAttributes.image,
+    };
   },
-  adapter: PrismaAdapter(db),
-  session: { strategy: "jwt" },
-  ...authConfig,
 });
+
+interface DatabaseUserAttributes {
+  id: string;
+  username: string;
+  image?: string;
+}
+
+declare module "lucia" {
+  // eslint-disable-next-line no-unused-vars
+  interface Register {
+    Lucia: typeof lucia;
+    DatabaseUserAttributes: DatabaseUserAttributes;
+  }
+}
+
+export const slackLogin = new Slack(
+  process.env.AUTH_SLACK_ID!,
+  process.env.AUTH_SLACK_SECRET!,
+  `${process.env.AUTH_SLACK_CALLBACK}/api/auth/callback/slack`,
+);
+
+export const validateRequest = cache(
+  async (): Promise<
+    { user: User; session: Session } | { user: null; session: null }
+  > => {
+    const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
+
+    if (!sessionId) {
+      return {
+        user: null,
+        session: null,
+      };
+    }
+
+    const result = await lucia.validateSession(sessionId);
+
+    try {
+      if (result.session && result.session.fresh) {
+        const sessionCookie = lucia.createSessionCookie(result.session.id);
+
+        cookies().set(
+          sessionCookie.name,
+          sessionCookie.value,
+          sessionCookie.attributes,
+        );
+      }
+
+      if (!result.session) {
+        const sessionCookie = lucia.createBlankSessionCookie();
+        cookies().set(
+          sessionCookie.name,
+          sessionCookie.value,
+          sessionCookie.attributes,
+        );
+      }
+    } catch {}
+
+    return result;
+  },
+);

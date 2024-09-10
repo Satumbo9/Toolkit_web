@@ -41,9 +41,10 @@ const MerchantShortcuts = () => {
   return (
     <section className="w-auto">
       <h1 className="mb-4 text-center text-3xl text-sky-500">Shortcuts</h1>
-      <div className="flex w-auto flex-wrap justify-center gap-4 rounded-md text-lg text-sky-500">
+
+      <div className="grid w-auto grid-cols-6 gap-4 rounded-md text-lg text-sky-500 max-2xl:grid-cols-3">
         {/* MERCHANT ICON */}
-        <div className="flex flex-1 flex-col justify-center rounded-md border border-gray-400 shadow-md bg-transparent px-2">
+        <div className="col-span-1 flex flex-col justify-center rounded-md border bg-transparent px-2 shadow-md transition duration-300 hover:border-sky-500">
           <div className="flex justify-center">
             <h1>Merchant</h1>
           </div>
@@ -75,7 +76,7 @@ const MerchantShortcuts = () => {
           </Dialog>
         </div>
 
-        <div className="flex-1 justify-center rounded-md border border-gray-400 shadow-md bg-transparent p-5 text-center">
+        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
           <h1>Tasks / Logs</h1>
           <div className="">
             <Image
@@ -86,12 +87,13 @@ const MerchantShortcuts = () => {
               height={75}
               priority
             />
+
             <h1 className="justify-center text-nowrap text-black dark:text-white">
               Create Task
             </h1>
           </div>
         </div>
-        <div className="flex-1 justify-center rounded-md border border-gray-400 shadow-md bg-transparent p-5 text-center">
+        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
           <h1>Documents</h1>
           <div className="">
             <Image
@@ -102,13 +104,14 @@ const MerchantShortcuts = () => {
               height={75}
               priority
             />
-            <h1 className="justify-center text-nowrap text-black dark:text-white">
+
+            <h1 className="justify-center text-black dark:text-white">
               Upload Document
             </h1>
           </div>
         </div>
 
-        <div className="flex-1 justify-center rounded-md border border-gray-400 shadow-md bg-transparent p-5 text-center">
+        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
           <h1>Equipment</h1>
           <div className="">
             <Image
@@ -125,7 +128,7 @@ const MerchantShortcuts = () => {
           </div>
         </div>
 
-        <div className="flex-1 justify-center rounded-md border border-gray-400 shadow-md bg-transparent p-5 text-center">
+        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
           <h1>Call Logs</h1>
           <div className="">
             <Image
@@ -136,13 +139,13 @@ const MerchantShortcuts = () => {
               height={75}
               priority
             />
-            <h1 className="justify-center text-nowrap text-black dark:text-white">
+            <h1 className="justify-center text-black dark:text-white">
               See Logs / Tasks
             </h1>
           </div>
         </div>
 
-        <div className="flex-1 justify-center rounded-md border border-gray-400 shadow-md bg-transparent p-5 text-center">
+        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
           <h1>Leasing</h1>
           <div className="">
             <Image

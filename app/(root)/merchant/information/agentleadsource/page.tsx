@@ -1,9 +1,10 @@
-import React from 'react'
+"use client";
+
+import React from "react";
+import AgentLeadSource from "@/components/merchants/AgentLeadSource";
 
 const page = () => {
-  return (
-    <div>Agent / Lead Source</div>
-  )
-}
+  return <AgentLeadSource />;
+};
 
-export default page
+export default page;

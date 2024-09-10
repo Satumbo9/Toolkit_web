@@ -9,15 +9,13 @@ import ProfileLogo from "../Profile/ProfileLogo";
 import MobileSideNav from "./MobileNav";
 import ThemeIcon from "@/components/ThemeIcon";
 
-const Sidebar = () => {
+const Sidebar = ({ props }: any) => {
   const pathname = usePathname();
-  const Firstname = "Tony";
-  const Lastname = "Stark";
 
   const role = "admin";
 
   return (
-    <>
+    <React.Fragment>
       <section className="sticky left-0 top-0 flex h-screen w-64 flex-col justify-between overflow-y-auto border-r p-6 pt-16 dark:shadow-none max-2xl:w-fit max-md:hidden 2xl:w-[266px]">
         <div className="flex w-fit flex-1 flex-col gap-6">
           <div className="w-fit">
@@ -54,7 +52,7 @@ const Sidebar = () => {
               pathname === item.route;
             return (
               <Link
-                className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex w-full items-center justify-start gap-4 rounded-lg bg-transparent p-4`}
+                className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex w-full items-center justify-start gap-4 rounded-lg bg-transparent p-3`}
                 key={item.label}
                 href={item.route}
               >
@@ -69,11 +67,11 @@ const Sidebar = () => {
           })}
         </div>
 
-        <ProfileLogo Firstname={Firstname} Lastname={Lastname} />
+        <ProfileLogo props={props} />
       </section>
 
-      <MobileSideNav />
-    </>
+      <MobileSideNav props={props} />
+    </React.Fragment>
   );
 };
 

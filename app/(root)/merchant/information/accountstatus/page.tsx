@@ -1,339 +1,263 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import React from 'react'
-import ExtremeDataTable from '@/components/Shared/DataTable/DataTable'
-import { Button } from "@/components/ui/button";
+import React from "react";
+import DataTable from "@/components/Shared/DataTable/DataTable";
 import { z } from "zod";
-import { newMerchantSchema, cn, formatCurrency } from "@/lib/utils";
+import { AccountStatusSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Calendar } from '@/components/ui/calendar';
-import { Calendar as CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { ContentItem, DataTypes } from "@/types";
+import { DataTypes } from "@/types";
+import { Form } from "@/components/ui/form";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  DatePickerForm,
+  SelectForm,
+  CheckboxForm,
+} from "@/components/Shared/InstantForm";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { DatePickerForm, SelectForm, CheckboxForm } from "@/components/Shared/InstantForm";
-import DataTable from '@/components/Shared/DataTable/DataTable';
-import { ColumnConfig, createColumns } from '@/components/Shared/DataTable/Columns';
+  ColumnConfig,
+  createColumns,
+} from "@/components/Shared/DataTable/Columns";
 import { accountStatusTable, activityRecordList } from "@/constants";
+import CustomButtons from "@/components/Shared/CustomButtons";
 
 const page = () => {
-
-
-  const form = useForm<z.infer<typeof newMerchantSchema>>({
-    resolver: zodResolver(newMerchantSchema),
+  const form = useForm<z.infer<typeof AccountStatusSchema>>({
+    resolver: zodResolver(AccountStatusSchema),
     defaultValues: {
-      MID: "",
-      LegalName: "",
-      DBA: "",
-      Phone: "",
-      Status: "",
-      Approval: "",
-      Filter: "",
-      Processor: "",
-      Fitler2: "",
-      AgentID: 0,
-      SalesRep: "",
-      Split: 0,
-      SplitName: "",
-      SplitID: 0,
-      LeadSource: "",
-      SplitLead: 0,
-      EstAnnual: 0,
-      Transactions: 0,
-      Filter3: "",
-      Banks: "",
-      WAVItAccount: 0,
-      MCCCode: "",
-      Notice: "",
-      ChildMID: false,
-      WAVitAccount: false,
-      WAVitApp: false,
-      NewAccountTasks: false,
-      BusinessRetail: false,
-      BusinessEcommerce: false,
-      BusinessRestaurant: false,
-      BusinessMoTo: false,
-      DeployBy: "",
+      Activity: "",
+      EmvStatus: "",
+      Method: "",
+      ComplianceDate: new Date(),
+      ClickVerified: new Date(),
+      ChildMid: false,
+      ComplianceSolidDate: new Date(),
+      OverallStatus: "",
+      ReceivedDate: new Date(),
+      WithdrawnDate: new Date(),
+      SubmittedDate: new Date(),
+      ClosedDate: new Date(),
+      ApprovalDate: new Date(),
+      ReopenDate: new Date(),
+      DeclineDate: new Date(),
+      Item1: "",
+      Item2: "",
+      Item3: "",
     },
   });
 
-  const onSubmit = (value: z.infer<typeof newMerchantSchema>) => {
+  const onSubmit = (value: z.infer<typeof AccountStatusSchema>) => {
     console.log(value);
   };
 
   const columnsConfig: ColumnConfig<DataTypes>[] = [
     { accessorKey: "Date", header: "Date" },
     { accessorKey: "UserID", header: "User ID" },
-    { accessorKey: "SQL", header: "SQL" }
+    { accessorKey: "SQL", header: "SQL" },
   ];
 
   const columns = createColumns(columnsConfig);
-
   return (
     <>
       <section>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <h1 className='text-2xl text-sky-500 mb-3 '>Account Status</h1>
+            <h1 className="mb-3 text-2xl text-sky-500">Account Status</h1>
 
-            <div className='flex gap-3 min-h-80'>
-              <div className='w-2/3 bg-zinc-800 rounded-md'>
+            <div className="flex gap-3 max-xl:flex-wrap">
+              <div className="grid flex-auto grid-cols-1 overflow-auto rounded-md">
                 <DataTable
                   columns={columns}
                   data={accountStatusTable}
                   enableColumnFilter={true}
-                  filteredBy='UserID' 
+                  filteredBy="UserID"
+                  actionsColumn={false}
                 />
               </div>
-              <div className="w-1/3 p-2 ">
-                <div className='w-full'>
+              <div className="flex-auto p-2">
+                <div className="w-full">
                   <SelectForm
                     control={form.control}
-                    formName="SalesRep"
+                    formName="Activity"
                     label="Select an Activity to Record"
                     content={activityRecordList}
                     placeholder="Select an Activity..."
-                    valueKey='id'
-                    displayKey='title'
+                    valueKey="id"
+                    displayKey="title"
                     disabled={false}
-                    className='mb-2'
+                    className="mb-2"
                   />
-                  <Button className="w-full mb-2 mt-2 bg-gradient-to-r from-[#14ADD6] to-[#384295] hover:opacity-90 text-white">
+
+                  <CustomButtons btnType="default" className="my-2 w-full">
                     SUBMIT
-                  </Button>
-                  <Button className="w-full mb-2 py-5 bg-gradient-to-r from-[#79CB6C] to-[#285C20] hover:opacity-90 text-white">
+                  </CustomButtons>
+                  <CustomButtons btnType="success" className="mb-2 w-full">
                     MERCHANT APPROVED
-                  </Button>
+                  </CustomButtons>
                 </div>
               </div>
-
             </div>
             {/* BOTTOM ROW */}
             <div className="flex flex-wrap gap-4">
               {/* CARD Overall EMV Compliance */}
-              <div className="flex-auto border border-gray-400 shadow-md rounded-md p-4">
+              <div className="flex-auto rounded-md border p-4 shadow-md">
                 <h2>Overall EMV Compliance</h2>
                 <SelectForm
                   control={form.control}
-                  formName="SalesRep"
+                  formName="EmvStatus"
                   label="EMV Status"
                   content={activityRecordList}
                   placeholder="Select an EMV Status..."
-                  valueKey='id'
-                  displayKey='title'
+                  valueKey="id"
+                  displayKey="title"
                   disabled={false}
                   className=""
                 />
                 <SelectForm
                   control={form.control}
-                  formName="SalesRep"
+                  formName="Method"
                   label="Method"
                   content={activityRecordList}
                   placeholder="Select a Method..."
-                  valueKey='id'
-                  displayKey='title'
+                  valueKey="id"
+                  displayKey="title"
                   disabled={false}
                   className=""
                 />
-                <div className="gap-1">
-                  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Compliance Date</label>
-                  <DatePickerForm
-                    control={form.control}
-                    formName="Approval"
-                    label=""
-                    placeholder="mm/dd/2024"
-                  />
-                </div>
-                <div className="gap-1">
-                  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">1-Click Verified</label>
-                  <DatePickerForm
-                    control={form.control}
-                    formName="Approval"
-                    label=""
-                    placeholder="mm/dd/2024"
-                  />
-                </div>
-
-
+                <DatePickerForm
+                  control={form.control}
+                  formName="ComplianceDate"
+                  label="Compliance Date"
+                  placeholder="mm/dd/2024"
+                />
+                <DatePickerForm
+                  control={form.control}
+                  formName="ClickVerified"
+                  label="1-Click Verified"
+                  placeholder="mm/dd/2024"
+                />
               </div>
               {/* Card Solid Portfolio Info */}
-              <div className="flex-auto border border-gray-400 shadow-md rounded-md p-4">
+              <div className="flex-auto rounded-md border p-4 shadow-md">
                 <h2>Solid Portfolio Info</h2>
-                <div className="flex content-center">
-                  <CheckboxForm
-                    control={form.control}
-                    formName="ChildMID"
-                    label=""
-                    placeholder=""
-                    className="content-center items-center align-middle mt-3"
-                  />
-                  <span className="content-center mt-1">Child MID</span>
-                </div>
-                <div className="gap-1">
-                  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Compliance Date</label>
-                  <DatePickerForm
-                    control={form.control}
-                    formName="Approval"
-                    label=""
-                    placeholder="mm/dd/2024"
-                  />
-                </div>
-                <Button className="w-full mb-2 mt-2 bg-gradient-to-r from-[#14ADD6] to-[#384295] hover:opacity-90 text-white">
+                <CheckboxForm
+                  control={form.control}
+                  formName="ChildMid"
+                  label=""
+                  placeholder="Child MID"
+                  className="mt-3 content-center items-center align-middle"
+                />
+                <DatePickerForm
+                  control={form.control}
+                  formName="ComplianceSolidDate"
+                  label="Compliance Date"
+                  placeholder="mm/dd/2024"
+                />
+                <CustomButtons btnType="default" className="my-2 w-full">
                   Go To Sale Detail
-                </Button>
+                </CustomButtons>
               </div>
 
               {/* Card Overall Status */}
-              <div className="flex-auto border border-gray-400 shadow-md rounded-md p-4">
-
+              <div className="flex-auto rounded-md border p-4 shadow-md">
                 <SelectForm
                   control={form.control}
-                  formName="SalesRep"
+                  formName="OverallStatus"
                   label="Select an Overall Status"
                   content={activityRecordList}
                   placeholder="Select an Overall Status..."
-                  valueKey='id'
-                  displayKey='title'
+                  valueKey="id"
+                  displayKey="title"
                   disabled={false}
                   className=""
                 />
                 {/* GRID Status Dates */}
-                <div className='grid grid-rows-4 grid-flow-col gap-2'>
-                  <div className="gap-1">
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Received Date</label>
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/yyyy"
-                    />
-                  </div>
-                  <div className="gap-1">
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Submitted Date</label>
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/yyyy"
-                    />
-                  </div>
-                  <div className="gap-1">
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Approval Date</label>
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/yyyy"
-                    />
-                  </div>
-                  <div className="gap-1">
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Decline Date</label>
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/yyyy"
-                    />
-                  </div>
-                  <div className="gap-1">
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Withdrawn Date</label>
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/yyyy"
-                    />
-                  </div>
-                  <div className="gap-1">
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Closed Date</label>
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/yyyy"
-                    />
-                  </div>
-                  <div className="gap-1">
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Reopen Date</label>
-                    <DatePickerForm
-                      control={form.control}
-                      formName="Approval"
-                      label=""
-                      placeholder="mm/dd/yyyy"
-                    />
-                  </div>
-
+                <div className="grid grid-flow-col grid-rows-4 gap-2">
+                  <DatePickerForm
+                    control={form.control}
+                    formName="ReceivedDate"
+                    label="Received Date"
+                    placeholder="mm/dd/yyyy"
+                  />
+                  <DatePickerForm
+                    control={form.control}
+                    formName="SubmittedDate"
+                    label="Submitted Date"
+                    placeholder="mm/dd/yyyy"
+                  />
+                  <DatePickerForm
+                    control={form.control}
+                    formName="ApprovalDate"
+                    label="Approval Date"
+                    placeholder="mm/dd/yyyy"
+                  />
+                  <DatePickerForm
+                    control={form.control}
+                    formName="DeclineDate"
+                    label="Decline Date"
+                    placeholder="mm/dd/yyyy"
+                  />
+                  <DatePickerForm
+                    control={form.control}
+                    formName="WithdrawnDate"
+                    label="Withdrawn Date"
+                    placeholder="mm/dd/yyyy"
+                  />
+                  <DatePickerForm
+                    control={form.control}
+                    formName="ClosedDate"
+                    label="Closed Date"
+                    placeholder="mm/dd/yyyy"
+                  />
+                  <DatePickerForm
+                    control={form.control}
+                    formName="ReopenDate"
+                    label="Reopen Date"
+                    placeholder="mm/dd/yyyy"
+                  />
                 </div>
 
-                <div className='flex mt-4 justify-between gap-2'>
+                <div className="mt-4 flex justify-between gap-2">
                   <SelectForm
                     control={form.control}
-                    formName="SalesRep"
+                    formName="Item1"
                     label=""
                     content={activityRecordList}
                     placeholder="Select an Item..."
-                    valueKey='id'
-                    displayKey='title'
+                    valueKey="id"
+                    displayKey="title"
                     disabled={false}
                     className="flex-1"
                   />
                   <SelectForm
                     control={form.control}
-                    formName="SalesRep"
+                    formName="Item2"
                     label=""
                     content={activityRecordList}
                     placeholder="Select an Item..."
-                    valueKey='id'
-                    displayKey='title'
+                    valueKey="id"
+                    displayKey="title"
                     disabled={false}
                     className="flex-1"
                   />
                   <SelectForm
                     control={form.control}
-                    formName="SalesRep"
+                    formName="Item3"
                     label=""
                     content={activityRecordList}
                     placeholder="Select an Item..."
-                    valueKey='id'
-                    displayKey='title'
+                    valueKey="id"
+                    displayKey="title"
                     disabled={false}
                     className="flex-1"
                   />
                 </div>
-
               </div>
-
             </div>
-
           </form>
         </Form>
       </section>
-
-
     </>
+  );
+};
 
-  )
-}
-
-export default page
+export default page;

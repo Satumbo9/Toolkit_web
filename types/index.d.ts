@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { ColumnDef } from "@tanstack/react-table";
 
 export interface SidebarLink {
   icon: LucideIcon;
@@ -24,4 +25,5 @@ export interface DataTableProps<TData> {
   filteredBy?: string;
   enableVisibility?: boolean;
   actionsColumn?: boolean;
+  editFunction?: any;
 }

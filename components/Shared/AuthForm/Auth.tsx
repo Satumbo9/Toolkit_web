@@ -35,11 +35,7 @@ const Auth = ({ type }: { type: string }) => {
             </p>
           </h1>
           <div className="flex w-full justify-center">
-            {type === "sign-in" ? (
-              <SignInForm type={type} />
-            ) : (
-              <SignUpForm type={type} />
-            )}
+            {type === "sign-in" ? <SignInForm /> : <SignUpForm type={type} />}
           </div>
         </div>
       </div>

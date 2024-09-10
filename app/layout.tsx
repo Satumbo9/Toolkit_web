@@ -2,9 +2,8 @@ import React from "react";
 import type { Metadata } from "next";
 import { Inter as Sans } from "next/font/google";
 import "./globals.css";
-import "devextreme/dist/css/dx.fluent.blue.dark.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
-import { DevLicense } from "@/components/DevLicense";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Sans({
   subsets: ["latin"],
@@ -13,14 +12,17 @@ const inter = Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Toolkit",
+  title: {
+    default: "Toolkit",
+    template: "%s | Toolkit",
+  },
   description: "A Toolkit web for everyone",
   icons: {
     icon: "/icon/Chain-smol.png",
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -34,8 +36,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <DevLicense />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

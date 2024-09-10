@@ -1,11 +1,9 @@
-import React from 'react'
+"use client";
+import React from "react";
+import WavitInfoTabContent from "@/components/merchants/WavitInfoTabContent";
 
 const page = () => {
-  return (
-    <>
-      <div></div>
-    </>
-  )
-}
+  return <WavitInfoTabContent />;
+};
 
-export default page
+export default page;

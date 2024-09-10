@@ -30,11 +30,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { DataTableProps } from "@/types";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronsLeft,
+  ChevronRight,
+  ChevronsRight,
+  MoreHorizontal,
+  Filter,
+  PenBox,
+} from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -42,6 +57,26 @@ import {
 } from "@/components/ui/pagination";
 import { toast } from "@/components/ui/use-toast";
 
+/**
+ * Read the docs!!
+ 
+* Step 1: Set the page that you're going to create this data table to 'use client' at the top of the page. (AKA first line of the code).
+ 
+* Step 2: Import ColumnConfig and createColumns from folder components/Shared/DataTable/Columns. Then, import DataTypes from folder types.
+ 
+* Step 3: Declare a json data if you are willing to use a mock-up data for now, declaring json data is optional if you already have data that had been fetched from the database already.
+ 
+* Step 4: Create columnsConfig to declare which fields are there the table needs to render. For example,
+ * const columnsConfig: ColumnConfig<<DataTypes>DataTypes>[] = [{accessorKey: 'column's name', header: 'this header name can be any name you want it to show at the header', cell: Price}]
+ * As you can see, the "cell: Price" is optional. You declare it or not, it doesn't matter. Use this "cell: Something", when you want to config how that cell row is gonna look like.
+ * Like my example, I pass the function of Price to format number of price to display as US dollar sign, and you can import it from folder components/Shared/DataTable/CellFormat.tsx
+ 
+* Step 5: After you declared columnsConfig, you need to declare a createColumns. For example, "const columns = createColumns(columnsConfig);"
+ 
+* Step 6: Render DataTable on the page, <DataTable columns={columns (Pass the const columns we just created here)} data={data (This data can be your json mock-up data or the data that you've fetched from the database.)} />
+ 
+* Step 7: Done, you can now see the data being rendered on the table. Enjoy
+ */
 export default function DataTable<TData>({
   columns,
   data,
@@ -51,10 +86,16 @@ export default function DataTable<TData>({
   filteredBy,
   enableVisibility = false,
   actionsColumn = true,
+  editFunction,
 }: DataTableProps<TData>) {
   const [sorting, setSoring] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleEditClick = (row: any) => {
+    editFunction(row.original);
+  };
 
   const allColumns = React.useMemo(() => {
     const actionColumn: ColumnDef<TData, any> = {
@@ -87,8 +128,12 @@ export default function DataTable<TData>({
                 Copy ID
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">
-                View customer
+              <DropdownMenuItem
+                className="cursor-pointer gap-2"
+                onClick={() => handleEditClick(row)}
+              >
+                <PenBox />
+                Edit
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer">
                 View payment details
@@ -100,7 +145,7 @@ export default function DataTable<TData>({
     };
 
     return actionsColumn ? [...columns, actionColumn] : columns;
-  }, [actionsColumn, columns]);
+  }, [actionsColumn, columns, handleEditClick]);
 
   const table = useReactTable({
     data,
@@ -148,8 +193,9 @@ export default function DataTable<TData>({
           {enableVisibility && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-auto">
-                  Columns
+                <Button variant="outline" className="ml-auto gap-2">
+                  <Filter />
+                  Filter
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -229,9 +275,34 @@ export default function DataTable<TData>({
           </TableBody>
         </Table>
         {pagination && (
-          <span className="flex items-center justify-end space-x-2 px-2 py-4">
+          <div className="flex items-center justify-center space-x-2 px-2 py-4">
             <Pagination>
               <PaginationContent>
+                <PaginationItem>
+                  <span className="flex items-center gap-1">
+                    <Input
+                      defaultValue={table.getState().pagination.pageIndex + 1}
+                      onChange={(e) => {
+                        const page = e.target.value
+                          ? Number(e.target.value) - 1
+                          : 0;
+                        table.setPageIndex(page);
+                      }}
+                      className="max-w-[70px]"
+                      placeholder="Jump to..."
+                    />
+                  </span>
+                </PaginationItem>
+                <PaginationItem>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => table.setPageIndex(0)}
+                    disabled={!table.getCanPreviousPage()}
+                  >
+                    <ChevronsLeft />
+                  </Button>
+                </PaginationItem>
                 <PaginationItem>
                   <Button
                     variant="ghost"
@@ -256,9 +327,38 @@ export default function DataTable<TData>({
                     <ChevronRight />
                   </Button>
                 </PaginationItem>
+                <PaginationItem>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                    disabled={!table.getCanNextPage()}
+                  >
+                    <ChevronsRight />
+                  </Button>
+                </PaginationItem>
+                <PaginationItem>
+                  <Select
+                    value={table.getState().pagination.pageSize.toString()}
+                    onValueChange={(value: string) =>
+                      table.setPageSize(Number(value))
+                    }
+                  >
+                    <SelectTrigger className="w-[70px]">
+                      <SelectValue placeholder="Select show size." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[10, 20, 40, 50].map((item) => (
+                        <SelectItem key={item} value={item.toString()}>
+                          {item}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </PaginationItem>
               </PaginationContent>
             </Pagination>
-          </span>
+          </div>
         )}
       </div>
     </div>
