@@ -47,8 +47,8 @@ const AgentLeadSource = () => {
   };
 
   const columnsConfig: ColumnConfig<DataTypes>[] = [
-    { accessorKey: "SalesRep", header: "SalesRep" },
-    { accessorKey: "Split%", header: "Split%" },
+    { accessorKey: "SalesRep", header: "Sales Rep" },
+    { accessorKey: "Split%", header: "Split %" },
     { accessorKey: "Master", header: "Master" },
     { accessorKey: "A/M", header: "A/M" },
     { accessorKey: "F/M", header: "F/M" },
@@ -201,7 +201,7 @@ const AgentLeadSource = () => {
                   columns={columns}
                   data={agentLeadSourceDataTable}
                   enableColumnFilter={true}
-                  filteredBy="username"
+                  filteredBy="SalesRep"
                 />
               </div>
               <div className="grid grid-cols-4">

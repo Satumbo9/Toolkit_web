@@ -80,6 +80,8 @@ const AccountStatusPreview = () => {
                   data={accountStatusTable}
                   enableColumnFilter={true}
                   filteredBy="UserID"
+                  actionsColumn={false}
+                  pagination={false}
                 />
               </div>
               <div className="mt-10 flex-auto">

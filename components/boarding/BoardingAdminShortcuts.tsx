@@ -4,42 +4,16 @@ import Link from "next/link";
 const BoardingAdminShortcuts = () => {
   return (
     <section className="mb-5 w-full">
-      <div className="m-auto grid w-2/4 grid-cols-2 gap-4 rounded-md text-lg max-lg:grid-cols-1">
-        {/* EQUIPMENT LIST SHORCUT */}
-        <div className="flex-1 justify-center space-y-2 rounded-md border p-5 shadow-md transition duration-300 hover:border-sky-500">
-          <h1 className="text-center font-semibold">Equipment</h1>
-          <div className="flex gap-4 px-2">
-            <Image
-              className="m-auto flex-none"
-              src="/icon/colorful/cart.svg"
-              alt="Logo"
-              width={60}
-              height={60}
-              priority
-            />
-            <ul className="flex-1 content-center justify-start px-4 text-sm">
-              <Link href={""}>
-                <li className="list-disc text-nowrap text-base underline">
-                  Inventory
-                </li>
-              </Link>
-              <Link href={""}>
-                <li className="list-disc text-nowrap text-base underline">
-                  Shipping
-                </li>
-              </Link>
-            </ul>
-          </div>
-        </div>
+      <div className="m-auto grid w-3/4 grid-cols-3 gap-4 rounded-md text-lg max-xl:grid-cols-1">
         {/* RESIDUALS SHORCUT */}
         <Link
           href={"/boarding/residuals"}
-          className="justify-center rounded-md border p-5 px-2 shadow-md transition duration-300 hover:border-sky-500"
+          className="justify-center space-y-2 rounded-md border p-5 shadow-md transition duration-300 hover:border-sky-500"
         >
           <h1 className="text-center font-semibold">Residuals</h1>
-          <div className="mx-3 flex justify-center gap-2 space-y-2 text-center">
+          <div className="flex flex-1 gap-6 px-2">
             <Image
-              className="flex-none"
+              className="m-auto flex-none"
               src="/icon/colorful/leads.svg"
               alt="Logo"
               width={50}
@@ -76,8 +50,8 @@ const BoardingAdminShortcuts = () => {
           href={"/admin/userAdmin"}
           className="rounded-md border p-5 shadow-md transition duration-300 hover:border-sky-500"
         >
-            <h1 className="text-center font-semibold">Admin Panel</h1>
-          <div className="flex flex-1 justify-center gap-4 space-y-2 px-2">
+          <h1 className="text-center font-semibold">Admin Panel</h1>
+          <div className="flex flex-1 justify-center gap-5 space-y-2 px-2">
             <Image
               className="m-auto flex-none"
               src="/icon/colorful/admin.svg"

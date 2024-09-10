@@ -85,6 +85,7 @@ const page = () => {
                   data={accountStatusTable}
                   enableColumnFilter={true}
                   filteredBy="UserID"
+                  actionsColumn={false}
                 />
               </div>
               <div className="flex-auto p-2">

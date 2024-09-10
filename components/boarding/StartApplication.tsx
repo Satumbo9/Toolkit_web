@@ -62,8 +62,6 @@ const StartApplication = () => {
     console.log(value);
   };
 
-  // const [radioOne, setRadioOne] = useState("");
-
   const [linkRoute, setLinkRoute] = useState("");
   const handleFormTypeRoute = (value: string) => {
     setLinkRoute(value);
@@ -78,7 +76,7 @@ const StartApplication = () => {
           <Image
             className="m-auto flex-none"
             src="/icon/colorful/new-form.svg"
-            alt="Logo"
+            alt="New Application Logo"
             width={64}
             height={64}
             priority
@@ -136,7 +134,12 @@ const StartApplication = () => {
               );
             })}
             <div className="flex justify-center gap-2">
-              <CustomButtons btnType="primary">Save it For Later</CustomButtons>
+              <CustomButtons
+                btnType="primary"
+                disabled={!merchantName || !email || !linkRoute}
+              >
+                Save it For Later
+              </CustomButtons>
               <Link href={linkRoute}>
                 <CustomButtons
                   btnType="default"

@@ -3564,39 +3564,39 @@ export const merchantTest = [
 
 export const merchantBoardingListTable = [
   {
-    BusinessName: "Company Name",
-    LastUpdate: "08/14/2024",
+    BusinessName: "Nexora Technologies",
+    LastUpdate: "09/09/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "Send for Signature",
   },
   {
-    BusinessName: "Company Name",
-    LastUpdate: "08/14/2024",
+    BusinessName: "Quantum Dynamics Inc.",
+    LastUpdate: "09/01/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "In-Person Signature",
   },
   {
-    BusinessName: "Company Name",
+    BusinessName: "Vertex Innovations",
     LastUpdate: "08/14/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "Preview Form",
   },
   {
-    BusinessName: "Company Name",
-    LastUpdate: "08/14/2024",
+    BusinessName: "Eclipse Solutions Ltd.",
+    LastUpdate: "08/10/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "Send Lead",
   },
   {
-    BusinessName: "Company Name",
-    LastUpdate: "08/14/2024",
+    BusinessName: "Aether Industries",
+    LastUpdate: "08/01/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "Preview Addendum",
   },
 ];
 

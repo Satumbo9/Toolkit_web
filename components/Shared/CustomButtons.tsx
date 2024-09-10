@@ -43,6 +43,7 @@ const CustomButtons = ({
 
       {btnType === "success" && (
         <Button
+          disabled={disabled}
           className={cn(
             "flex-1 bg-gradient-to-r from-[#79CB6C] to-[#285C20] text-white hover:opacity-90",
             className,
@@ -54,7 +55,10 @@ const CustomButtons = ({
       )}
 
       {btnType === "primary" && (
-        <Button className={cn("w-full hover:opacity-90", className)}>
+        <Button
+          disabled={disabled}
+          className={cn("w-full hover:opacity-90", className)}
+        >
           {title}
           {props.children}
         </Button>

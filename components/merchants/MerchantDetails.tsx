@@ -86,31 +86,30 @@ export default function MerchantDetails() {
             {detailsList.map((item) => {
               if (item.value === "badge") {
                 return (
-                  <>
-                    <li className="flex items-center justify-between gap-3">
-                      <span className="w-1/4 text-end text-muted-foreground">
-                        {item.label}
-                      </span>
-                      <span className="w-3/4 text-end">
-                        <Badge variant="destructive" className="text-start">
-                          Denied
-                        </Badge>
-                      </span>
-                    </li>
-                  </>
+                  <li
+                    key={item.id}
+                    className="flex items-center justify-between gap-3"
+                  >
+                    <span className="w-1/4 text-end text-muted-foreground">
+                      {item.label}
+                    </span>
+                    <span className="w-3/4 text-end">
+                      <Badge variant="destructive" className="text-start">
+                        Denied
+                      </Badge>
+                    </span>
+                  </li>
                 );
               } else {
                 return (
-                  <>
-                    <li className="flex items-center justify-between gap-3">
-                      <span className="w-1/4 text-end text-muted-foreground">
-                        {item.label}
-                      </span>
-                      <span className="w-3/4">
-                        <Input placeholder={item.placeholder} disabled />
-                      </span>
-                    </li>
-                  </>
+                  <li key={item.id} className="flex items-center justify-between gap-3">
+                    <span className="w-1/4 text-end text-muted-foreground">
+                      {item.label}
+                    </span>
+                    <span className="w-3/4">
+                      <Input placeholder={item.placeholder} disabled />
+                    </span>
+                  </li>
                 );
               }
             })}

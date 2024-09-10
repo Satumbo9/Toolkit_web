@@ -1,5 +1,7 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
+import CustomButtons from "../CustomButtons";
+import { ArrowRight } from "lucide-react";
 
 type StatusTypes = {
   Success?: string[];
@@ -14,7 +16,7 @@ interface StatusProps {
 
 /**
  * Read the doc!!
- 
+
 * This is a cell format for price, you can use it by importing it and throw it in a cell row.
  */
 export const Price = (row: any) => {
@@ -47,13 +49,13 @@ export const Status: React.FC<StatusProps> = ({ row, status }) => {
 
   const getStatusBadge = (value: any) => {
     if (status.Success?.includes(value)) {
-      return <Badge variant={"success"}>{value}</Badge>;
+      return <Badge className="text-nowrap" variant={"success"}>{value}</Badge>;
     }
     if (status.Failed?.includes(value)) {
-      return <Badge variant={"destructive"}>{value}</Badge>;
+      return <Badge className="text-nowrap" variant={"destructive"}>{value}</Badge>;
     }
     if (status.Pending?.includes(value)) {
-      return <Badge variant={"default"}>{value}</Badge>;
+      return <Badge className="text-nowrap" variant={"default"}>{value}</Badge>;
     }
     return <></>;
   };
@@ -65,4 +67,20 @@ export const Percentage = (row: string | number | any) => {
   const value = row.getValue("percentage");
 
   return <span>%{value.toFixed(2)}</span>;
+};
+
+export const NextStep = (row: string) => {
+  return (
+    <CustomButtons
+      className="relative h-fit w-full text-nowrap text-xs"
+      btnType="primary"
+    >
+      {row}
+      <i className="absolute right-2 h-full content-center">
+        {React.createElement(ArrowRight, {
+          style: { width: "15px", height: "15px" },
+        })}
+      </i>
+    </CustomButtons>
+  );
 };
