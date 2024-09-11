@@ -444,7 +444,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
               />
             </div>
           ) : item.type === "radio" ? (
-            <div key={item.id} className="flex w-full gap-2">
+            <div key={item.id} className="flex w-full gap-3 my-3">
               <InputForm
                 control={formControl}
                 formName={item.formName}
@@ -453,7 +453,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
                 className="size-fit"
                 placeholder={item.placeholder}
               />
-              <span className="">{item.placeholder}</span>
+              <span className="mt-0.5">{item.placeholder}</span>
             </div>
           ) : item.type === "number" ? (
             <InputForm
@@ -530,43 +530,6 @@ export const FormGenerationRadio = ({
   );
 };
 
-export const FormGenerationRadioGrid = ({ formControl, formFields }: any) => {
-  return (
-    <div className="grid grid-cols-2 gap-2">
-      {formFields.map(
-        (item: {
-          content: any;
-          type: string;
-          formName: string;
-          title: string;
-          placeholder?: string | undefined;
-        }) =>
-          item.type === "radio" ? (
-            <div key={item.title} className="flex w-full gap-2">
-              <InputForm
-                control={formControl}
-                formName={item.formName}
-                label=""
-                type="radio"
-                className="w-fit"
-                placeholder={item.placeholder}
-              />
-              <span className="mt-2 content-center">{item.placeholder}</span>
-            </div>
-          ) : (
-            <div key={item.title} className="col-span-2 w-full">
-              <InputForm
-                control={formControl}
-                formName={item.formName}
-                label={item.title}
-                placeholder={item.placeholder}
-              />
-            </div>
-          ),
-      )}
-    </div>
-  );
-};
 
 /**
  * @formControl formControl - Used for the (form.control) parameter.
@@ -694,7 +657,23 @@ export const FormGenerator = ({
       value: string;
       section: {
         sectionName: string;
-        cards: {
+        fields?: {
+          id: number;
+          formName: string;
+          title: string;
+          type: string;
+          placeholder: string;
+          value: string;
+          multipleFields?: {
+            id: number;
+            formName: string;
+            title: string;
+            type: string;
+            placeholder: string;
+            value: string;
+          }[];
+        }[];
+        cards?: {
           title: string;
           colQty: string;
           fields: {
@@ -717,32 +696,23 @@ export const FormGenerator = ({
         }[];
       }[];
     }[];
-    
   };
   formControl: any;
 }) => {
-  // Splitting by two to show the grid cols in the mobile view.
-  // const gridColsMobile = Number(gridCols) / 2;
-  // const roundedCols = Math.round(gridColsMobile);
-  const [activeItem, setActiveItem] = useState<string>("");
+  const [activeItem, setActiveItem] = useState<string>(
+    String(formFields.tabs.at(0)?.value),
+  );
 
   const handleClick = (value: string) => {
     setActiveItem(value);
-    RenderComponents(activeItem || " ")
   };
 
-  const RenderComponents = (value: string) => {
-
-    console.log(value);
-  }
-
-
   return (
-    <React.Fragment>
-      <div className="h-screen w-auto">
+    <section>
+      <div className="w-auto">
         <Tabs
-          defaultValue={""}
-          className="flex-auto rounded-md border border-solid border-gray-400 p-4 shadow-md"
+          defaultValue={formFields.tabs.at(0)?.value}
+          className="my-2 flex-auto rounded-md p-4 text-center"
         >
           <TabsList className="">
             {formFields.tabs.map((tab) => (
@@ -755,14 +725,135 @@ export const FormGenerator = ({
               </TabsTrigger>
             ))}
           </TabsList>
-          
         </Tabs>
       </div>
+
       {formFields.tabs.map((tab) => (
         <section key={tab.id}>
-          
+          {tab.value === activeItem && (
+            <div>
+              <h1 className="text-center text-2xl font-semibold text-sky-500">
+                {tab.tabName}
+              </h1>
+              {/* Mapping the sections */}
+              {tab.section.map((Item) => {
+                return (
+                  <div key={Item.sectionName} className="mt-3">
+                    <h2 className="my-2 text-xl font-semibold">
+                      {Item.sectionName}
+                    </h2>
+                    <div className="grid grid-cols-2 gap-2">
+                      {Item.fields?.map((field) =>
+                        field.type === "selectbox" ? (
+                          <div key={field.id} className="w-full items-end">
+                            {/* <SelectForm
+                              control={formControl}
+                              formName={field.formName}
+                              label={field.title}
+                              placeholder={field.placeholder}
+                              valueKey={"value"}
+                              content={field.content}
+                              displayKey="value"
+                            /> */}
+                          </div>
+                        ) : field.type === "checkbox" ? (
+                          <div
+                            key={field.id}
+                            className="mb-2 w-full content-end"
+                          >
+                            <CheckboxForm
+                              control={formControl}
+                              formName={field.formName}
+                              label=""
+                              placeholder={field.title}
+                            />
+                          </div>
+                        ) : field.type === "datePicker" ? (
+                          <div key={field.id} className="w-full">
+                            <DatePickerForm
+                              control={formControl}
+                              formName={field.formName}
+                              label={field.title}
+                              placeholder={field.placeholder}
+                            />
+                          </div>
+                        ) : field.type === "radio" ? (
+                          <div key={field.id} className="flex w-full gap-2">
+                            <InputForm
+                              control={formControl}
+                              formName={field.formName}
+                              label=""
+                              type="radio"
+                              className="size-fit"
+                              placeholder={field.placeholder}
+                            />
+                            <span className="">{field.placeholder}</span>
+                          </div>
+                        ) : field.type === "number" ? (
+                          <InputForm
+                            key={field.id}
+                            control={formControl}
+                            formName={field.formName}
+                            label={field.title}
+                            type={field.type}
+                            className=""
+                            placeholder={field.placeholder}
+                          />
+                        ) : field.type === "password" ? (
+                          <div key={field.id} className="w-full">
+                            <InputForm
+                              control={formControl}
+                              formName={field.formName}
+                              label={field.title}
+                              placeholder={field.placeholder}
+                              type="password"
+                            />
+                          </div>
+                        ) : field.type === "switch" ? (
+                          <div
+                            key={field.id}
+                            className="my-2 w-full content-end"
+                          >
+                            <SwitchForm
+                              control={formControl}
+                              formName={field.formName}
+                              label={field.title}
+                              className=""
+                            />
+                          </div>
+                        ) : field.type === "multiple" ? (
+                          <div key={field.id} className="flex w-full gap-2">
+                            {field.multipleFields?.map((subItem) => (
+                              <div key={subItem.id} className="flex-auto">
+                                <InputForm
+                                  control={formControl}
+                                  formName={subItem.formName}
+                                  label={subItem.title}
+                                  placeholder={subItem.placeholder}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div key={field.id} className="w-full">
+                            <InputForm
+                              control={formControl}
+                              formName={field.formName}
+                              label={field.title}
+                              placeholder={field.placeholder}
+                            />
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </section>
       ))}
-    </React.Fragment>
+    </section>
   );
 };
+

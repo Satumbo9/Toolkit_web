@@ -4550,11 +4550,15 @@ export const bankingInformationFspForm = [
     id: 1,
     formName: "CheckingSavings",
     title: "Checking",
+    placeholder: "Checking",
+    type: "radio",
   },
   {
     id: 2,
     formName: "CheckingSavings",
     title: "Savings",
+    placeholder: "Savings",
+    type: "radio",
   },
 ];
 
@@ -4562,11 +4566,15 @@ export const acceptingVisaMcDiscoverFspForm = [
   {
     id: 1,
     formName: "AcceptingVisaMcDiscover",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "AcceptingVisaMcDiscover",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4575,11 +4583,15 @@ export const hasBeenTerminatedFspForm = [
   {
     id: 1,
     formName: "hasBeenTerminated",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "hasBeenTerminated",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4588,11 +4600,15 @@ export const americaExpressVolumeFspForm = [
   {
     id: 1,
     formName: "AmericaExpressVolume",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "AmericaExpressVolume",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4601,11 +4617,15 @@ export const seasonalMerchantFspForm = [
   {
     id: 1,
     formName: "SeasonalMerchant",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "SeasonalMerchant",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4614,11 +4634,15 @@ export const independentServiceFspForm = [
   {
     id: 1,
     formName: "IndependentService",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "IndependentService",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4627,11 +4651,15 @@ export const usesFulfillHouseFspForm = [
   {
     id: 1,
     formName: "UsesFulfillHouse",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "UsesFulfillHouse",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4882,11 +4910,15 @@ export const isPaymentEncryptedFspForm = [
   {
     id: 1,
     formName: "IsPaymentEncrypted",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "IsPaymentEncrypted",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4896,11 +4928,15 @@ export const individualSharedFspForm = [
     id: 1,
     formName: "IndividualShared",
     title: "Individual",
+    type: "radio",
+    placeholder: "Individual",
   },
   {
     id: 2,
     formName: "IndividualShared",
     title: "Shared",
+    type: "radio",
+    placeholder: "Shared",
   },
 ];
 
@@ -4937,11 +4973,15 @@ export const hasFiledForBankruptcyFspForm = [
     id: 1,
     formName: "HasFiledForBankruptcy",
     title: "Yes",
+    placeholder: "Yes",
+    type: "radio",
   },
   {
     id: 2,
     formName: "HasFiledForBankruptcy",
     title: "No",
+    placeholder: "No",
+    type: "radio",
   },
 ];
 
@@ -5077,11 +5117,15 @@ export const passThroughInterchangeFspForm = [
     id: 1,
     formName: "PassTrueInterchange",
     title: "Yes",
+    placeholder: "Yes",
+    type: "radio",
   },
   {
     id: 2,
     formName: "PassTrueInterchange",
     title: "No",
+    placeholder: "No",
+    type: "radio",
   },
 ];
 
@@ -5090,11 +5134,15 @@ export const passDuesAssessmentsFspForm = [
     id: 1,
     formName: "PassDuesAndAssesments",
     title: "Yes",
+    placeholder: "Yes",
+    type: "radio",
   },
   {
     id: 2,
     formName: "PassDuesAndAssesments",
     title: "No",
+    placeholder: "No",
+    type: "radio",
   },
 ];
 
@@ -5181,11 +5229,15 @@ export const grossNetFspForm = [
     id: 1,
     formName: "GrossNet",
     title: "GROSS",
+    placeholder: "GROSS",
+    type: "radio",
   },
   {
     id: 2,
     formName: "GrossNet",
     title: "NET",
+    placeholder: "NET",
+    type: "radio",
   },
 ];
 
@@ -5537,11 +5589,15 @@ export const pciFrequencyFspForm = [
     id: 1,
     formName: "PciFrequency",
     title: "Daily (default)",
+    placeholder: "Daily (default)",
+    type: "radio",
   },
   {
     id: 2,
     formName: "PciFrequency",
     title: "Monthly",
+    placeholder: "Monthly",
+    type: "radio",
   },
 ];
 
@@ -5550,11 +5606,15 @@ export const audioFspForm = [
     id: 1,
     formName: "Audio",
     title: "Monthly Merchant Fee",
+    placeholder: "Monthly Merchant Fee",
+    type: "radio",
   },
   {
     id: 2,
     formName: "Audio",
     title: "Annual Merchant Fee",
+    placeholder: "Annual Merchant Fee",
+    type: "radio",
   },
 ];
 
@@ -5920,11 +5980,15 @@ export const billToFspForm = [
     id: 1,
     formName: "BillTo",
     title: "Rep",
+    placeholder: "Rep",
+    type: "radio",
   },
   {
     id: 2,
     formName: "BillTo",
     title: "Merchant (must include signed forms)",
+    placeholder: "Merchant (must include signed forms)",
+    type: "radio",
   },
 ];
 
@@ -10485,12 +10549,46 @@ export const testingForm = {
     // TAB 1 
     {
       id: 1,
-      tabName: "Tab One",
-      value: "tab1",
+      tabName: "Contact",
+      value: "contact",
       section: [
         // FIRST SECTION
         {
-        sectionName: "",
+        sectionName: "Contact Information",
+        fields: [
+          {
+            id: 1,
+            formName: "CustomerName",
+            title: "First Name:",
+            type: "input",
+            placeholder: "Name",
+            value: "",
+          },
+          {
+            id: 2,
+            formName: "CustomerSurname",
+            title: "Last Name:",
+            type: "input",
+            placeholder: "Name",
+            value: "",
+          },
+          {
+            id: 3,
+            formName: "CustomerEmail",
+            title: "Email:",
+            type: "input",
+            placeholder: "example@email.com",
+            value: "",
+          },
+          {
+            id: 4,
+            formName: "CustomerCitizenship",
+            title: "Citizenship:",
+            type: "input",
+            placeholder: "e.g. American",
+            value: "",
+          }
+        ],
         cards: [
           // 1. TEST CARD
           {
@@ -10511,7 +10609,59 @@ export const testingForm = {
         },
         // SECOND SECTION
         {
-          sectionName: "Information",
+          sectionName: "Address Information",
+          fields: [
+            {
+              id: 1,
+              formName: "AddressStreet",
+              title: "Street Name",
+              type: "input",
+              placeholder: "123 North Road",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "AddressDetails",
+              title: "Address Details",
+              type: "input",
+              placeholder: "e.g. Unit / Suite ",
+              value: "",
+            },
+            {
+              id: 3,
+              type: "multiple",
+              formName: "",
+              title: "",
+              placeholder: "",
+              value: "",
+              multipleFields: [
+                {
+                  id: 1,
+                  formName: "AddressStreet",
+                  title: "City",
+                  type: "input",
+                  placeholder: "Florianopolis",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  formName: "AddressDetails",
+                  title: "State",
+                  type: "input",
+                  placeholder: "AZ",
+                  value: "",
+                },
+                {
+                  id: 3,
+                  formName: "AddressDetails",
+                  title: "Zipcode",
+                  type: "input",
+                  placeholder: "85257",
+                  value: "",
+                },
+              ]
+            }
+          ],
           cards: [
             // - 
           {
@@ -10560,12 +10710,48 @@ export const testingForm = {
     // TAB 2
     {
       id: 2,
-      tabName: "Tab Two",
-      value: "tab2",
+      tabName: "Bank Information",
+      value: "bankInformation",
       section: [
         // FIRST SECTION
         {
-        sectionName: "",
+        sectionName: "Bank Info",
+        fields: [
+          {
+            id: 1,
+            formName: "DaysToSubmitTransactions",
+            title: "Bank Name",
+            type: "input",
+            placeholder: "Type the Bank name",
+            value: "",
+          },
+          {
+            id: 2,
+            type: "multiple",
+            formName: "",
+            title: "",
+            placeholder: "",
+            value: "",
+            multipleFields: [
+              {
+                id: 1,
+                formName: "DaysToSubmitTransactions",
+                title: "Bank Routing: *",
+                type: "input",
+                placeholder: "Type the Bank name",
+                value: "",
+              },
+              {
+                id: 2,
+                formName: "DaysToSubmitTransactions",
+                title: "Bank Accounting: *",
+                type: "input",
+                placeholder: "Type the Bank name",
+                value: "",
+              },
+            ]
+          },
+        ],
         cards: [
           // 1. TEST CARD
           {
@@ -10586,7 +10772,33 @@ export const testingForm = {
         },
         // SECOND SECTION
         {
-          sectionName: "Information",
+          sectionName: "Tax Information",
+          fields: [
+            {
+              id: 1,
+              formName: "DaysToSubmitTransactions",
+              title: "EIN:",
+              type: "input",
+              placeholder: "#",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "DaysToSubmitTransactions",
+              title: "SICMCC:",
+              type: "input",
+              placeholder: "#",
+              value: "",
+            },
+            {
+              id: 3,
+              formName: "DaysToSubmitTransactions",
+              title: "Type of Goods:",
+              type: "input",
+              placeholder: "#",
+              value: "",
+            },
+          ],
           cards: [
             // - 
           {
@@ -10632,6 +10844,44 @@ export const testingForm = {
         },
       ]
     },
-  
+    // TAB 3
+    {
+      id: 3,
+      tabName: "Programming Request",
+      value: "programmimgRequest",
+      section: [
+        // FIRST SECTION
+        {
+        sectionName: "Programmimg Info",
+    
+        cards: [
+          // 1. TEST CARD
+          {
+            title: "1. Zone",
+            colQty: "1",
+            fields: [
+              {
+                id: 1,
+                formName: "TimeZone",
+                title: "Time Zone",
+                type: "input",
+                placeholder: "",
+                value: "",
+              }
+            ]
+          },
+        ]
+        },
+        // SECOND SECTION
+
+      ]
+    },
   ],
+  buttons: [
+    {
+      id: 1,
+      title: "Save Changes",
+      type: "default",
+    }
+  ]
 }
