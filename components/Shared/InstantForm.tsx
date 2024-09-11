@@ -28,7 +28,6 @@ import {
 } from "@/components/ui/popover";
 import { Switch } from "../ui/switch";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import { AgentSetupTabs } from "@/constants";
 
 export const InputForm = <
   T extends z.ZodType<any, any>,
@@ -725,26 +724,38 @@ export const FormGenerator = ({
   // Splitting by two to show the grid cols in the mobile view.
   // const gridColsMobile = Number(gridCols) / 2;
   // const roundedCols = Math.round(gridColsMobile);
+  const [activeItem, setActiveItem] = useState<string>("");
+
+  const handleClick = (value: string) => {
+    setActiveItem(value);
+    RenderComponents(activeItem || " ")
+  };
+
+  const RenderComponents = (value: string) => {
+
+    console.log(value);
+  }
+
 
   return (
     <React.Fragment>
       <div className="h-screen w-auto">
         <Tabs
-          defaultValue="residuals"
+          defaultValue={""}
           className="flex-auto rounded-md border border-solid border-gray-400 p-4 shadow-md"
         >
           <TabsList className="">
-            {AgentSetupTabs.map((tab) => (
+            {formFields.tabs.map((tab) => (
               <TabsTrigger
-                // onClick={() => handleClick(tab.value)}
+                onClick={() => handleClick(tab.value)}
                 key={tab.id}
                 value={tab.value}
               >
-                <p className="text-sm">{tab.title}</p>
+                <p className="text-sm">{tab.tabName}</p>
               </TabsTrigger>
             ))}
           </TabsList>
-          {/* {RenderSetupComponents(activeItem || "residuals")} */}
+          
         </Tabs>
       </div>
       {formFields.tabs.map((tab) => (
