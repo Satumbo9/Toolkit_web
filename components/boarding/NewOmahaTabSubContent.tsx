@@ -50,7 +50,6 @@ import {
   CheckboxForm,
   FormGeneration,
   InputForm,
-  FormGenerationRadio,
   SwitchForm,
   NorthFormGeneration,
 } from "../Shared/InstantForm";
@@ -618,10 +617,11 @@ const ProgrammingRequest = () => {
               <h2 className="gap-2 text-xl font-semibold">
                 File Build Information
               </h2>
-              <FormGenerationRadio
+              <FormGeneration
                 formControl={form.control}
                 formFields={fileBuildInformationFspForm}
                 className={"w-full"}
+                gridCols={"4"}
               />
               <CheckboxForm
                 control={form.control}
@@ -676,19 +676,20 @@ const ProgrammingRequest = () => {
                 <p className="mt-3 text-nowrap px-2 text-sm">
                   If tip line checked, choose one:
                 </p>
-                <FormGenerationRadio
+                <FormGeneration
                   formControl={form.control}
                   formFields={tipLineFspForm}
                   className={"w-full"}
+                  gridCols={"2"}
                 />
               </div>
               {/* SERVER */}
-              <div className="flex items-center gap-2">
-                <p className="mt-3 px-7">Server:</p>
-                <FormGenerationRadio
+              <div className="flex gap-2">
+                <p className="mt-3.5 px-7">Server:</p>
+                <FormGeneration
                   formControl={form.control}
                   formFields={serverFspForm}
-                  className={"w-full"}
+                  gridCols={"2"}
                 />
               </div>
             </div>
@@ -721,10 +722,10 @@ const ProgrammingRequest = () => {
             Shipping Information
           </h1>
           <p className="mt-4">Ship To:</p>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={shipToFspForm}
-            className={"w-full"}
+            gridCols={"5"}
           />
           <div className="flex gap-10">
             <div className="flex-auto">
@@ -775,10 +776,10 @@ const ProgrammingRequest = () => {
           Billing Information
         </h1>
         <p className="text-start">Bill To:</p>
-        <FormGenerationRadio
+        <FormGeneration
           formControl={form.control}
           formFields={billToFspForm}
-          className="w-full"
+          gridCols={"5"}
         />
         <div className="flex justify-start gap-2">
           <Button className="my-5">View Bank ACH</Button>

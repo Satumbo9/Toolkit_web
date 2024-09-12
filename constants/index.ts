@@ -32,6 +32,7 @@ import {
 
 } from "lucide-react";
 import { z } from "zod";
+import { FormData  } from "@/types/types";
 
 export const themes = [
   { value: "light", label: "Light", icon: "icon/sun.svg" },
@@ -10542,11 +10543,12 @@ export const testForm = [
 ];
 
 
-export const testingForm = {
+
+export const testingForm: FormData = {
   formTitle: "Testing form",
   description: "",
   tabs: [
-    // TAB 1 
+    // TAB 1 - CONTACT
     {
       id: 1,
       tabName: "Contact",
@@ -10554,58 +10556,110 @@ export const testingForm = {
       section: [
         // FIRST SECTION
         {
-        sectionName: "Contact Information",
-        fields: [
-          {
-            id: 1,
-            formName: "CustomerName",
-            title: "First Name:",
-            type: "input",
-            placeholder: "Name",
-            value: "",
-          },
-          {
-            id: 2,
-            formName: "CustomerSurname",
-            title: "Last Name:",
-            type: "input",
-            placeholder: "Name",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "CustomerEmail",
-            title: "Email:",
-            type: "input",
-            placeholder: "example@email.com",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "CustomerCitizenship",
-            title: "Citizenship:",
-            type: "input",
-            placeholder: "e.g. American",
-            value: "",
-          }
-        ],
-        cards: [
-          // 1. TEST CARD
-          {
-            title: "1. Zone",
-            colQty: "1",
-            fields: [
-              {
-                id: 1,
-                formName: "TimeZone",
-                title: "Time Zone",
-                type: "input",
-                placeholder: "",
-                value: "",
-              }
-            ]
-          },
-        ]
+          sectionName: "Contact Information",
+          cards: [
+            // 1. FIRST CARD
+            {
+              title: "1. Zone",
+              colQty: "1",
+              fields: [
+                {
+                  id: 1,
+                  formName: "TimeZone",
+                  title: "Time Zone",
+                  type: "input",
+                  placeholder: "",
+                  value: "",
+                }
+              ]
+            },
+            // 2. TEST CARD
+            {
+              title: "2. Test",
+              colQty: "1",
+              fields: [
+                {
+                  id: 1,
+                  formName: "TimeZone",
+                  title: "Time Zone",
+                  type: "input",
+                  placeholder: "",
+                  value: "",
+                }
+              ],
+              title2: "2.1 testing a lot",
+              fields2: [
+                {
+                  id: 1,
+                  formName: "TimeNow",
+                  title: "Time Now:",
+                  type: "number",
+                  placeholder: "12:00:00 AM UTC-8",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  formName: "TimeNow",
+                  title: "Time Tomorrow:",
+                  type: "number",
+                  placeholder: "12:00:00 AM UTC-8",
+                  value: "",
+                },
+              ]
+
+            },
+          ],
+          fields: [
+            {
+              id: 1,
+              formName: "test1",
+              title: "First Name:",
+              type: "input",
+              placeholder: "Name",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "CustomerSurname",
+              title: "Last Name:",
+              type: "input",
+              placeholder: "Name",
+              value: "",
+            },
+            {
+              id: 3,
+              formName: "CustomerEmail",
+              title: "Email:",
+              type: "input",
+              placeholder: "example@email.com",
+              value: "",
+            },
+            {
+              id: 4,
+              formName: "CustomerCitizenship",
+              title: "Citizenship:",
+              type: "input",
+              placeholder: "e.g. American",
+              value: "",
+            },
+            {
+              id: 5,
+              formName: "CustomerNumber",
+              title: "Phone Number:",
+              type: "number",
+              placeholder: "(___) ___-____",
+              value: "",
+            },
+            {
+              id: 6,
+              formName: "CustomerNumberConfirmation",
+              title: "Is it your current number?",
+              type: "checkbox",
+              placeholder: "Is it your current number?",
+              value: "",
+            },
+          ],
+          
         },
         // SECOND SECTION
         {
@@ -10768,7 +10822,7 @@ export const testingForm = {
               }
             ]
           },
-        ]
+        ],
         },
         // SECOND SECTION
         {
@@ -10870,10 +10924,30 @@ export const testingForm = {
               }
             ]
           },
+          {
+            title: "2. Location",
+            colQty: "1",
+            fields: [
+              {
+                id: 1,
+                formName: "TimeZone",
+                title: "Time Zone",
+                type: "input",
+                placeholder: "",
+                value: "",
+              },
+              {
+                id: 2,
+                formName: "TimeZone",
+                title: "Country Location",
+                type: "input",
+                placeholder: "United States",
+                value: "",
+              },
+            ]
+          },
         ]
         },
-        // SECOND SECTION
-
       ]
     },
   ],
@@ -10882,6 +10956,7 @@ export const testingForm = {
       id: 1,
       title: "Save Changes",
       type: "default",
-    }
+    },
   ]
 }
+

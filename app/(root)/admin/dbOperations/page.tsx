@@ -1,6 +1,6 @@
 "use client";
 
-import { FormGenerator } from "@/components/Shared/InstantForm";
+import { FormGenerator, ReadJson } from "@/components/Shared/InstantForm";
 import { Form } from "@/components/ui/form";
 import { testingForm } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const Page = () => {
+
+
   const testSchema = z.object({
     test1: z.string(),
   });
@@ -20,17 +22,16 @@ const Page = () => {
 
   const onSubmit = (values: z.infer<typeof testSchema>) => {
     console.log(values);
+    
+    const testing = ReadJson(testingForm);
+    console.log(testing);
   };
+
   return (
-    <section className="m-auto h-[40rem] p-2">
-      <h1 className="text-center text-2xl text-sky-500">Page in Test</h1>
+    <section className="m-auto p-2">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <FormGenerator
-            formControl={form.control}
-            formFields={testingForm}
-            gridCols=""
-          />
+          <FormGenerator formControl={form.control} formFields={testingForm} />
         </form>
       </Form>
     </section>
