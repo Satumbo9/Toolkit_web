@@ -10593,15 +10593,15 @@ export const testingForm: FormData = {
                   id: 1,
                   formName: "TimeNow",
                   title: "Time Now:",
-                  type: "number",
+                  type: "input",
                   placeholder: "12:00:00 AM UTC-8",
                   value: "",
                 },
                 {
                   id: 2,
-                  formName: "TimeNow",
+                  formName: "TimeNow2",
                   title: "Time Tomorrow:",
-                  type: "number",
+                  type: "input",
                   placeholder: "12:00:00 AM UTC-8",
                   value: "",
                 },
@@ -10646,7 +10646,7 @@ export const testingForm: FormData = {
               id: 5,
               formName: "CustomerNumber",
               title: "Phone Number:",
-              type: "number",
+              type: "input",
               placeholder: "(___) ___-____",
               value: "",
             },
@@ -10773,7 +10773,7 @@ export const testingForm: FormData = {
         fields: [
           {
             id: 1,
-            formName: "DaysToSubmitTransactions",
+            formName: "BankName",
             title: "Bank Name",
             type: "input",
             placeholder: "Type the Bank name",
@@ -10789,7 +10789,7 @@ export const testingForm: FormData = {
             multipleFields: [
               {
                 id: 1,
-                formName: "DaysToSubmitTransactions",
+                formName: "BankRouting",
                 title: "Bank Routing: *",
                 type: "input",
                 placeholder: "Type the Bank name",
@@ -10797,7 +10797,7 @@ export const testingForm: FormData = {
               },
               {
                 id: 2,
-                formName: "DaysToSubmitTransactions",
+                formName: "BankAccounting",
                 title: "Bank Accounting: *",
                 type: "input",
                 placeholder: "Type the Bank name",
@@ -10830,7 +10830,7 @@ export const testingForm: FormData = {
           fields: [
             {
               id: 1,
-              formName: "DaysToSubmitTransactions",
+              formName: "EIN",
               title: "EIN:",
               type: "input",
               placeholder: "#",
@@ -10838,7 +10838,7 @@ export const testingForm: FormData = {
             },
             {
               id: 2,
-              formName: "DaysToSubmitTransactions",
+              formName: "SICMCC",
               title: "SICMCC:",
               type: "input",
               placeholder: "#",
@@ -10846,7 +10846,7 @@ export const testingForm: FormData = {
             },
             {
               id: 3,
-              formName: "DaysToSubmitTransactions",
+              formName: "TypeOfGoods",
               title: "Type of Goods:",
               type: "input",
               placeholder: "#",
@@ -10924,28 +10924,7 @@ export const testingForm: FormData = {
               }
             ]
           },
-          {
-            title: "2. Location",
-            colQty: "1",
-            fields: [
-              {
-                id: 1,
-                formName: "TimeZone",
-                title: "Time Zone",
-                type: "input",
-                placeholder: "",
-                value: "",
-              },
-              {
-                id: 2,
-                formName: "TimeZone",
-                title: "Country Location",
-                type: "input",
-                placeholder: "United States",
-                value: "",
-              },
-            ]
-          },
+          
         ]
         },
       ]

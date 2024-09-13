@@ -43,6 +43,6 @@ export interface Field {
   }
 
   export interface FormList {
-    propertyName: string;
-    dataType: string;
+    name: any;
+    type: any;
   }
