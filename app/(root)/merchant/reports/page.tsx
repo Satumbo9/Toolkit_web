@@ -9,20 +9,69 @@ import {
 } from "@/components/Shared/InstantForm";
 import { Form } from "@/components/ui/form";
 import { agentEmailList } from "@/constants";
-import { newNorthBlindLeadSchema } from "@/lib/utils";
+import { newMerchantReport } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const Page = () => {
-  const form = useForm<z.infer<typeof newNorthBlindLeadSchema>>({
-    resolver: zodResolver(newNorthBlindLeadSchema),
-    defaultValues: {},
+  const form = useForm<z.infer<typeof newMerchantReport>>({
+    resolver: zodResolver(newMerchantReport),
+    defaultValues: {
+      BoolAgent: false,
+      BoolAgentDate: false,
+      BoolApprovalDate: false,
+      BoolProcessor: false,
+      BoolMerchant: false,
+      SelectedAgent: "",
+      DateFrom: "",
+      DateTo: "",
+    },
   });
 
-  const onSubmit = (value: z.infer<typeof newNorthBlindLeadSchema>) => {
+  const onSubmit = (value: z.infer<typeof newMerchantReport>) => {
     console.log(value);
+  };
+
+  const [agent, setAgent] = useState(false);
+  const [agentDate, setAgentDate] = useState(false);
+  const [approvalDate, setApprovalDate] = useState(false);
+  const [processor, setProcessor] = useState(false);
+  const [merchant, setMerchant] = useState(false);
+
+  const handleClickReport = (value: string) => {
+    setAgent(false);
+    setAgentDate(false);
+    setApprovalDate(false);
+    setProcessor(false);
+    setMerchant(false);
+    // Testing the cases to able the right fields
+    switch (value.toLowerCase()) {
+      case "agent":
+        if (!form.getValues("BoolAgent")) setAgent(true);
+        break;
+      case "agentdate":
+        if (!form.getValues("BoolAgentDate")) setAgentDate(true);
+        break;
+      case "approvaldate":
+        if (!form.getValues("BoolApprovalDate")) setApprovalDate(true);
+        break;
+      case "processor":
+        if (!form.getValues("BoolProcessor")) setProcessor(true);
+        break;
+      case "merchant":
+        if (!form.getValues("BoolMerchant")) setMerchant(true);
+        break;
+      default:
+        break;
+    }
+    // Handling the values from the form
+    if(agent) form.setValue("BoolAgent", false);
+    if(agentDate) form.setValue("BoolAgentDate", false);
+    if(approvalDate) form.setValue("BoolApprovalDate", false);
+    if(processor) form.setValue("BoolProcessor", false);
+    if(merchant) form.setValue("BoolMerchant", false);
   };
 
   return (
@@ -38,10 +87,11 @@ const Page = () => {
               <div className="my-3 grid flex-auto grid-cols-3 items-end gap-10">
                 <CheckboxForm
                   control={form.control}
-                  formName="MerchantAgent"
+                  formName="BoolAgent"
                   label=""
                   placeholder="Agent"
                   className="col-span-1 pb-2"
+                  onClick={() => handleClickReport("agent")}
                 />
                 <div className="col-span-2">
                   <SelectForm
@@ -53,6 +103,7 @@ const Page = () => {
                     displayKey={"Name"}
                     valueKey={"Name"}
                     className=""
+                    disabled={!agent}
                   />
                 </div>
               </div>
@@ -61,10 +112,11 @@ const Page = () => {
               <div className="my-3 grid flex-auto grid-cols-3 items-start gap-10">
                 <CheckboxForm
                   control={form.control}
-                  formName="MerchantAgentAndDate"
+                  formName="BoolAgentDate"
                   label=""
                   placeholder="Agent & Date"
                   className="col-span-1 pt-2"
+                  onClick={() => handleClickReport("agentDate")}
                 />
                 <div className="col-span-2">
                   <SelectForm
@@ -76,18 +128,21 @@ const Page = () => {
                     displayKey={"Name"}
                     valueKey={"Name"}
                     className=""
+                    disabled={!agentDate}
                   />
                   <DatePickerForm
                     control={form.control}
-                    formName="MerchantFromDate"
+                    formName="DateFrom"
                     label=""
                     placeholder="From Date"
+                    disabled={!agentDate}
                   />
                   <DatePickerForm
                     control={form.control}
-                    formName="MerchantToDate"
+                    formName="DateTo"
                     label=""
                     placeholder="To Date"
+                    disabled={!agentDate}
                   />
                 </div>
               </div>
@@ -96,23 +151,26 @@ const Page = () => {
               <div className="my-3 grid flex-auto grid-cols-3 items-start gap-10">
                 <CheckboxForm
                   control={form.control}
-                  formName="ApprovalDate"
+                  formName="BoolApprovalDate"
                   label=""
                   placeholder="Approval Date"
                   className="col-span-1 pt-2"
+                  onClick={() => handleClickReport("approvalDate")}
                 />
                 <div className="col-span-2">
                   <DatePickerForm
                     control={form.control}
-                    formName="MerchantFromDate"
+                    formName="DateFrom"
                     label=""
                     placeholder="From Date"
+                    disabled={!approvalDate}
                   />
                   <DatePickerForm
                     control={form.control}
-                    formName="MerchantToDate"
+                    formName="DateTo"
                     label=""
                     placeholder="To Date"
+                    disabled={!approvalDate}
                   />
                 </div>
               </div>
@@ -121,23 +179,26 @@ const Page = () => {
               <div className="my-3 grid flex-auto grid-cols-3 items-start gap-10">
                 <CheckboxForm
                   control={form.control}
-                  formName="ProcessorByApprovalDate"
+                  formName="BoolProcessor"
                   label=""
                   placeholder="Processor by Approval Date"
                   className="col-span-1 pt-2"
+                  onClick={() => handleClickReport("processor")}
                 />
                 <div className="col-span-2">
                   <DatePickerForm
                     control={form.control}
-                    formName="MerchantFromDate"
+                    formName="DateFrom"
                     label=""
                     placeholder="From Date"
+                    disabled={!processor}
                   />
                   <DatePickerForm
                     control={form.control}
-                    formName="MerchantToDate"
+                    formName="DateTo"
                     label=""
                     placeholder="To Date"
+                    disabled={!processor}
                   />
                 </div>
               </div>
@@ -146,33 +207,36 @@ const Page = () => {
               <div className="my-3 grid flex-auto grid-cols-3 items-start gap-10">
                 <CheckboxForm
                   control={form.control}
-                  formName="MerchantByApprovalDate"
+                  formName="BoolMerchant"
                   label=""
                   placeholder="Merchants by Approval Date (with splits)"
                   className="col-span-1 pt-2"
+                  onClick={() => handleClickReport("merchant")}
                 />
                 <div className="col-span-2">
                   <DatePickerForm
                     control={form.control}
-                    formName="MerchantFromDate"
+                    formName="DateFrom"
                     label=""
                     placeholder="From Date"
+                    disabled={!merchant}
                   />
                   <DatePickerForm
                     control={form.control}
-                    formName="MerchantToDate"
+                    formName="DateTo"
                     label=""
                     placeholder="To Date"
+                    disabled={!merchant}
                   />
                 </div>
               </div>
               <hr className="border" />
               {/* BUTTONS TO SUBMIT */}
               <div className="my-2 flex justify-end gap-2">
-                <CustomButtons btnType="destructive" className="px-10">
+                <CustomButtons btnType="destructive" type="reset" className="px-10">
                   Reset
                 </CustomButtons>
-                <CustomButtons btnType="default" className="px-10">
+                <CustomButtons btnType="default" type="submit" className="px-10">
                   Submit
                 </CustomButtons>
               </div>

@@ -3,12 +3,15 @@ import Image from "next/image";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import NewMerchant from "./NewMerchant";
 import { useTheme } from "next-themes";
+import NewTask from "../user/NewTask";
+import Link from "next/link";
 // import Theme from "../Home/Theme";
 
 const MerchantShortcuts = () => {
@@ -68,84 +71,103 @@ const MerchantShortcuts = () => {
             <DialogContent className="2xl:[1200px] max-lg:max-w-[500px] lg:max-w-[800px]">
               <DialogHeader>
                 <DialogTitle className="text-2xl font-semibold">
-                  Merchant Information
+                  Adding a New Merchant
                 </DialogTitle>
                 <NewMerchant />
+                <DialogDescription />
               </DialogHeader>
             </DialogContent>
           </Dialog>
         </div>
-
-        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
-          <h1>Tasks / Logs</h1>
-          <div className="">
-            <Image
-              className="m-auto my-5"
-              src="/icon/colorful/create-task.svg"
-              alt="Logo"
-              width={75}
-              height={75}
-              priority
-            />
-
-            <h1 className="justify-center text-nowrap text-black dark:text-white">
-              Create Task
-            </h1>
-          </div>
+        {/* TASKS / LOGS SHORTCUT */}
+        <div className="col-span-1">
+          <Dialog>
+            <DialogTrigger className="h-full" asChild>
+              <div className="cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
+                <h1>Tasks / Logs</h1>
+                <div className="">
+                  <Image
+                    className="m-auto my-5"
+                    src="/icon/colorful/create-task.svg"
+                    alt="Logo"
+                    width={75}
+                    height={75}
+                    priority
+                  />
+                  <h1 className="justify-center text-nowrap text-black dark:text-white">
+                    Create Task
+                  </h1>
+                </div>
+              </div>
+            </DialogTrigger>
+            <DialogContent className="2xl:[1200px] max-lg:max-w-[500px] lg:max-w-[800px]">
+              <DialogHeader>
+                <DialogTitle>Add a new task</DialogTitle>
+              </DialogHeader>
+              <NewTask type="New" />
+            </DialogContent>
+            <DialogDescription />
+          </Dialog>
         </div>
-        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
-          <h1>Documents</h1>
-          <div className="">
-            <Image
-              className="m-auto my-5"
-              src="/icon/colorful/upload-document.svg"
-              alt="Logo"
-              width={75}
-              height={75}
-              priority
-            />
-
-            <h1 className="justify-center text-black dark:text-white">
-              Upload Document
-            </h1>
+        {/* UPLOAD DOCUMENTS SHORTCUT */}
+        <Link href={"/merchant/information/documents"}>
+          <div className="col-span-1 h-full cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
+            <h1>Documents</h1>
+            <div className="">
+              <Image
+                className="m-auto my-5"
+                src="/icon/colorful/upload-document.svg"
+                alt="Logo"
+                width={75}
+                height={75}
+                priority
+              />
+              <h1 className="justify-center text-black dark:text-white">
+                Upload Document
+              </h1>
+            </div>
           </div>
-        </div>
-
-        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
-          <h1>Equipment</h1>
-          <div className="">
-            <Image
-              className="m-auto my-5"
-              src="/icon/colorful/create-order.svg"
-              alt="Logo"
-              width={75}
-              height={75}
-              priority
-            />
-            <h1 className="justify-center text-nowrap text-black dark:text-white">
-              Create Order
-            </h1>
+        </Link>
+        {/* EQUIPMENT SHORTCUT */}
+        <Link href={"/merchant/information/equipment"}>
+          <div className="col-span-1 h-full cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
+            <h1>Equipment</h1>
+            <div className="">
+              <Image
+                className="m-auto my-5"
+                src="/icon/colorful/create-order.svg"
+                alt="Logo"
+                width={75}
+                height={75}
+                priority
+              />
+              <h1 className="justify-center text-nowrap text-black dark:text-white">
+                Create Order
+              </h1>
+            </div>
           </div>
-        </div>
-
-        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
-          <h1>Call Logs</h1>
-          <div className="">
-            <Image
-              className="m-auto my-5"
-              src="/icon/colorful/call-logs.svg"
-              alt="Logo"
-              width={75}
-              height={75}
-              priority
-            />
-            <h1 className="justify-center text-black dark:text-white">
-              See Logs / Tasks
-            </h1>
+        </Link>
+        {/* CALL LOGS SHORTCUT */}
+        <Link href={"/merchant/information/calllog"}>
+          <div className="col-span-1 h-full cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
+            <h1>Call Logs</h1>
+            <div className="">
+              <Image
+                className="m-auto my-5"
+                src="/icon/colorful/call-logs.svg"
+                alt="Logo"
+                width={75}
+                height={75}
+                priority
+              />
+              <h1 className="justify-center text-black dark:text-white">
+                See Logs / Tasks
+              </h1>
+            </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="col-span-1 cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
+        <div className="col-span-1 h-full cursor-pointer rounded-md border bg-transparent p-5 text-center shadow-md transition duration-300 hover:border-sky-500">
           <h1>Leasing</h1>
           <div className="">
             <Image

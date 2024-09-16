@@ -1972,6 +1972,13 @@ export const salesRepList = [
   { id: 10, name: "Sophia Lee", value: "sophiaLee" },
 ];
 
+export const bankList = [
+  { id: 1, name: "Bradesco", value: "bradesco" },
+  { id: 2, name: "Chase Bank", value: "chase" },
+  { id: 3, name: "Discover", value: "discover" },
+  { id: 4, name: "American Express", value: "amex" },
+];
+
 export const leadSourceList = [
   { id: 1, name: "Innovatech Solutions", value: "innovatechSolutions" },
   { id: 2, name: "Blue Horizon Enterprises", value: "blueHorizonEnterprises" },
@@ -2425,9 +2432,10 @@ export const newMerchantInfoForm =
     id: 5,
     title: "Status:",
     type: "input",
-    placeholder: "",
+    placeholder: "Select a Status",
     formName: "Status",
-    value: ""
+    value: "",
+    content: bankList,
   },
   {
     id: 6,

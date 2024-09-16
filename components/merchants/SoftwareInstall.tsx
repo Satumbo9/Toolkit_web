@@ -76,7 +76,7 @@ const SoftwareInstall = () => {
         <h1 className="mb-3 text-2xl text-sky-500">Software Install</h1>
 
         {/* Merchant Information */}
-        <div className="flex-auto rounded-md border p-2">
+        <div className="m-auto flex-auto rounded-md border p-4">
           <h1 className="flex justify-center text-xl font-semibold text-sky-500">
             Merchant Information
           </h1>
@@ -189,7 +189,7 @@ const SoftwareInstall = () => {
         {/* Parent of top right section */}
         <div className="mt-4 grid flex-auto">
           <div className="flex flex-auto flex-col">
-            <div className="grid grid-cols-3 gap-3 max-2xl:grid-cols-1">
+            <div className="grid grid-cols-3 gap-4 max-2xl:grid-cols-1">
               {/* Platform Information Div */}
               <div className="col-span-2 rounded-md border p-2">
                 <h1 className="flex justify-center text-xl font-semibold text-sky-500">
@@ -330,22 +330,39 @@ const SoftwareInstall = () => {
                 <CustomButtons
                   btnType="primary"
                   className="my-3 w-full max-2xl:w-2/4"
+                  type="button"
                 >
                   Update Equipment Status
                 </CustomButtons>
                 <div className="max-2x:w-2/4 m-auto my-3 grid w-full grid-cols-1 gap-2 max-2xl:grid-cols-2">
-                  <CustomButtons btnType="default" className="w-full">
+                  <CustomButtons
+                    btnType="default"
+                    type="button"
+                    className="w-full"
+                  >
                     Migrate to HOLD Status
                   </CustomButtons>
-                  <CustomButtons btnType="default" className="w-full">
+                  <CustomButtons
+                    btnType="default"
+                    type="button"
+                    className="w-full"
+                  >
                     Migrate to ACTIVE Status
                   </CustomButtons>
                 </div>
                 <div className="max-2x:w-2/4 m-auto my-6 grid w-full grid-cols-1 gap-2 max-2xl:grid-cols-2">
-                  <CustomButtons btnType="default" className="w-full">
+                  <CustomButtons
+                    btnType="default"
+                    type="button"
+                    className="w-full"
+                  >
                     Update Billing Information
                   </CustomButtons>
-                  <CustomButtons btnType="primary" className="w-full">
+                  <CustomButtons
+                    btnType="primary"
+                    type="button"
+                    className="w-full"
+                  >
                     Setup Support Agreement
                   </CustomButtons>
                 </div>
