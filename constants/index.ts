@@ -28,7 +28,10 @@ import {
   ClipboardMinus,
   BookText,
   HandCoins,
-  Upload
+  Upload,
+  User2Icon,
+  UsersRound,
+  TableProperties
 
 } from "lucide-react";
 import { z } from "zod";
@@ -3170,6 +3173,60 @@ export const thirdPartyForm = [
   },
 ];
 
+export const RolesListTable = [
+  {
+    id: 1234,
+    role: "Admin",
+    description: "System Admin",
+    permission: 99,
+  },
+  {
+    id: 1235,
+    role: "User",
+    description: "General Users",
+    permission: 10,
+  },
+  {
+    id: 1236,
+    role: "Super User",
+    description: "Development Team",
+    permission: 100,
+  },
+]
+
+export const DepartmentListTable = [
+  {
+    id: 4321,
+    department: "Finance",
+    description: "Finance Team",
+    permission: 99,
+  },
+  {
+    id: 4322,
+    department: "Sales",
+    description: "Sales Dept.",
+    permission: 10,
+  },
+  {
+    id: 4323,
+    department: "Support",
+    description: "Support Team",
+    permission: 100,
+  },
+  {
+    id: 4324,
+    department: "Equipment",
+    description: "Equipment/Shipping Team",
+    permission: 100,
+  },
+  {
+    id: 4325,
+    department: "Development",
+    description: "Dev Team",
+    permission: 100,
+  },
+]
+
 export const firstDataOmahaForm = [
   {
     id: 1,
@@ -3355,11 +3412,19 @@ export const userAdminTabs = [
     id: "1",
     title: "Users",
     value: "users",
+    icon: User2Icon,
   },
   {
     id: "2",
     title: "Roles",
     value: "roles",
+    icon: TableProperties,
+  },
+  {
+    id: "3",
+    title: "Departments",
+    value: "departments",
+    icon: UsersRound,
   },
 ];
 export const usersTable = [

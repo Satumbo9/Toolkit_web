@@ -5,22 +5,24 @@ import {
 } from "@/components/Shared/DataTable/Columns";
 import DataTable from "@/components/Shared/DataTable/DataTable";
 import { Button } from "@/components/ui/button";
-import { adjustmentTable, agentEmailList, usersTable } from "@/constants";
+import {
+  DepartmentListTable,
+  RolesListTable,
+  usersTable,
+} from "@/constants";
 import { DataTypes } from "@/types";
 import React from "react";
-import { Form } from "../ui/form";
-import { newAdjustmentCriteriaSchema } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import {
-  DatePickerForm,
-  InputForm,
-  SelectForm,
-  TextAreaForm,
-} from "../Shared/InstantForm";
 import Link from "next/link";
 import UserDetails from "./UserDetails";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import NewRole from "./NewRole";
 
 const Users = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
@@ -45,7 +47,7 @@ const Users = () => {
         Select a user to edit or add a new one.
       </p>
       <div className="flex gap-4 max-2xl:flex-wrap">
-        <div className="grid flex-auto grid-cols-1 overflow-auto px-2">
+        <div className="grid flex-auto grid-cols-1 overflow-auto px-2 text-start">
           <h2 className="mt-2 text-center text-xl">List of users:</h2>
           <DataTable
             columns={columns}
@@ -74,215 +76,112 @@ const Users = () => {
   );
 };
 
-const Adjustments = () => {
+const Roles = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
-    { accessorKey: "Date", header: "Date" },
-    { accessorKey: "MID", header: "MID" },
-    { accessorKey: "DBA", header: "DBA" },
-    { accessorKey: "Agent", header: "Agent" },
-    { accessorKey: "Type", header: "Type" },
-    { accessorKey: "Amount", header: "Amount" },
-    { accessorKey: "Notes", header: "Notes" },
+    { accessorKey: "id", header: "ID" },
+    { accessorKey: "role", header: "Role" },
+    { accessorKey: "description", header: "Description" },
+    { accessorKey: "permission", header: "Permission" },
   ];
 
   const columns = createColumns(columnsConfig);
 
-  const form = useForm<z.infer<typeof newAdjustmentCriteriaSchema>>({
-    resolver: zodResolver(newAdjustmentCriteriaSchema),
-    defaultValues: {
-      ResidualDate: "",
-      Agent: "",
-      AgentID: "",
-      AdjustType: "",
-      MID: "",
-      DBALegal: "",
-      Processor: "",
-      Amount: "",
-      Notes: "",
-    },
-  });
-
-  const onSubmit = (value: z.infer<typeof newAdjustmentCriteriaSchema>) => {
-    console.log(value);
-  };
-
   return (
-    <>
-      <section className="mt-4 gap-2 text-start max-2xl:flex-wrap">
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex gap-2 max-2xl:flex-wrap"
-          >
-            {/* ADJUSTMENT CRITERIA CARD */}
-            <div className="flex-auto">
-              <h1 className="my-5 text-center text-xl font-medium">
-                Adjustment Criteria
-              </h1>
-
-              <div className="m-auto flex w-full gap-4">
-                <div className="mt-2 w-1/3 content-center text-end">
-                  <p className="">Residual Date</p>
-                </div>
-                <div className="w-2/3 flex-auto content-center">
-                  <DatePickerForm
-                    control={form.control}
-                    formName="ResidualDate"
-                    label=""
-                    placeholder="mm/dd/2024"
-                  />
-                </div>
-              </div>
-              <div className="m-auto flex w-full gap-4">
-                <div className="mt-2 w-1/3 content-center text-end">
-                  <p className="">Agent</p>
-                </div>
-                <div className="w-2/3">
-                  <SelectForm
-                    control={form.control}
-                    formName={"Agent"}
-                    label=""
-                    placeholder={"Select Agent"}
-                    content={agentEmailList}
-                    valueKey="Email"
-                    displayKey="Name"
-                    disabled={false}
-                    className=""
-                  />
-                </div>
-              </div>
-              <div className="m-auto flex w-full content-center gap-4">
-                <p className="w-1/3 content-center text-end">Agent ID</p>
-                <div className="flex w-2/3 gap-2">
-                  <div className="flex-1">
-                    <InputForm
-                      control={form.control}
-                      formName={"AgentID"}
-                      label=""
-                      placeholder=""
-                    />
-                  </div>
-                  <Button className="mt-2 flex-1 bg-gradient-to-r from-[#14ADD6] to-[#384295] text-white hover:opacity-90">
-                    Search
-                  </Button>
-                </div>
-              </div>
-
-              <hr className="my-7 border" />
-
-              <div>
-                <div className="m-auto flex w-full gap-4">
-                  <div className="mt-2 w-1/3 content-center text-end">
-                    <p className="">Adjust Type</p>
-                  </div>
-                  <div className="w-2/3">
-                    <SelectForm
-                      control={form.control}
-                      formName={"AdjustType"}
-                      label=""
-                      placeholder={"Select Adjust Type"}
-                      content={agentEmailList}
-                      valueKey="Email"
-                      displayKey="Name"
-                      disabled={false}
-                      className=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="m-auto flex w-full content-center gap-4">
-                <p className="w-1/3 content-center text-end">MID</p>
-                <div className="w-2/3">
-                  <InputForm
-                    control={form.control}
-                    formName={"MID"}
-                    label=""
-                    placeholder="Enter MID"
-                  />
-                </div>
-              </div>
-              <div className="m-auto my-3 w-full text-end">
-                <Button className="bg-gradient-to-r from-[#14ADD6] to-[#384295] px-8 text-white hover:opacity-90">
-                  Find / Clear
-                </Button>
-              </div>
-              <div className="m-auto flex w-full content-center gap-4">
-                <p className="w-1/3 content-center text-end">DBA/Legal</p>
-                <div className="w-2/3">
-                  <InputForm
-                    control={form.control}
-                    formName={"DBALegal"}
-                    label=""
-                    placeholder="Enter DBA/Legal"
-                  />
-                </div>
-              </div>
-              <div className="m-auto flex w-full content-center gap-4">
-                <p className="w-1/3 content-center text-end">Processor</p>
-                <div className="w-2/3">
-                  <InputForm
-                    control={form.control}
-                    formName={"Processor"}
-                    label=""
-                    placeholder="Enter Processor"
-                  />
-                </div>
-              </div>
-
-              <div className="m-auto mt-10 flex w-full content-center gap-4">
-                <p className="w-1/3 content-center text-end">Amount</p>
-                <div className="w-2/3">
-                  <InputForm
-                    control={form.control}
-                    formName={"Amount"}
-                    label=""
-                    placeholder="Enter Amount"
-                  />
-                </div>
-              </div>
-              <div className="m-auto flex w-full content-center gap-4">
-                <p className="w-1/3 content-center text-end">Notes</p>
-                <div className="w-2/3">
-                  <TextAreaForm
-                    control={form.control}
-                    formName={"Notes"}
-                    label=""
-                    placeholder="Notes..."
-                  />
-                </div>
-              </div>
-
-              <div className="flex justify-center gap-2">
-                <Button className="my-5 bg-gradient-to-r from-[#14ADD6] to-[#384295] px-10 text-white hover:opacity-90">
-                  Edit
-                </Button>
-                <Button className="my-5 bg-gradient-to-r from-[#FF3333] to-[#8F0000] px-10 text-white hover:opacity-90">
-                  Delete
-                </Button>
-              </div>
+    <section className="mt-4 gap-2 text-start max-2xl:flex-wrap">
+      <h1 className="mt-3 text-center text-2xl font-semibold text-sky-500">
+        Roles List Management
+      </h1>
+      <p className="text-center text-base text-gray-500">
+        Select a role to edit or add a new one.
+      </p>
+      <div className="">
+        <Dialog>
+          <DialogTrigger asChild>
+            <div className="text-end">
+              <Button className="px-10">Create New Role</Button>
             </div>
+          </DialogTrigger>
+          <DialogContent className="max-lg:max-w-[400px] lg:max-w-[600px]">
+            <DialogHeader>
+              <DialogTitle>Add a new Role</DialogTitle>
+            </DialogHeader>
+            <NewRole type="New" />
+          </DialogContent>
+          <DialogDescription />
+        </Dialog>
+      </div>
 
-            <div className="grid grid-cols-1 overflow-auto">
-              <DataTable
-                columns={columns}
-                data={adjustmentTable}
-                enableSorting={true}
-                enableColumnFilter={true}
-                filteredBy="Agent"
-              />
-            </div>
-          </form>
-        </Form>
-      </section>
-    </>
+      <div className="grid grid-cols-1 overflow-auto">
+        <DataTable
+          columns={columns}
+          data={RolesListTable}
+          enableSorting={true}
+          enableColumnFilter={true}
+          filteredBy="role"
+          actionsColumn={true}
+        />
+      </div>
+    </section>
   );
 };
+
+const Departments = () => {
+  const columnsConfig: ColumnConfig<DataTypes>[] = [
+    { accessorKey: "id", header: "ID" },
+    { accessorKey: "department", header: "Department" },
+    { accessorKey: "description", header: "Description" },
+    { accessorKey: "permission", header: "Permission" },
+  ];
+
+  const columns = createColumns(columnsConfig);
+
+  return (
+    <section className="mt-4 gap-2 text-start max-2xl:flex-wrap">
+      <h1 className="mt-3 text-center text-2xl font-semibold text-sky-500">
+        Department List Management
+      </h1>
+      <p className="text-center text-base text-gray-500">
+        Select a dept. to edit or add a new one.
+      </p>
+      <div className="">
+        <Dialog>
+          <DialogTrigger asChild>
+            <div className="text-end">
+              <Button className="px-10">Create New Department</Button>
+            </div>
+          </DialogTrigger>
+          <DialogContent className="max-lg:max-w-[400px] lg:max-w-[600px]">
+            <DialogHeader>
+              <DialogTitle>Add a new Department</DialogTitle>
+            </DialogHeader>
+            <NewRole type="New" />
+          </DialogContent>
+          <DialogDescription />
+        </Dialog>
+      </div>
+
+      <div className="grid grid-cols-1 overflow-auto">
+        <DataTable
+          columns={columns}
+          data={DepartmentListTable}
+          enableSorting={true}
+          enableColumnFilter={true}
+          filteredBy="department"
+          actionsColumn={true}
+        />
+      </div>
+    </section>
+  );
+};
+
 
 export default function RenderUserAdminComponents(value: string) {
   switch (value) {
     case "users":
       return <Users />;
     case "roles":
-      return <Adjustments />;
+      return <Roles />;
+    case "departments":
+      return <Departments />;
   }
 }

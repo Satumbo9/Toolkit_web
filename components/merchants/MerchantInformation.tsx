@@ -75,6 +75,7 @@ const MerchantInformation = () => {
       form.setValue("DBAstate", form.getValues("State"));
       form.setValue("DBAzip", form.getValues("Zip"));
       setSameAsLegal(true);
+      return sameAsLegal;
     }
     setSameAsLegal(false);
   };
@@ -216,18 +217,21 @@ const MerchantInformation = () => {
                 formName="DBAaddress"
                 label="DBA Address"
                 placeholder="Address"
+                disabled={sameAsLegal}
               />
               <InputForm
                 control={form.control}
                 formName="DBAapt"
                 label="DBA Suite/Apartment"
                 placeholder="Suite/Apartment"
+                disabled={sameAsLegal}
               />
               <InputForm
                 control={form.control}
                 formName="DBAcity"
                 label="DBA City"
                 placeholder="City"
+                disabled={sameAsLegal}
               />
               <div className="grid grid-cols-3 gap-3">
                 <InputForm
@@ -235,6 +239,7 @@ const MerchantInformation = () => {
                   formName="DBAstate"
                   label="DBA State"
                   placeholder="AZ"
+                  disabled={sameAsLegal}
                 />
                 <div className="col-span-2">
                   <InputForm
@@ -242,6 +247,7 @@ const MerchantInformation = () => {
                     formName="DBAzip"
                     label="DBA Zip"
                     placeholder="Zip"
+                    disabled={sameAsLegal}
                   />
                 </div>
               </div>

@@ -564,6 +564,20 @@ export const newAddNewUserSchema = z.object({
   Toolkit: z.boolean(),
 });
 
+export const newRoleSchema = z.object({
+  Id: z.string(),
+  Role: requiredString,
+  Description: requiredString,
+  Permission: requiredString,
+});
+
+export const newDepartmentSchema = z.object({
+  Id: z.string(),
+  Department: requiredString,
+  Description: requiredString,
+  Permission: requiredString,
+});
+
 // BOARDING TOOL SCHEMAS
 
 export const searchMerchantSchema = z.object({

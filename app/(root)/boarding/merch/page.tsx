@@ -16,7 +16,7 @@ import { DataTypes } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Status } from "@/components/Shared/DataTable/CellFormat";
+import { ColumnLink, Status } from "@/components/Shared/DataTable/CellFormat";
 import { useRouter } from "next/navigation";
 
 const page = () => {
@@ -24,7 +24,11 @@ const page = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
     { accessorKey: "Id", header: "Id" },
     { accessorKey: "MID", header: "MID" },
-    { accessorKey: "DBA", header: "DBA" },
+    {
+      accessorKey: "DBA",
+      header: "DBA",
+      cell: (row) => ColumnLink(row.getValue(), "/boarding/merch/edit"),
+    },
     {
       accessorKey: "Status",
       header: "Status",
@@ -62,62 +66,60 @@ const page = () => {
     router.push("/boarding/merch/edit");
   };
   return (
-    <>
-      <section className="mt-4 text-start">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="gap-2">
-            <h1 className="my-5 text-center text-xl font-medium text-sky-500">
-              Find Merchants & Order Equipment
-            </h1>
+    <section className="mt-4 text-start">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="gap-2">
+          <h1 className="my-5 text-center text-xl font-medium text-sky-500">
+            Find Merchants & Order Equipment
+          </h1>
 
-            {/* SEARCH DIV */}
-            <div className="w-3/6 space-y-2 max-xl:w-5/6">
-              <div className="m-auto flex w-full items-end gap-2">
-                <div className="w-3/4">
-                  <InputForm
-                    control={form.control}
-                    formName={"MerchantName"}
-                    label="Search by the Merchant's Name"
-                    placeholder="Search for names..."
-                  />
-                </div>
-                <Button className="mt-2 flex-auto bg-gradient-to-r from-[#14ADD6] to-[#384295] px-2 text-white hover:opacity-90">
-                  Search For Merchant
-                </Button>
-              </div>
+          {/* SEARCH DIV */}
+          <div className="w-3/6 space-y-2 max-xl:w-5/6">
+            <div className="m-auto flex w-full items-end gap-2">
               <div className="w-3/4">
-                <SelectForm
+                <InputForm
                   control={form.control}
-                  formName={"Agent"}
-                  label="Agent / Company Name (choose one and 'Search')"
-                  placeholder={"Select Agent or Company Name"}
-                  content={agentCompanyNameSelectList}
-                  valueKey="value"
-                  displayKey="title"
-                  disabled={false}
-                  className=""
+                  formName={"MerchantName"}
+                  label="Search by the Merchant's Name"
+                  placeholder="Search for names..."
                 />
               </div>
+              <Button className="mt-2 flex-auto bg-gradient-to-r from-[#14ADD6] to-[#384295] px-2 text-white hover:opacity-90">
+                Search For Merchant
+              </Button>
             </div>
-
-            <h3 className="mt-10 text-xl font-semibold">
-              Merchants for agent: Agents Name
-            </h3>
-            <div className="grid grid-cols-1 overflow-auto">
-              <DataTable
-                columns={columns}
-                data={merchantForAgentTable}
-                enableSorting={true}
-                enableColumnFilter={true}
-                filteredBy="DBA"
-                actionsColumn={true}
-                editFunction={onAnotherPage}
+            <div className="w-3/4">
+              <SelectForm
+                control={form.control}
+                formName={"Agent"}
+                label="Agent / Company Name (choose one and 'Search')"
+                placeholder={"Select Agent or Company Name"}
+                content={agentCompanyNameSelectList}
+                valueKey="value"
+                displayKey="title"
+                disabled={false}
+                className=""
               />
             </div>
-          </form>
-        </Form>
-      </section>
-    </>
+          </div>
+
+          <h3 className="mt-10 text-xl font-semibold">
+            Merchants for agent: Agents Name
+          </h3>
+          <div className="grid grid-cols-1 overflow-auto">
+            <DataTable
+              columns={columns}
+              data={merchantForAgentTable}
+              enableSorting={true}
+              enableColumnFilter={true}
+              filteredBy="DBA"
+              actionsColumn={true}
+              editFunction={onAnotherPage}
+            />
+          </div>
+        </form>
+      </Form>
+    </section>
   );
 };
 

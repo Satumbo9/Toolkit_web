@@ -142,48 +142,46 @@ const EquipmentOrders = () => {
   };
 
   return (
-    <>
-      <section className="mt-4 gap-2 text-start max-2xl:flex-wrap">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="">
-            <h1 className="mt-10 text-xl font-medium text-sky-500">
-              Equipment Orders
-            </h1>
-            <p className="text-base">
-              <b>Merchant:</b> Puerto del Sur
-            </p>
-            <p className="text-base">
-              <b>Agent:</b> Express Payment Solution (SOLD)
-            </p>
+    <section className="mt-4 gap-2 text-start max-2xl:flex-wrap">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="">
+          <h1 className="mt-10 text-xl font-medium text-sky-500">
+            Equipment Orders
+          </h1>
+          <p className="text-base">
+            <b>Merchant:</b> Puerto del Sur
+          </p>
+          <p className="text-base">
+            <b>Agent:</b> Express Payment Solution (SOLD)
+          </p>
 
-            <div className="grid grid-cols-1 overflow-auto">
-              <h2 className="text-center text-2xl font-semibold text-sky-500">
-                Equipments
-              </h2>
-              <DataTable
-                columns={columns}
-                data={merchantEquipmentOrderTable}
-                enableSorting={true}
-                enableColumnFilter={true}
-                filteredBy="Description"
-              />
-            </div>
-            <div className="mt-5 grid grid-cols-1 overflow-auto">
-              <h2 className="text-center text-2xl font-semibold text-sky-500">
-                Tracking
-              </h2>
-              <DataTable
-                columns={columns2}
-                data={merchantEquipmentTrackingTable}
-                enableSorting={true}
-                enableColumnFilter={true}
-                filteredBy="ContactName"
-              />
-            </div>
-          </form>
-        </Form>
-      </section>
-    </>
+          <div className="grid grid-cols-1 overflow-auto">
+            <h2 className="text-center text-2xl font-semibold text-sky-500">
+              Equipments
+            </h2>
+            <DataTable
+              columns={columns}
+              data={merchantEquipmentOrderTable}
+              enableSorting={true}
+              enableColumnFilter={true}
+              filteredBy="Description"
+            />
+          </div>
+          <div className="mt-5 grid grid-cols-1 overflow-auto">
+            <h2 className="text-center text-2xl font-semibold text-sky-500">
+              Tracking
+            </h2>
+            <DataTable
+              columns={columns2}
+              data={merchantEquipmentTrackingTable}
+              enableSorting={true}
+              enableColumnFilter={true}
+              filteredBy="ContactName"
+            />
+          </div>
+        </form>
+      </Form>
+    </section>
   );
 };
 
@@ -372,247 +370,245 @@ const UploadDocuments = () => {
   };
 
   return (
-    <>
-      <section className="mt-4 gap-2 text-start max-2xl:flex-wrap">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="">
-            <h1 className="mt-10 text-xl font-medium text-sky-500">
-              Upload Documents
-            </h1>
-            <p className="mb-10 text-base">
-              * Choose file(s) and click Save. (Click on the filenames to view
-              them.)
-            </p>
-            {/* MERCHANT DOCUMENTS */}
-            <div className="grid grid-cols-2 gap-2 max-xl:grid-cols-1">
-              {/* UPLOAD VOIDED CHECK / BANK LETTER */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload Voided Check / Bank Letter
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-full">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
-
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
+    <section className="mt-4 gap-2 text-start max-2xl:flex-wrap">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="">
+          <h1 className="mt-10 text-xl font-medium text-sky-500">
+            Upload Documents
+          </h1>
+          <p className="mb-10 text-base">
+            * Choose file(s) and click Save. (Click on the filenames to view
+            them.)
+          </p>
+          {/* MERCHANT DOCUMENTS */}
+          <div className="grid grid-cols-2 gap-2 max-xl:grid-cols-1">
+            {/* UPLOAD VOIDED CHECK / BANK LETTER */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload Voided Check / Bank Letter
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-full">
+                    Send Upload Link
+                  </CustomButtons>
                 </div>
-              </div>
-              {/* UPLOAD DRIVER'S LICENSE */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  {"Upload Driver's License"}
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-full">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
 
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
-                </div>
-              </div>
-              {/* UPLOAD BANK STATEMENT */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload Bank Statement
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-full">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
-
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
-                </div>
-              </div>
-              {/* UPLOAD PROCESSOR STATEMENT */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload Processor Statement
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-max">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
-
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
                 </div>
               </div>
             </div>
-            {/* SAVE MERCHANT DOCUMENTS BUTTON */}
-            <div className="my-5 flex justify-end p-0 max-2xl:justify-center">
-              <CustomButtons className="px-10" btnType="default">
-                Save Changes
-              </CustomButtons>
-            </div>
-
-            {/* OTHER DOCUMENTS */}
-            <h1 className="mt-10 text-xl font-medium text-sky-500">
-              Other Documents
-            </h1>
-            <p className="mb-10 text-base">
-              * Choose file(s) and click Save. (Click on the filenames to view
-              them.)
-            </p>
-            <div className="grid grid-cols-2 gap-2 max-xl:grid-cols-1">
-              {/* UPLOAD TAX DOCUMENTS */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload Tax Documents
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-full">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
-
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
+            {/* UPLOAD DRIVER'S LICENSE */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                {"Upload Driver's License"}
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-full">
+                    Send Upload Link
+                  </CustomButtons>
                 </div>
-              </div>
-              {/* UPLOAD COMPANY BUSINESS DOCUMENTS */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload Company / Business Documents
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-full">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
 
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
-                </div>
-              </div>
-              {/* UPLOAD CERTIFICATIONS */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload Certifications
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-full">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
-
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
-                </div>
-              </div>
-              {/* UPLOAD ACH FORMS */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload ACH Forms
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-max">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
-
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
-                </div>
-              </div>
-              {/* UPLOAD OTHER IDENTIFICATION DOCUMENTS */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload Other Identification Documents
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-full">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
-
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
-                </div>
-              </div>
-              {/* UPLOAD MISCELLANEOUS DOCUMENTS */}
-              <div className="rounded-md border p-4">
-                <h3 className="mb-4 text-xl font-semibold text-sky-500">
-                  Upload Miscellaneous Documents
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-fit flex-none space-y-3">
-                    <UploadFileBtn />
-                    <CustomButtons btnType="primary" className="w-max">
-                      Send Upload Link
-                    </CustomButtons>
-                  </div>
-
-                  <div className="flex-auto p-2">
-                    <p>1. Docname1.pdf</p>
-                    <p>2. Docname1.pdf</p>
-                    <p>3. </p>
-                  </div>
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
                 </div>
               </div>
             </div>
-            {/* SAVE OTHER DOCUMENTS BUTTON */}
-            <div className="my-5 flex justify-end p-0 max-2xl:justify-center">
-              <CustomButtons className="px-10" btnType="default">
-                Save Changes
-              </CustomButtons>
+            {/* UPLOAD BANK STATEMENT */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload Bank Statement
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-full">
+                    Send Upload Link
+                  </CustomButtons>
+                </div>
+
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
+                </div>
+              </div>
             </div>
-          </form>
-        </Form>
-      </section>
-    </>
+            {/* UPLOAD PROCESSOR STATEMENT */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload Processor Statement
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-max">
+                    Send Upload Link
+                  </CustomButtons>
+                </div>
+
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* SAVE MERCHANT DOCUMENTS BUTTON */}
+          <div className="my-5 flex justify-end p-0 max-2xl:justify-center">
+            <CustomButtons className="px-10" btnType="default">
+              Save Changes
+            </CustomButtons>
+          </div>
+
+          {/* OTHER DOCUMENTS */}
+          <h1 className="mt-10 text-xl font-medium text-sky-500">
+            Other Documents
+          </h1>
+          <p className="mb-10 text-base">
+            * Choose file(s) and click Save. (Click on the filenames to view
+            them.)
+          </p>
+          <div className="grid grid-cols-2 gap-2 max-xl:grid-cols-1">
+            {/* UPLOAD TAX DOCUMENTS */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload Tax Documents
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-full">
+                    Send Upload Link
+                  </CustomButtons>
+                </div>
+
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
+                </div>
+              </div>
+            </div>
+            {/* UPLOAD COMPANY BUSINESS DOCUMENTS */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload Company / Business Documents
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-full">
+                    Send Upload Link
+                  </CustomButtons>
+                </div>
+
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
+                </div>
+              </div>
+            </div>
+            {/* UPLOAD CERTIFICATIONS */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload Certifications
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-full">
+                    Send Upload Link
+                  </CustomButtons>
+                </div>
+
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
+                </div>
+              </div>
+            </div>
+            {/* UPLOAD ACH FORMS */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload ACH Forms
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-max">
+                    Send Upload Link
+                  </CustomButtons>
+                </div>
+
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
+                </div>
+              </div>
+            </div>
+            {/* UPLOAD OTHER IDENTIFICATION DOCUMENTS */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload Other Identification Documents
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-full">
+                    Send Upload Link
+                  </CustomButtons>
+                </div>
+
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
+                </div>
+              </div>
+            </div>
+            {/* UPLOAD MISCELLANEOUS DOCUMENTS */}
+            <div className="rounded-md border p-4">
+              <h3 className="mb-4 text-xl font-semibold text-sky-500">
+                Upload Miscellaneous Documents
+              </h3>
+              <div className="flex gap-2">
+                <div className="w-fit flex-none space-y-3">
+                  <UploadFileBtn />
+                  <CustomButtons btnType="primary" className="w-max">
+                    Send Upload Link
+                  </CustomButtons>
+                </div>
+
+                <div className="flex-auto p-2">
+                  <p>1. Docname1.pdf</p>
+                  <p>2. Docname1.pdf</p>
+                  <p>3. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* SAVE OTHER DOCUMENTS BUTTON */}
+          <div className="my-5 flex justify-end p-0 max-2xl:justify-center">
+            <CustomButtons className="px-10" btnType="default">
+              Save Changes
+            </CustomButtons>
+          </div>
+        </form>
+      </Form>
+    </section>
   );
 };
 

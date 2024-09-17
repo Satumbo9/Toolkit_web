@@ -207,16 +207,19 @@ export const CheckboxForm = <T extends z.ZodType<any, any>>({
       name={formName}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
           <FormControl>
             <div className={className}>
               <Checkbox
                 checked={field.value ?? false}
                 onCheckedChange={field.onChange}
                 onClick={onClick}
+                id={formName}
                 {...field}
               />
-              <span className="ml-3">{placeholder}</span>
+              <FormLabel className="hidden">{placeholder}</FormLabel>
+              <label htmlFor={formName} className="ml-3">
+                {placeholder}
+              </label>
             </div>
           </FormControl>
         </FormItem>
@@ -236,7 +239,7 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
   formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder?: string;
-  disabled?: any; 
+  disabled?: any;
 }) => {
   const [date, setDate] = useState<Date>();
   return (
@@ -366,7 +369,8 @@ export const RadioForm = <
                 <div key={option.value}>
                   <Input
                     type="radio"
-                    id={`${formName}-${option.value}`}
+                    id={formName}
+                    // id={`${formName}-${option.value}`}
                     name={formName}
                     value={option.value}
                     checked={state === option.value}
@@ -381,7 +385,7 @@ export const RadioForm = <
                     onClick={onClick}
                   />
                   <label
-                    htmlFor={`${formName}-${option.value}`}
+                    htmlFor={formName}
                     className={labelClass}
                   >
                     {option.label}
@@ -746,7 +750,7 @@ export const NorthFormGeneration = ({
  *  */
 export const FormBuilder = ({
   formFields,
-} : {
+}: {
   formFields: {
     formTitle: string;
     description: string;
@@ -827,7 +831,7 @@ export const FormBuilder = ({
           shape[field.name] = z.boolean();
           break;
         default:
-        console.log("nao deu " + field.name)
+          console.log("nao deu " + field.name);
         // throw new Error(`Unsupported field type: ${field.type}`);
       }
     });
@@ -843,7 +847,6 @@ export const FormBuilder = ({
   });
 
   const onSubmit = (values: z.infer<typeof schema>) => {
-    
     console.log(values);
   };
 
@@ -999,7 +1002,6 @@ export const FormBuilder = ({
 
 // function to read the json and extract all the form fields.
 export const ReadJson = (form: FormData): FormList[] => {
-  
   const result: FormList[] = [];
   const formNames: string[] = [];
   const formTypes: string[] = [];
@@ -1038,8 +1040,8 @@ export const ReadJson = (form: FormData): FormList[] => {
   for (let i = 0; i < formNames.length; i++) {
     const test: FormList = {
       name: formNames.at(i)?.toString(),
-      type: formTypes.at(i)?.toString()
-    }
+      type: formTypes.at(i)?.toString(),
+    };
     result.push(test);
   }
 

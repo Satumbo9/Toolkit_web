@@ -13,18 +13,18 @@ const UsersTabContent = () => {
   };
 
   return (
-    <Tabs
-      defaultValue="users"
-      className="w-full rounded-md p-4 text-center"
-    >
+    <Tabs defaultValue="users" className="w-full rounded-md p-4 text-center">
       <TabsList>
         {userAdminTabs.map((tab) => (
           <TabsTrigger
             onClick={() => handleClick(tab.value)}
             key={tab.id}
             value={tab.value}
+            className="gap-2"
+            title={tab.title}
           >
-            {tab.title}
+            <i className="">{React.createElement(tab.icon)}</i>
+            <p className="max-lg:hidden">{tab.title}</p>
           </TabsTrigger>
         ))}
       </TabsList>
