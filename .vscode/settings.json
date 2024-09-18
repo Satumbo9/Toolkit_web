@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "MySQL",
+            "name": "MIC-L-0150",
+            "connectString": "sqlserver://MIC-L-0150:1433;initial catalog=ToolkitWeb;user=sa;password=test1234!!;TrustServerCertificate=true"
+        }
+    ]
+}

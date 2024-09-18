@@ -21,16 +21,16 @@ const ProfileLogo = ({ props }: any) => {
         <DropdownMenuTrigger className="flex w-full outline-none">
           <Avatar>
             {props?.image && <AvatarImage src={props.image} />}
-            <AvatarFallback>{props.username[0]}</AvatarFallback>
+            <AvatarFallback>{props?.username[0]}</AvatarFallback>
           </Avatar>
           <div className="ml-3 flex flex-col items-start max-2xl:hidden max-sm:flex">
             <h1 className="text-dark200_light900 font-semibold">
               {props?.firstname && props?.lastname
-                ? `${props.firstname} ${props.lastname}`
-                : props.username}
+                ? `${props?.firstname} ${props?.lastname}`
+                : props?.username}
             </h1>
             <p className="text-dark200_light900 text-[12px]">
-              {props.Department?.title} department
+              {props?.Department?.title} department
             </p>
           </div>
         </DropdownMenuTrigger>

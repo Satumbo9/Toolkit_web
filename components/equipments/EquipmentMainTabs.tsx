@@ -20,6 +20,7 @@ const EquipmentMainTabs = () => {
             >
               <Link href={item.route}>
                 <p className="text-pretty">{item.title}</p>
+  
               </Link>
             </div>
           </React.Fragment>

@@ -61,6 +61,7 @@ const MerchantInformation = () => {
   ];
 
   const onSubmit = (value: z.infer<typeof MerchantInfoSchema>) => {
+
     console.log(value);
   };
 
@@ -80,6 +81,7 @@ const MerchantInformation = () => {
                   label="MID"
                   placeholder="MID"
                 />
+                
                 <InputForm
                   control={form.control}
                   formName="LegalName"

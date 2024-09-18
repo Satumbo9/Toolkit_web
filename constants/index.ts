@@ -28,7 +28,13 @@ import {
   ClipboardMinus,
   BookText,
   HandCoins,
-  Upload
+  Upload,
+  Files,
+  MessageSquareWarning,
+  Search,
+  BellPlus,
+  CheckCheck,
+  FileSearch
 
 } from "lucide-react";
 import { z } from "zod";
@@ -2559,16 +2565,21 @@ export const EquipmentTabs = [
     id: "1",
     title: "Lookup",
     value: "lookup",
+    icon:Search,
+    
+    
   },
   {
     id: "2",
     title: "Items",
     value: "items",
+    icon:Files,
   },
   {
     id: "3",
     title: "Reports",
     value: "reports",
+    icon:MessageSquareWarning,
   },
 ];
 
@@ -2849,16 +2860,19 @@ export const ordersPaymentsTabs = [
     id: "1",
     title: "Fill Orders",
     value: "fillOrders",
+    icon: CheckCheck, 
   },
   {
     id: "2",
     title: "Recent Orders",
     value: "recentOrders",
+    icon: BellPlus, 
   },
   {
     id: "3",
     title: "Reports",
     value: "reports",
+    icon: MessageSquareWarning, 
   },
 ];
 
@@ -3203,11 +3217,15 @@ export const adminDatabaseTabs = [
     id: "1",
     title: "Users",
     value: "users",
+    icon:User,
+    
   },
   {
     id: "2",
     title: "Audit",
     value: "audit",
+    icon:FileSearch,
+
   },
 ];
 
