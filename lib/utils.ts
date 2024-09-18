@@ -431,6 +431,18 @@ export const financialSchema = z.object({
   ACHId: z.string(),
 });
 
+// FSP SCHEMAS 
+export const FspCriteriaReportSchema = z.object({
+  limitReportsToSpecificDate: z.string(),
+  dateToUser: z.date(),
+  useDateRange: z.boolean(),
+  beginDate: z.date(),
+  endDate: z.date(),
+  category: z.string(),
+  reportName: z.string(),
+  description: z.string(),
+});
+
 // ADMIN SCHEMAS
 export const newRingCentralUtilitySchema = z.object({
   DataSource: requiredString,

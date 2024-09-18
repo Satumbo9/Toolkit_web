@@ -7,118 +7,39 @@ import {
 } from "@/components/Shared/DataTable/Columns";
 import DataTable from "@/components/Shared/DataTable/DataTable";
 import {
-  CheckboxForm,
   DatePickerForm,
+  RadioForm,
   SelectForm,
   TextAreaForm,
 } from "@/components/Shared/InstantForm";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { FspCategoryList, FspReportNameList } from "@/constants";
+import { FspCriteriaReportSchema } from "@/lib/utils";
 import { DataTypes } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const FSP = () => {
-  const CriteriaSchema = z.object({
-    limitReportsToSpecificDate: z.boolean(),
-    dateToUser: z.string(),
-    category: z.string(),
-    reportName: z.string(),
-    useDateRange: z.boolean(),
-    description: z.string(),
-    beginDate: z.string(),
-    endDate: z.string(),
-  });
-
-  const form = useForm<z.infer<typeof CriteriaSchema>>({
-    resolver: zodResolver(CriteriaSchema),
+  const form = useForm<z.infer<typeof FspCriteriaReportSchema>>({
+    resolver: zodResolver(FspCriteriaReportSchema),
     defaultValues: {
-      limitReportsToSpecificDate: false,
-      dateToUser: "",
+      limitReportsToSpecificDate: "",
+      dateToUser: new Date(),
+      useDateRange: false,
+      beginDate: new Date(),
+      endDate: new Date(),
       category: "",
       reportName: "",
-      useDateRange: false,
       description: "",
-      beginDate: "",
-      endDate: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof CriteriaSchema>) => {
+  const onSubmit = (values: z.infer<typeof FspCriteriaReportSchema>) => {
     console.log(values);
   };
-
-  const renderForm = [
-    {
-      id: 1,
-      title: "Limit Reports to Specific Date",
-      value: "limitReportsToSpecificDate",
-    },
-    {
-      id: 2,
-      title: "Date to user",
-      value: "dateToUser",
-    },
-    {
-      id: 3,
-      title: "Category",
-      value: "Show all categories",
-      options: [
-        {
-          id: 1,
-          title: "Category 1",
-          value: "1",
-        },
-        {
-          id: 2,
-          title: "Category 2",
-          value: "2",
-        },
-      ],
-    },
-    {
-      id: 4,
-      title: "Report Name",
-      value: "reportName",
-      options: [
-        {
-          id: 1,
-          title: "Method 1",
-          value: "1",
-        },
-        {
-          id: 2,
-          title: "Method 2",
-          value: "2",
-        },
-      ],
-    },
-    {
-      id: 5,
-      title: "Use Date Range",
-      value: "useDateRange",
-      type: "date",
-    },
-    {
-      id: 6,
-      title: "Description",
-      value: "description",
-    },
-    {
-      id: 7,
-      title: "beginDate",
-      value: "Begin Date",
-      type: "date",
-    },
-    {
-      id: 8,
-      title: "End Date",
-      value: "endDate",
-      type: "date",
-    },
-  ];
 
   const data = [
     {
@@ -278,15 +199,97 @@ const FSP = () => {
     { accessorKey: "authCode", header: "Auth Code" },
   ];
 
+  const [searchMethod, setSearchMethod] = useState("");
+
   const columns = createColumns(columnsConfig);
   return (
-    <section className="p-12">
-      <div className="rounded-sm border px-4 py-10 shadow-sm">
-        <p className="text-3xl text-sky-500">Search Criteria</p>
+    <section className="px-12">
+      <div className="rounded-sm border p-4 shadow-sm">
+        <p className="text-center text-3xl font-semibold text-sky-500">
+          Search Criteria
+        </p>
         <div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              {renderForm.map((item) =>
+              <div className="m-auto my-3 grid max-w-[800px] grid-cols-2 gap-4 max-lg:grid-cols-1">
+                {/* FIRST COLUMN */}
+                <div className="space-y-2 pt-5">
+                  <RadioForm
+                    control={form.control}
+                    formName="limitReportsToSpecificDate"
+                    label=""
+                    options={[
+                      {
+                        label: "Specific Date",
+                        value: "1",
+                      },
+                      {
+                        label: "Begin/End Dates",
+                        value: "2",
+                      },
+                    ]}
+                    className="size-5"
+                    state={searchMethod}
+                    setState={setSearchMethod}
+                  />
+
+                  {searchMethod === "1" && (
+                    <div>
+                      <DatePickerForm
+                        control={form.control}
+                        formName="dateToUser"
+                        label="Date To Use"
+                        placeholder="Select a Date"
+                      />
+                    </div>
+                  )}
+                  {searchMethod === "2" && (
+                    <div className="">
+                      <DatePickerForm
+                        control={form.control}
+                        formName="beginDate"
+                        label="Begin Date"
+                        placeholder="Select a Date"
+                      />
+                      <DatePickerForm
+                        control={form.control}
+                        formName="endDate"
+                        label="End Date"
+                        placeholder="Select a Date"
+                      />
+                    </div>
+                  )}
+                </div>
+                {/* SECOND COLUMN */}
+                <div className="space-y-2">
+                  <SelectForm
+                    control={form.control}
+                    formName="category"
+                    label="Category"
+                    placeholder="Select a Category"
+                    content={FspCategoryList}
+                    displayKey={"title"}
+                    valueKey={"value"}
+                  />
+                  <SelectForm
+                    control={form.control}
+                    formName="reportName"
+                    label="Report Name"
+                    placeholder="Select a Name"
+                    content={FspReportNameList}
+                    displayKey={"title"}
+                    valueKey={"value"}
+                  />
+                  <TextAreaForm
+                    control={form.control}
+                    formName="description"
+                    label="Report Name"
+                    placeholder="Select a Name"
+                  />
+                </div>
+              </div>
+
+              {/* {renderForm.map((item) =>
                 item.options ? (
                   <SelectForm
                     key={item.id}
@@ -325,9 +328,9 @@ const FSP = () => {
                     />
                   ))
                 ),
-              )}
+              )} */}
 
-              <div className="mt-5 gap-5 space-x-5">
+              <div className="m-auto mt-5 max-w-[800px] space-x-5 text-end">
                 <Button type="submit">Display</Button>
                 <Button onClick={(e: React.MouseEvent) => e.preventDefault()}>
                   Export to Excel

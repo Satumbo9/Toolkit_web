@@ -4,7 +4,14 @@
 import React, { useState } from "react";
 import { z, ZodObject } from "zod";
 import { Control, FieldPath, useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 import {
   Select,
   SelectTrigger,
@@ -44,6 +51,7 @@ export const InputForm = <
   className,
   state,
   disabled,
+  id,
   setState,
 }: {
   control: Control<z.infer<T>>;
@@ -54,6 +62,7 @@ export const InputForm = <
   className?: string;
   state?: S;
   disabled?: any;
+  id?: any;
   setState?: React.Dispatch<React.SetStateAction<S>>;
 }) => {
   return (
@@ -66,6 +75,7 @@ export const InputForm = <
           <FormControl>
             <Input
               placeholder={placeholder}
+              id={id}
               {...field}
               value={state !== undefined ? state : field.value || ""}
               onChange={(e) => {
@@ -352,8 +362,8 @@ export const RadioForm = <
   options: { label: string; value: S }[];
   className?: string;
   labelClass?: string;
-  state?: S;
-  setState?: React.Dispatch<React.SetStateAction<S>>;
+  state: S;
+  setState: React.Dispatch<React.SetStateAction<S>>;
   onClick?: () => void;
 }) => {
   return (
@@ -362,15 +372,13 @@ export const RadioForm = <
       name={formName}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
           <FormControl>
-            <div>
+            <div className="space-y-3">
               {options.map((option) => (
-                <div key={option.value}>
+                <div key={option.value} className="flex gap-2">
                   <Input
                     type="radio"
-                    id={formName}
-                    // id={`${formName}-${option.value}`}
+                    id={`${formName}-${option.value}`}
                     name={formName}
                     value={option.value}
                     checked={state === option.value}
@@ -384,16 +392,17 @@ export const RadioForm = <
                     className={className}
                     onClick={onClick}
                   />
-                  <label
-                    htmlFor={formName}
-                    className={labelClass}
+                  <FormLabel
+                    htmlFor={`${formName}-${option.value}`}
+                    className="pt-0.5"
                   >
                     {option.label}
-                  </label>
+                  </FormLabel>
                 </div>
               ))}
             </div>
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -408,11 +417,16 @@ export const RadioForm = <
  * how many fields and the type of the fields (radio, checkbox, input..).
  * @gridCols A string with a number of how many cols you want on the form.
  *  */
-export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
+export const FormGeneration = ({
+  formControl,
+  formFields,
+  gridCols,
+}: any) => {
   // Splitting by two to show the grid cols in the mobile view.
   const gridColsMobile = gridCols / 2;
   const roundedCols = Math.round(gridColsMobile);
 
+  const [radioStatus, setRadioStatus] = useState("");
   return (
     <div
       className={`grid grid-cols-${gridCols} gap-2 max-xl:grid-cols-${roundedCols}`}
@@ -424,6 +438,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
           type: string;
           formName: string;
           title: string;
+          options: { label: string; value: string }[];
           placeholder?: string | undefined;
         }) =>
           item.content ? (
@@ -456,17 +471,17 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
                 placeholder={item.placeholder}
               />
             </div>
-          ) : item.type === "radio" ? (
+          ) : item.options ? (
             <div key={item.id} className="my-3 flex w-full gap-3">
-              <InputForm
+              <RadioForm
                 control={formControl}
                 formName={item.formName}
                 label=""
-                type="radio"
-                className="size-fit"
-                placeholder={item.placeholder}
+                className="size-4"
+                options={item.options}
+                state={radioStatus}
+                setState={setRadioStatus}
               />
-              <span className="mt-0.5">{item.placeholder}</span>
             </div>
           ) : item.type === "number" ? (
             <InputForm
@@ -545,6 +560,9 @@ export const InputGenerator = ({
   return (
     <div className={`grid gap-2`}>
       {
+        /**
+         * @todo - IMPLEMENT THE SELECT BOX
+         *  */
         // item.content ? (
         //   <div className="w-full items-end">
         //     <SelectForm
