@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
-import { Form, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   DatePickerForm,
@@ -11,6 +11,7 @@ import {
   TextAreaForm,
 } from "../Shared/InstantForm";
 import { Button } from "../ui/button";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 const NewTask = ({
   type,
@@ -153,100 +154,104 @@ const NewTask = ({
   ];
   return (
     <div>
-      <Form {...form}>
-        <FormProvider {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-5"
-          >
-            <div>
-              {data
-                .slice(0, 7)
-                .map((item) =>
-                  item.options ? (
-                    <SelectForm
-                      key={item.id}
-                      control={form.control}
-                      content={item.options}
-                      valueKey="id"
-                      displayKey="title"
-                      label=""
-                      placeholder={`Select ${item.title}`}
-                      formName={item.value}
-                    />
-                  ) : item.desc === true ? (
-                    <TextAreaForm
-                      key={item.id}
-                      control={form.control}
-                      formName={item.value}
-                      label={item.title}
-                    />
-                  ) : item.isDate ? null : (
-                    <InputForm
-                      key={item.id}
-                      control={form.control}
-                      formName={item.value}
-                      label={item.title}
-                      type="text"
-                    />
-                  ),
-                )}
-            </div>
-            <div>
-              {data
-                .slice(7)
-                .map((item) =>
-                  item.options ? (
-                    <SelectForm
-                      key={item.id}
-                      control={form.control}
-                      formName={item.value}
-                      content={item.options}
-                      valueKey="id"
-                      displayKey="title"
-                      label={item.title}
-                    />
-                  ) : item.isDate ? (
-                    <DatePickerForm
-                      control={form.control}
-                      formName={item.value}
-                      label={item.value}
-                      placeholder={`Select ${item.title}`}
-                    />
-                  ) : (
-                    <InputForm
-                      control={form.control}
-                      formName={item.value}
-                      label={item.value}
-                    />
-                  ),
-                )}
+      <FormProvider {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="grid grid-cols-2 gap-5"
+        >
+          <div>
+            {data
+              .slice(0, 7)
+              .map((item) =>
+                item.options ? (
+                  <SelectForm
+                    key={item.id}
+                    control={form.control}
+                    content={item.options}
+                    valueKey="id"
+                    displayKey="title"
+                    label=""
+                    placeholder={`Select ${item.title}`}
+                    formName={item.value}
+                  />
+                ) : item.desc === true ? (
+                  <TextAreaForm
+                    key={item.id}
+                    control={form.control}
+                    formName={item.value}
+                    label={item.title}
+                  />
+                ) : item.isDate ? null : (
+                  <InputForm
+                    key={item.id}
+                    control={form.control}
+                    formName={item.value}
+                    label={item.title}
+                    type="text"
+                  />
+                ),
+              )}
+          </div>
+          <div>
+            {data
+              .slice(7)
+              .map((item) =>
+                item.options ? (
+                  <SelectForm
+                    key={item.id}
+                    control={form.control}
+                    formName={item.value}
+                    content={item.options}
+                    valueKey="id"
+                    displayKey="title"
+                    label={item.title}
+                  />
+                ) : item.isDate ? (
+                  <DatePickerForm
+                    key={item.id}
+                    control={form.control}
+                    formName={item.value}
+                    label={item.value}
+                    placeholder={`Select ${item.title}`}
+                  />
+                ) : (
+                  <InputForm
+                    key={item.id}
+                    control={form.control}
+                    formName={item.value}
+                    label={item.value}
+                  />
+                ),
+              )}
 
-              <div className="flex space-x-5 pt-5">
+            <div className="flex space-x-5 pt-5">
+              <Button
+                type="submit"
+                onClick={(e: React.MouseEvent) => e.preventDefault()}
+                className="w-full"
+              >
+                Save
+              </Button>
+
+              {type === "New" && (
+                <DialogPrimitive.Close asChild className="w-full">
+                  <Button type="button">Cancel</Button>
+                </DialogPrimitive.Close>
+              )}
+
+              {type === "Edit" && (
                 <Button
-                  type="submit"
-                  onClick={(e: React.MouseEvent) => e.preventDefault()}
-                  className="w-full"
-                >
-                  Save
-                </Button>
-                <Button
-                  onClick={
-                    type === "New"
-                      ? (e: React.MouseEvent) => {
-                          e.preventDefault();
-                        }
-                      : () => setIsOpen(!isOpen)
-                  }
+                  type="button"
+                  onClick={() => setIsOpen(!isOpen)}
                   className="w-full"
                 >
                   Cancel
                 </Button>
-              </div>
+              )}
             </div>
-          </form>
-        </FormProvider>
-      </Form>
+          </div>
+        </form>
+      </FormProvider>
     </div>
   );
 };

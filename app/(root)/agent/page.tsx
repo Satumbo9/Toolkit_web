@@ -10,14 +10,6 @@ import { DataTypes } from "@/types";
 import DataTable from "@/components/Shared/DataTable/DataTable";
 
 const Page = () => {
-  // const list = useMemo(
-  //   () => [
-  //     { id: 1, title: "List", value: "list" },
-  //     { id: 2, title: "Setup", value: "setup" },
-  //     { id: 3, title: "Reports", value: "report" },
-  //   ],
-  //   [],
-  // );
 
   const ColumnConfig: ColumnConfig<DataTypes>[] = [
     { accessorKey: "id", header: "ID" },

@@ -21,7 +21,6 @@ const Page = () => {
   //           Solutions consistently delivers reliable and efficient payment
   //           processing solutions, ensuring businesses can operate smoothly and
   //           grow confidently.`;
-
   return (
     <section className="">
       <h1 className="text-center text-4xl text-sky-500">Welcome!</h1>
@@ -45,7 +44,9 @@ const Page = () => {
       </p>
       <BoardingShortcuts />
 
-      <h2 className="my-7 text-center text-2xl font-bold">&#9919; Admins Only</h2>
+      <h2 className="my-7 text-center text-2xl font-bold">
+        &#9919; Admins Only
+      </h2>
       <BoardingAdminShortcuts />
     </section>
   );

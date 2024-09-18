@@ -1,13 +1,16 @@
+"use client";
+
+import { FormBuilder } from "@/components/Shared/InstantForm";
+import { testingForm } from "@/constants";
 import React from "react";
 
-const page = () => {
+
+const Page = () => {
   return (
-    <>
-      <section className="m-auto h-[40rem] p-2">
-        <h1 className="text-2xl text-sky-500">Page in development</h1>
-      </section>
-    </>
+    <section className="m-auto p-2">
+      <FormBuilder formFields={testingForm} />
+    </section>
   );
 };
 
-export default page;
+export default Page;

@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { supportTicketsTabs } from "@/constants";
-import RenderSupportTabComponents from "./SupportTabSubContent";
+import { wavitInfoTabs } from "@/constants";
+import RenderWavitInfoTabComponents from "./WavitInfoSubContent";
 
-const SupportTabContent = () => {
+const WavitInfoTabContent = () => {
   const [activeItem, setActiveItem] = useState<string>("");
 
   const handleClick = (value: string) => {
@@ -13,25 +13,25 @@ const SupportTabContent = () => {
   };
   return (
     <Tabs
-      defaultValue="myTickets"
+      defaultValue="transactions"
       className="w-full rounded-md p-4 text-center"
     >
-      <TabsList className="gap-2">
-        {supportTicketsTabs.map((tab) => (
+      <TabsList>
+        {wavitInfoTabs.map((tab) => (
           <TabsTrigger
             onClick={() => handleClick(tab.value)}
             key={tab.id}
             value={tab.value}
             className="gap-2"
           >
-            <i className="">{React.createElement(tab.icon)}</i>
-            <p className="max-lg:hidden">{tab.title}</p>
+            {React.createElement(tab.icon)}
+            {tab.title}
           </TabsTrigger>
         ))}
       </TabsList>
-      {RenderSupportTabComponents(activeItem || "myTickets")}
+      {RenderWavitInfoTabComponents(activeItem || "transactions")}
     </Tabs>
   );
 };
 
-export default SupportTabContent;
+export default WavitInfoTabContent;

@@ -45,6 +45,7 @@ const LastCallLogsPreview = () => {
           data={callLogs}
           enableColumnFilter={true}
           filteredBy="username"
+          pagination={false}
         />
       </div>
     </div>

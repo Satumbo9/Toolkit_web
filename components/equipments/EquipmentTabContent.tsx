@@ -12,25 +12,23 @@ const EquipmentTabContent = () => {
     setActiveItem(value);
   };
   return (
-    <>
-      <Tabs defaultValue="lookup" className="w-full rounded-md p-4 text-center">
-        <TabsList className="">
-          {EquipmentTabs.map((tab) => (
-            <TabsTrigger
-              onClick={() => handleClick(tab.value)}
-              key={tab.id}
-              value={tab.value}
+    <Tabs defaultValue="lookup" className="w-full rounded-md p-4 text-center">
+      <TabsList className="">
+        {EquipmentTabs.map((tab) => (
+          <TabsTrigger
+            onClick={() => handleClick(tab.value)}
+            key={tab.id}
+            value={tab.value}
               className="gap-3"
              
-            >
+          >
               {React.createElement(tab.icon)}
-              {tab.title}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        {RenderEquipmentComponents(activeItem || "lookup")}
-      </Tabs>
-    </>
+            {tab.title}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+      {RenderEquipmentComponents(activeItem || "lookup")}
+    </Tabs>
   );
 };
 

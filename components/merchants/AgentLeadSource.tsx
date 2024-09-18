@@ -47,8 +47,8 @@ const AgentLeadSource = () => {
   };
 
   const columnsConfig: ColumnConfig<DataTypes>[] = [
-    { accessorKey: "SalesRep", header: "SalesRep" },
-    { accessorKey: "Split%", header: "Split%" },
+    { accessorKey: "SalesRep", header: "Sales Rep" },
+    { accessorKey: "Split%", header: "Split %" },
     { accessorKey: "Master", header: "Master" },
     { accessorKey: "A/M", header: "A/M" },
     { accessorKey: "F/M", header: "F/M" },
@@ -107,7 +107,7 @@ const AgentLeadSource = () => {
                     className=""
                   />
                 </div>
-                <CustomButtons btnType="default" className="w-full">
+                <CustomButtons btnType="default" type="button" className="w-full">
                   Update
                 </CustomButtons>
                 <InputForm
@@ -117,7 +117,7 @@ const AgentLeadSource = () => {
                   placeholder="Split %"
                 />
                 <div className="col-start-4 w-full max-lg:col-span-2 max-lg:col-start-3">
-                  <CustomButtons btnType="success" className="w-full">
+                  <CustomButtons btnType="success" type="button" className="w-full">
                     Clear/Add New
                   </CustomButtons>
                 </div>
@@ -188,20 +188,20 @@ const AgentLeadSource = () => {
               </div>
               <div className="grid grid-cols-4 gap-3 max-xl:grid-cols-3">
                 <div className="col-start-2 max-xl:col-start-1">
-                  <CustomButtons btnType="default" className="w-full">
+                  <CustomButtons btnType="default" type="submit" className="w-full">
                     Add Agent
                   </CustomButtons>
                 </div>
                 
-                <CustomButtons btnType="destructive" className="w-full">Delete Agent</CustomButtons>
-                <CustomButtons btnType="primary" className="w-full">Set Master</CustomButtons>
+                <CustomButtons btnType="destructive" type="button" className="w-full">Delete Agent</CustomButtons>
+                <CustomButtons btnType="primary" type="button" className="w-full">Set Master</CustomButtons>
               </div>
               <div className="w-full rounded-md p-2">
                 <DataTable
                   columns={columns}
                   data={agentLeadSourceDataTable}
                   enableColumnFilter={true}
-                  filteredBy="username"
+                  filteredBy="SalesRep"
                 />
               </div>
               <div className="grid grid-cols-4">
@@ -264,8 +264,8 @@ const AgentLeadSource = () => {
                     className=""
                   />
                 </div>
-                <CustomButtons btnType="default" className="w-full">Go</CustomButtons>
-                <CustomButtons btnType="default" className="col-span-2 mt-2">
+                <CustomButtons btnType="default" type="button" className="w-full">Go</CustomButtons>
+                <CustomButtons btnType="default" type="button" className="col-span-2 mt-2">
                   Create a Default Split
                 </CustomButtons>
               </div>

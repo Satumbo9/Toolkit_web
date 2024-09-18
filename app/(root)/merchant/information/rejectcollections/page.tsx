@@ -1,10 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { z } from "zod";
-import { newMerchantSchema } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { rejectCollectionsTable1, rejectCollectionsTable2 } from "@/constants";
 import DataTable from "@/components/Shared/DataTable/DataTable";
 import {
@@ -13,52 +8,9 @@ import {
 } from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
 import { Status } from "@/components/Shared/DataTable/CellFormat";
+import CustomButtons from "@/components/Shared/CustomButtons";
 
 const page = () => {
-  // eslint-disable-next-line no-unused-vars, react-hooks/rules-of-hooks
-  const form = useForm<z.infer<typeof newMerchantSchema>>({
-    resolver: zodResolver(newMerchantSchema),
-    defaultValues: {
-      MID: "",
-      LegalName: "",
-      DBA: "",
-      Phone: "",
-      Status: "",
-      Approval: "",
-      Filter: "",
-      Processor: "",
-      Fitler2: "",
-      AgentID: 0,
-      SalesRep: "",
-      Split: 0,
-      SplitName: "",
-      SplitID: 0,
-      LeadSource: "",
-      SplitLead: 0,
-      EstAnnual: 0,
-      Transactions: 0,
-      Filter3: "",
-      Banks: "",
-      WAVItAccount: 0,
-      MCCCode: "",
-      Notice: "",
-      ChildMID: false,
-      WAVitAccount: false,
-      WAVitApp: false,
-      NewAccountTasks: false,
-      BusinessRetail: false,
-      BusinessEcommerce: false,
-      BusinessRestaurant: false,
-      BusinessMoTo: false,
-      DeployBy: "",
-    },
-  });
-
-  // eslint-disable-next-line no-unused-vars
-  const onSubmit = (value: z.infer<typeof newMerchantSchema>) => {
-    console.log(value);
-  };
-
   //  COSTUMIZATION OF THE COLUMN PRICE
   const Price = (row: any) => {
     const amount = parseFloat(row.getValue("price"));
@@ -107,46 +59,44 @@ const page = () => {
   const columns2 = createColumns(columnsConfig2);
 
   return (
-    <>
-      <section className="w-full">
-        <h1 className="mb-3 text-2xl text-sky-500">Reject / Collections</h1>
+    <section className="w-full">
+      <h1 className="mb-3 text-2xl text-sky-500">Reject / Collections</h1>
 
+      <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
+        <DataTable
+          columns={columns1}
+          data={rejectCollectionsTable1}
+          enableColumnFilter={true}
+          filteredBy="DebitAmount"
+        />
+      </div>
+
+      <div className="flex gap-4 max-xl:flex-wrap">
         <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
           <DataTable
-            columns={columns1}
-            data={rejectCollectionsTable1}
+            columns={columns2}
+            data={rejectCollectionsTable2}
             enableColumnFilter={true}
-            filteredBy="DebitAmount"
+            filteredBy="Status"
           />
         </div>
-
-        <div className="flex gap-4 max-xl:flex-wrap">
-          <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
-            <DataTable
-              columns={columns2}
-              data={rejectCollectionsTable2}
-              enableColumnFilter={true}
-              filteredBy="Status"
-            />
-          </div>
-          <div className="w-fit">
-            <Button className="mb-2 w-full bg-gradient-to-r from-[#14ADD6] to-[#384295] px-10 text-white hover:opacity-90">
-              Create New Collection
-            </Button>
-            <Button className="mb-2 w-full bg-gradient-to-r from-[#14ADD6] to-[#384295] px-10 text-white hover:opacity-90">
-              Edit Collection
-            </Button>
-            <hr className="my-5 border-transparent bg-transparent" />
-            <Button className="mb-2 w-full bg-gradient-to-r from-[#79CB6C] to-[#285C20] px-10 text-white hover:opacity-90">
-              Add Payment
-            </Button>
-            <Button className="mb-2 w-full bg-gradient-to-r from-[#FF3333] to-[#8F0000] px-10 text-white hover:opacity-90">
-              Desactivate Collection
-            </Button>
-          </div>
+        <div className="w-fit">
+          <CustomButtons btnType="default" type="button" className="mb-2 w-full px-10">
+            Create New Collection
+          </CustomButtons>
+          <CustomButtons btnType="default" type="button" className="mb-2 w-full">
+            Edit Collection
+          </CustomButtons>
+          <hr className="my-5 border-transparent bg-transparent" />
+          <CustomButtons btnType="success" type="button" className="mb-2 w-full">
+            Add Payment
+          </CustomButtons>
+          <CustomButtons btnType="destructive" type="button" className="mb-2 w-full">
+            Desactivate Collection
+          </CustomButtons>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

@@ -77,9 +77,7 @@ import { z } from "zod";
 import {
   CheckboxForm,
   FormGeneration,
-  FormGenerationRadioGrid,
   InputForm,
-  FormGenerationRadio,
   TextAreaForm,
   SwitchForm,
 } from "../Shared/InstantForm";
@@ -530,11 +528,12 @@ const FinancialInformation = () => {
           <h1 className="mt-5 text-2xl font-bold text-sky-500">
             Bank Information
           </h1>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={bankingInformationFspForm}
+            gridCols={"4"}
           />
-          <div className="grid grid-cols-4 items-end gap-2">
+          <div className="my-5 grid grid-cols-4 items-end gap-2">
             <div className="col-span-2">
               <InputForm
                 control={form.control}
@@ -564,17 +563,19 @@ const FinancialInformation = () => {
           <p className="mt-5">
             Currently Accepting Visa/mastercard/Discover/AMEX?
           </p>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={acceptingVisaMcDiscoverFspForm}
+            gridCols={"5"}
           />
           <p className="mt-5">
             Has merchant/owner/prioncipals ever been terminated from accepting
             payment cards?
           </p>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={hasBeenTerminatedFspForm}
+            gridCols={"5"}
           />
 
           <InputForm
@@ -639,9 +640,10 @@ const FinancialInformation = () => {
           <h1 className="mt-5 text-2xl font-bold text-sky-500">
             American Express Volume {">"} $1,000,000 Annually?
           </h1>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={americaExpressVolumeFspForm}
+            gridCols={"5"}
           />
           <InputForm
             control={form.control}
@@ -718,9 +720,10 @@ const FinancialInformation = () => {
               <h1 className="mt-5 text-2xl font-bold text-sky-500">
                 Seasonal Merchant
               </h1>
-              <FormGenerationRadio
+              <FormGeneration
                 formControl={form.control}
                 formFields={seasonalMerchantFspForm}
+                gridCols={"4"}
               />
               <p>If Yes, indicate which months:</p>
               <div className="grid grid-flow-col grid-rows-4 gap-2 max-xl:grid-rows-6">
@@ -743,12 +746,13 @@ const FinancialInformation = () => {
             </div>
             <div className="flex-1">
               <h1 className="mt-5 text-2xl font-bold text-sky-500">
-                Does mercahnt use an independent service that stores, maintains
+                Does merchant use an independent service that stores, maintains
                 or transmits cardholder information?
               </h1>
-              <FormGenerationRadio
+              <FormGeneration
                 formControl={form.control}
                 formFields={independentServiceFspForm}
+                gridCols={"4"}
               />
               <InputForm
                 control={form.control}
@@ -770,9 +774,10 @@ const FinancialInformation = () => {
           <h1 className="mt-5 text-2xl font-bold text-sky-500">
             Does Merchant use a fulfillment house to fulfill product?
           </h1>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={usesFulfillHouseFspForm}
+            gridCols={"6"}
           />
           <InputForm
             control={form.control}
@@ -924,75 +929,82 @@ const MoToQuestionaire = () => {
           <div className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
             {/* WHO ENTERS CARD INFORMATION */}
             <div className="col-span-1 content-end">
-              <h1 className="mt-5 flex gap-2 text-xl font-semibold">
+              <h1 className="mb-10 mt-5 flex gap-2 text-xl font-semibold">
                 Who enters Card Information Into the Processing System
               </h1>
-              <FormGenerationRadioGrid
+              <FormGeneration
                 formControl={form.control}
                 formFields={whoEntersCardInfoFspForm}
+                gridCols={"2"}
               />
             </div>
             <div className="col-span-1 content-end">
-              <h1 className="mt-5 flex gap-2 text-xl font-semibold">
+              <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Do you own your own Product/Inventory (if no, Where is inventory
                 stored)
               </h1>
-              <FormGenerationRadioGrid
+              <FormGeneration
                 formControl={form.control}
                 formFields={ownProdFspForm}
+                gridCols={"2"}
               />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
             {/* WHO PROCESSES THE ORDER */}
             <div className="col-span-1 content-end">
-              <h1 className="mt-5 flex gap-2 text-xl font-semibold">
+              <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Who Processes the Order
               </h1>
-              <FormGenerationRadioGrid
+              <FormGeneration
                 formControl={form.control}
                 formFields={whoProcessesFspForm}
+                gridCols={"2"}
               />
             </div>
             <div className="col-span-1">
-              <h1 className="mt-5 flex gap-2 text-xl font-semibold">
+              <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Product Shipped By (Shipped Via)
               </h1>
-              <FormGenerationRadioGrid
+              <FormGeneration
                 formControl={form.control}
                 formFields={shippedByFspForm}
+                gridCols={"2"}
               />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
             {/* WHO SHIPS PRODUCT */}
             <div className="col-span-1 content-end">
-              <h1 className="mt-5 flex gap-2 text-xl font-semibold">
+              <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Who Ships Product
               </h1>
-              <FormGenerationRadioGrid
+              <FormGeneration
                 formControl={form.control}
                 formFields={whoShipsFspForm}
+                gridCols={"2"}
               />
             </div>
             <div className="col-span-1">
-              <h1 className="mt-5 flex gap-2 text-xl font-semibold">
+              <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Delivery Receipt Request
               </h1>
-              <FormGenerationRadioGrid
+              <FormGeneration
                 formControl={form.control}
                 formFields={deliveryReceiptRequestedFspForm}
+                gridCols={"2"}
               />
             </div>
           </div>
           {/* IF CARD INFORMATION IS TAKEN */}
-          <h1 className="mt-5 flex gap-2 text-xl font-semibold">
+          <h1 className="my-5 flex gap-2 text-xl font-semibold">
             If Card Information is Taken Over The Internet, Is Payment Encrypted
             By SSL or better?
           </h1>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={isPaymentEncryptedFspForm}
+            gridCols={"6"}
           />
 
           <FormGeneration
@@ -1000,9 +1012,10 @@ const MoToQuestionaire = () => {
             formFields={certificatesFspForm}
             gridCols={"3"}
           />
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={individualSharedFspForm}
+            gridCols={"6"}
           />
 
           {/* BUTTON SAVE CHANGES */}
@@ -1085,9 +1098,10 @@ const MerchantOwner = () => {
           <h1 className="mt-5 flex gap-2 text-xl font-semibold">
             Has merchant/owner/principals ever filed for bankruptcy?
           </h1>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={hasFiledForBankruptcyFspForm}
+            gridCols={"6"}
           />
           <InputForm
             control={form.control}
@@ -1194,9 +1208,10 @@ const PricingInformation = () => {
             <p className="mt-1 flex-none content-center">
               Pass Through Interchange:
             </p>
-            <FormGenerationRadio
+            <FormGeneration
               formControl={form.control}
               formFields={passThroughInterchangeFspForm}
+              gridCols={"2"}
             />
           </div>
           {/* Pass Dues & Assessments */}
@@ -1204,9 +1219,10 @@ const PricingInformation = () => {
             <p className="mt-1 flex-none content-center">
               Pass Dues & Assessments:
             </p>
-            <FormGenerationRadio
+            <FormGeneration
               formControl={form.control}
               formFields={passDuesAssessmentsFspForm}
+              gridCols={"2"}
             />
           </div>
 
@@ -1286,9 +1302,10 @@ const PricingInformation = () => {
                       INTERCHANGE PLUS
                     </h2>
                   </div>
-                  <FormGenerationRadio
+                  <FormGeneration
                     formControl={form.control}
                     formFields={grossNetFspForm}
+                    gridCols={"3"}
                   />
                   <FormGeneration
                     formControl={form.control}
@@ -1430,24 +1447,24 @@ const PricingInformation = () => {
             </h1>
             <div className="my-2">
               <p className="m-0">PCI Frequency: </p>
-              <FormGenerationRadio
+              <FormGeneration
                 formControl={form.control}
                 formFields={pciFrequencyFspForm}
-                className={"my-0"}
+                gridCols={"4"}
               />
             </div>
             <div className="my-2">
               <p className="m-0">Audio: </p>
-              <FormGenerationRadio
+              <FormGeneration
                 formControl={form.control}
                 formFields={audioFspForm}
-                className={"my-0"}
+                gridCols={"4"}
               />
             </div>
             <FormGeneration
               formControl={form.control}
               formFields={otherPricingInformationFspForm}
-              gridCols={"3"}
+              gridCols={"4"}
             />
           </div>
           {/* BUTTON SAVE CHANGES */}
@@ -1463,7 +1480,6 @@ const PricingInformation = () => {
 };
 
 const ProgrammingRequest = () => {
-  
   const form = useForm<z.infer<typeof programmingRequestFspSchema>>({
     resolver: zodResolver(programmingRequestFspSchema),
     defaultValues: {
@@ -1620,10 +1636,10 @@ const ProgrammingRequest = () => {
               <h2 className="gap-2 text-xl font-semibold">
                 File Build Information
               </h2>
-              <FormGenerationRadio
+              <FormGeneration
                 formControl={form.control}
                 formFields={fileBuildInformationFspForm}
-                className={"w-full"}
+                gridCols={"4"}
               />
               <CheckboxForm
                 control={form.control}
@@ -1678,19 +1694,20 @@ const ProgrammingRequest = () => {
                 <p className="mt-3 text-nowrap px-2 text-sm">
                   If tip line checked, choose one:
                 </p>
-                <FormGenerationRadio
+                <FormGeneration
                   formControl={form.control}
                   formFields={tipLineFspForm}
-                  className={"w-full"}
+                  className={"w-full text-sm"}
+                  gridCols={"2"}
                 />
               </div>
               {/* SERVER */}
               <div className="flex items-center gap-2">
                 <p className="mt-3 px-7">Server:</p>
-                <FormGenerationRadio
+                <FormGeneration
                   formControl={form.control}
                   formFields={serverFspForm}
-                  className={"w-full"}
+                  gridCols={"3"}
                 />
               </div>
             </div>
@@ -1730,10 +1747,11 @@ const ProgrammingRequest = () => {
             Shipping Information
           </h1>
           <p className="mt-4">Ship To:</p>
-          <FormGenerationRadio
+          <FormGeneration
             formControl={form.control}
             formFields={shipToFspForm}
             className={"w-full"}
+            gridCols={"6"}
           />
           <div className="flex gap-10">
             <div className="flex-auto">
@@ -1784,10 +1802,10 @@ const ProgrammingRequest = () => {
           Billing Information
         </h1>
         <p className="text-start">Bill To:</p>
-        <FormGenerationRadio
+        <FormGeneration
           formControl={form.control}
           formFields={billToFspForm}
-          className=""
+          gridCols={"6"}
         />
         <div className="flex justify-start gap-2">
           <Button className="my-5">View Bank ACH</Button>

@@ -12,26 +12,27 @@ const DatabaseTabContent = () => {
     setActiveItem(value);
   };
   return (
-    <>
-      <Tabs defaultValue="users" className="w-full rounded-md p-4 text-center">
-        <TabsList className="">
-          {adminDatabaseTabs.map((tab) => (
-            <TabsTrigger
-              onClick={() => handleClick(tab.value)}
-              key={tab.id}
-              value={tab.value}
-              className="gap-3"
-            >
+    <Tabs defaultValue="users" className="w-full rounded-md p-4 text-center">
+      <TabsList className="gap-2">
+        {adminDatabaseTabs.map((tab) => (
+          <TabsTrigger
+            onClick={() => handleClick(tab.value)}
+            key={tab.id}
+            value={tab.value}
+            className="gap-2"
+             
+          >
               {React.createElement(tab.icon)}
-              {tab.title}
+            <i className="">{React.createElement(tab.icon)}</i>
+            <p className="max-lg:hidden">{tab.title}</p>
     
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        {RenderDatabaseComponents(activeItem || "users")}
-      </Tabs>
-    </>
+          </TabsTrigger>
+        ))}
+      </TabsList>
+      {RenderDatabaseComponents(activeItem || "users")}
+    </Tabs>
   );
 };
 
 export default DatabaseTabContent;
+ 

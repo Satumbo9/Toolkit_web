@@ -3,7 +3,6 @@ import {
   createColumns,
 } from "@/components/Shared/DataTable/Columns";
 import DataTable from "@/components/Shared/DataTable/DataTable";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -16,6 +15,7 @@ import { DataTypes } from "@/types";
 import React from "react";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
+import CustomButtons from "../Shared/CustomButtons";
 
 const FDOmaha = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
@@ -47,8 +47,8 @@ const FDOmaha = () => {
         </div>
 
         <div className="flex flex-col justify-center gap-2">
-          <Button>Print Schedule A</Button>
-          <Button>Apply Schedule A</Button>
+          <CustomButtons btnType="primary">Print Schedule A</CustomButtons>
+          <CustomButtons btnType="primary">Apply Schedule A</CustomButtons>
         </div>
 
         <div className="grid grid-cols-2">
@@ -65,7 +65,7 @@ const FDOmaha = () => {
           </Select>
         </div>
         <div className="flex justify-end">
-          <Button>Add an Item</Button>
+          <CustomButtons btnType="primary">Add an Item</CustomButtons>
         </div>
         <div className="grid grid-cols-2">
           <p>Item Type</p>
@@ -81,14 +81,14 @@ const FDOmaha = () => {
           </Select>
         </div>
         <div className="flex justify-end">
-          <Button>Update Item</Button>
+          <CustomButtons btnType="primary">Update Item</CustomButtons>
         </div>
         <div className="grid grid-cols-2">
           <p>item Rate</p>
           <Input placeholder="0" />
         </div>
         <div className="flex justify-end">
-          <Button variant={"destructive"}>Delete Item</Button>
+          <CustomButtons btnType="destructive">Delete Item</CustomButtons>
         </div>
       </div>
     </div>
@@ -125,8 +125,8 @@ const FDNorth = () => {
           </div>
 
           <div className="flex flex-col justify-center gap-2">
-            <Button>Print Schedule A</Button>
-            <Button>Apply Schedule A</Button>
+            <CustomButtons btnType="primary">Print Schedule A</CustomButtons>
+            <CustomButtons btnType="primary">Apply Schedule A</CustomButtons>
           </div>
 
           <div className="grid grid-cols-2">
@@ -143,7 +143,7 @@ const FDNorth = () => {
             </Select>
           </div>
           <div className="flex justify-end">
-            <Button>Add an Item</Button>
+            <CustomButtons btnType="primary">Add an Item</CustomButtons>
           </div>
           <div className="grid grid-cols-2">
             <p>Item Type</p>
@@ -159,14 +159,14 @@ const FDNorth = () => {
             </Select>
           </div>
           <div className="flex justify-end">
-            <Button>Update Item</Button>
+            <CustomButtons btnType="primary">Update Item</CustomButtons>
           </div>
           <div className="grid grid-cols-2">
             <p>item Rate</p>
             <Input placeholder="0" />
           </div>
           <div className="flex justify-end">
-            <Button variant={"destructive"}>Delete Item</Button>
+            <CustomButtons btnType="destructive">Delete Item</CustomButtons>
           </div>
         </div>
       </div>

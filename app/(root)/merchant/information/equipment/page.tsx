@@ -1,14 +1,11 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { z } from "zod";
-import { newMerchantSchema } from "@/lib/utils";
+import { EquipmentSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
-import { Checkbox } from "@/components/ui/checkbox";
-import { SelectForm } from "@/components/Shared/InstantForm";
+import { CheckboxForm, SelectForm } from "@/components/Shared/InstantForm";
 import {
   equipmentTable1,
   equipmentTable2,
@@ -21,47 +18,19 @@ import {
   createColumns,
 } from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
+import CustomButtons from "@/components/Shared/CustomButtons";
 
-const page = () => {
-  const form = useForm<z.infer<typeof newMerchantSchema>>({
-    resolver: zodResolver(newMerchantSchema),
+const Page = () => {
+  const form = useForm<z.infer<typeof EquipmentSchema>>({
+    resolver: zodResolver(EquipmentSchema),
     defaultValues: {
-      MID: "",
-      LegalName: "",
-      DBA: "",
-      Phone: "",
-      Status: "",
-      Approval: "",
-      Filter: "",
-      Processor: "",
-      Fitler2: "",
-      AgentID: 0,
-      SalesRep: "",
-      Split: 0,
-      SplitName: "",
-      SplitID: 0,
-      LeadSource: "",
-      SplitLead: 0,
-      EstAnnual: 0,
-      Transactions: 0,
-      Filter3: "",
-      Banks: "",
-      WAVItAccount: 0,
-      MCCCode: "",
-      Notice: "",
-      ChildMID: false,
-      WAVitAccount: false,
-      WAVitApp: false,
-      NewAccountTasks: false,
-      BusinessRetail: false,
-      BusinessEcommerce: false,
-      BusinessRestaurant: false,
-      BusinessMoTo: false,
-      DeployBy: "",
+      ReturnEquipment: "",
+      ShowHistory: false,
+      ReturnToInventory: false,
     },
   });
 
-  const onSubmit = (value: z.infer<typeof newMerchantSchema>) => {
+  const onSubmit = (value: z.infer<typeof EquipmentSchema>) => {
     console.log(value);
   };
   /* COSTUMIZATION OF THE COLUMN PRICE */
@@ -100,93 +69,90 @@ const page = () => {
   const columns3 = createColumns(columnsConfig3);
 
   return (
-    <>
-      <section>
-        <h1 className="mb-3 text-2xl text-sky-500">Equipment</h1>
+    <section>
+      <h1 className="mb-3 text-2xl text-sky-500">Equipment</h1>
 
-        <div className="flex gap-4 max-xl:flex-wrap">
-          {/* FIRST COLUMN */}
-          <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
-            <DataTable
-              columns={columns1}
-              data={equipmentTable1}
-              enableColumnFilter={true}
-              filteredBy="Status"
-            />
-          </div>
-          {/* SECOND COLUMN */}
-          <div className="mb-5 min-h-96 w-fit flex-auto rounded-md">
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
-              >
-                {/* Activity Row */}
-                <div className="flex gap-2 max-lg:flex-wrap">
-                  <Button className="flex-auto self-end bg-gradient-to-r from-[#C05353] to-[#8F0000] p-1 text-white hover:opacity-90">
-                    Delete Order
-                  </Button>
-                  <Button className="flex-auto self-end bg-gradient-to-r from-[#14ADD6] to-[#384295] p-1 text-white hover:opacity-90">
-                    Edit Order
-                  </Button>
-                  <div className="flex-auto self-end">
-                    <SelectForm
-                      control={form.control}
-                      formName="SalesRep"
-                      label="Return Equipment"
-                      content={equipmentList1}
-                      placeholder="Select a status.."
-                      valueKey={"id"}
-                      displayKey={"title"}
-                      disabled={false}
-                      className=""
-                    />
-                  </div>
-                  <div className="ml-4 mt-8 flex items-center gap-2">
-                    <Checkbox />
-                    <span className="text-nowrap text-sm">Show history</span>
-                  </div>
-                  <div className="ml-4 mt-8 flex items-center gap-2">
-                    <Checkbox />
-                    <span className="text-nowrap text-sm">
-                      Return to Inventory
-                    </span>
-                  </div>
-                </div>
-                <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
-                  <DataTable
-                    columns={columns2}
-                    data={equipmentTable2}
-                    enableColumnFilter={true}
-                    filteredBy="Model"
-                  />
-                </div>
-                <div className="flex justify-around gap-2">
-                  <Button className="bg-gradient-to-r from-[#A4A4A4] to-[#353535] text-white hover:opacity-90">
-                    Copy Serial # to Clipboard
-                  </Button>
-                  <Button className="bg-gradient-to-r from-[#A4A4A4] to-[#353535] text-white hover:opacity-90">
-                    Return Label
-                  </Button>
-                  <Button className="bg-gradient-to-r from-[#A4A4A4] to-[#353535] text-white hover:opacity-90">
-                    Send Email
-                  </Button>
-                </div>
-                <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
-                  <DataTable
-                    columns={columns3}
-                    data={equipmentTable3}
-                    enableColumnFilter={true}
-                    filteredBy="Method"
-                  />
-                </div>
-              </form>
-            </Form>
-          </div>
+      <div className="flex gap-4 max-2xl:flex-wrap">
+        {/* FIRST COLUMN */}
+        <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
+          <DataTable
+            columns={columns1}
+            data={equipmentTable1}
+            enableColumnFilter={true}
+            filteredBy="Status"
+          />
         </div>
-      </section>
-    </>
+        {/* SECOND COLUMN */}
+        <div className="mb-5 min-h-96 w-fit flex-auto rounded-md">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              {/* Activity Row */}
+              <div className="flex items-end gap-2 max-lg:flex-wrap">
+                <CustomButtons btnType="destructive" className="">
+                  Delete Order
+                </CustomButtons>
+                <CustomButtons btnType="default" className="">
+                  Edit Order
+                </CustomButtons>
+                <div className="flex-auto self-end">
+                  <SelectForm
+                    control={form.control}
+                    formName="ReturnEquipment"
+                    label="Return Equipment"
+                    content={equipmentList1}
+                    placeholder="Select a status.."
+                    valueKey={"id"}
+                    displayKey={"title"}
+                    disabled={false}
+                    className=""
+                  />
+                </div>
+                <CheckboxForm
+                  control={form.control}
+                  formName="ShowHistory"
+                  label=""
+                  placeholder="Show history"
+                />
+                <CheckboxForm
+                  control={form.control}
+                  formName="ReturnToInventory"
+                  label=""
+                  placeholder="Return to Inventory"
+                />
+              </div>
+              <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
+                <DataTable
+                  columns={columns2}
+                  data={equipmentTable2}
+                  enableColumnFilter={true}
+                  filteredBy="Model"
+                />
+              </div>
+              <div className="flex justify-around gap-2">
+                <CustomButtons btnType="primary" className="">
+                  Copy Serial # to Clipboard
+                </CustomButtons>
+                <CustomButtons btnType="primary" className="">
+                  Return Label
+                </CustomButtons>
+                <CustomButtons btnType="primary" className="">
+                  Send Email
+                </CustomButtons>
+              </div>
+              <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
+                <DataTable
+                  columns={columns3}
+                  data={equipmentTable3}
+                  enableColumnFilter={true}
+                  filteredBy="Method"
+                />
+              </div>
+            </form>
+          </Form>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default page;
+export default Page;

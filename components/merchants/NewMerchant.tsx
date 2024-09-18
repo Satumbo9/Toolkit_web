@@ -9,20 +9,15 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import {
   CheckboxForm,
-  DatePickerForm,
   FormGeneration,
   InputForm,
   SelectForm,
 } from "../Shared/InstantForm";
 import {
-  merchantStatusList,
-  merchantProcessorList,
-  salesRepList,
-  leadSourceList,
   deployByList,
   mccCode,
-  splitNameList,
   newMerchantInfoForm,
+  bankList,
 } from "@/constants/index";
 
 const NewMerchant = () => {
@@ -73,163 +68,8 @@ const NewMerchant = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <div className="grid grid-cols-2 gap-5 max-2xl:grid-cols-1">
-            <div className="hidden grid-cols-2 gap-3 max-2xl:grid-cols-1">
-              <InputForm
-                control={form.control}
-                formName="MID"
-                label="MID"
-                placeholder="Find MID"
-              />
 
-              <InputForm
-                control={form.control}
-                formName="LegalName"
-                label="Legal Name"
-                placeholder="Tony Stark"
-              />
-
-              <InputForm
-                control={form.control}
-                formName="DBA"
-                label="DBA"
-                placeholder="DBA"
-              />
-
-              <InputForm
-                control={form.control}
-                formName="Phone"
-                label="Phone Number"
-                placeholder="+1 (___) ___-_____"
-              />
-
-              <SelectForm
-                control={form.control}
-                formName="Status"
-                label="Status"
-                content={merchantStatusList}
-                placeholder="Select status..."
-                valueKey="id"
-                displayKey={"name"}
-                disabled={false}
-                className=""
-              />
-
-              <div className="gap-1">
-                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                  Approval Date
-                </label>
-                <DatePickerForm
-                  control={form.control}
-                  formName="Approval"
-                  label=""
-                  placeholder="Pick a date"
-                />
-              </div>
-
-              <InputForm
-                control={form.control}
-                formName="Filter"
-                label="Filter"
-                placeholder="Mocking Data"
-              />
-
-              <SelectForm
-                control={form.control}
-                formName="Processor"
-                label="Processor"
-                content={merchantProcessorList}
-                placeholder="Select a Processor..."
-                valueKey="id"
-                displayKey={"name"}
-                disabled={false}
-                className=""
-              />
-
-              <InputForm
-                control={form.control}
-                formName="Filter2"
-                label="Filter"
-                placeholder="Mocking data"
-              />
-
-              <InputForm
-                control={form.control}
-                formName="AgentID"
-                label="Agent ID"
-                placeholder="32254"
-              />
-
-              <SelectForm
-                control={form.control}
-                formName="SalesRep"
-                label="Sales Rep"
-                content={salesRepList}
-                placeholder="Select a sales rep..."
-                valueKey="id"
-                displayKey="name"
-                disabled={false}
-                className=""
-              />
-
-              <InputForm
-                control={form.control}
-                formName="Split"
-                label="Split %"
-                placeholder="10 %"
-              />
-
-              <SelectForm
-                control={form.control}
-                formName="SplitName"
-                label="Split Name"
-                content={splitNameList}
-                placeholder=""
-                valueKey="id"
-                displayKey="name"
-                disabled={false}
-                className=""
-              />
-
-              <InputForm
-                control={form.control}
-                formName="SplitID"
-                label="Split ID"
-                placeholder="123654"
-              />
-
-              <SelectForm
-                control={form.control}
-                formName="LeadSource"
-                label="Lead Source"
-                content={leadSourceList}
-                placeholder="Select a lead source..."
-                valueKey="id"
-                displayKey="name"
-                disabled={false}
-                className=""
-              />
-
-              <InputForm
-                control={form.control}
-                formName="Split"
-                label="Split %"
-                placeholder="10 %"
-              />
-
-              <InputForm
-                control={form.control}
-                formName="EstAnnual"
-                label="Est Annual Volumn"
-                placeholder="$20,000.00"
-              />
-
-              <InputForm
-                control={form.control}
-                formName="Transactions"
-                label="Transactions"
-                placeholder="20,00"
-              />
-            </div>
+            {/* FORM GENERATION - Left Side */}
             <div className="">
               <FormGeneration
                 formControl={form.control}
@@ -247,48 +87,37 @@ const NewMerchant = () => {
                 label="Filter"
                 placeholder="Enter text..."
               />
-
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 items-center">
                 {/* Child MID */}
-                <div className="flex h-full content-center">
-                  <CheckboxForm
-                    control={form.control}
-                    formName="ChildMID"
-                    label=""
-                    placeholder=""
-                    className="mt-3 content-center items-center align-middle"
-                  />
-                  <span className="mt-1 content-center">Child MID</span>
-                </div>
+                <CheckboxForm
+                  control={form.control}
+                  formName="ChildMID"
+                  label=""
+                  placeholder="Child MID"
+                  className="mt-3 content-center items-center align-middle"
+                />
                 {/* Banks */}
                 <div className="h-full content-center">
                   <SelectForm
                     control={form.control}
                     formName="Filter3"
                     label=""
-                    content={[
-                      { denied: "denied" },
-                      { pending: "pending" },
-                      { approved: "approved" },
-                    ]}
+                    content={bankList}
                     placeholder="Banks"
-                    valueKey={"sa"}
-                    displayKey={"sa"}
+                    valueKey={"value"}
+                    displayKey={"name"}
                     disabled={false}
                     className="m-0"
                   />
                 </div>
                 {/* Wavit Account? */}
-                <div className="flex h-full content-center">
-                  <div className="content-center">
-                    <CheckboxForm
-                      control={form.control}
-                      formName="WAVitAccount"
-                      label=""
-                      placeholder=""
-                    />
-                  </div>
-                  <span className="mt-1 content-center">WAVit Account?</span>
+                <div className="flex h-full items-center">
+                  <CheckboxForm
+                    control={form.control}
+                    formName="WAVitAccount"
+                    label=""
+                    placeholder="WAVit Account?"
+                  />
                 </div>
                 {/* Number */}
                 <div className="h-full content-center">
@@ -300,95 +129,59 @@ const NewMerchant = () => {
                   />
                 </div>
               </div>
-
               {/* WAVit APP (not manual) */}
-              <div className="flex h-full content-center">
-                <div className="content-center">
-                  <CheckboxForm
-                    control={form.control}
-                    formName="WAVitApp"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-                <span className="mt-1 content-center">
-                  WAVit APP (not manual)
-                </span>
-              </div>
-              <div className="flex h-full content-center">
-                <div className="content-center">
-                  <CheckboxForm
-                    control={form.control}
-                    formName="NewAccountTasks"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-                <span className="mt-1 content-center">
-                  Perform new account tasks immediately
-                </span>
-              </div>
-
+              <CheckboxForm
+                control={form.control}
+                formName="WAVitApp"
+                label=""
+                placeholder="WAVit APP (not manual)"
+              />
+              <CheckboxForm
+                control={form.control}
+                formName="NewAccountTasks"
+                label=""
+                placeholder="Perform new account tasks immediately"
+              />
               <div className="flex flex-col items-center justify-center">
                 <h3 className="text-2xl font-semibold">
                   Business Type(s) for onboarding
                 </h3>
-                <div className="my-5 flex w-full flex-col">
-                  <div className="flex justify-between">
-                    {/* Retail */}
-                    <div className="flex h-full content-center">
-                      <div className="content-center">
-                        <CheckboxForm
-                          control={form.control}
-                          formName="BusinessRetail"
-                          label=""
-                          placeholder=""
-                        />
-                      </div>
-                      <span className="mt-1 content-center text-sm">
-                        Retail
-                      </span>
-                    </div>
-                    {/* e-Commerce */}
-                    <div className="flex h-full content-center">
-                      <div className="content-center">
-                        <CheckboxForm
-                          control={form.control}
-                          formName="BusinessEcommerce"
-                          label=""
-                          placeholder=""
-                        />
-                      </div>
-                      <span className="mt-1 content-center text-sm">
-                        e-Commerce
-                      </span>
-                    </div>
-                    {/* Restaurant */}
-                    <div className="flex h-full content-center">
-                      <div className="content-center">
-                        <CheckboxForm
-                          control={form.control}
-                          formName="BusinessRestaurant"
-                          label=""
-                          placeholder=""
-                        />
-                      </div>
-                      <span className="mt-1 content-center text-sm">
-                        Restaurant
-                      </span>
-                    </div>
-                    {/* MO / TO */}
-                    <div className="flex h-full content-center">
-                      <div className="content-center">
-                        <CheckboxForm
-                          control={form.control}
-                          formName="BusinessMoTo"
-                          label=""
-                          placeholder=""
-                        />
-                      </div>
-                      <span className="mt-1 content-center text-sm">MO/TO</span>
-                    </div>
+                <div className="my-5 grid w-full grid-cols-2 gap-2">
+                  {/* Retail */}
+                  <div className="flex h-full content-center">
+                    <CheckboxForm
+                      control={form.control}
+                      formName="BusinessRetail"
+                      label=""
+                      placeholder="Retail"
+                    />
+                  </div>
+                  {/* e-Commerce */}
+                  <div className="flex h-full content-center">
+                    <CheckboxForm
+                      control={form.control}
+                      formName="BusinessEcommerce"
+                      label=""
+                      placeholder="e-Commerce"
+                    />
+                  </div>
+                  {/* Restaurant */}
+                  <div className="flex h-full content-center">
+                    <CheckboxForm
+                      control={form.control}
+                      formName="BusinessRestaurant"
+                      label=""
+                      placeholder="Restaurant"
+                    />
+                  </div>
+                  {/* MO / TO */}
+                  <div className="flex h-full content-center">
+                    <CheckboxForm
+                      control={form.control}
+                      formName="BusinessMoTo"
+                      label=""
+                      placeholder="MO/TO"
+                    />
                   </div>
                 </div>
               </div>

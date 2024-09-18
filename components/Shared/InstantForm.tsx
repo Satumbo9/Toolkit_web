@@ -2,9 +2,9 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 "use client";
 import React, { useState } from "react";
-import { z } from "zod";
-import { Control, FieldPath } from "react-hook-form";
-import { FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { z, ZodObject } from "zod";
+import { Control, FieldPath, useForm } from "react-hook-form";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import {
   Select,
   SelectTrigger,
@@ -27,6 +27,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Switch } from "../ui/switch";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import CustomButtons from "./CustomButtons";
+import { FormData, FormList } from "@/types/types";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const InputForm = <
   T extends z.ZodType<any, any>,
@@ -39,6 +43,7 @@ export const InputForm = <
   type,
   className,
   state,
+  disabled,
   setState,
 }: {
   control: Control<z.infer<T>>;
@@ -48,6 +53,7 @@ export const InputForm = <
   type?: React.HTMLInputTypeAttribute;
   className?: string;
   state?: S;
+  disabled?: any;
   setState?: React.Dispatch<React.SetStateAction<S>>;
 }) => {
   return (
@@ -74,6 +80,7 @@ export const InputForm = <
               }}
               type={type}
               className={className}
+              disabled={disabled}
             />
           </FormControl>
         </FormItem>
@@ -185,12 +192,14 @@ export const CheckboxForm = <T extends z.ZodType<any, any>>({
   label,
   placeholder,
   className,
+  onClick,
 }: {
   control: Control<z.infer<T>>;
   formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder: string;
   className?: string;
+  onClick?: () => void;
 }) => {
   return (
     <FormField
@@ -198,15 +207,19 @@ export const CheckboxForm = <T extends z.ZodType<any, any>>({
       name={formName}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
           <FormControl>
             <div className={className}>
               <Checkbox
                 checked={field.value ?? false}
                 onCheckedChange={field.onChange}
+                onClick={onClick}
+                id={formName}
                 {...field}
               />
-              <span className="ml-3">{placeholder}</span>
+              <FormLabel className="hidden">{placeholder}</FormLabel>
+              <label htmlFor={formName} className="ml-3">
+                {placeholder}
+              </label>
             </div>
           </FormControl>
         </FormItem>
@@ -220,11 +233,13 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
   formName,
   label,
   placeholder,
+  disabled,
 }: {
   control: Control<z.infer<T>>;
   formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder?: string;
+  disabled?: any;
 }) => {
   const [date, setDate] = useState<Date>();
   return (
@@ -249,6 +264,7 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <Calendar
+                  disabled={disabled}
                   mode="single"
                   selected={date}
                   onSelect={(selectedDate) => {
@@ -290,9 +306,7 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
       render={({ field }) => {
         return (
           <FormItem>
-            <div
-              className={cn("flex h-full space-x-5 ", className)}
-            >
+            <div className={cn("flex h-full space-x-5", className)}>
               <FormControl>
                 <Switch
                   checked={!isActive ? field.value : isActive}
@@ -330,6 +344,7 @@ export const RadioForm = <
   labelClass,
   state,
   setState,
+  onClick,
 }: {
   control: Control<z.infer<T>>;
   formName: FieldPath<z.infer<T>>;
@@ -339,6 +354,7 @@ export const RadioForm = <
   labelClass?: string;
   state?: S;
   setState?: React.Dispatch<React.SetStateAction<S>>;
+  onClick?: () => void;
 }) => {
   return (
     <FormField
@@ -353,7 +369,8 @@ export const RadioForm = <
                 <div key={option.value}>
                   <Input
                     type="radio"
-                    id={`${formName}-${option.value}`}
+                    id={formName}
+                    // id={`${formName}-${option.value}`}
                     name={formName}
                     value={option.value}
                     checked={state === option.value}
@@ -365,9 +382,10 @@ export const RadioForm = <
                       }
                     }}
                     className={className}
+                    onClick={onClick}
                   />
                   <label
-                    htmlFor={`${formName}-${option.value}`}
+                    htmlFor={formName}
                     className={labelClass}
                   >
                     {option.label}
@@ -415,9 +433,9 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
                 formName={item.formName}
                 label={item.title}
                 placeholder={item.placeholder}
-                valueKey={"value"}
                 content={item.content}
-                displayKey="value"
+                valueKey="id"
+                displayKey="name"
               />
             </div>
           ) : item.type === "checkbox" ? (
@@ -439,7 +457,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
               />
             </div>
           ) : item.type === "radio" ? (
-            <div key={item.id} className="flex w-full gap-2">
+            <div key={item.id} className="my-3 flex w-full gap-3">
               <InputForm
                 control={formControl}
                 formName={item.formName}
@@ -448,7 +466,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
                 className="size-fit"
                 placeholder={item.placeholder}
               />
-              <span className="">{item.placeholder}</span>
+              <span className="mt-0.5">{item.placeholder}</span>
             </div>
           ) : item.type === "number" ? (
             <InputForm
@@ -471,7 +489,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
               />
             </div>
           ) : item.type === "switch" ? (
-            <div key={item.id} className="w-full my-2 content-center">
+            <div key={item.id} className="my-2 w-full content-end">
               <SwitchForm
                 control={formControl}
                 formName={item.formName}
@@ -494,76 +512,131 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
   );
 };
 
-export const FormGenerationRadio = ({
+/**
+ *
+ *
+ * @formControl formControl - Used for the (form.control) parameter.
+ * @gridCols A string with a number of how many cols you want on the form.
+ *  */
+export const InputGenerator = ({
   formControl,
-  formFields,
-  className,
-}: any) => {
+  item,
+}: {
+  formControl: any;
+  item: {
+    id: number;
+    formName: string;
+    title: string;
+    type: string;
+    placeholder: string;
+    value: string;
+    content?: any;
+    multipleFields?: {
+      id: number;
+      formName: string;
+      title: string;
+      type: string;
+      placeholder: string;
+      value: string;
+      content?: any;
+    }[];
+  };
+}) => {
   return (
-    <div className={`my-2 flex w-1/2 items-end gap-6 ${className}`}>
-      {formFields.map(
-        (item: {
-          content: any;
-          type: string;
-          formName: string;
-          title: string;
-          placeholder?: string | undefined;
-        }) => (
-          <div key={item.title} className="flex items-center gap-2">
-            <InputForm
+    <div className={`grid gap-2`}>
+      {
+        // item.content ? (
+        //   <div className="w-full items-end">
+        //     <SelectForm
+        //       control={formControl}
+        //       formName={item.formName}
+        //       label={item.title}
+        //       placeholder={item.placeholder}
+        //       valueKey={"value"}
+        //       content={item.content}
+        //       displayKey="value"
+        //     />
+        //   </div>
+        // ) :
+        item.type === "checkbox" ? (
+          <div key={item.id} className="mb-2 w-full content-end">
+            <CheckboxForm
               control={formControl}
               formName={item.formName}
               label=""
-              type="radio"
-              className="size-fit"
+              placeholder={item.title}
             />
-            <label className="mt-2">{item.title}</label>
           </div>
-        ),
-      )}
-    </div>
-  );
-};
-
-export const FormGenerationRadioGrid = ({ formControl, formFields }: any) => {
-  return (
-    <div className="grid grid-cols-2 gap-2">
-      {formFields.map(
-        (item: {
-          content: any;
-          type: string;
-          formName: string;
-          title: string;
-          placeholder?: string | undefined;
-        }) =>
-          item.type === "radio" ? (
-            <div key={item.title} className="flex w-full gap-2">
+        ) : item.type === "datePicker" ? (
+          <div key={item.id} className="w-full">
+            <DatePickerForm
+              control={formControl}
+              formName={item.formName}
+              label={item.title}
+              placeholder={item.placeholder}
+            />
+          </div>
+        ) : item.type === "radio" ? (
+          <div key={item.id} className="flex w-full items-end gap-3">
+            <div className="mb-3">
               <InputForm
                 control={formControl}
                 formName={item.formName}
                 label=""
                 type="radio"
-                className="w-fit"
-                placeholder={item.placeholder}
-              />
-              <span className="mt-2 content-center">{item.placeholder}</span>
-            </div>
-          ) : (
-            <div key={item.title} className="col-span-2 w-full">
-              <InputForm
-                control={formControl}
-                formName={item.formName}
-                label={item.title}
+                className="size-fit"
                 placeholder={item.placeholder}
               />
             </div>
-          ),
-      )}
+            <p className="mb-1.5">{item.title}</p>
+          </div>
+        ) : item.type === "number" ? (
+          <InputForm
+            key={item.id}
+            control={formControl}
+            formName={item.formName}
+            label={item.title}
+            type={item.type}
+            className=""
+            placeholder={item.placeholder}
+          />
+        ) : item.type === "password" ? (
+          <div key={item.id} className="w-full">
+            <InputForm
+              control={formControl}
+              formName={item.formName}
+              label={item.title}
+              placeholder={item.placeholder}
+              type="password"
+            />
+          </div>
+        ) : item.type === "switch" ? (
+          <div key={item.id} className="my-2 w-full content-end">
+            <SwitchForm
+              control={formControl}
+              formName={item.formName}
+              label={item.title}
+              className=""
+            />
+          </div>
+        ) : (
+          <div key={item.id} className="w-full">
+            <InputForm
+              control={formControl}
+              formName={item.formName}
+              label={item.title}
+              placeholder={item.placeholder}
+            />
+          </div>
+        )
+      }
     </div>
   );
 };
 
 /**
+ * Created to use specifically on the Boarding tool forms.
+ *
  * @formControl formControl - Used for the (form.control) parameter.
  * @formFields - Receive a component with sections and cards.
  * @gridCols A string with a number of how many cols you want on the form.
@@ -667,4 +740,310 @@ export const NorthFormGeneration = ({
       ))}
     </React.Fragment>
   );
+};
+
+/**
+ *
+ *
+ * @formControl formControl - Used for the (form.control) parameter.
+ * @formFields - Receive a component with sections and cards.
+ *  */
+export const FormBuilder = ({
+  formFields,
+}: {
+  formFields: {
+    formTitle: string;
+    description: string;
+    tabs: {
+      id: number;
+      tabName: string;
+      value: string;
+      section: {
+        sectionName: string;
+        fields?: {
+          id: number;
+          formName: string;
+          title: string;
+          type: string;
+          placeholder: string;
+          value: string;
+          content?: any;
+          multipleFields?: {
+            id: number;
+            formName: string;
+            title: string;
+            type: string;
+            placeholder: string;
+            value: string;
+            content?: any;
+          }[];
+        }[];
+        cards?: {
+          title: string;
+          colQty: string;
+          fields: {
+            id: number;
+            formName: string;
+            title: string;
+            type: string;
+            placeholder: string;
+            value: string;
+          }[];
+          title2?: string;
+          fields2?: {
+            id: number;
+            formName: string;
+            title: string;
+            type: string;
+            placeholder: string;
+            value: string;
+          }[];
+        }[];
+      }[];
+    }[];
+    buttons: {
+      id: number;
+      title: string;
+      type: any;
+    }[];
+  };
+}) => {
+  type Shape = {
+    [key: string]: z.ZodType<any>;
+  };
+
+  const createDynamicSchema = (fields: FormList[]): ZodObject<Shape> => {
+    const shape: Shape = {};
+
+    // Iterate over the fields and build the shape
+    fields.forEach((field: FormList) => {
+      switch (field.type) {
+        case "input":
+          shape[field.name] = z.string().default("");
+          break;
+        case "radio":
+          shape[field.name] = z.string().default("");
+          break;
+        case "number":
+          shape[field.name] = z.number().min(0);
+          break;
+        case "checkbox":
+          shape[field.name] = z.boolean();
+          break;
+        default:
+          console.log("nao deu " + field.name);
+        // throw new Error(`Unsupported field type: ${field.type}`);
+      }
+    });
+
+    return z.object(shape);
+  };
+
+  const testing = ReadJson(formFields);
+  const schema = createDynamicSchema(testing);
+
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (values: z.infer<typeof schema>) => {
+    console.log(values);
+  };
+
+  // Handling the status of the tab selection
+  const [activeItem, setActiveItem] = useState<string>(
+    String(formFields.tabs.at(0)?.value),
+  );
+
+  const handleClick = (value: string) => {
+    setActiveItem(value);
+  };
+
+  return (
+    <section>
+      <div className="w-auto">
+        <Tabs
+          defaultValue={formFields.tabs.at(0)?.value}
+          className="mb-2 flex-auto rounded-md p-4 text-center"
+        >
+          <TabsList className="">
+            {formFields.tabs.map((tab) => (
+              <TabsTrigger
+                onClick={() => handleClick(tab.value)}
+                key={tab.id}
+                value={tab.value}
+              >
+                <p className="text-sm">{tab.tabName}</p>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <h1 className="text-center text-3xl font-semibold">
+            {formFields.formTitle}
+          </h1>
+          {formFields.tabs.map((tab) => (
+            <section key={tab.id}>
+              {tab.value === activeItem && (
+                <div>
+                  <h1 className="text-center text-2xl font-semibold text-sky-500">
+                    {tab.tabName}
+                  </h1>
+                  {/* Mapping the sections */}
+                  {tab.section.map((Item) => {
+                    return (
+                      <div key={Item.sectionName} className="mt-3">
+                        <h2 className="my-2 text-xl font-semibold">
+                          {Item.sectionName}
+                        </h2>
+                        <div className="grid grid-cols-2 gap-2">
+                          {/* Mapping the fields inside the sections */}
+                          {Item.fields?.map((field) =>
+                            field.type === "multiple" ? (
+                              <div
+                                key={field.id}
+                                className="flex w-full gap-2 max-lg:flex-wrap"
+                              >
+                                {/* Mapping the array of the flex div (multiple fields) */}
+                                {field.multipleFields?.map((subItem) => (
+                                  <div key={subItem.id} className="flex-auto">
+                                    <InputGenerator
+                                      formControl={form.control}
+                                      item={subItem}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <InputGenerator
+                                formControl={form.control}
+                                item={field}
+                                key={field.id}
+                              />
+                            ),
+                          )}
+                        </div>
+                        {/* CARDS MAPPING */}
+                        <div className="my-4 grid grid-cols-2 gap-2">
+                          {Item.cards?.map(
+                            (item: {
+                              title: string;
+                              fields: {
+                                id: number;
+                                formName: string;
+                                title: string;
+                                type: string;
+                                placeholder: string;
+                                value: string;
+                              }[];
+                              title2?: string;
+                              fields2?: {
+                                id: number;
+                                formName: string;
+                                title: string;
+                                type: string;
+                                placeholder: string;
+                                value: string;
+                              }[];
+                              colQty: string;
+                            }) => (
+                              <div
+                                key={item.title}
+                                className="rounded-md border p-4 shadow-sm"
+                              >
+                                <p className="mb-3 text-center text-xl">
+                                  {item.title}
+                                </p>
+                                <FormGeneration
+                                  formControl={form.control}
+                                  formFields={item.fields}
+                                  gridCols={item.colQty}
+                                />
+                                {item.fields2 ? (
+                                  <div key={item.title}>
+                                    <p className="my-3 text-start text-base">
+                                      {item.title2}
+                                    </p>
+                                    <FormGeneration
+                                      formControl={form.control}
+                                      formFields={item.fields2}
+                                      gridCols={item.colQty}
+                                    />
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                            ),
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </section>
+          ))}
+          {/* BUTTONs */}
+          <div className="my-4 text-center">
+            {formFields.buttons.map((btn) => (
+              <CustomButtons key={btn.id} btnType={btn.type}>
+                {btn.title}
+              </CustomButtons>
+            ))}
+          </div>
+        </form>
+      </Form>
+    </section>
+  );
+};
+
+// function to read the json and extract all the form fields.
+export const ReadJson = (form: FormData): FormList[] => {
+  const result: FormList[] = [];
+  const formNames: string[] = [];
+  const formTypes: string[] = [];
+
+  for (const tab of form.tabs) {
+    for (const section of tab.section) {
+      section.fields?.forEach((field) => {
+        if (!formNames.includes(field.formName) && field.formName.length > 0) {
+          formNames.push(field.formName);
+          formTypes.push(field.type);
+        }
+      });
+      section.cards?.forEach((card) => {
+        card.fields?.forEach((field) => {
+          if (
+            !formNames.includes(field.formName) &&
+            field.formName.length > 0
+          ) {
+            formNames.push(field.formName);
+            formTypes.push(field.type);
+          }
+        });
+        card.fields2?.forEach((field) => {
+          if (
+            !formNames.includes(field.formName) &&
+            field.formName.length > 0
+          ) {
+            formNames.push(field.formName);
+            formTypes.push(field.type);
+          }
+        });
+      });
+    }
+  }
+
+  for (let i = 0; i < formNames.length; i++) {
+    const test: FormList = {
+      name: formNames.at(i)?.toString(),
+      type: formTypes.at(i)?.toString(),
+    };
+    result.push(test);
+  }
+
+  return result;
 };

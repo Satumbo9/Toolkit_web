@@ -34,10 +34,28 @@ import {
   Search,
   BellPlus,
   CheckCheck,
-  FileSearch
-
+  User2Icon,
+  UsersRound,
+  TableProperties,
+  Calculator,
+  ClipboardPenLine,
+  File,
+  MonitorDot,
+  BookUser,
+  UserRoundCog,
+  Tags,
+  SquareCheckBig,
+  SquareActivity,
+  FilesIcon,
+  TrendingUp,
+  FileCog,
+  CreditCard,
+  ArrowRightLeft,
+  Settings,
+  MapPin,
 } from "lucide-react";
 import { z } from "zod";
+import { FormData  } from "@/types/types";
 
 export const themes = [
   { value: "light", label: "Light", icon: "icon/sun.svg" },
@@ -210,7 +228,7 @@ export const serviceMainTabs = [
   },
 ];
 
-export const finanialMainTabs = [
+export const financialMainTabs = [
   {
     id: 1,
     title: "Find",
@@ -236,7 +254,7 @@ export const finanialMainTabs = [
     path: "/financial/importData",
   },
   {
-    id: 4,
+    id: 5,
     title: "Vendors",
     value: "vendors",
     path: "/financial/vendors",
@@ -1977,6 +1995,13 @@ export const salesRepList = [
   { id: 10, name: "Sophia Lee", value: "sophiaLee" },
 ];
 
+export const bankList = [
+  { id: 1, name: "Bradesco", value: "bradesco" },
+  { id: 2, name: "Chase Bank", value: "chase" },
+  { id: 3, name: "Discover", value: "discover" },
+  { id: 4, name: "American Express", value: "amex" },
+];
+
 export const leadSourceList = [
   { id: 1, name: "Innovatech Solutions", value: "innovatechSolutions" },
   { id: 2, name: "Blue Horizon Enterprises", value: "blueHorizonEnterprises" },
@@ -2044,36 +2069,158 @@ export const documentsTable: DataTypes[] = [
   },
 ];
 
+export const productFeeForm = [
+  {
+    id: 1,
+    formName: "MerchantAnnual",
+    title: "Merchant Annual",
+    placeholder: "",
+    type: "checkbox",
+    value: "",
+  },
+  {
+    id: 2,
+    formName: "PciAnnual",
+    title: "PCI Annual",
+    placeholder: "",
+    type: "checkbox",
+    value: "",
+  },
+  {
+    id: 3,
+    formName: "PciMonthly",
+    title: "PCI Monthly",
+    placeholder: "",
+    type: "checkbox",
+    value: "",
+  },
+  {
+    id: 4,
+    formName: "RateIncreases",
+    title: "Rate Increase",
+    placeholder: "",
+    type: "checkbox",
+    value: "",
+  },
+]
+
+export const amountForm = [
+  {
+    id: 1,
+    formName: "AmountAnnual",
+    title: "",
+    placeholder: "",
+    type: "input",
+    value: "",
+  },
+  {
+    id: 2,
+    formName: "PciAmountAnnual",
+    title: "",
+    placeholder: "",
+    type: "input",
+    value: "",
+  },
+  {
+    id: 3,
+    formName: "PciAmountMonthly",
+    title: "",
+    placeholder: "",
+    type: "input",
+    value: "",
+  },
+] 
+
+export const billingMonthForm = [
+  {
+    id: 1,
+    formName: "BillingMonthAnnual",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+  {
+    id: 2,
+    formName: "PciBillingMonthAnnual",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+] 
+
+export const statusNonBillingForm = [
+  {
+    id: 1,
+    formName: "StatusNonBillingAnnual",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+  {
+    id: 2,
+    formName: "PciStatusNonBillingAnnual",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+  {
+    id: 3,
+    formName: "PciStatusNonBillingMonthly",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+  {
+    id: 4,
+    formName: "RateStatusNonBilling",
+    title: "",
+    placeholder: "",
+    type: "selectbox",
+    value: "",
+  },
+] 
+
 export const merchResidualsTabs = [
   {
     id: "1",
     title: "Raw Data",
     value: "rawData",
-  },
+    icon: FilesIcon,
+  }, 
   {
     id: "2",
     title: "Raw Refunds",
     value: "rawRefunds",
+    icon: HandCoins,
   },
   {
     id: "3",
     title: "Residual Payments",
     value: "residualPayments",
+    icon: CreditCard,
   },
   {
     id: "4",
     title: "Account Analysis",
     value: "accountAnalysis",
+    icon: TrendingUp,
   },
   {
-    id: "4",
+    id: "5",
     title: "Enter Adjustments",
     value: "enterAdjustments",
+    icon: FileCog,
   },
   {
-    id: "4",
+    id: "6",
     title: "Calculate Residuals",
     value: "calculateResiduals",
+    icon: Calculator,
   },
 ];
 
@@ -2139,6 +2286,22 @@ export const merchResidualPaymentsTable = [
     Notes: " ",
   },
 ]
+export const wavitInfoTabs = [
+  {
+    id: "1",
+    title: "Transactions",
+    value: "transactions",
+    route: "/merchant/information/wavitinfo",
+    icon:ArrowRightLeft,
+  },
+  {
+    id: "2",
+    title: "Settings",
+    value: "settings",
+    route: "/merchant/information/wavitinfo/settings",
+    icon:Settings,
+  },
+];
 
 export const wavitTransactionsTable = [
   {
@@ -2300,9 +2463,10 @@ export const newMerchantInfoForm =
     id: 5,
     title: "Status:",
     type: "input",
-    placeholder: "",
+    placeholder: "Select a Status",
     formName: "Status",
-    value: ""
+    value: "",
+    content: bankList,
   },
   {
     id: 6,
@@ -2991,21 +3155,25 @@ export const adminResidualsTabs = [
     id: "1",
     title: "Calculate",
     value: "calculate",
+    icon: Calculator,
   },
   {
     id: "2",
     title: "Adjustments",
     value: "adjustments",
+    icon: ClipboardPenLine,
   },
   {
     id: "3",
     title: "Reports",
     value: "reports",
+    icon: File,
   },
   {
     id: "4",
     title: "Display Residuals",
     value: "displayResiduals",
+    icon: MonitorDot,
   },
 ];
 
@@ -3044,6 +3212,60 @@ export const thirdPartyForm = [
     value: "",
   },
 ];
+
+export const RolesListTable = [
+  {
+    id: 1234,
+    role: "Admin",
+    description: "System Admin",
+    permission: 99,
+  },
+  {
+    id: 1235,
+    role: "User",
+    description: "General Users",
+    permission: 10,
+  },
+  {
+    id: 1236,
+    role: "Super User",
+    description: "Development Team",
+    permission: 100,
+  },
+]
+
+export const DepartmentListTable = [
+  {
+    id: 4321,
+    department: "Finance",
+    description: "Finance Team",
+    permission: 99,
+  },
+  {
+    id: 4322,
+    department: "Sales",
+    description: "Sales Dept.",
+    permission: 10,
+  },
+  {
+    id: 4323,
+    department: "Support",
+    description: "Support Team",
+    permission: 100,
+  },
+  {
+    id: 4324,
+    department: "Equipment",
+    description: "Equipment/Shipping Team",
+    permission: 100,
+  },
+  {
+    id: 4325,
+    department: "Development",
+    description: "Dev Team",
+    permission: 100,
+  },
+]
 
 export const firstDataOmahaForm = [
   {
@@ -3217,18 +3439,36 @@ export const adminDatabaseTabs = [
     id: "1",
     title: "Users",
     value: "users",
-    icon:User,
-    
+    icon: UsersRound,
   },
   {
     id: "2",
     title: "Audit",
     value: "audit",
-    icon:FileSearch,
-
+    icon: SquareActivity,
   },
 ];
 
+export const userAdminTabs = [
+  {
+    id: "1",
+    title: "Users",
+    value: "users",
+    icon: User2Icon,
+  },
+  {
+    id: "2",
+    title: "Roles",
+    value: "roles",
+    icon: TableProperties,
+  },
+  {
+    id: "3",
+    title: "Departments",
+    value: "departments",
+    icon: UsersRound,
+  },
+];
 export const usersTable = [
   {
     Id: 1,
@@ -3515,16 +3755,19 @@ export const leadsTabs = [
     id: "1",
     title: "MiCamp Leads",
     value: "miCampLeads",
+    icon:MapPin,
   },
   {
     id: "2",
     title: "North Leads",
     value: "northLeads",
+    icon: TrendingUp,
   },
   {
     id: "3",
     title: "FSP Leads",
     value: "fspLeads",
+    icon: TrendingUp,
   },
 ];
 
@@ -3533,11 +3776,13 @@ export const supportTicketsTabs = [
     id: "1",
     title: "My Tickets",
     value: "myTickets",
+    icon: Tags,
   },
   {
     id: "2",
     title: "Solved",
     value: "solved",
+    icon: SquareCheckBig,
   },
 ];
 // Merchant Test
@@ -3556,39 +3801,39 @@ export const merchantTest = [
 
 export const merchantBoardingListTable = [
   {
-    BusinessName: "Company Name",
-    LastUpdate: "08/14/2024",
+    BusinessName: "Nexora Technologies",
+    LastUpdate: "09/09/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "Send for Signature",
   },
   {
-    BusinessName: "Company Name",
-    LastUpdate: "08/14/2024",
+    BusinessName: "Quantum Dynamics Inc.",
+    LastUpdate: "09/01/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "In-Person Signature",
   },
   {
-    BusinessName: "Company Name",
+    BusinessName: "Vertex Innovations",
     LastUpdate: "08/14/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "Preview Form",
   },
   {
-    BusinessName: "Company Name",
-    LastUpdate: "08/14/2024",
+    BusinessName: "Eclipse Solutions Ltd.",
+    LastUpdate: "08/10/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "Send Lead",
   },
   {
-    BusinessName: "Company Name",
-    LastUpdate: "08/14/2024",
+    BusinessName: "Aether Industries",
+    LastUpdate: "08/01/2024",
     City: "Scottsdale",
-    Form: "10",
     Status: "Approved",
+    NextStep: "Preview Addendum",
   },
 ];
 
@@ -4426,11 +4671,15 @@ export const bankingInformationFspForm = [
     id: 1,
     formName: "CheckingSavings",
     title: "Checking",
+    placeholder: "Checking",
+    type: "radio",
   },
   {
     id: 2,
     formName: "CheckingSavings",
     title: "Savings",
+    placeholder: "Savings",
+    type: "radio",
   },
 ];
 
@@ -4438,11 +4687,15 @@ export const acceptingVisaMcDiscoverFspForm = [
   {
     id: 1,
     formName: "AcceptingVisaMcDiscover",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "AcceptingVisaMcDiscover",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4451,11 +4704,15 @@ export const hasBeenTerminatedFspForm = [
   {
     id: 1,
     formName: "hasBeenTerminated",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "hasBeenTerminated",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4464,11 +4721,15 @@ export const americaExpressVolumeFspForm = [
   {
     id: 1,
     formName: "AmericaExpressVolume",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "AmericaExpressVolume",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4477,11 +4738,15 @@ export const seasonalMerchantFspForm = [
   {
     id: 1,
     formName: "SeasonalMerchant",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "SeasonalMerchant",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4490,11 +4755,15 @@ export const independentServiceFspForm = [
   {
     id: 1,
     formName: "IndependentService",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "IndependentService",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4503,11 +4772,15 @@ export const usesFulfillHouseFspForm = [
   {
     id: 1,
     formName: "UsesFulfillHouse",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "UsesFulfillHouse",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4758,11 +5031,15 @@ export const isPaymentEncryptedFspForm = [
   {
     id: 1,
     formName: "IsPaymentEncrypted",
+    type: "radio",
+    placeholder: "Yes",
     title: "Yes",
   },
   {
     id: 2,
     formName: "IsPaymentEncrypted",
+    type: "radio",
+    placeholder: "No",
     title: "No",
   },
 ];
@@ -4772,11 +5049,15 @@ export const individualSharedFspForm = [
     id: 1,
     formName: "IndividualShared",
     title: "Individual",
+    type: "radio",
+    placeholder: "Individual",
   },
   {
     id: 2,
     formName: "IndividualShared",
     title: "Shared",
+    type: "radio",
+    placeholder: "Shared",
   },
 ];
 
@@ -4813,11 +5094,15 @@ export const hasFiledForBankruptcyFspForm = [
     id: 1,
     formName: "HasFiledForBankruptcy",
     title: "Yes",
+    placeholder: "Yes",
+    type: "radio",
   },
   {
     id: 2,
     formName: "HasFiledForBankruptcy",
     title: "No",
+    placeholder: "No",
+    type: "radio",
   },
 ];
 
@@ -4953,11 +5238,15 @@ export const passThroughInterchangeFspForm = [
     id: 1,
     formName: "PassTrueInterchange",
     title: "Yes",
+    placeholder: "Yes",
+    type: "radio",
   },
   {
     id: 2,
     formName: "PassTrueInterchange",
     title: "No",
+    placeholder: "No",
+    type: "radio",
   },
 ];
 
@@ -4966,11 +5255,15 @@ export const passDuesAssessmentsFspForm = [
     id: 1,
     formName: "PassDuesAndAssesments",
     title: "Yes",
+    placeholder: "Yes",
+    type: "radio",
   },
   {
     id: 2,
     formName: "PassDuesAndAssesments",
     title: "No",
+    placeholder: "No",
+    type: "radio",
   },
 ];
 
@@ -5057,11 +5350,15 @@ export const grossNetFspForm = [
     id: 1,
     formName: "GrossNet",
     title: "GROSS",
+    placeholder: "GROSS",
+    type: "radio",
   },
   {
     id: 2,
     formName: "GrossNet",
     title: "NET",
+    placeholder: "NET",
+    type: "radio",
   },
 ];
 
@@ -5413,11 +5710,15 @@ export const pciFrequencyFspForm = [
     id: 1,
     formName: "PciFrequency",
     title: "Daily (default)",
+    placeholder: "Daily (default)",
+    type: "radio",
   },
   {
     id: 2,
     formName: "PciFrequency",
     title: "Monthly",
+    placeholder: "Monthly",
+    type: "radio",
   },
 ];
 
@@ -5426,11 +5727,15 @@ export const audioFspForm = [
     id: 1,
     formName: "Audio",
     title: "Monthly Merchant Fee",
+    placeholder: "Monthly Merchant Fee",
+    type: "radio",
   },
   {
     id: 2,
     formName: "Audio",
     title: "Annual Merchant Fee",
+    placeholder: "Annual Merchant Fee",
+    type: "radio",
   },
 ];
 
@@ -5796,11 +6101,15 @@ export const billToFspForm = [
     id: 1,
     formName: "BillTo",
     title: "Rep",
+    placeholder: "Rep",
+    type: "radio",
   },
   {
     id: 2,
     formName: "BillTo",
     title: "Merchant (must include signed forms)",
+    placeholder: "Merchant (must include signed forms)",
+    type: "radio",
   },
 ];
 
@@ -6689,7 +6998,7 @@ export const prevPocessorNorthBoardingForm = [
   },
 ];
 
-export const northBoadingForm = {
+export const northBoardingForm = {
   formTitle: "North Boarding",
   description: "",
   section: [
@@ -9837,11 +10146,13 @@ export const boardingAgentsTabs = [
     id: "1",
     title: "Agent Details",
     value: "agentDetails",
+    icon: BookUser,
   },
   {
     id: "2",
     title: "Agent Settings",
     value: "agentSettings",
+    icon: UserRoundCog,
   },
 ];
 
@@ -10182,12 +10493,29 @@ export const marketingSelectList = [
 
 // ADMIN PANEL DATA
 export const YesNoList = [
-  { id: 1, name: "Yes", value: "yes" },
-  { id: 2, name: "No", value: "no" },
+  { id: 1, name: "Yes", value: "Yes" },
+  { id: 2, name: "No", value: "No" },
 ];
+
 export const UserRoleList = [
-  { id: 1, name: "User", value: "user" },
-  { id: 2, name: "Admin", value: "admin" },
+  { id: 1, name: "User", value: "User" },
+  { id: 2, name: "Admin", value: "Admin" },
+  { id: 3, name: "Guest", value: "Guest" },
+  { id: 4, name: "Support Speacialist", value: "SupportSpecialist" },
+  { id: 5, name: "General", value: "General" },
+  { id: 6, name: "Developer", value: "Developer" },
+  { id: 7, name: "Superuser", value: "Super User" },
+];
+
+export const DepartmentList = [
+  { id: 1, name: "Customer", value: "Customer" },
+  { id: 2, name: "IT", value: "IT" },
+  { id: 3, name: "Equipment", value: "Equipment" },
+  { id: 4, name: "Support", value: "Support" },
+  { id: 5, name: "Sales", value: "Sales" },
+  { id: 6, name: "Agent", value: "Agent" },
+  { id: 7, name: "External Agent", value: "ExternalAgent" },
+  { id: 8, name: "Finance", value: "Finance" },
 ];
 
 export const addNewUserForm = [
@@ -10245,35 +10573,36 @@ export const addNewUserForm = [
     id: 7,
     title: "In Production:",
     type: "input",
-    placeholder: "Select",
+    placeholder: "Select an option",
     formName: "InProduction",
     value: "",
     content: YesNoList,
   },
   {
     id: 8,
-    title: "Role Id:",
+    title: "User Role:",
     type: "input",
-    placeholder: "",
+    placeholder: "Select User Role",
     formName: "RoleId",
     value: "",
     content: UserRoleList,
   },
   {
     id: 9,
+    title: "Department:",
+    type: "input",
+    placeholder: "Select a Department",
+    formName: "RoleId",
+    value: "",
+    content: DepartmentList,
+  },
+  {
+    id: 10,
     title: "Lock / Unlock",
     type: "switch",
     placeholder: "",
     formName: "Lock",
     value: ""
-  },
-  {
-    id: 10,
-    title: "Make Manager",
-    type: "switch",
-    placeholder: "",
-    formName: "Manager",
-    value: false
   },
 ];
 
@@ -10296,66 +10625,23 @@ export const addNewUserPasswordForm = [
   },
 ];
 
-export const addNewUserPermissionForm = [
-  {
-    id: 13,
-    title: "Create",
-    type: "checkbox",
-    placeholder: "",
-    formName: "PermissionCreate",
-    value: false
-  },
-  {
-    id: 14,
-    title: "Edit",
-    type: "checkbox",
-    placeholder: "",
-    formName: "PermissionEdit",
-    value: false
-  },
-  {
-    id: 15,
-    title: "Delete",
-    type: "checkbox",
-    placeholder: "",
-    formName: "PermissionDelete",
-    value: false
-  },
-  {
-    id: 16,
-    title: "Save",
-    type: "checkbox",
-    placeholder: "",
-    formName: "PermissionSave",
-    value: false
-  },
-  {
-    id: 17,
-    title: "Residuals",
-    type: "checkbox",
-    placeholder: "",
-    formName: "PermissionResiduals",
-    value: false
-  },
-];
-
 export const addNewUserTypeForm = [
   {
     id: 18,
-    title: "Boarding",
-    type: "checkbox",
-    placeholder: "",
-    formName: "Boarding",
-    value: false
-  },
-  {
-    id: 19,
     title: "Toolkit",
     type: "checkbox",
     placeholder: "",
     formName: "Toolkit",
     value: false
   },
+  {
+    id: 19,
+    title: "Boarding",
+    type: "checkbox",
+    placeholder: "",
+    formName: "Boarding",
+    value: false
+  }
 ];
 
 
@@ -10377,3 +10663,401 @@ export const testForm = [
     value: false
   },
 ];
+
+
+
+export const testingForm: FormData = {
+  formTitle: "Testing form",
+  description: "",
+  tabs: [
+    // TAB 1 - CONTACT
+    {
+      id: 1,
+      tabName: "Contact",
+      value: "contact",
+      section: [
+        // FIRST SECTION
+        {
+          sectionName: "Contact Information",
+          cards: [
+            // 1. FIRST CARD
+            {
+              title: "1. Zone",
+              colQty: "1",
+              fields: [
+                {
+                  id: 1,
+                  formName: "TimeZone",
+                  title: "Time Zone",
+                  type: "input",
+                  placeholder: "",
+                  value: "",
+                }
+              ]
+            },
+            // 2. TEST CARD
+            {
+              title: "2. Test",
+              colQty: "1",
+              fields: [
+                {
+                  id: 1,
+                  formName: "TimeZone",
+                  title: "Time Zone",
+                  type: "input",
+                  placeholder: "",
+                  value: "",
+                }
+              ],
+              title2: "2.1 testing a lot",
+              fields2: [
+                {
+                  id: 1,
+                  formName: "TimeNow",
+                  title: "Time Now:",
+                  type: "input",
+                  placeholder: "12:00:00 AM UTC-8",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  formName: "TimeNow2",
+                  title: "Time Tomorrow:",
+                  type: "input",
+                  placeholder: "12:00:00 AM UTC-8",
+                  value: "",
+                },
+              ]
+
+            },
+          ],
+          fields: [
+            {
+              id: 1,
+              formName: "test1",
+              title: "First Name:",
+              type: "input",
+              placeholder: "Name",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "CustomerSurname",
+              title: "Last Name:",
+              type: "input",
+              placeholder: "Name",
+              value: "",
+            },
+            {
+              id: 3,
+              formName: "CustomerEmail",
+              title: "Email:",
+              type: "input",
+              placeholder: "example@email.com",
+              value: "",
+            },
+            {
+              id: 4,
+              formName: "CustomerCitizenship",
+              title: "Citizenship:",
+              type: "input",
+              placeholder: "e.g. American",
+              value: "",
+            },
+            {
+              id: 5,
+              formName: "CustomerNumber",
+              title: "Phone Number:",
+              type: "input",
+              placeholder: "(___) ___-____",
+              value: "",
+            },
+            {
+              id: 6,
+              formName: "CustomerNumberConfirmation",
+              title: "Is it your current number?",
+              type: "checkbox",
+              placeholder: "Is it your current number?",
+              value: "",
+            },
+          ],
+          
+        },
+        // SECOND SECTION
+        {
+          sectionName: "Address Information",
+          fields: [
+            {
+              id: 1,
+              formName: "AddressStreet",
+              title: "Street Name",
+              type: "input",
+              placeholder: "123 North Road",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "AddressDetails",
+              title: "Address Details",
+              type: "input",
+              placeholder: "e.g. Unit / Suite ",
+              value: "",
+            },
+            {
+              id: 3,
+              type: "multiple",
+              formName: "",
+              title: "",
+              placeholder: "",
+              value: "",
+              multipleFields: [
+                {
+                  id: 1,
+                  formName: "AddressStreet",
+                  title: "City",
+                  type: "input",
+                  placeholder: "Florianopolis",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  formName: "AddressDetails",
+                  title: "State",
+                  type: "input",
+                  placeholder: "AZ",
+                  value: "",
+                },
+                {
+                  id: 3,
+                  formName: "AddressDetails",
+                  title: "Zipcode",
+                  type: "input",
+                  placeholder: "85257",
+                  value: "",
+                },
+              ]
+            }
+          ],
+          cards: [
+            // - 
+          {
+            title: "Testing second one card",
+            colQty: "4",
+            fields: [
+              {
+                id: 1,
+                formName: "DaysToSubmitTransactions",
+                title: "0-3",
+                type: "radio",
+                placeholder: "0-3",
+                value: "",
+              },
+              {
+                id: 2,
+                formName: "DaysToSubmitTransactions",
+                title: "4-7",
+                type: "radio",
+                placeholder: "4-7",
+                value: "",
+              },
+              {
+                id: 3,
+                formName: "DaysToSubmitTransactions",
+                title: "8-14",
+                type: "radio",
+                placeholder: "8-14",
+                value: "",
+              },
+              {
+                id: 4,
+                formName: "DaysToSubmitTransactions",
+                title: "12-14",
+                type: "radio",
+                placeholder: "12-14",
+                value: "",
+              },
+            ]
+          },
+            
+          ]
+        },
+      ]
+    },
+    // TAB 2
+    {
+      id: 2,
+      tabName: "Bank Information",
+      value: "bankInformation",
+      section: [
+        // FIRST SECTION
+        {
+        sectionName: "Bank Info",
+        fields: [
+          {
+            id: 1,
+            formName: "BankName",
+            title: "Bank Name",
+            type: "input",
+            placeholder: "Type the Bank name",
+            value: "",
+          },
+          {
+            id: 2,
+            type: "multiple",
+            formName: "",
+            title: "",
+            placeholder: "",
+            value: "",
+            multipleFields: [
+              {
+                id: 1,
+                formName: "BankRouting",
+                title: "Bank Routing: *",
+                type: "input",
+                placeholder: "Type the Bank name",
+                value: "",
+              },
+              {
+                id: 2,
+                formName: "BankAccounting",
+                title: "Bank Accounting: *",
+                type: "input",
+                placeholder: "Type the Bank name",
+                value: "",
+              },
+            ]
+          },
+        ],
+        cards: [
+          // 1. TEST CARD
+          {
+            title: "1. Zone",
+            colQty: "1",
+            fields: [
+              {
+                id: 1,
+                formName: "TimeZone",
+                title: "Time Zone",
+                type: "input",
+                placeholder: "",
+                value: "",
+              }
+            ]
+          },
+        ],
+        },
+        // SECOND SECTION
+        {
+          sectionName: "Tax Information",
+          fields: [
+            {
+              id: 1,
+              formName: "EIN",
+              title: "EIN:",
+              type: "input",
+              placeholder: "#",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "SICMCC",
+              title: "SICMCC:",
+              type: "input",
+              placeholder: "#",
+              value: "",
+            },
+            {
+              id: 3,
+              formName: "TypeOfGoods",
+              title: "Type of Goods:",
+              type: "input",
+              placeholder: "#",
+              value: "",
+            },
+          ],
+          cards: [
+            // - 
+          {
+            title: "Testing second one card",
+            colQty: "4",
+            fields: [
+              {
+                id: 1,
+                formName: "DaysToSubmitTransactions",
+                title: "0-3",
+                type: "radio",
+                placeholder: "0-3",
+                value: "",
+              },
+              {
+                id: 2,
+                formName: "DaysToSubmitTransactions",
+                title: "4-7",
+                type: "radio",
+                placeholder: "4-7",
+                value: "",
+              },
+              {
+                id: 3,
+                formName: "DaysToSubmitTransactions",
+                title: "8-14",
+                type: "radio",
+                placeholder: "8-14",
+                value: "",
+              },
+              {
+                id: 4,
+                formName: "DaysToSubmitTransactions",
+                title: "12-14",
+                type: "radio",
+                placeholder: "12-14",
+                value: "",
+              },
+            ]
+          },
+            
+          ]
+        },
+      ]
+    },
+    // TAB 3
+    {
+      id: 3,
+      tabName: "Programming Request",
+      value: "programmimgRequest",
+      section: [
+        // FIRST SECTION
+        {
+        sectionName: "Programmimg Info",
+    
+        cards: [
+          // 1. TEST CARD
+          {
+            title: "1. Zone",
+            colQty: "1",
+            fields: [
+              {
+                id: 1,
+                formName: "TimeZone",
+                title: "Time Zone",
+                type: "input",
+                placeholder: "",
+                value: "",
+              }
+            ]
+          },
+          
+        ]
+        },
+      ]
+    },
+  ],
+  buttons: [
+    {
+      id: 1,
+      title: "Save Changes",
+      type: "default",
+    },
+  ]
+}
+

@@ -1,5 +1,8 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
+import CustomButtons from "../CustomButtons";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 type StatusTypes = {
   Success?: string[];
@@ -14,7 +17,7 @@ interface StatusProps {
 
 /**
  * Read the doc!!
- 
+
 * This is a cell format for price, you can use it by importing it and throw it in a cell row.
  */
 export const Price = (row: any) => {
@@ -47,13 +50,25 @@ export const Status: React.FC<StatusProps> = ({ row, status }) => {
 
   const getStatusBadge = (value: any) => {
     if (status.Success?.includes(value)) {
-      return <Badge variant={"success"}>{value}</Badge>;
+      return (
+        <Badge className="text-nowrap" variant={"success"}>
+          {value}
+        </Badge>
+      );
     }
     if (status.Failed?.includes(value)) {
-      return <Badge variant={"destructive"}>{value}</Badge>;
+      return (
+        <Badge className="text-nowrap" variant={"destructive"}>
+          {value}
+        </Badge>
+      );
     }
     if (status.Pending?.includes(value)) {
-      return <Badge variant={"default"}>{value}</Badge>;
+      return (
+        <Badge className="text-nowrap" variant={"default"}>
+          {value}
+        </Badge>
+      );
     }
     return <></>;
   };
@@ -65,4 +80,47 @@ export const Percentage = (row: string | number | any) => {
   const value = row.getValue("percentage");
 
   return <span>%{value.toFixed(2)}</span>;
+};
+
+/**
+ * Used on the tables to show the next step of the MPA application on Boarding.
+ *
+ * @todo In the future, implement the Link. (just generic for now)
+ * @param row Pass the column with the next step name.
+ */
+export const NextStep = (row: string) => {
+  return (
+    <CustomButtons
+      className="relative h-fit w-full text-nowrap text-xs"
+      btnType="primary"
+    >
+      {row}
+      <i className="absolute right-2 h-full content-center">
+        {React.createElement(ArrowRight, {
+          style: { width: "15px", height: "15px" },
+        })}
+      </i>
+    </CustomButtons>
+  );
+};
+
+/**
+ * Column with the link to redirect the user to another page. (generic for now)
+ * @todo  Add the ID of the merchant on the future to link it to the right merchant
+ * @param row  The column item from the row.
+ * @param link  This is the link the user will be redirected.
+ * @param id (number)  The id of the merchant you must open.
+ */
+export const ColumnLink = (row: string, link: string, id?: number) => {
+  if (id === null || id === undefined) id = 0;
+  return (
+    <Link href={`${link}?id=${id}`} className="w-full text-nowrap">
+      <p
+        title={`Go to Merchant => ${row.toString()}`}
+        className="text-base font-semibold text-sky-500 underline"
+      >
+        {row}
+      </p>
+    </Link>
+  );
 };

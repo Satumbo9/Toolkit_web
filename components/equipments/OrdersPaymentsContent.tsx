@@ -15,28 +15,24 @@ import RecentOrdersSection from "./RecentOrdersSection";
 
 const FillOrders = () => {
   return (
-    <>
-      <section className="text-start">
-        <div className="flex gap-4 max-2xl:flex-wrap">
-          <div className="flex-1">
-            <EquipmentOrders />
-          </div>
-          <div className="flex-1">
-            <UnassignedEquipment />
-          </div>
+    <section className="text-start">
+      <div className="flex gap-4 max-2xl:flex-wrap">
+        <div className="flex-1">
+          <EquipmentOrders />
         </div>
-      </section>
-    </>
+        <div className="flex-1">
+          <UnassignedEquipment />
+        </div>
+      </div>
+    </section>
   );
 };
 
 const RecentOrders = () => {
   return (
-    <>
-      <section className="gap-2 text-start">
-        <RecentOrdersSection />
-      </section>
-    </>
+    <section className="gap-2 text-start">
+      <RecentOrdersSection />
+    </section>
   );
 };
 
@@ -105,33 +101,31 @@ const Reports = () => {
   const columns = createColumns(columnsConfig);
 
   return (
-    <>
-      <section className="text-start">
-        <div className="mt-5 grid grid-cols-2 overflow-auto max-2xl:grid-cols-1">
-          <Tabs defaultValue="DateType" className="size-full">
-            <TabsList>
-              {data.map((tab) => (
-                <TabsTrigger value={tab.value} key={tab.id}>
-                  {tab.title}
-                </TabsTrigger>
-              ))}
-            </TabsList>
+    <section className="text-start">
+      <div className="mt-5 grid grid-cols-2 overflow-auto max-2xl:grid-cols-1">
+        <Tabs defaultValue="DateType" className="size-full">
+          <TabsList>
             {data.map((tab) => (
-              <TabsContent value={tab.value} key={tab.id}>
-                <EquipmentReportForm type={tab.value} />
-              </TabsContent>
+              <TabsTrigger value={tab.value} key={tab.id}>
+                {tab.title}
+              </TabsTrigger>
             ))}
-          </Tabs>
-          <DataTable
-            columns={columns}
-            data={equipmentData}
-            enableSorting={true}
-            enableColumnFilter={true}
-            filteredBy="brand"
-          />
-        </div>
-      </section>
-    </>
+          </TabsList>
+          {data.map((tab) => (
+            <TabsContent value={tab.value} key={tab.id}>
+              <EquipmentReportForm type={tab.value} />
+            </TabsContent>
+          ))}
+        </Tabs>
+        <DataTable
+          columns={columns}
+          data={equipmentData}
+          enableSorting={true}
+          enableColumnFilter={true}
+          filteredBy="brand"
+        />
+      </div>
+    </section>
   );
 };
 

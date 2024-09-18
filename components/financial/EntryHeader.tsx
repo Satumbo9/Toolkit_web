@@ -8,7 +8,7 @@ import {
   CalendarDays,
   CircleDollarSign,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import CustomButtons from "../Shared/CustomButtons";
 
 const EntryHeader = () => {
   const ACHPortalBtnRender = [
@@ -27,55 +27,77 @@ const EntryHeader = () => {
     { id: 1, title: "Services", icon: CircleDollarSign },
   ];
   return (
-    <div className="flex w-full items-center justify-between max-xl:flex-col max-xl:flex-wrap max-xl:items-start">
-      <span className="text-2xl text-blue-500 max-xl:mb-5 max-xl:text-4xl">
+    <section className="px-5">
+      <h1 className="my-5 text-center text-3xl font-semibold text-sky-500">
         Vendor Edit
-      </span>
-      <div className="flex flex-col">
-        <span className="mb-2">ACH Portal Tasks</span>
-        <div className="flex items-center gap-2 max-lg:flex-wrap">
-          {ACHPortalBtnRender.map((btn) => (
-            <Button key={btn.id} className="flex items-center gap-2">
-              {React.createElement(btn.icon)}
-              {btn.title}
-            </Button>
-          ))}
+      </h1>
+      <div className="flex justify-start gap-4 max-2xl:flex-wrap">
+        {/* ACH PORTAL TASKS */}
+        <div className="flex-1 space-y-2">
+          <span className="mb-2">ACH Portal Tasks</span>
+          <div className="flex gap-2 max-xl:flex-col">
+            {ACHPortalBtnRender.map((btn) => (
+              <CustomButtons
+                btnType="primary"
+                key={btn.id}
+                className="flex flex-1 items-center gap-2"
+              >
+                {React.createElement(btn.icon)}
+                {btn.title}
+              </CustomButtons>
+            ))}
+          </div>
+        </div>
+        {/* VENDOR */}
+        <div className="flex-1 space-y-2">
+          <span className="mb-2">Vendor</span>
+          <div className="flex items-center gap-2">
+            {VendorBtnRender.map((btn) => (
+              <CustomButtons
+                btnType="primary"
+                key={btn.id}
+                className="flex items-center gap-2"
+              >
+                {React.createElement(btn.icon)}
+                {btn.title}
+              </CustomButtons>
+            ))}
+          </div>
+        </div>
+        {/* ATTACHMENTS */}
+        <div className="flex-1 space-y-2">
+          <span className="mb-2">Attachments</span>
+          <div className="flex items-center gap-2">
+            {AttachmentsBtnRender.map((btn) => (
+              <CustomButtons
+                btnType="primary"
+                key={btn.id}
+                className="flex items-center gap-2"
+              >
+                {React.createElement(btn.icon)}
+                {btn.title}
+              </CustomButtons>
+            ))}
+          </div>
+        </div>
+        {/* SERVICES */}
+        <div className="flex-1 space-y-2">
+          <span className="mb-2">Services</span>
+          <div className="flex items-center gap-2">
+            {ServicesBtnRender.map((btn) => (
+              <CustomButtons
+                btnType="primary"
+                key={btn.id}
+                className="flex items-center gap-2"
+              >
+                {React.createElement(btn.icon)}
+                {btn.title}
+              </CustomButtons>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="flex flex-col">
-        <span className="mb-2">Vendor</span>
-        <div className="flex items-center gap-2">
-          {VendorBtnRender.map((btn) => (
-            <Button key={btn.id} className="flex items-center gap-2">
-              {React.createElement(btn.icon)}
-              {btn.title}
-            </Button>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <span className="mb-2">Attachments</span>
-        <div className="flex items-center gap-2">
-          {AttachmentsBtnRender.map((btn) => (
-            <Button key={btn.id} className="flex items-center gap-2">
-              {React.createElement(btn.icon)}
-              {btn.title}
-            </Button>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <span className="mb-2">Services</span>
-        <div className="flex items-center gap-2">
-          {ServicesBtnRender.map((btn) => (
-            <Button key={btn.id} className="flex items-center gap-2">
-              {React.createElement(btn.icon)}
-              {btn.title}
-            </Button>
-          ))}
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 

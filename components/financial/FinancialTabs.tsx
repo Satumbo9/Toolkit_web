@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { finanialMainTabs as tabs } from "@/constants";
+import { financialMainTabs as tabs } from "@/constants";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 

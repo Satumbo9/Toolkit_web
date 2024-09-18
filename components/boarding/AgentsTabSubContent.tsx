@@ -55,6 +55,7 @@ const AgentSettings = () => {
               </div>
               <CustomButtons
                 btnType="default"
+                type="button"
                 className="mt-2 flex-auto bg-gradient-to-r from-[#14ADD6] to-[#384295] px-10 text-white hover:opacity-90"
               >
                 Search

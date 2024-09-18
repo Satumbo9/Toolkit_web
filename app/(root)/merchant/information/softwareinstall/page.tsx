@@ -1,13 +1,9 @@
 "use client";
-import SoftwareInstall from '@/components/merchants/SoftwareInstall'
-import React from 'react'
+import SoftwareInstall from "@/components/merchants/SoftwareInstall";
+import React from "react";
 
 const page = () => {
-  return (
-    <>
-      <SoftwareInstall/>
-    </>
-  )
-}
+  return <SoftwareInstall />;
+};
 
-export default page
+export default page;

@@ -18,20 +18,9 @@ import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
 import { Price } from "../Shared/DataTable/CellFormat";
 import { entryData } from "@/constants";
+import { financialSchema } from "@/lib/utils";
 
 const FinancialBody = () => {
-  const financialSchema = z.object({
-    vendor: z.string(),
-    routing: z.string(),
-    account: z.string(),
-    type: z.string(),
-    date: z.string(),
-    refNo: z.string(),
-    description: z.string(),
-    amount: z.number(),
-    notes: z.string(),
-    ACHId: z.string(),
-  });
   const form = useForm<z.infer<typeof financialSchema>>({
     resolver: zodResolver(financialSchema),
     defaultValues: {
@@ -152,7 +141,7 @@ const FinancialBody = () => {
   const columns3 = createColumns(columnsConfig3);
 
   return (
-    <div>
+    <div className="mt-6">
       <div className="grid grid-cols-3 gap-3 px-5 pb-5 max-xl:grid-cols-1">
         <div className="flex flex-col">
           <Form {...form}>
@@ -244,8 +233,8 @@ const FinancialBody = () => {
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <div>
-              <Checkbox /> <span>Date Range</span>
+            <div className="mr-3 flex gap-3">
+              <Checkbox /> <span className="text-nowrap">Date Range</span>
             </div>
             <div>
               <Input placeholder="From Date" />

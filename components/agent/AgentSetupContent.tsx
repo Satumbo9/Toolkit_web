@@ -16,7 +16,7 @@ const AgentSetupContent = () => {
       <div className="h-screen w-auto">
         <Tabs
           defaultValue="residuals"
-          className="flex-auto rounded-md border border-solid border-gray-400 p-4"
+          className="flex-auto rounded-md border border-solid border-gray-400 p-4 shadow-md"
         >
           <TabsList className="">
             {AgentSetupTabs.map((tab) => (

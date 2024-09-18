@@ -9,7 +9,9 @@ const layout = async ({
 }: Readonly<{ children: React.ReactNode }>) => {
   const session = await validateRequest();
 
-  if (!session.user) return redirect("/sign-in");
+  if (!session.user) {
+    return redirect("/sign-in");
+  }
   return (
     <div>
       <section className="flex w-full items-center justify-center overflow-hidden p-4">

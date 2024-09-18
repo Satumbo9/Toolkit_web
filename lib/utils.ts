@@ -26,7 +26,7 @@ export const newMerchantSchema = z.object({
   DBA: requiredString,
   Phone: requiredString,
   Status: requiredString,
-  Approval: requiredString.date(),
+  Approval: requiredString,
   Filter: requiredString,
   Processor: requiredString,
   Fitler2: requiredString,
@@ -109,9 +109,37 @@ export const MerchantInfoSchema = z.object({
   MCCclassification: requiredString,
   Parent: requiredString,
   CloverID: requiredString,
+  SameAsLegal: z.boolean(),
 });
 
 export type MerchantInfoValues = z.infer<typeof MerchantInfoSchema>;
+
+export const merchantFeesProcSchema = z.object({
+  // Processor Information
+  Processor: requiredString,
+  IsMicampMasterIso: z.boolean(),
+  IsWavitAccount: z.boolean(),
+  IsWavitEquipReplacement: z.boolean(),
+  IsNutraAccount: z.boolean(),
+  WavitApp: z.boolean(),
+  IsFreePosProgram: z.boolean(),
+  // Fee Information
+  MerchantAnnual: z.boolean(),
+  AmountAnnual: z.string(),
+  BillingMonthAnnual: z.string(),
+  StatusNonBillingAnnual: z.string(),
+  PciAnnual: z.boolean(),
+  PciAmountAnnual: z.string(),
+  PciBillingMonthAnnual: z.string(),
+  PciStatusNonBillingAnnual: z.string(),
+  PciMonthly: z.boolean(),
+  PciAmountMonthly: z.string(),
+  PciStatusNonBillingMonthly: z.string(),
+  RateIncreases: z.boolean(),
+  RateStatusNonBilling: z.string(),
+  // MiCamp Processing Data
+  LastProcessDate: z.date()
+});
 
 export const MerchantSoftwareInstallSchema = z.object({
   SoftwareAcctNumber: requiredString,
@@ -177,6 +205,36 @@ export const MerchantAgentLeadSourceSchema = z.object({
   Agent2: requiredString,
 });
 
+export const AccountStatusSchema = z.object({
+  Activity: z.string(),
+  // OVERALL EMV COMPLIANCE
+  EmvStatus: z.string(),
+  Method: z.string(),
+  ComplianceDate: z.date(),
+  ClickVerified: z.date(),
+  // SOLID PORTFOLIO INFO 
+  ChildMid: z.boolean(),
+  ComplianceSolidDate: z.date(),
+  // SELECT OVERALL STATUS
+  OverallStatus: z.string(),
+  ReceivedDate: z.date(),
+  WithdrawnDate: z.date(),
+  SubmittedDate: z.date(),
+  ClosedDate: z.date(),
+  ApprovalDate: z.date(),
+  ReopenDate: z.date(),
+  DeclineDate: z.date(),
+  Item1: z.string(),
+  Item2: z.string(),
+  Item3: z.string(),
+});
+
+export const EquipmentSchema = z.object({
+  ReturnEquipment: z.string(),
+  ShowHistory: z.boolean(),
+  ReturnToInventory: z.boolean(),
+});
+
 export type MerchantAgentLeadSourceValues = z.infer<
   typeof MerchantAgentLeadSourceSchema
 >;
@@ -194,6 +252,35 @@ export const MerchEnterAdjustmentSchema = z.object({
 export type MerchEnterAdjustmentValues = z.infer<
   typeof MerchEnterAdjustmentSchema
 >;
+
+export const wavitTransactionsSchema = z.object({
+  FromDate: z.date(),
+  ToDate: z.date(),
+  LookForTrouble: z.boolean(),
+  LookDebitBusiness: z.boolean(),
+  SaveToC: z.boolean(),
+});
+
+export const bankOfTheWestSchema = z.object({
+  AgentRepName: z.string(),
+  AgentRepCode: z.string(),
+  BranchName: z.string(),
+  BranchCode: z.string(),
+  AbaRouting: z.string(),
+  DdaCheckingAct: z.string(),
+  FederalTaxId: z.string(),
+  Banker: z.string(),
+  BankerEmployeeId: z.string(),
+  DivisionName: z.string(),
+  DivisonLob: z.string(),
+  RegionName: z.string(),
+  Region: z.string(),
+  SegmentName: z.string(),
+  ReferralLead: z.string(),
+  Entity: z.string(),
+  ClientGroup: z.string(),
+});
+
 
 export const AgentSetupSchema = z.object({
   findAgent: requiredString,
@@ -324,6 +411,26 @@ export const newRecentOrdersSchema = z.object({
   ToDate: requiredString,
 });
 
+export const ImportDataSchema = z.object({
+  AchCredit: z.boolean(),
+  AchDebit: z.boolean(),
+  AchRejects: z.boolean(),
+  AchCreditOther: z.boolean(),
+});
+
+export const financialSchema = z.object({
+  vendor: z.string(),
+  routing: z.string(),
+  account: z.string(),
+  type: z.string(),
+  date: z.string(),
+  refNo: z.string(),
+  description: z.string(),
+  amount: z.number(),
+  notes: z.string(),
+  ACHId: z.string(),
+});
+
 // ADMIN SCHEMAS
 export const newRingCentralUtilitySchema = z.object({
   DataSource: requiredString,
@@ -444,7 +551,8 @@ export const newAddNewUserSchema = z.object({
   ConfirmPassword: requiredString,
   UserStatus: requiredString,
   InProduction: requiredString,
-  RoleId: requiredString,
+  Role: requiredString,
+  Department: requiredString,
   Manager: z.boolean(),
   Lock: requiredString,
   PermissionCreate: z.boolean(),
@@ -454,6 +562,20 @@ export const newAddNewUserSchema = z.object({
   PermissionResiduals: z.boolean(),
   Boarding: z.boolean(),
   Toolkit: z.boolean(),
+});
+
+export const newRoleSchema = z.object({
+  Id: z.string(),
+  Role: requiredString,
+  Description: requiredString,
+  Permission: requiredString,
+});
+
+export const newDepartmentSchema = z.object({
+  Id: z.string(),
+  Department: requiredString,
+  Description: requiredString,
+  Permission: requiredString,
 });
 
 // BOARDING TOOL SCHEMAS
@@ -561,6 +683,19 @@ export const boardingMerchantInfoSchema = z.object({
   DbaCity: z.string(),
   DbaState: z.string(),
   DbaZip: z.string(),
+});
+
+export const newMerchantReport = z.object({
+  BoolAgent: z.boolean(),
+  BoolAgentDate: z.boolean(),
+  BoolApprovalDate: z.boolean(),
+  BoolProcessor: z.boolean(),
+  BoolMerchant: z.boolean(),
+
+  SelectedAgent: z.string(),
+  DateFrom: z.string(),
+  DateTo: z.string(),
+  
 });
 
 // Order New Equipment

@@ -13,8 +13,8 @@ import {
   serialList,
   sortByList,
 } from "@/constants";
-import { Button } from "../ui/button";
 import DataTable from "../Shared/DataTable/DataTable";
+import CustomButtons from "../Shared/CustomButtons";
 
 const LookupSubSection = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
@@ -43,83 +43,81 @@ const LookupSubSection = () => {
   };
 
   return (
-    <>
-      <div className="rounded-md border p-2">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-            <div className="flex gap-2 p-2">
-              <div className="w-full flex-1">
-                <SelectForm
-                  control={form.control}
-                  formName={"Condition"}
-                  label="Condition"
-                  placeholder={""}
-                  content={ConditionSelectList}
-                  valueKey="id"
-                  displayKey="title"
-                  disabled={false}
-                  className=""
-                />
-              </div>
-              <div className="w-full flex-1">
-                <SelectForm
-                  control={form.control}
-                  formName="Serial"
-                  label="Serial"
-                  placeholder={""}
-                  content={serialList}
-                  valueKey="id"
-                  displayKey="title"
-                  disabled={false}
-                  className=""
-                />
-              </div>
-              <div className="w-full flex-1">
-                <SelectForm
-                  control={form.control}
-                  formName="SortBy"
-                  label="Sort By"
-                  placeholder={""}
-                  content={sortByList}
-                  valueKey="id"
-                  displayKey="title"
-                  disabled={false}
-                  className=""
-                />
-              </div>
-              <div className="content-end">
-                <Button className="block bg-gradient-to-r from-[#14ADD6] to-[#384295] px-10 text-white hover:opacity-90">
-                  Save
-                </Button>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 overflow-auto">
-              <DataTable
-                columns={columns}
-                data={LookupTable}
-                enableSorting={true}
-                enableColumnFilter={true}
-                filteredBy="brand"
+    <div className="rounded-md border p-2">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <div className="flex gap-2 p-2">
+            <div className="w-full flex-1">
+              <SelectForm
+                control={form.control}
+                formName={"Condition"}
+                label="Condition"
+                placeholder={""}
+                content={ConditionSelectList}
+                valueKey="id"
+                displayKey="title"
+                disabled={false}
+                className=""
               />
             </div>
-            <div className="flex w-full justify-end gap-2">
-              <Button className="my-5 bg-gradient-to-r from-[#828282] to-[#353535] px-5 text-white hover:opacity-90">
-                Do Inventory
-              </Button>
-              <Button className="my-5 bg-gradient-to-r from-[#14ADD6] to-[#384295] px-5 text-white hover:opacity-90">
-                Add Detail
-              </Button>
-              <Button className="my-5 bg-gradient-to-r from-[#14ADD6] to-[#384295] px-5 text-white hover:opacity-90">
-                Edit Detail
-              </Button>
-              <Button className="my-5 bg-gradient-to-r from-[#FF3333] to-[#8F0000] px-5 text-white hover:opacity-90">
-                Delete Detail
-              </Button>
+            <div className="w-full flex-1">
+              <SelectForm
+                control={form.control}
+                formName="Serial"
+                label="Serial"
+                placeholder={""}
+                content={serialList}
+                valueKey="id"
+                displayKey="title"
+                disabled={false}
+                className=""
+              />
             </div>
-          </form>
-        </Form>
-      </div>
-    </>
+            <div className="w-full flex-1">
+              <SelectForm
+                control={form.control}
+                formName="SortBy"
+                label="Sort By"
+                placeholder={""}
+                content={sortByList}
+                valueKey="id"
+                displayKey="title"
+                disabled={false}
+                className=""
+              />
+            </div>
+            <div className="content-end">
+              <CustomButtons btnType="default" className="px-10">
+                Save
+              </CustomButtons>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 overflow-auto">
+            <DataTable
+              columns={columns}
+              data={LookupTable}
+              enableSorting={true}
+              enableColumnFilter={true}
+              filteredBy="Model"
+            />
+          </div>
+          <div className="flex w-full justify-end gap-2">
+            <CustomButtons btnType="primary" className="my-5">
+              Do Inventory
+            </CustomButtons>
+            <CustomButtons btnType="default" className="my-5">
+              Add Detail
+            </CustomButtons>
+            <CustomButtons btnType="default" className="my-5">
+              Edit Detail
+            </CustomButtons>
+            <CustomButtons btnType="destructive" className="my-5">
+              Delete Detail
+            </CustomButtons>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 };
 

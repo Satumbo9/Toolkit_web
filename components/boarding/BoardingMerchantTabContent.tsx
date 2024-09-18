@@ -12,23 +12,22 @@ const BoardingMerchantTabContent = () => {
     setActiveItem(value);
   };
   return (
-    <>
+    <div>
       {/* OLD TAB TRIGGER */}
       <Tabs
         defaultValue="merchantInformation"
         className="w-full rounded-md p-4 text-center"
       >
-        <TabsList>
+        <TabsList className="gap-2">
           {boardingMerchantTabs.map((tab) => (
             <TabsTrigger
               onClick={() => handleClick(tab.value)}
               key={tab.id}
               value={tab.value}
               title={tab.title}
+              className="content-center gap-2"
             >
-              <p className="hidden max-xl:block">
-                {React.createElement(tab.icon)}
-              </p>
+              <i className="size-fit">{React.createElement(tab.icon)}</i>
               <p className="max-xl:hidden">{tab.title}</p>
             </TabsTrigger>
           ))}
@@ -37,7 +36,7 @@ const BoardingMerchantTabContent = () => {
           activeItem || "merchantInformation",
         )}
       </Tabs>
-    </>
+    </div>
   );
 };
 
