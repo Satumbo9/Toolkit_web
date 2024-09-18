@@ -13,8 +13,8 @@ const UsersTabContent = () => {
   };
 
   return (
-    <Tabs defaultValue="users" className="w-full rounded-md p-4 text-center">
-      <TabsList>
+    <Tabs defaultValue="users" className="size-full rounded-md p-4 text-center">
+      <TabsList className="">
         {userAdminTabs.map((tab) => (
           <TabsTrigger
             onClick={() => handleClick(tab.value)}

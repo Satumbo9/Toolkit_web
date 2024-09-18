@@ -5,11 +5,7 @@ import {
 } from "@/components/Shared/DataTable/Columns";
 import DataTable from "@/components/Shared/DataTable/DataTable";
 import { Button } from "@/components/ui/button";
-import {
-  DepartmentListTable,
-  RolesListTable,
-  usersTable,
-} from "@/constants";
+import { DepartmentListTable, RolesListTable, usersTable } from "@/constants";
 import { DataTypes } from "@/types";
 import React from "react";
 import Link from "next/link";
@@ -23,6 +19,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import NewRole from "./NewRole";
+import NewDepartment from "./NewDepartment";
 
 const Users = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
@@ -96,16 +93,16 @@ const Roles = () => {
       </p>
       <div className="">
         <Dialog>
-          <DialogTrigger asChild>
-            <div className="text-end">
+          <div className="text-end">
+            <DialogTrigger asChild>
               <Button className="px-10">Create New Role</Button>
-            </div>
-          </DialogTrigger>
+            </DialogTrigger>
+          </div>
           <DialogContent className="max-lg:max-w-[400px] lg:max-w-[600px]">
             <DialogHeader>
               <DialogTitle>Add a new Role</DialogTitle>
             </DialogHeader>
-            <NewRole type="New" />
+            <NewRole />
           </DialogContent>
           <DialogDescription />
         </Dialog>
@@ -145,16 +142,16 @@ const Departments = () => {
       </p>
       <div className="">
         <Dialog>
-          <DialogTrigger asChild>
-            <div className="text-end">
+          <div className="text-end">
+            <DialogTrigger asChild>
               <Button className="px-10">Create New Department</Button>
-            </div>
-          </DialogTrigger>
+            </DialogTrigger>
+          </div>
           <DialogContent className="max-lg:max-w-[400px] lg:max-w-[600px]">
             <DialogHeader>
               <DialogTitle>Add a new Department</DialogTitle>
             </DialogHeader>
-            <NewRole type="New" />
+            <NewDepartment  />
           </DialogContent>
           <DialogDescription />
         </Dialog>
@@ -173,7 +170,6 @@ const Departments = () => {
     </section>
   );
 };
-
 
 export default function RenderUserAdminComponents(value: string) {
   switch (value) {

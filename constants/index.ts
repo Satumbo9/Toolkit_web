@@ -31,8 +31,16 @@ import {
   Upload,
   User2Icon,
   UsersRound,
-  TableProperties
-
+  TableProperties,
+  Calculator,
+  ClipboardPenLine,
+  File,
+  MonitorDot,
+  BookUser,
+  UserRoundCog,
+  Tags,
+  SquareCheckBig,
+  SquareActivity,
 } from "lucide-react";
 import { z } from "zod";
 import { FormData  } from "@/types/types";
@@ -3119,21 +3127,25 @@ export const adminResidualsTabs = [
     id: "1",
     title: "Calculate",
     value: "calculate",
+    icon: Calculator,
   },
   {
     id: "2",
     title: "Adjustments",
     value: "adjustments",
+    icon: ClipboardPenLine,
   },
   {
     id: "3",
     title: "Reports",
     value: "reports",
+    icon: File,
   },
   {
     id: "4",
     title: "Display Residuals",
     value: "displayResiduals",
+    icon: MonitorDot,
   },
 ];
 
@@ -3399,11 +3411,13 @@ export const adminDatabaseTabs = [
     id: "1",
     title: "Users",
     value: "users",
+    icon: UsersRound,
   },
   {
     id: "2",
     title: "Audit",
     value: "audit",
+    icon: SquareActivity,
   },
 ];
 
@@ -3731,11 +3745,13 @@ export const supportTicketsTabs = [
     id: "1",
     title: "My Tickets",
     value: "myTickets",
+    icon: Tags,
   },
   {
     id: "2",
     title: "Solved",
     value: "solved",
+    icon: SquareCheckBig,
   },
 ];
 // Merchant Test
@@ -10099,11 +10115,13 @@ export const boardingAgentsTabs = [
     id: "1",
     title: "Agent Details",
     value: "agentDetails",
+    icon: BookUser,
   },
   {
     id: "2",
     title: "Agent Settings",
     value: "agentSettings",
+    icon: UserRoundCog,
   },
 ];
 

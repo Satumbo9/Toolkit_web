@@ -8,15 +8,7 @@ import { InputForm, TextAreaForm } from "../Shared/InstantForm";
 import { newRoleSchema } from "@/lib/utils";
 import CustomButtons from "../Shared/CustomButtons";
 
-const NewRole = ({
-  type,
-  isOpen,
-  setIsOpen,
-}: {
-  type: string;
-  isOpen?: any;
-  setIsOpen?: any;
-}) => {
+const NewRole = ({ isOpen, setIsOpen }: { isOpen?: any; setIsOpen?: any }) => {
   const form = useForm<z.infer<typeof newRoleSchema>>({
     resolver: zodResolver(newRoleSchema),
     defaultValues: {
@@ -33,7 +25,7 @@ const NewRole = ({
   return (
     <div>
       <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <InputForm
             control={form.control}
             formName="Id"
@@ -61,11 +53,12 @@ const NewRole = ({
             placeholder="0"
             type="number"
           />
-          <div className="my-4 flex justify-center gap-2">
-            <CustomButtons className="px-4" btnType="primary" type="reset">
-              Reset
-            </CustomButtons>
-            <CustomButtons className="px-4" btnType="default" type="submit">
+          <div className="flex justify-center gap-2">
+            <CustomButtons
+              className="m-auto my-4 px-10"
+              btnType="default"
+              type="submit"
+            >
               Create
             </CustomButtons>
           </div>

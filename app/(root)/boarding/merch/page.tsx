@@ -19,7 +19,7 @@ import { z } from "zod";
 import { ColumnLink, Status } from "@/components/Shared/DataTable/CellFormat";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const columnsConfig: ColumnConfig<DataTypes>[] = [
     { accessorKey: "Id", header: "Id" },
@@ -123,4 +123,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

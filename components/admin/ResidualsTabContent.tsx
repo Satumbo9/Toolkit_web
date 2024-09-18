@@ -17,14 +17,16 @@ const ResidualsTabContent = () => {
       defaultValue="calculate"
       className="w-full rounded-md p-4 text-center"
     >
-      <TabsList>
+      <TabsList className="gap-2">
         {adminResidualsTabs.map((tab) => (
           <TabsTrigger
             onClick={() => handleClick(tab.value)}
             key={tab.id}
             value={tab.value}
+            className="gap-2"
           >
-            {tab.title}
+            <i className="">{React.createElement(tab.icon)}</i>
+            <p className="max-lg:hidden">{tab.title}</p>
           </TabsTrigger>
         ))}
       </TabsList>

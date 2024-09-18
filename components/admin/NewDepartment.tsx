@@ -5,20 +5,18 @@ import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { InputForm, TextAreaForm } from "../Shared/InstantForm";
-import { newRoleSchema } from "@/lib/utils";
+import { newDepartmentSchema } from "@/lib/utils";
 import CustomButtons from "../Shared/CustomButtons";
 
 const NewDepartment = ({
-  type,
   isOpen,
   setIsOpen,
 }: {
-  type: string;
   isOpen?: any;
   setIsOpen?: any;
 }) => {
-  const form = useForm<z.infer<typeof newRoleSchema>>({
-    resolver: zodResolver(newRoleSchema),
+  const form = useForm<z.infer<typeof newDepartmentSchema>>({
+    resolver: zodResolver(newDepartmentSchema),
     defaultValues: {
       Id: "1",
       Description: "",
@@ -26,14 +24,14 @@ const NewDepartment = ({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof newRoleSchema>) => {
+  const onSubmit = (values: z.infer<typeof newDepartmentSchema>) => {
     console.log(values);
   };
 
   return (
     <div>
       <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <InputForm
             control={form.control}
             formName="Id"
@@ -61,11 +59,12 @@ const NewDepartment = ({
             placeholder="0"
             type="number"
           />
-          <div className="my-4 flex justify-center gap-2">
-            <CustomButtons className="px-4" btnType="primary" type="reset">
-              Reset
-            </CustomButtons>
-            <CustomButtons className="px-4" btnType="default" type="submit">
+          <div className="flex justify-center gap-2">
+            <CustomButtons
+              className="m-auto my-2 px-10"
+              btnType="default"
+              type="submit"
+            >
               Create
             </CustomButtons>
           </div>

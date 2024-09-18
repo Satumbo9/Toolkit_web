@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {  boardingAgentsTabs } from "@/constants";
+import { boardingAgentsTabs } from "@/constants";
 import RenderAgentsTabComponents from "./AgentsTabSubContent";
 
 const BoardingAgentTabContent = () => {
@@ -16,14 +16,17 @@ const BoardingAgentTabContent = () => {
       defaultValue="agentDetails"
       className="w-full rounded-md p-4 text-center"
     >
-      <TabsList>
+      <TabsList className="gap-2">
         {boardingAgentsTabs.map((tab) => (
           <TabsTrigger
             onClick={() => handleClick(tab.value)}
             key={tab.id}
             value={tab.value}
+            title={tab.title}
+            className="gap-2"
           >
-            {tab.title}
+            <i className="size-fit">{React.createElement(tab.icon)}</i>
+            <p className="max-lg:hidden">{tab.title}</p>
           </TabsTrigger>
         ))}
       </TabsList>
