@@ -3115,6 +3115,73 @@ export const RecentOrderTable = [
   },
 ];
 
+// FSP DATA
+export const FspCategoryList = [
+  {
+    id: 1,
+    title: "Accounting",
+    value: "accounting",
+  },
+  {
+    id: 2,
+    title: "Customer Service",
+    value: "customerService",
+  },
+  {
+    id: 3,
+    title: "Risk Management",
+    value: "RiskManagement",
+  }
+];
+
+export const FspReportNameList = [
+  {
+    id: 1,
+    title: "MerchRep",
+    value: "merchRep",
+  },
+  {
+    id: 2,
+    title: "NoBatch7Days",
+    value: "noBatch7Days",
+  },
+  {
+    id: 3,
+    title: "ZeroAuth",
+    value: "ZeroAuth",
+  }
+];
+
+export const fspForm = [
+  {
+    id: 1,
+    title: "Category",
+    type: "selectbox",
+    placeholder: "Select a category",
+    formName: "limitReportsToSpecificDate",
+    value: "",
+    content: "",
+  },
+  {
+    id: 2,
+    title: "Report Name",
+    type: "selectbox",
+    placeholder: "Select a name",
+    formName: "ReportName",
+    value: "",
+    content: "",
+  },
+  {
+    id: 3,
+    title: "Use ",
+    type: "selectbox",
+    placeholder: "Select a name",
+    formName: "ReportName",
+    value: "",
+    content: "",
+  },
+
+];
 // ADMIN DATA
 
 export const adminMainTabs = [
@@ -3469,6 +3536,7 @@ export const userAdminTabs = [
     icon: UsersRound,
   },
 ];
+
 export const usersTable = [
   {
     Id: 1,
@@ -4673,13 +4741,16 @@ export const bankingInformationFspForm = [
     title: "Checking",
     placeholder: "Checking",
     type: "radio",
-  },
-  {
-    id: 2,
-    formName: "CheckingSavings",
-    title: "Savings",
-    placeholder: "Savings",
-    type: "radio",
+    options: [
+      {
+        label: "Checking",
+        value: "checking"
+      },
+      {
+        label: "Savings",
+        value: "savings"
+      },
+    ],
   },
 ];
 
@@ -4690,13 +4761,16 @@ export const acceptingVisaMcDiscoverFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
-  },
-  {
-    id: 2,
-    formName: "AcceptingVisaMcDiscover",
-    type: "radio",
-    placeholder: "No",
-    title: "No",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes"
+      },
+      {
+        label: "No",
+        value: "No"
+      },
+    ],
   },
 ];
 
@@ -4707,13 +4781,16 @@ export const hasBeenTerminatedFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
-  },
-  {
-    id: 2,
-    formName: "hasBeenTerminated",
-    type: "radio",
-    placeholder: "No",
-    title: "No",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes"
+      },
+      {
+        label: "No",
+        value: "No"
+      },
+    ],
   },
 ];
 
@@ -4724,14 +4801,18 @@ export const americaExpressVolumeFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes"
+      },
+      {
+        label: "No",
+        value: "No"
+      },
+    ],
   },
-  {
-    id: 2,
-    formName: "AmericaExpressVolume",
-    type: "radio",
-    placeholder: "No",
-    title: "No",
-  },
+
 ];
 
 export const seasonalMerchantFspForm = [
@@ -4741,14 +4822,18 @@ export const seasonalMerchantFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes"
+      },
+      {
+        label: "No",
+        value: "No"
+      },
+    ],
   },
-  {
-    id: 2,
-    formName: "SeasonalMerchant",
-    type: "radio",
-    placeholder: "No",
-    title: "No",
-  },
+
 ];
 
 export const independentServiceFspForm = [
@@ -4758,13 +4843,16 @@ export const independentServiceFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
-  },
-  {
-    id: 2,
-    formName: "IndependentService",
-    type: "radio",
-    placeholder: "No",
-    title: "No",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes"
+      },
+      {
+        label: "No",
+        value: "No"
+      },
+    ],
   },
 ];
 
@@ -4775,14 +4863,18 @@ export const usesFulfillHouseFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes"
+      },
+      {
+        label: "No",
+        value: "No"
+      },
+    ],
   },
-  {
-    id: 2,
-    formName: "UsesFulfillHouse",
-    type: "radio",
-    placeholder: "No",
-    title: "No",
-  },
+ 
 ];
 
 // MO/TO QUESTIONAIRE

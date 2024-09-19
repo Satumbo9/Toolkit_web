@@ -80,6 +80,7 @@ import {
   InputForm,
   TextAreaForm,
   SwitchForm,
+  RadioForm,
 } from "../Shared/InstantForm";
 import CustomButtons from "../Shared/CustomButtons";
 import { Switch } from "../ui/switch";
@@ -144,6 +145,7 @@ const MerchantDetail = () => {
     console.log(value);
   };
 
+  const [einSsn, setEinSsn] = useState("");
   return (
     <section className="text-start">
       <Form {...form}>
@@ -195,23 +197,25 @@ const MerchantDetail = () => {
             formFields={dbaTaxInformationFspForm}
             gridCols={"2"}
           />
-          <div className="flex items-center gap-2">
-            <InputForm
+          <div className="my-4">
+            <RadioForm
               control={form.control}
               formName="EinSsn"
               label=""
-              type="radio"
-              className="w-fit"
+              options={[
+                {
+                  label: "EIN",
+                  value: "ein",
+                },
+                {
+                  label: "SSN",
+                  value: "ssn",
+                },
+              ]}
+              className="size-fit"
+              setState={setEinSsn}
+              state={einSsn}
             />
-            <label className="mt-2">EIN</label>
-            <InputForm
-              control={form.control}
-              formName="EinSsn"
-              label=""
-              type="radio"
-              className="ml-4 w-fit"
-            />
-            <label className="mt-2">SSN</label>
           </div>
 
           {/* STATEMENTS INFORMATION SECTION */}
@@ -413,15 +417,12 @@ const FinancialInformation = () => {
       BankName: "",
       BankRouting: "",
       BankAccounting: "",
-      // Sales
       AcceptingVisaMcDiscover: "",
       hasBeenTerminated: "",
       Reason: "",
-      // Settings
       StoreFrontSwipe: 0,
       Internet: 0,
       ManuallyKeyed: 0,
-      // SERVICE REQUESTED
       VisaMcAvgTransaction: "",
       VisaMcHighestTransaction: "",
       VisaMcGrossMoSales: "",
@@ -431,10 +432,8 @@ const FinancialInformation = () => {
       AmexOptBlueAvgTransaction: "",
       AmexOptBlueHighestTransaction: "",
       AmexOptBlueGrossMoSales: "",
-      // AMERICAN EXPRESS VOLUME ? 1,000,000 ANNUALLY?
       AmericaExpressVolume: "",
       AmericanExpressVolumeAccount: "",
-      // DISCOVER RETAINED
       DiscoverAccount: "",
       Visa: false,
       Mastercard: false,
@@ -444,7 +443,6 @@ const FinancialInformation = () => {
       EBT: false,
       CashBenefit: false,
       FnsAccount: 0,
-      // SEASONAL MERCHANT
       SeasonalMerchant: false,
       January: false,
       February: false,
@@ -458,18 +456,13 @@ const FinancialInformation = () => {
       October: false,
       November: false,
       December: false,
-      // DOES THE MERCHANT USE AN INDEPENDENT SERVICE THAT
-      // STORES, MAINTAINS OR TRANSMITS CARDHOLDER INFO?
       IndependentService: false,
       IndependentServiceName: "",
       IndependentServicePhone: "",
-      // DOES MERCHANT USE A FULFILLMENT HOUSE TO FULFILL PRODUCT?
       UsesFulfillHouse: false,
       FulfillHouseName: "",
       FulfillHousePhone: "",
-      // GENERAL SETTINGS
       OptOut: false,
-      // RETURN POLICY
       ReturnPolicy: "",
       PolicyDescription: "",
     },
@@ -575,7 +568,6 @@ const FinancialInformation = () => {
           <FormGeneration
             formControl={form.control}
             formFields={hasBeenTerminatedFspForm}
-            gridCols={"5"}
           />
 
           <InputForm
@@ -584,6 +576,7 @@ const FinancialInformation = () => {
             label="Reason:"
             placeholder="Type your reason."
             className="w-1/2"
+            disabled={form.getValues("hasBeenTerminated") !== "Yes"}
           />
           {/* SETTINGS INFORMATION */}
           <h1 className="mt-5 text-2xl font-bold text-sky-500">Settings</h1>
@@ -725,7 +718,7 @@ const FinancialInformation = () => {
                 formFields={seasonalMerchantFspForm}
                 gridCols={"4"}
               />
-              <p>If Yes, indicate which months:</p>
+              <p className="my-2">If Yes, indicate which months:</p>
               <div className="grid grid-flow-col grid-rows-4 gap-2 max-xl:grid-rows-6">
                 {seasonalMonthsFspForm.map((item) => {
                   return (
