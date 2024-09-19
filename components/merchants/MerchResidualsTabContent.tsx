@@ -24,8 +24,8 @@ const MerchResidualsTabContent = () => {
             value={tab.value}
             className="gap-2"
           >
-            {React.createElement(tab.icon)}
-            {tab.title}
+            <i className="">{React.createElement(tab.icon)}</i>
+           <p className="">{tab.title}</p> 
           </TabsTrigger>
         ))}
       </TabsList>

@@ -460,6 +460,7 @@ export const newFirstDataOmahaSchema = z.object({
   To: requiredString,
   CalculateIndividualMID: requiredString,
   Status: requiredString,
+
 });
 
 export const newAdjustmentCriteriaSchema = z.object({

@@ -22,7 +22,6 @@ const DatabaseTabContent = () => {
             className="gap-2"
              
           >
-              {React.createElement(tab.icon)}
             <i className="">{React.createElement(tab.icon)}</i>
             <p className="max-lg:hidden">{tab.title}</p>
     

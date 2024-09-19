@@ -31,8 +31,9 @@ const DocLibraryTabContent = () => {
             key={tab.id}
             value={tab.value}
             title={tab.title}
+            className="gap-2"
           >
-            <p className="hidden max-xl:block">{React.createElement(tab.icon)}</p>
+            <i className="max-xl:block">{React.createElement(tab.icon)}</i>
             <p className="max-xl:hidden">{tab.title}</p>
           </TabsTrigger>
         ))}

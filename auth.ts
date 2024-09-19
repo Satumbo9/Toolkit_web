@@ -32,7 +32,7 @@ interface DatabaseUserAttributes {
 
 declare module "lucia" {
   // eslint-disable-next-line no-unused-vars
-  interface Register {
+  interface Register { 
     Lucia: typeof lucia;
     DatabaseUserAttributes: DatabaseUserAttributes;
   }
