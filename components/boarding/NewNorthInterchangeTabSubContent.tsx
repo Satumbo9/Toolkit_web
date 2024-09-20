@@ -59,6 +59,7 @@ import {
   InputForm,
   SwitchForm,
   NorthFormGeneration,
+  InputButtonForm,
 } from "../Shared/InstantForm";
 import CustomButtons from "../Shared/CustomButtons";
 import { Progress } from "@/components/ui/progress";
@@ -516,7 +517,7 @@ const ProgrammingRequest = () => {
     console.log(id);
     setActiveSwitchId((prevId) => (prevId === id ? undefined : id));
   };
-
+  const [shipPriority, setShipPriority] = useState("2 Days");
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
@@ -730,7 +731,64 @@ const ProgrammingRequest = () => {
                 className=""
               />
             </div>
-            <div className="flex-auto content-end">
+            <div className="grid flex-auto grid-cols-5 items-end gap-2">
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Ground"}
+                type="button"
+                value={"Ground"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Ground"}
+                onChange={() => setShipPriority("Ground")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"2 Days"}
+                type="button"
+                value={"2 Days"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "2 Days"}
+                onChange={() => setShipPriority("2 Days")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"3 Days"}
+                type="button"
+                value={"3 Days"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "3 Days"}
+                onChange={() => setShipPriority("3 Days")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Standard"}
+                type="button"
+                value={"Standard"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Standard"}
+                onChange={() => setShipPriority("Standard")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Priority"}
+                type="button"
+                value={"Priority"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Priority"}
+                onChange={() => setShipPriority("Priority")}
+              />
+            </div>
+            <div className="hidden flex-auto content-end">
               <FormGeneration
                 formControl={form.control}
                 formFields={shipPriorityFspForm}

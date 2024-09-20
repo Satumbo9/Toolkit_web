@@ -99,6 +99,73 @@ export const InputForm = <
   );
 };
 
+export const InputButtonForm = <
+  T extends z.ZodType<any, any>,
+  S extends string | number = string | number,
+>({
+  control,
+  formName,
+  label,
+  placeholder,
+  type,
+  className,
+  state,
+  disabled,
+  id,
+  value,
+  isActive,
+  onChange,
+  setState,
+}: {
+  control: Control<z.infer<T>>;
+  formName: FieldPath<z.infer<T>>;
+  label: string;
+  placeholder?: string;
+  type?: React.HTMLInputTypeAttribute;
+  className?: string;
+  state?: S;
+  disabled?: any;
+  id?: any;
+  value: any;
+  isActive?: boolean;
+  onChange?: () => void;
+  setState?: React.Dispatch<React.SetStateAction<S>>;
+}) => {
+  const classActive = isActive ? "bg-sky-500" : "";
+  return (
+    <FormField
+      control={control}
+      name={formName}
+      render={({ field }) => (
+        <FormItem>
+          <FormControl>
+            <Input
+              placeholder={placeholder}
+              id={id}
+              {...field}
+              value={value}
+              onClick={(e) => {
+                field.onChange(value);
+                if(onChange) {
+                  onChange();
+                }
+              }}
+              type="button"
+              className={cn(
+                className,
+                classActive,
+                "transition delay-50 cursor-pointer duration-300 hover:border-sky-500",
+              )}
+              disabled={disabled}
+              
+            />
+          </FormControl>
+        </FormItem>
+      )}
+    />
+  );
+};
+
 export const SelectForm = <
   T extends z.ZodType<any, any>,
   ItemTypes extends ContentItem,
@@ -226,8 +293,8 @@ export const CheckboxForm = <T extends z.ZodType<any, any>>({
                 id={formName}
                 {...field}
               />
-              <FormLabel className="hidden">{placeholder}</FormLabel>
-              <label htmlFor={formName} className="ml-3">
+              <FormLabel className="hidden">{placeholder} aa</FormLabel>
+              <label htmlFor={formName} className="mb-0.5 ml-2 cursor-pointer">
                 {placeholder}
               </label>
             </div>
@@ -292,6 +359,11 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
   );
 };
 
+/**
+ * It's mandatory to use the ID if you would like to use the Toggle function.
+ *
+ * @returns A Switch Input.
+ */
 export const SwitchForm = <T extends z.ZodType<any, any>>({
   control,
   formName,
@@ -319,7 +391,8 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
             <div className={cn("flex h-full space-x-5", className)}>
               <FormControl>
                 <Switch
-                  checked={!isActive ? field.value : isActive}
+                  // checked={!isActive ? field.value : isActive}
+                  checked={isActive}
                   onChange={(e) => {
                     e.stopPropagation();
                   }}
@@ -353,6 +426,7 @@ export const RadioForm = <
   className,
   labelClass,
   state,
+  disabled,
   setState,
   onClick,
 }: {
@@ -363,6 +437,7 @@ export const RadioForm = <
   className?: string;
   labelClass?: string;
   state: S;
+  disabled?: boolean;
   setState: React.Dispatch<React.SetStateAction<S>>;
   onClick?: () => void;
 }) => {
@@ -373,7 +448,7 @@ export const RadioForm = <
       render={({ field }) => (
         <FormItem>
           <FormControl>
-            <div className="space-y-3">
+            <div className="space-y-6">
               {options.map((option) => (
                 <div key={option.value} className="flex gap-2">
                   <Input
@@ -389,12 +464,13 @@ export const RadioForm = <
                         setState(value);
                       }
                     }}
-                    className={className}
+                    className={cn(className, "cursor-pointer")}
                     onClick={onClick}
+                    disabled={disabled}
                   />
                   <FormLabel
                     htmlFor={`${formName}-${option.value}`}
-                    className="pt-0.5"
+                    className="pt-0.5 cursor-pointer"
                   >
                     {option.label}
                   </FormLabel>
@@ -417,11 +493,7 @@ export const RadioForm = <
  * how many fields and the type of the fields (radio, checkbox, input..).
  * @gridCols A string with a number of how many cols you want on the form.
  *  */
-export const FormGeneration = ({
-  formControl,
-  formFields,
-  gridCols,
-}: any) => {
+export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
   // Splitting by two to show the grid cols in the mobile view.
   const gridColsMobile = gridCols / 2;
   const roundedCols = Math.round(gridColsMobile);
@@ -438,6 +510,7 @@ export const FormGeneration = ({
           type: string;
           formName: string;
           title: string;
+          value?: string | number;
           options: { label: string; value: string }[];
           placeholder?: string | undefined;
         }) =>
@@ -449,8 +522,8 @@ export const FormGeneration = ({
                 label={item.title}
                 placeholder={item.placeholder}
                 content={item.content}
-                valueKey="id"
-                displayKey="name"
+                valueKey="value"
+                displayKey="title"
               />
             </div>
           ) : item.type === "checkbox" ? (

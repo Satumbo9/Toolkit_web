@@ -63,7 +63,7 @@ const NewOmahaTabContent = () => {
   };
 
   return (
-    <>
+    <div>
       <div className="relative mt-5 flex justify-center">
         {/* Container for circles and line */}
         <div className="relative flex items-center">
@@ -129,7 +129,7 @@ const NewOmahaTabContent = () => {
         </TabsList>
         {RenderNewOmahaComponents(activeItem || "merchantDetail")}
       </Tabs> */}
-    </>
+    </div>
   );
 };
 

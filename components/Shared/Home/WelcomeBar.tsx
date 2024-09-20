@@ -10,7 +10,7 @@ const WelcomeBar = ({ user }: any) => {
             Welcome <span className="text-sky-500">&nbsp;{user}</span>
           </h1>
           <p className="text-[1.2rem]">
-            Toolkit web, better, faster, and more precise than ever before
+            Toolkit web, better, faster, and more precise than ever before.
           </p>
         </div>
         <div className="max-sm:hidden">

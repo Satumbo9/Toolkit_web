@@ -30,8 +30,10 @@ const LeadsTabContent = () => {
             onClick={() => handleClick(tab.value)}
             key={tab.id}
             value={tab.value}
+            className="gap-2"
           >
-            {tab.title}
+            <i>{React.createElement(tab.icon)}</i>
+            <p className="max-lg:hidden">{tab.title}</p>
           </TabsTrigger>
         ))}
       </TabsList>

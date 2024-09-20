@@ -652,7 +652,21 @@ export const boardingAgentSettingsSchema = z.object({
   NorthInterMonthlyStatementFee: requiredNumber,
 })
 
-
+/**
+ * This Schema is to create a generic application,
+ * the user can create or just save it and finish 
+ * the application later.
+ * 
+ * @todo - Check with the boarding users,
+ * what would be the most commom fields to 
+ * start an application and then implement it.
+ *
+ */
+export const newBoardingAppliactionSchema = z.object({
+  Name: requiredString,
+  Email: requiredString,
+  ApplicationType: requiredString,
+})
 
 export const newSupportTicketSchema = z.object({
   Subject: requiredString,
@@ -738,7 +752,7 @@ export const newOrderInfoSchema = z.object({
 export const merchantInformationFspSchema = z.object({
   // DBA Information Section
   MerchantName: z.string(),
-  EmailStatements: z.string(),
+  EmailStatements: z.string().email(),
   Phone: z.string(),
   Fax: z.string(),
   ContactName: z.string(),
@@ -819,7 +833,7 @@ export const financialInformationFspSchema = z.object({
   CashBenefit: z.boolean(),
   FnsAccount: z.number(),
   // SEASONAL MERCHANT
-  SeasonalMerchant: z.boolean(),
+  SeasonalMerchant: z.string(),
   January: z.boolean(),
   February: z.boolean(),
   March: z.boolean(),
@@ -834,11 +848,11 @@ export const financialInformationFspSchema = z.object({
   December: z.boolean(),
   // DOES THE MERCHANT USE AN INDEPENDENT SERVICE THAT
   // STORES, MAINTAINS OR TRANSMITS CARDHOLDER INFO?
-  IndependentService: z.boolean(),
+  IndependentService: z.string(),
   IndependentServiceName: z.string(),
   IndependentServicePhone: z.string(),
   // DOES MERCHANT USE A FULFILLMENT HOUSE TO FULFILL PRODUCT?
-  UsesFulfillHouse: z.boolean(),
+  UsesFulfillHouse: z.string(),
   FulfillHouseName: z.string(),
   FulfillHousePhone: z.string(),
   // GENERAL SETTINGS
@@ -865,7 +879,7 @@ export const moToQuestionaireFspSchema = z.object({
   CardInfoWhoEnters: z.string(),
   CardInfoOtherDescription: z.string(),
   // Do you own your own Product/Inventory (if no, wehere is inventory stored)
-  OwnProd: z.boolean(),
+  OwnProd: z.string(),
   OwnProdBusinessOther: z.string(),
   OwnProdOtherDescription: z.string(),
   // Who processes the order
@@ -878,19 +892,19 @@ export const moToQuestionaireFspSchema = z.object({
   WhoShips: z.string(),
   DaysToShip: z.string(),
   // Delivery Receipt Requested
-  DeliveryReceiptRequested: z.boolean(),
+  DeliveryReceiptRequested: z.string(),
   // Is the payment Encrypted By SSL or Better?
-  IsPaymentEncrypted: z.boolean(),
+  IsPaymentEncrypted: z.string(),
   Certificate: z.string(),
   CertificateIssuer: z.string(),
   ExpirationDate: z.date(),
-  IndividualShared: z.boolean(),
+  IndividualShared: z.string(),
 });
 
 // MERCHANT OWNER
 export const merchantOwnerFspSchema = z.object({
   // Has merchant/owner/principals ever filed for bankruptcy
-  HasFiledForBankruptcy: z.boolean(),
+  HasFiledForBankruptcy: z.string(),
   Account: z.number(),
 });
 
@@ -920,7 +934,7 @@ export const addMerchantOwnerFspSchema = z.object({
 // ADD NEW MERCHANT OWNER FORM
 export const pricingInformationFspSchema = z.object({
   // Has merchant/owner/principals ever filed for bankruptcy
-  PassTrueInterchange: z.boolean(),
+  PassTrueInterchange: z.string(),
   PassDuesAndAssesments: z.string(),
   PricingType: z.string(),
   // TIERED
@@ -1020,7 +1034,7 @@ export const programmingRequestFspSchema = z.object({
   AutoCloseTime: z.string(),
   TipLine: z.boolean(),
   TipLineType: z.string(),
-  Server: z.boolean(),
+  Server: z.string(),
   SuggestedTipPercentages: z.string(),
   SalesTax: z.number(),
   MessageToTheBoarding: z.string(),
@@ -1029,6 +1043,10 @@ export const programmingRequestFspSchema = z.object({
   ShipName: z.string(),
   ShipPriority: z.string(),
   UseExistingAddress: z.string(),
+  UseLegalBusiness: z.boolean(),
+  UseLegalBusinessDba: z.boolean(),
+  UseAgent: z.boolean(),
+  NoAddress: z.boolean(),
   ShipAddress: z.string(),
   ShipCity: z.string(),
   ShipState: z.string(),

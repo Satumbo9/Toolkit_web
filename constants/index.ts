@@ -41,6 +41,9 @@ import {
   Tags,
   SquareCheckBig,
   SquareActivity,
+  Link,
+  CircleArrowUp,
+  Send,
 } from "lucide-react";
 import { z } from "zod";
 import { FormData  } from "@/types/types";
@@ -3795,16 +3798,19 @@ export const leadsTabs = [
     id: "1",
     title: "MiCamp Leads",
     value: "miCampLeads",
+    icon: Link,
   },
   {
     id: "2",
     title: "North Leads",
     value: "northLeads",
+    icon: CircleArrowUp,
   },
   {
     id: "3",
     title: "FSP Leads",
     value: "fspLeads",
+    icon: Send,
   },
 ];
 
@@ -4403,7 +4409,6 @@ export const dbaAddressFspForm = [
     placeholder: "AZ",
     formName: "State",
     value: "",
-    // content: ModelSelectList,
   },
   {
     id: 5,
@@ -4412,7 +4417,6 @@ export const dbaAddressFspForm = [
     placeholder: "Zip",
     formName: "PostalCode",
     value: "",
-    // content: ConditionSelectList,
   },
 ];
 
@@ -4448,7 +4452,6 @@ export const dbaLegalInformationFspForm = [
     placeholder: "AZ",
     formName: "LegalState",
     value: "",
-    // content: ModelSelectList,
   },
   {
     id: 5,
@@ -4457,7 +4460,6 @@ export const dbaLegalInformationFspForm = [
     placeholder: "Zip",
     formName: "LegalPostalCode",
     value: "",
-    // content: ConditionSelectList,
   },
 ];
 
@@ -4502,7 +4504,6 @@ export const dbaTaxInformationFspForm = [
     placeholder: "Zip",
     formName: "TypeOfServicesOffered",
     value: "",
-    // content: ConditionSelectList,
   },
   {
     id: 6,
@@ -4511,7 +4512,6 @@ export const dbaTaxInformationFspForm = [
     placeholder: "Type a symbola",
     formName: "StockSymbol",
     value: "",
-    // content: ConditionSelectList,
   },
 ];
 
@@ -4898,33 +4898,26 @@ export const whoEntersCardInfoFspForm = [
     id: 1,
     formName: "CardInfoWhoEnters",
     title: "Merchant",
-    type: "radio",
     placeholder: "Merchant",
     value: "",
-  },
-  {
-    id: 2,
-    formName: "CardInfoWhoEnters",
-    title: "Fullfilment Center",
-    type: "radio",
-    placeholder: "Fullfilment Center",
-    value: "",
-  },
-  {
-    id: 3,
-    formName: "CardInfoWhoEnters",
-    title: "Consumer",
-    type: "radio",
-    placeholder: "Consumer",
-    value: "",
-  },
-  {
-    id: 4,
-    formName: "CardInfoWhoEnters",
-    title: "Other",
-    type: "radio",
-    placeholder: "Other",
-    value: "",
+    options: [
+      {
+        label: "Merchant",
+        value: "merchant",
+      },
+      {
+        label: "Fullfilmment Center",
+        value: "fullfilmentCenter",
+      },
+      {
+        label: "Consumer",
+        value: "consumer",
+      },
+      {
+        label: "Other",
+        value: "other",
+      },
+    ]
   },
   {
     id: 5,
@@ -4944,39 +4937,39 @@ export const ownProdFspForm = [
     type: "radio",
     placeholder: "Yes",
     value: "",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes"
+      },
+      {
+        label: "No",
+        value: "No"
+      },
+    ]
   },
+
+];
+
+export const ownProdTypeFspForm = [
   {
-    id: 2,
-    formName: "OwnProd",
-    title: "No",
-    type: "radio",
-    placeholder: "No",
-    value: "",
-  },
-  {
-    id: 3,
+    id: 1,
     formName: "OwnProdBusinessOther",
     title: "Business",
     type: "radio",
     placeholder: "Business",
     value: "",
-  },
-  {
-    id: 4,
-    formName: "OwnProdBusinessOther",
-    title: "Other",
-    type: "radio",
-    placeholder: "Other",
-    value: "",
-  },
-  {
-    id: 5,
-    formName: "OwnProdOtherDescription",
-    title: "",
-    type: "input",
-    placeholder: "Other",
-    value: "",
-  },
+    options: [
+      {
+        label: "Business",
+        value: "Business"
+      },
+      {
+        label: "Other",
+        value: "Other"
+      },
+    ]
+  }
 ];
 
 export const whoProcessesFspForm = [
@@ -4987,28 +4980,25 @@ export const whoProcessesFspForm = [
     type: "radio",
     placeholder: "Merchant",
     value: "",
+    options: [
+      {
+        label: "Merchant",
+        value: "merchant",
+      },
+      {
+        label: "Fullfilment Center",
+        value: "fullfilmentCenter",
+      },
+      {
+        label: "Other",
+        value: "other",
+      },
+    ]
   },
   {
     id: 2,
-    formName: "WhoProcesses",
-    title: "Fullfilment Center",
-    type: "radio",
-    placeholder: "Fullfilment Center",
-    value: "",
-  },
-  {
-    id: 3,
-    formName: "WhoProcesses",
-    title: "Other",
-    type: "radio",
-    placeholder: "Other",
-    value: "",
-  },
-
-  {
-    id: 4,
     formName: "ProcessorOtherDescription",
-    title: "",
+    title: "Other:",
     type: "input",
     placeholder: "Other",
     value: "",
@@ -5023,19 +5013,21 @@ export const shippedByFspForm = [
     type: "radio",
     placeholder: "US Mail",
     value: "",
+    options: [
+      {
+        label: "US Mail",
+        value: "usMail",
+      },
+      {
+        label: "Other",
+        value: "other",
+      },
+    ]
   },
   {
     id: 2,
-    formName: "ShippedBy",
-    title: "Other",
-    type: "radio",
-    placeholder: "Other",
-    value: "",
-  },
-  {
-    id: 3,
     formName: "ShippedOtherDescription",
-    title: "",
+    title: "Other:",
     type: "input",
     placeholder: "Other",
     value: "",
@@ -5050,17 +5042,19 @@ export const whoShipsFspForm = [
     type: "radio",
     placeholder: "Merchant",
     value: "",
+    options: [
+      {
+        label: "Merchant",
+        value: "merchant",
+      },
+      {
+        label: "Fullfilment Center",
+        value: "fullfilmentCenter",
+      },
+    ]
   },
   {
     id: 2,
-    formName: "WhoShips",
-    title: "Fullfilment Center",
-    type: "radio",
-    placeholder: "Fullfilment Center",
-    value: "",
-  },
-  {
-    id: 3,
     formName: "DaysToShip",
     title: "After Auth, Days to Ship",
     type: "input",
@@ -5077,14 +5071,16 @@ export const deliveryReceiptRequestedFspForm = [
     type: "radio",
     placeholder: "Yes",
     value: "",
-  },
-  {
-    id: 2,
-    formName: "DeliveryReceiptRequested",
-    title: "No",
-    type: "radio",
-    placeholder: "No",
-    value: "",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes",
+      },
+      {
+        label: "No",
+        value: "No",
+      },
+    ]
   },
 ];
 
@@ -5095,13 +5091,16 @@ export const isPaymentEncryptedFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
-  },
-  {
-    id: 2,
-    formName: "IsPaymentEncrypted",
-    type: "radio",
-    placeholder: "No",
-    title: "No",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes",
+      },
+      {
+        label: "No",
+        value: "No",
+      },
+    ]
   },
 ];
 
@@ -5112,14 +5111,17 @@ export const individualSharedFspForm = [
     title: "Individual",
     type: "radio",
     placeholder: "Individual",
-  },
-  {
-    id: 2,
-    formName: "IndividualShared",
-    title: "Shared",
-    type: "radio",
-    placeholder: "Shared",
-  },
+    options: [
+      {
+        label: "Individual",
+        value: "individual",
+      },
+      {
+        label: "Shared",
+        value: "shared",
+      },
+    ]
+  }
 ];
 
 export const certificatesFspForm = [
@@ -5157,13 +5159,16 @@ export const hasFiledForBankruptcyFspForm = [
     title: "Yes",
     placeholder: "Yes",
     type: "radio",
-  },
-  {
-    id: 2,
-    formName: "HasFiledForBankruptcy",
-    title: "No",
-    placeholder: "No",
-    type: "radio",
+    options: [
+      {
+        label: "Yes",
+        value: "Yes",
+      },
+      {
+        label: "No",
+        value: "no",
+      },
+    ]
   },
 ];
 
@@ -5301,13 +5306,16 @@ export const passThroughInterchangeFspForm = [
     title: "Yes",
     placeholder: "Yes",
     type: "radio",
-  },
-  {
-    id: 2,
-    formName: "PassTrueInterchange",
-    title: "No",
-    placeholder: "No",
-    type: "radio",
+    options: [
+      {
+        label: "Yes",
+        value: "yes",
+      },
+      {
+        label: "No",
+        value: "no",
+      },
+    ]
   },
 ];
 
@@ -5318,13 +5326,16 @@ export const passDuesAssessmentsFspForm = [
     title: "Yes",
     placeholder: "Yes",
     type: "radio",
-  },
-  {
-    id: 2,
-    formName: "PassDuesAndAssesments",
-    title: "No",
-    placeholder: "No",
-    type: "radio",
+    options: [
+      {
+        label: "Yes",
+        value: "yes",
+      },
+      {
+        label: "No",
+        value: "no",
+      },
+    ]
   },
 ];
 
@@ -5485,8 +5496,8 @@ export const flatRateFspForm = [
   },
   {
     id: 4,
-    formName: "PaypalDCRate",
-    title: "PayPal D/C Rate",
+    formName: "PayPalDcRate2",
+    title: "PayPal D/C Rate 2",
     type: "number",
     placeholder: "%",
     value: "",
@@ -5771,16 +5782,19 @@ export const pciFrequencyFspForm = [
     id: 1,
     formName: "PciFrequency",
     title: "Daily (default)",
-    placeholder: "Daily (default)",
+    placeholder: "",
     type: "radio",
-  },
-  {
-    id: 2,
-    formName: "PciFrequency",
-    title: "Monthly",
-    placeholder: "Monthly",
-    type: "radio",
-  },
+    options: [
+      {
+        label: "Daily (default)",
+        value: "daily",
+      },
+      {
+        label: "Monthly",
+        value: "monthly",
+      },
+    ]
+  }
 ];
 
 export const audioFspForm = [
@@ -5790,13 +5804,16 @@ export const audioFspForm = [
     title: "Monthly Merchant Fee",
     placeholder: "Monthly Merchant Fee",
     type: "radio",
-  },
-  {
-    id: 2,
-    formName: "Audio",
-    title: "Annual Merchant Fee",
-    placeholder: "Annual Merchant Fee",
-    type: "radio",
+    options: [
+      {
+        label: "Monthly Merchant Fee",
+        value: "monthlyMerchantFee",
+      },
+      {
+        label: "Annual Merchant Fee",
+        value: "annualMerchantFee",
+      },
+    ]
   },
 ];
 
@@ -5913,31 +5930,25 @@ export const cloverOnlyFspForm = [
     type: "radio",
     placeholder: "WAVit APP (Merchant does NOT need menu or inventory)",
     value: "",
-  },
-  {
-    id: 2,
-    formName: "HowCashDiscountApplied",
-    title: "Dual Pricing APP",
-    type: "radio",
-    placeholder: "Dual Pricing APP (Merchant is using menu or inventory)",
-    value: "",
-  },
-  {
-    id: 3,
-    formName: "HowCashDiscountApplied",
-    title: "Additional charge",
-    type: "radio",
-    placeholder: "Additional charge (manually)",
-    value: "",
-  },
-  {
-    id: 4,
-    formName: "HowCashDiscountApplied",
-    title: "None",
-    type: "radio",
-    placeholder: "None of the above",
-    value: "",
-  },
+    options: [
+      {
+        label: "WAVit APP (Merchant does NOT need menu or inventory)",
+        value: "wavitApp"
+      },
+      {
+        label: "Dual Pricing APP",
+        value: "dualPricingApp"
+      },
+      {
+        label: "Additional Charge",
+        value: "additionalCharge"
+      },
+      {
+        label: "None of the Above",
+        value: "None"
+      }
+    ]
+  }
 ];
 
 export const fileBuildInformationFspForm = [
@@ -5948,31 +5959,25 @@ export const fileBuildInformationFspForm = [
     type: "radio",
     placeholder: "Retail",
     value: "",
-  },
-  {
-    id: 2,
-    formName: "BuildType",
-    title: "Restaurant",
-    type: "radio",
-    placeholder: "Restaurant",
-    value: "",
-  },
-  {
-    id: 3,
-    formName: "BuildType",
-    title: "MO/TO",
-    type: "radio",
-    placeholder: "MO/TO",
-    value: "",
-  },
-  {
-    id: 4,
-    formName: "BuildType",
-    title: "eCommerce",
-    type: "radio",
-    placeholder: "eCommerce",
-    value: "",
-  },
+    options: [
+      {
+        label: "Retail",
+        value: "retail",
+      },
+      {
+        label: "Restaurant",
+        value: "restaurant",
+      },
+      {
+        label: "MO/TO",
+        value: "moTo",
+      },
+      {
+        label: "eCommerce",
+        value: "eCommerce",
+      },
+    ]
+  }
 ];
 
 export const tipLineFspForm = [
@@ -5983,15 +5988,17 @@ export const tipLineFspForm = [
     type: "radio",
     placeholder: "Tip at time of sale",
     value: "",
-  },
-  {
-    id: 2,
-    formName: "TipLineType",
-    title: "Tip on receipt",
-    type: "radio",
-    placeholder: "Tip on receipt",
-    value: "",
-  },
+    options: [
+      {
+        label: "Tip at time of sale",
+        value: "tipAtTimeSale",
+      },
+      {
+        label: "Tip on receipt",
+        value: "tipOnReceipt",
+      },
+    ]
+  }
 ];
 
 export const serverFspForm = [
@@ -6002,15 +6009,17 @@ export const serverFspForm = [
     type: "radio",
     placeholder: "Yes",
     value: "",
-  },
-  {
-    id: 2,
-    formName: "Server",
-    title: "No",
-    type: "radio",
-    placeholder: "No",
-    value: "",
-  },
+    options: [
+      {
+        label: "Yes",
+        value: "yes",
+      },
+      {
+        label: "No",
+        value: "no",
+      },
+    ]
+  }
 ];
 
 export const shipToFspForm = [
@@ -6021,15 +6030,17 @@ export const shipToFspForm = [
     type: "radio",
     placeholder: "Rep",
     value: "",
-  },
-  {
-    id: 2,
-    formName: "ShipTo",
-    title: "Business",
-    type: "radio",
-    placeholder: "Business",
-    value: "",
-  },
+    options: [
+      {
+        label: "Rep",
+        value: "rep",
+      },
+      {
+        label: "Business",
+        value: "business",
+      },
+    ]
+  }
 ];
 
 export const shipPriorityFspForm = [
@@ -6037,41 +6048,42 @@ export const shipPriorityFspForm = [
     id: 1,
     formName: "ShipPriority",
     title: "Ground",
-    type: "radio",
+    type: "button",
     placeholder: "Ground",
-    value: "",
+    value: "Ground",
+    
   },
   {
     id: 2,
     formName: "ShipPriority",
     title: "2 Day",
-    type: "radio",
+    type: "button",
     placeholder: "2 Day",
-    value: "",
+    value: "2 Day",
   },
   {
     id: 3,
     formName: "ShipPriority",
     title: "3 Day",
-    type: "radio",
+    type: "button",
     placeholder: "3 Day",
-    value: "",
+    value: "3 Day",
   },
   {
     id: 4,
     formName: "ShipPriority",
     title: "Standard",
-    type: "radio",
+    type: "button",
     placeholder: "Standard",
-    value: "",
+    value: "Standard",
   },
   {
     id: 5,
     formName: "ShipPriority",
     title: "Priority",
-    type: "radio",
+    type: "button",
     placeholder: "Priority",
-    value: "",
+    value: "Priority",
   },
 ];
 
@@ -6164,14 +6176,17 @@ export const billToFspForm = [
     title: "Rep",
     placeholder: "Rep",
     type: "radio",
-  },
-  {
-    id: 2,
-    formName: "BillTo",
-    title: "Merchant (must include signed forms)",
-    placeholder: "Merchant (must include signed forms)",
-    type: "radio",
-  },
+    options: [
+      {
+        label: "Rep",
+        value: "rep",
+      },
+      {
+        label: "Merchant (must include signed forms)",
+        value: "merchant",
+      },
+    ]
+  }
 ];
 
 // New First Data NORTH Interchange 2502-2 APPLICATION DATA
@@ -6547,38 +6562,33 @@ export const connectionTypeInterForm = [
 ];
 
 export const cloverOnlyInterForm = [
-      {
-        id: 1,
-        formName: "HowCashDiscountApplied",
-        title: "WAVit APP",
-        type: "radio",
-        placeholder: "WAVit APP (Merchant does NOT need menu or inventory)",
-        value: "",
-      },
-      {
-        id: 2,
-        formName: "HowCashDiscountApplied",
-        title: "Dual Pricing APP",
-        type: "radio",
-        placeholder: "Actions App (merchant IS using menu or inventory)",
-        value: "",
-      },
-      {
-        id: 3,
-        formName: "HowCashDiscountApplied",
-        title: "Additional charge",
-        type: "radio",
-        placeholder: "Additional charge (manually)",
-        value: "",
-      },
-      {
-        id: 4,
-        formName: "HowCashDiscountApplied",
-        title: "None",
-        type: "radio",
-        placeholder: "None of the above",
-        value: "",
-      },
+{
+  id: 1,
+  formName: "HowCashDiscountApplied",
+  title: "WAVit APP",
+  type: "radio",
+  placeholder: "",
+  value: "",
+  options: [
+    {
+      label: "WAVit APP (Merchant does NOT need menu or inventory)",
+      value: "wavitApp",
+    },
+    {
+      label: "Dual Pricing APP",
+      value: "dualPricing",
+    },
+    {
+      label: "Additional charge (manually)",
+      value: "additionalCharge",
+    },
+    {
+      label: "None of the Above",
+      value: "none",
+    },
+  ]
+},
+      
 ];
 
 export const zoneNorthBoardingForm = [
@@ -7094,59 +7104,41 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "Mall",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "Location",
-            title: "Isolated",
-            type: "radio",
-            placeholder: "Isolated",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "Location",
-            title: "Apartment",
-            type: "radio",
-            placeholder: "Apartment",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "Location",
-            title: "Home",
-            type: "radio",
-            placeholder: "Home",
-            value: "",
-          },
-          {
-            id: 5,
-            formName: "Location",
-            title: "Shopping Area",
-            type: "radio",
-            placeholder: "Shopping Area",
-            value: "",
-          },
-          {
-            id: 6,
-            formName: "Location",
-            title: "Office",
-            type: "radio",
-            placeholder: "Office",
-            value: "",
-          },
-          {
-            id: 7,
-            formName: "Location",
-            title: "Other",
-            type: "radio",
-            placeholder: "Other",
-            value: "",
+            options: [
+              {
+                label: "Mall",
+                value: "mall",
+              },
+              {
+                label: "Isolated",
+                value: "isolated",
+              },
+              {
+                label: "Apartment",
+                value: "apartment",
+              },
+              {
+                label: "Home",
+                value: "home",
+              },
+              {
+                label: "Shopping Area",
+                value: "shoppingArea",
+              },
+              {
+                label: "Office",
+                value: "office",
+              },
+              {
+                label: "Other",
+                value: "other",
+              },
+            ]
           },
           {
             id: 8,
             formName: "LocationOther",
-            title: "OtherDescription",
+            title: "Other Description:",
             type: "input",
             placeholder: "",
             value: "",
@@ -7165,14 +7157,16 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "Yes",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "Seasonal",
-            title: "No",
-            type: "radio",
-            placeholder: "No",
-            value: "",
+            options: [
+              {
+                label: "Yes",
+                value: "yes",
+              },
+              {
+                label: "No",
+                value: "no",
+              },
+            ]
           },
           {
             id: 3,
@@ -7212,31 +7206,25 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "1",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "FloorsLevels",
-            title: "2-4",
-            type: "radio",
-            placeholder: "2-4",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "FloorsLevels",
-            title: "5-10",
-            type: "radio",
-            placeholder: "5-10",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "FloorsLevels",
-            title: "11+",
-            type: "radio",
-            placeholder: "11+",
-            value: "",
-          },
+            options: [
+              {
+                label: "1",
+                value: "1",
+              },
+              {
+                label: "2-4",
+                value: "2-4",
+              },
+              {
+                label: "5-10",
+                value: "5-10",
+              },
+              {
+                label: "11+",
+                value: "11+",
+              },
+            ]
+          }
         ]
       },
       // 5. MERCHANT OCCUPIES
@@ -7251,17 +7239,19 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "Ground Floor",
             value: "",
+            options: [
+              {
+                label: "Ground Floor",
+                value: "Ground Floor",
+              },
+              {
+                label: "Other",
+                value: "Other",
+              },
+            ]
           },
           {
             id: 2,
-            formName: "MerchantOccupies",
-            title: "Other",
-            type: "radio",
-            placeholder: "Other",
-            value: "",
-          },
-          {
-            id: 3,
             formName: "MerchantOccupiesOther",
             title: "OtherDescription",
             type: "input",
@@ -7282,30 +7272,24 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "Residential",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "FloorsOccupiedBy",
-            title: "Commercial",
-            type: "radio",
-            placeholder: "Commercial",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "FloorsOccupiedBy",
-            title: "Both",
-            type: "radio",
-            placeholder: "Both",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "FloorsOccupiedBy",
-            title: "None",
-            type: "radio",
-            placeholder: "None",
-            value: "",
+            options: [
+              {
+                label: "Residential",
+                value: "residential",
+              },
+              {
+                label: "Commercial",
+                value: "commercial",
+              },
+              {
+                label: "Both",
+                value: "both",
+              },
+              {
+                label: "None",
+                value: "none",
+              },
+            ]
           },
         ]
       },
@@ -7321,22 +7305,20 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "Window",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "MerchantNameDisplayed",
-            title: "Door",
-            type: "radio",
-            placeholder: "Door",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "MerchantNameDisplayed",
-            title: "Store Front",
-            type: "radio",
-            placeholder: "Store Front",
-            value: "",
+            options: [
+              {
+                label: "Window",
+                value: "window",
+              },
+              {
+                label: "Door",
+                value: "door",
+              },
+              {
+                label: "Store Front",
+                value: "storeFront",
+              },
+            ]
           },
         ]
       },
@@ -7367,30 +7349,24 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "0-250",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "SquareFootage",
-            title: "251-500",
-            type: "radio",
-            placeholder: "251-500",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "SquareFootage",
-            title: "501-2000",
-            type: "radio",
-            placeholder: "501-2000",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "SquareFootage",
-            title: "2001+",
-            type: "radio",
-            placeholder: "2001+",
-            value: "",
+            options: [
+              {
+                label: "0-250",
+                value: "0-250",
+              },
+              {
+                label: "251-500",
+                value: "251-500",
+              },
+              {
+                label: "501-2000",
+                value: "501-2000",
+              },
+              {
+                label: "2001+",
+                value: "2001+",
+              },
+            ]
           },
         ]
       },
@@ -7436,22 +7412,20 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "Full Refund",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "ReturnPolicy",
-            title: "Exchange Only",
-            type: "radio",
-            placeholder: "Exchange Only",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "ReturnPolicy",
-            title: "None",
-            type: "radio",
-            placeholder: "None",
-            value: "",
+            options: [
+              {
+                label: "Full Refund",
+                value: "fullRefund",
+              },
+              {
+                label: "Exchange Only",
+                value: "exchangeOnly",
+              },
+              {
+                label: "None",
+                value: "none",
+              },
+            ]
           },
         ]
       },
@@ -7467,16 +7441,17 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "Yes",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "SpecificReturnPolicy",
-            title: "No",
-            type: "radio",
-            placeholder: "No",
-            value: "",
-          },
-          
+            options: [
+              {
+                label: "Yes",
+                value: "yes",
+              },
+              {
+                label: "No",
+                value: "no",
+              },
+            ]
+          }, 
         ],
         title2: "If yes, check one:",
         fields2: [
@@ -7487,22 +7462,20 @@ export const northBoardingForm = {
             type: "radio",
             placeholder: "Exchange",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "SpecificReturnPolicyOther",
-            title: "Store Credit",
-            type: "radio",
-            placeholder: "Store Credit",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "SpecificReturnPolicyOther",
-            title: "Refund Cardholder",
-            type: "radio",
-            placeholder: "Refund Cardholder",
-            value: "",
+            options: [
+              {
+                label: "Exchange",
+                value: "exchange",
+              },
+              {
+                label: "Store Credit",
+                value: "storeCredit",
+              },
+              {
+                label: "Refund Cardholder",
+                value: "refundCardholder",
+              },
+            ]
           },
         ]
       },
@@ -7524,30 +7497,24 @@ export const northBoardingForm = {
               type: "radio",
               placeholder: "0-3",
               value: "",
-            },
-            {
-              id: 2,
-              formName: "DaysToSubmitTransactions",
-              title: "4-7",
-              type: "radio",
-              placeholder: "4-7",
-              value: "",
-            },
-            {
-              id: 3,
-              formName: "DaysToSubmitTransactions",
-              title: "8-14",
-              type: "radio",
-              placeholder: "8-14",
-              value: "",
-            },
-            {
-              id: 4,
-              formName: "DaysToSubmitTransactions",
-              title: "12-14",
-              type: "radio",
-              placeholder: "12-14",
-              value: "",
+              options: [
+                {
+                  label: "0-3",
+                  value: "0-3",
+                },
+                {
+                  label: "4-7",
+                  value: "4-7",
+                },
+                {
+                  label: "8-14",
+                  value: "8-14",
+                },
+                {
+                  label: "12-14",
+                  value: "12-14",
+                },
+              ]
             },
           ]
         },
@@ -7563,17 +7530,19 @@ export const northBoardingForm = {
               type: "radio",
               placeholder: "Yes",
               value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "yes",
+                },
+                {
+                  label: "No",
+                  value: "no",
+                },
+              ]
             },
             {
               id: 2,
-              formName: "ProperLicenseVisible",
-              title: "No, Explain:",
-              type: "radio",
-              placeholder: "No, Explain:",
-              value: "",
-            },
-            {
-              id: 3,
               formName: "Explanation",
               title: "Explain here:",
               type: "input",
@@ -7606,7 +7575,7 @@ export const northBoardingForm = {
               id: 1,
               formName: "PreviousMerchant",
               title: "Previous merchant:",
-              type: "INPUT",
+              type: "input",
               placeholder: "#",
               value: "",
             },
@@ -7624,33 +7593,27 @@ export const northBoardingForm = {
               type: "radio",
               placeholder: "Rate",
               value: "",
+              options: [
+                {
+                  label: "Rate",
+                  value: "rate",
+                },
+                {
+                  label: "Service",
+                  value: "service",
+                },
+                {
+                  label: "Terminated",
+                  value: "terminated",
+                },
+                {
+                  label: "Other",
+                  value: "other",
+                },
+              ]
             },
             {
               id: 2,
-              formName: "ReasonForLeaving",
-              title: "Service",
-              type: "radio",
-              placeholder: "Service",
-              value: "",
-            },
-            {
-              id: 3,
-              formName: "ReasonForLeaving",
-              title: "Terminated",
-              type: "radio",
-              placeholder: "Terminated",
-              value: "",
-            },
-            {
-              id: 4,
-              formName: "ReasonForLeaving",
-              title: "OtherReason",
-              type: "radio",
-              placeholder: "Other",
-              value: "",
-            },
-            {
-              id: 5,
               formName: "ReasonForLeavingOther",
               title: "Other Description",
               type: "input",
@@ -7662,7 +7625,7 @@ export const northBoardingForm = {
         // 18. PREVIOUS PROCESSOR STATEMENTS?
         { 
           title: "18. Do You Have Previous Processor MC/Visa/ Discover/American Express OptBlue® Statements?",
-          colQty: "2",
+          colQty: "1",
           fields: [
             {
               id: 1,
@@ -7671,14 +7634,16 @@ export const northBoardingForm = {
               type: "radio",
               placeholder: "Yes",
               value: "",
-            },
-            {
-              id: 2,
-              formName: "PreviousProcessorStatements",
-              title: "NoPrevius",
-              type: "radio",
-              placeholder: "No",
-              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "yes",
+                },
+                {
+                  label: "No",
+                  value: "no",
+                },
+              ]
             },
           ]
         },
@@ -7694,14 +7659,16 @@ export const northBoardingForm = {
               type: "radio",
               placeholder: "Yes",
               value: "",
-            },
-            {
-              id: 2,
-              formName: "MerchantNameDisplayed",
-              title: "No",
-              type: "radio",
-              placeholder: "No",
-              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "yes",
+                },
+                {
+                  label: "No",
+                  value: "no",
+                },
+              ]
             },
           ],
           title2: "If Yes, % of deposit required:",
@@ -7740,18 +7707,20 @@ export const northBoardingForm = {
             {
               id: 1,
               formName: "MobileApplication",
-              title: "Yes",
+              title: "",
               type: "radio",
-              placeholder: "Yes",
+              placeholder: "",
               value: "",
-            },
-            {
-              id: 2,
-              formName: "MobileApplication",
-              title: "No",
-              type: "radio",
-              placeholder: "No",
-              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "yes",
+                },
+                {
+                  label: "No",
+                  value: "no",
+                }
+              ]
             },
           ],
           title2: "",
@@ -7761,10 +7730,9 @@ export const northBoardingForm = {
               formName: "MobileApplicationList",
               title: "List name of mobile application:",
               type: "input",
-              placeholder: "",
+              placeholder: "Separate names with ','",
               value: "",
             },
-            
           ],
         },
       ]
@@ -8957,7 +8925,7 @@ export const newOmahaApplicationTabs = [
   },
 ];
 
-export const omahaBoadingForm = {
+export const omahaBoardingForm = {
   formTitle: "OMAHA Boarding",
   description: "",
   section: [
@@ -8977,101 +8945,73 @@ export const omahaBoadingForm = {
             type: "radio",
             placeholder: "Business District",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "Zone",
-            title: "Residential",
-            type: "radio",
-            placeholder: "Residential",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "Zone",
-            title: "Industrial",
-            type: "radio",
-            placeholder: "Industrial",
-            value: "",
+            options: [
+              {
+                label: "Business District",
+                value: "businessDistrict",
+              },
+              {
+                label: "Residential",
+                value: "residential",
+              },
+              {
+                label: "Industrial",
+                value: "industrial",
+              },
+            ]
           },
         ]
       },
       // 2. LOCATION
       { 
         title: "2. Location",
-        colQty: "2",
+        colQty: "1",
         fields: [
           {
             id: 1,
             formName: "Location",
-            title: "Home",
+            title: "",
             type: "radio",
-            placeholder: "Home",
+            placeholder: "",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "Location",
-            title: "Apartment",
-            type: "radio",
-            placeholder: "Apartment",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "Location",
-            title: "Office",
-            type: "radio",
-            placeholder: "Office",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "Location",
-            title: "Shopping Area",
-            type: "radio",
-            placeholder: "Shopping Area",
-            value: "",
-          },
-          {
-            id: 5,
-            formName: "Location",
-            title: "Flea Market",
-            type: "radio",
-            placeholder: "Flea Market",
-            value: "",
-          },
-          {
-            id: 6,
-            formName: "Location",
-            title: "Isolated",
-            type: "radio",
-            placeholder: "Isolated",
-            value: "",
-          },
-          {
-            id: 7,
-            formName: "Location",
-            title: "Door To Door",
-            type: "radio",
-            placeholder: "Door To Door",
-            value: "",
-          },
-          {
-            id: 8,
-            formName: "Location",
-            title: "Mall",
-            type: "radio",
-            placeholder: "Mall",
-            value: "",
-          },
-          {
-            id: 9,
-            formName: "Location",
-            title: "Other",
-            type: "radio",
-            placeholder: "Other",
-            value: "",
+            options: [
+              {
+                label: "Home",
+                value: "Home",
+              },
+              {
+                label: "Apartment",
+                value: "Apartment",
+              },
+              {
+                label: "Office",
+                value: "Office",
+              },
+              {
+                label: "Shopping Area",
+                value: "ShoppingArea",
+              },
+              {
+                label: "Flea Market",
+                value: "Flea Market",
+              },
+              {
+                label: "Isolated",
+                value: "Isolated",
+              },
+              {
+                label: "Door To Door",
+                value: "DoorToDoor",
+              },
+              {
+                label: "Mall",
+                value: "Mall",
+              },
+              {
+                label: "Other",
+                value: "other",
+              },
+            ]
           },
         ]
       },
@@ -9117,17 +9057,19 @@ export const omahaBoadingForm = {
             type: "radio",
             placeholder: "Yes",
             value: "",
+            options: [
+              {
+                label: "Yes",
+                value: "Yes",
+              },
+              {
+                label: "No",
+                value: "No",
+              },
+            ]
           },
           {
             id: 2,
-            formName: "ProperLicenseVisible",
-            title: "No",
-            type: "radio",
-            placeholder: "No",
-            value: "",
-          },
-          {
-            id: 3,
             formName: "Explanation",
             title: "Explanation",
             type: "input",
@@ -9148,22 +9090,20 @@ export const omahaBoadingForm = {
             type: "radio",
             placeholder: "Window",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "MerchantNameDisplayed",
-            title: "Door",
-            type: "radio",
-            placeholder: "Door",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "MerchantNameDisplayed",
-            title: "Store Front",
-            type: "radio",
-            placeholder: "Store Front",
-            value: "",
+            options: [
+              {
+                label: "Window",
+                value: "window",
+              },
+              {
+                label: "Door",
+                value: "Door",
+              },
+              {
+                label: "Store Front",
+                value: "StoreFront",
+              },
+            ]
           },
         ]
       },
@@ -9179,30 +9119,24 @@ export const omahaBoadingForm = {
             type: "radio",
             placeholder: "Residential",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "FloorsOccupiedBy",
-            title: "Commercial",
-            type: "radio",
-            placeholder: "Commercial",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "FloorsOccupiedBy",
-            title: "Both",
-            type: "radio",
-            placeholder: "Both",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "FloorsOccupiedBy",
-            title: "None",
-            type: "radio",
-            placeholder: "None",
-            value: "",
+            options: [
+              {
+                label: "Residential",
+                value: "Residential",
+              },
+              {
+                label: "Commercial",
+                value: "Commercial",
+              },
+              {
+                label: "Both",
+                value: "Both",
+              },
+              {
+                label: "None",
+                value: "None",
+              },
+            ]
           },
         ]
       },
@@ -9218,21 +9152,23 @@ export const omahaBoadingForm = {
             type: "radio",
             placeholder: "Ground Floor",
             value: "",
+            options: [
+              {
+                label: "Ground Floor",
+                value: "GroundFloor",
+              },
+              {
+                label: "Other",
+                value: "other",
+              },
+            ]
           },
           {
             id: 2,
-            formName: "MerchantOccupies",
-            title: "Other",
-            type: "radio",
-            placeholder: "Other",
-            value: "",
-          },
-          {
-            id: 3,
             formName: "MerchantOccupiesOther",
             title: "",
             type: "input",
-            placeholder: "",
+            placeholder: "Other",
             value: "",
           },
         ]
@@ -9249,30 +9185,24 @@ export const omahaBoadingForm = {
             type: "radio",
             placeholder: "1-2",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "FloorsLevels",
-            title: "3-4",
-            type: "radio",
-            placeholder: "3-4",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "FloorsLevels",
-            title: "5-10",
-            type: "radio",
-            placeholder: "5-10",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "FloorsLevels",
-            title: "11+",
-            type: "radio",
-            placeholder: "11+",
-            value: "",
+            options: [
+              {
+                label: "1-2",
+                value: "1-2",
+              },
+              {
+                label: "3-4",
+                value: "3-4",
+              },
+              {
+                label: "5-10",
+                value: "5-10",
+              },
+              {
+                label: "11+",
+                value: "11+",
+              },
+            ]
           },
         ]
       },
@@ -9285,33 +9215,27 @@ export const omahaBoadingForm = {
             id: 1,
             formName: "SquareFootage",
             title: "0-250",
-            type: "number",
+            type: "ratio",
             placeholder: "0-250",
             value: "",
-          },
-          {
-            id: 2,
-            formName: "SquareFootage",
-            title: "251-500",
-            type: "number",
-            placeholder: "251-500",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "SquareFootage",
-            title: "501-2000",
-            type: "number",
-            placeholder: "501-2000",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "SquareFootage",
-            title: "2001+",
-            type: "number",
-            placeholder: "2001+",
-            value: "",
+            options: [
+              {
+                label: "0-250",
+                value: "0-250",
+              },
+              {
+                label: "251-500",
+                value: "251-500",
+              },
+              {
+                label: "501-2000",
+                value: "501-2000",
+              },
+              {
+                label: "2001+",
+                value: "2001+",
+              },
+            ]
           },
         ]
       },
@@ -9327,17 +9251,19 @@ export const omahaBoadingForm = {
             type: "radio",
             placeholder: "No",
             value: "",
+            options: [
+              {
+                label: "Yes",
+                value: "Yes",
+              },
+              {
+                label: "No",
+                value: "No",
+              }
+            ]
           },
           {
             id: 2,
-            formName: "DepositRequired",
-            title: "Yes",
-            type: "radio",
-            placeholder: "Yes",
-            value: "",
-          },
-          {
-            id: 3,
             formName: "DepositPercentage",
             title: "If Yes, % of deposit required:",
             type: "input",
@@ -9364,22 +9290,20 @@ export const omahaBoadingForm = {
                 type: "radio",
                 placeholder: "Full Refund",
                 value: "",
-              },
-              {
-                id: 2,
-                formName: "ReturnPolicy",
-                title: "Exchange Only",
-                type: "radio",
-                placeholder: "Exchange Only",
-                value: "",
-              },
-              {
-                id: 3,
-                formName: "ReturnPolicy",
-                title: "None",
-                type: "radio",
-                placeholder: "None",
-                value: "",
+                options: [
+                  {
+                    label: "Full Refund",
+                    value: "FullRefund",
+                  },
+                  {
+                    label: "Exchange Only",
+                    value: "ExchangeOnly",
+                  },
+                  {
+                    label: "None",
+                    value: "None",
+                  },
+                ]
               },
             ]
           },
@@ -9395,16 +9319,17 @@ export const omahaBoadingForm = {
                 type: "radio",
                 placeholder: "Yes",
                 value: "",
-              },
-              {
-                id: 2,
-                formName: "RefundPolicy",
-                title: "No",
-                type: "radio",
-                placeholder: "No",
-                value: "",
-              },
-              
+                options: [
+                  {
+                    label: "Yes",
+                    value: "yes",
+                  },
+                  {
+                    label: "No",
+                    value: "no",
+                  },
+                ]
+              }            
             ],
             title2: "If yes, check one:",
             fields2: [
@@ -9415,22 +9340,20 @@ export const omahaBoadingForm = {
                 type: "radio",
                 placeholder: "Exchange",
                 value: "",
-              },
-              {
-                id: 2,
-                formName: "RefundPolicySpecific",
-                title: "Store Credit",
-                type: "radio",
-                placeholder: "Store Credit",
-                value: "",
-              },
-              {
-                id: 3,
-                formName: "RefundPolicySpecific",
-                title: "Refund Cardholder",
-                type: "radio",
-                placeholder: "Mastercard/Visa/Dicover Network-PayPal/American Express OptBlueCredit",
-                value: "",
+                options: [
+                  {
+                    label: "Exchange",
+                    value: "Exchange",
+                  },
+                  {
+                    label: "Store Credit",
+                    value: "StoreCredit",
+                  },
+                  {
+                    label: "Mastercard/Visa/Dicover Network-PayPal/American Express",
+                    value: "RefundCardholder",
+                  },
+                ]
               },
             ]
           },
@@ -9446,30 +9369,24 @@ export const omahaBoadingForm = {
               type: "radio",
               placeholder: "0-3",
               value: "",
-            },
-            {
-              id: 2,
-              formName: "DaysToRefund",
-              title: "4-7",
-              type: "radio",
-              placeholder: "4-7",
-              value: "",
-            },
-            {
-              id: 3,
-              formName: "DaysToRefund",
-              title: "8-14",
-              type: "radio",
-              placeholder: "8-14",
-              value: "",
-            },
-            {
-              id: 4,
-              formName: "DaysToRefund",
-              title: "Over 14",
-              type: "radio",
-              placeholder: "Over 14",
-              value: "",
+              options: [
+                {
+                  label: "0-3",
+                  value: "0-3",
+                },
+                {
+                  label: "4-7",
+                  value: "4-7",
+                },
+                {
+                  label: "8-14",
+                  value: "8-14",
+                },
+                {
+                  label: "Over 14",
+                  value: "14+",
+                },
+              ]
             },
           ]
         },
@@ -9571,33 +9488,27 @@ export const omahaBoadingForm = {
               type: "radio",
               placeholder: "Rate",
               value: "",
+              options: [
+                {
+                  label: "Rate",
+                  value: "Rate",
+                },
+                {
+                  label: "Service",
+                  value: "Service",
+                },
+                {
+                  label: "Terminated",
+                  value: "Terminated",
+                },
+                {
+                  label: "Other Reason",
+                  value: "OtherReason",
+                },
+              ]
             },
             {
               id: 2,
-              formName: "ReasonForLeaving",
-              title: "Service",
-              type: "radio",
-              placeholder: "Service",
-              value: "",
-            },
-            {
-              id: 3,
-              formName: "ReasonForLeaving",
-              title: "Terminated",
-              type: "radio",
-              placeholder: "Terminated",
-              value: "",
-            },
-            {
-              id: 4,
-              formName: "ReasonForLeaving",
-              title: "OtherReason",
-              type: "radio",
-              placeholder: "Other",
-              value: "",
-            },
-            {
-              id: 5,
               formName: "ReasonForLeavingOther",
               title: "Other Description",
               type: "input",
@@ -9618,14 +9529,16 @@ export const omahaBoadingForm = {
               type: "radio",
               placeholder: "Yes",
               value: "",
-            },
-            {
-              id: 2,
-              formName: "MobileApplication",
-              title: "No",
-              type: "radio",
-              placeholder: "No",
-              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "Yes",
+                },
+                {
+                  label: "No",
+                  value: "No",
+                },
+              ]
             },
           ],
           title2: "",
@@ -10045,23 +9958,21 @@ export const merchantBillingForm = [
     type: "radio",
     placeholder: "Agent",
     value: "",
-  },
-  {
-    id: 2,
-    formName: "Billing",
-    title: "Merchant",
-    type: "radio",
-    placeholder: "Merchant",
-    value: "",
-  },
-  {
-    id: 3,
-    formName: "Billing",
-    title: "Other",
-    type: "radio",
-    placeholder: "Other",
-    value: "",
-  },
+    options: [
+      {
+        label: "Agent",
+        value: "Agent",
+      },
+      {
+        label: "Merchant",
+        value: "Merchant",
+      },
+      {
+        label: "Other",
+        value: "Other",
+      },
+    ]
+  }
 ];
 
 export const shipMethodMerchantForm = [

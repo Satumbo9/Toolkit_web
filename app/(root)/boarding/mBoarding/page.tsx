@@ -58,7 +58,6 @@ const Page = () => {
         <h2 className="mt-5 text-center text-xl">
           Merchant Boarding List for
           {!result && <b> {data}</b>}
-          {/* {!result && <b>{" "}{userRequest?.email}</b>} */}
         </h2>
         <div className="grid grid-cols-1 overflow-auto">
           <DataTable
