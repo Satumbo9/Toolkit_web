@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
-import qs from 'query-string';
+import qs from "query-string";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -137,7 +137,7 @@ export const merchantFeesProcSchema = z.object({
   RateIncreases: z.boolean(),
   RateStatusNonBilling: z.string(),
   // MiCamp Processing Data
-  LastProcessDate: z.date()
+  LastProcessDate: z.date(),
 });
 
 export const MerchantSoftwareInstallSchema = z.object({
@@ -211,7 +211,7 @@ export const AccountStatusSchema = z.object({
   Method: z.string(),
   ComplianceDate: z.date(),
   ClickVerified: z.date(),
-  // SOLID PORTFOLIO INFO 
+  // SOLID PORTFOLIO INFO
   ChildMid: z.boolean(),
   ComplianceSolidDate: z.date(),
   // SELECT OVERALL STATUS
@@ -279,7 +279,6 @@ export const bankOfTheWestSchema = z.object({
   Entity: z.string(),
   ClientGroup: z.string(),
 });
-
 
 export const AgentSetupSchema = z.object({
   findAgent: requiredString,
@@ -623,9 +622,7 @@ export const boardingAgentSettingsSchema = z.object({
   DiscoverRetrievalFee: requiredNumber,
   VisaMcDiscoverChargebackRetrievalFee: requiredNumber,
   NorthInterMonthlyStatementFee: requiredNumber,
-})
-
-
+});
 
 export const newSupportTicketSchema = z.object({
   Subject: requiredString,
@@ -1280,7 +1277,6 @@ export const northBoardingInterSchema = z.object({
   PinDebitDeclined: z.number(),
 });
 
-
 // ----------------
 // This is for the NORTH WAViit 2502 Application
 // Merchant Detail TAB form
@@ -1485,7 +1481,6 @@ export const northBoardingWavitSchema = z.object({
   AmericanExpressAuthFee: z.number(),
 });
 
-
 // ----------------
 // This is for the OMAHA PROCESSING APPLICATION
 // Merchant Detail TAB form
@@ -1619,7 +1614,7 @@ export const detailsOmahaSchema = z.object({
   FloorsLevels: z.string(),
   SquareFootage: z.string(),
   DepositRequired: z.boolean(),
-  DepositPercentage: z.number(), 
+  DepositPercentage: z.number(),
   // Information
   ReturnPolicy: z.string(),
   RefundPolicy: z.string(),
@@ -1714,7 +1709,7 @@ const getOrdinalSuffix = (day: number): string => {
   }
 };
 
-const formatTime = (date: Date): string => {
+export const formatTime = (date: Date): string => {
   let hours = date.getHours();
   const minutes = date.getMinutes().toString().padStart(2, "0");
   const ampm = hours >= 12 ? "PM" : "AM";
@@ -1762,22 +1757,54 @@ export const formatRelativeDate = (date: Date): string => {
   }
 };
 
-export const urlKeyRemovalParams = ({params, keysToRemove}: {params: string, keysToRemove: string[]}) => {
+export const formatTimeAgo = (date: Date): string => {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+  const intervals = [
+    { label: "year", seconds: 31557600 }, // Average seconds in a year
+    { label: "month", seconds: 2629800 }, // Average seconds in a month
+    { label: "week", seconds: 604800 }, // Seconds in a week
+    { label: "day", seconds: 86400 }, // Seconds in a day
+    { label: "hour", seconds: 3600 }, // Seconds in an hour
+    { label: "minute", seconds: 60 }, // Seconds in a minute
+    { label: "second", seconds: 1 }, // Seconds in a second
+  ];
+
+  for (const interval of intervals) {
+    const count = Math.floor(diffInSeconds / interval.seconds);
+
+    if (count >= 1) {
+      return `${count} ${interval.label}${count !== 1 ? "s" : ""} ago`;
+    }
+  }
+
+  return "just now";
+};
+
+export const urlKeyRemovalParams = ({
+  params,
+  keysToRemove,
+}: {
+  params: string;
+  keysToRemove: string[];
+}) => {
   const currentUrl = qs.parse(params);
 
   keysToRemove.forEach((key) => {
     delete currentUrl[key];
-  })
+  });
 
   return qs.stringifyUrl(
     {
-      url: window.location.pathname, query: currentUrl
+      url: window.location.pathname,
+      query: currentUrl,
     },
     {
-      skipNull: true
-    }
-  )
-}
+      skipNull: true,
+    },
+  );
+};
 
 export const marketingListSchema = z.object({
   Table: z.string(),

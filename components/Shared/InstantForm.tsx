@@ -4,7 +4,14 @@
 import React, { useState } from "react";
 import { z, ZodObject } from "zod";
 import { Control, FieldPath, useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 import {
   Select,
   SelectTrigger,
@@ -80,6 +87,7 @@ export const InputForm = <
               className={className}
             />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -146,6 +154,7 @@ export const SelectForm = <
               </SelectContent>
             </Select>
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -157,11 +166,13 @@ export const TextAreaForm = <T extends z.ZodType<any, any>>({
   formName,
   label,
   placeholder,
+  className,
 }: {
   control: Control<z.infer<T>>;
   formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder?: string;
+  className?: string;
 }) => {
   return (
     <FormField
@@ -174,9 +185,10 @@ export const TextAreaForm = <T extends z.ZodType<any, any>>({
             <Textarea
               placeholder={placeholder}
               {...field}
-              className="resize-none"
+              className={"resize-none " + className}
             />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -216,6 +228,7 @@ export const CheckboxForm = <T extends z.ZodType<any, any>>({
               <span className="ml-3">{placeholder}</span>
             </div>
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -267,6 +280,7 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
               </PopoverContent>
             </Popover>
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -315,6 +329,7 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
                 />
               </FormControl>
               <span>{label}</span>
+              <FormMessage />
             </div>
           </FormItem>
         );
@@ -323,13 +338,15 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
   );
 };
 
+/**
+ * state and setState required!!
+ */
 export const RadioForm = <
   T extends z.ZodType<any, any>,
   S extends string | number = string | number,
 >({
   control,
   formName,
-  label,
   options,
   className,
   labelClass,
@@ -343,8 +360,8 @@ export const RadioForm = <
   options: { label: string; value: S }[];
   className?: string;
   labelClass?: string;
-  state?: S;
-  setState?: React.Dispatch<React.SetStateAction<S>>;
+  state: S;
+  setState: React.Dispatch<React.SetStateAction<S>>;
   onClick?: () => void;
 }) => {
   return (
@@ -353,7 +370,6 @@ export const RadioForm = <
       name={formName}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
           <FormControl>
             <div>
               {options.map((option) => (
@@ -378,12 +394,13 @@ export const RadioForm = <
                     htmlFor={`${formName}-${option.value}`}
                     className={labelClass}
                   >
-                    {option.label}
+                    <FormLabel>{option.label}</FormLabel>
                   </label>
                 </div>
               ))}
             </div>
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -740,7 +757,7 @@ export const NorthFormGeneration = ({
  *  */
 export const FormBuilder = ({
   formFields,
-} : {
+}: {
   formFields: {
     formTitle: string;
     description: string;
@@ -821,7 +838,7 @@ export const FormBuilder = ({
           shape[field.name] = z.boolean();
           break;
         default:
-        console.log("nao deu " + field.name)
+          console.log("nao deu " + field.name);
         // throw new Error(`Unsupported field type: ${field.type}`);
       }
     });
@@ -837,7 +854,6 @@ export const FormBuilder = ({
   });
 
   const onSubmit = (values: z.infer<typeof schema>) => {
-    
     console.log(values);
   };
 
@@ -993,7 +1009,6 @@ export const FormBuilder = ({
 
 // function to read the json and extract all the form fields.
 export const ReadJson = (form: FormData): FormList[] => {
-  
   const result: FormList[] = [];
   const formNames: string[] = [];
   const formTypes: string[] = [];
@@ -1032,8 +1047,8 @@ export const ReadJson = (form: FormData): FormList[] => {
   for (let i = 0; i < formNames.length; i++) {
     const test: FormList = {
       name: formNames.at(i)?.toString(),
-      type: formTypes.at(i)?.toString()
-    }
+      type: formTypes.at(i)?.toString(),
+    };
     result.push(test);
   }
 
