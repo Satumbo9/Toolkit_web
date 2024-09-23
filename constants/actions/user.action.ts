@@ -44,7 +44,7 @@ export const getUser = async () => {
         id: session.user?.id,
       },
       include: {
-        Department: true,
+        department: true,
         activityLog: true,
         leads: true,
         merchantSplits: true,
@@ -255,4 +255,36 @@ export const UserUpdate = async (
       success: "Successfully Updated",
     };
   }
+};
+
+export const GetFormStats = async () => {
+  const user = await validateRequest();
+
+  if (!user) throw new Error();
+
+  const stats = await prisma.formBuilder.aggregate({
+    where: {
+      userId: user.user?.id,
+    },
+    _sum: {
+      visits: true,
+      submissions: true,
+    },
+  });
+
+  const visits = stats._sum.visits || 0;
+  const submissions = stats._sum.submissions || 0;
+
+  let submissionRate = 0;
+
+  if (visits > 0) submissionRate = (submissions / visits) * 100;
+
+  const bounceRate = submissionRate !== 0 ? 100 - submissionRate : 0;
+
+  return {
+    visits,
+    submissionRate,
+    submissions,
+    bounceRate,
+  };
 };

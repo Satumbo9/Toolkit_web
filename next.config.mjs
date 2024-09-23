@@ -8,6 +8,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "media1.giphy.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   webpack: (config, { isServer }) => {

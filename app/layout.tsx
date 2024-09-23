@@ -29,7 +29,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} text-dark_light dark:bg-zinc-900`}>
+      <body className={`${inter.className} text-dark_light dark:bg-zinc-900`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

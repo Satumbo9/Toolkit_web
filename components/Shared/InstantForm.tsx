@@ -93,6 +93,7 @@ export const InputForm = <
               disabled={disabled}
             />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -166,6 +167,8 @@ export const InputButtonForm = <
   );
 };
 
+
+
 export const SelectForm = <
   T extends z.ZodType<any, any>,
   ItemTypes extends ContentItem,
@@ -226,6 +229,7 @@ export const SelectForm = <
               </SelectContent>
             </Select>
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -237,11 +241,13 @@ export const TextAreaForm = <T extends z.ZodType<any, any>>({
   formName,
   label,
   placeholder,
+  className,
 }: {
   control: Control<z.infer<T>>;
   formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder?: string;
+  className?: string;
 }) => {
   return (
     <FormField
@@ -254,9 +260,10 @@ export const TextAreaForm = <T extends z.ZodType<any, any>>({
             <Textarea
               placeholder={placeholder}
               {...field}
-              className="resize-none"
+              className={"resize-none " + className}
             />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -299,6 +306,7 @@ export const CheckboxForm = <T extends z.ZodType<any, any>>({
               </label>
             </div>
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -353,6 +361,7 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
               </PopoverContent>
             </Popover>
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -407,6 +416,7 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
                 />
               </FormControl>
               <span>{label}</span>
+              <FormMessage />
             </div>
           </FormItem>
         );
@@ -415,13 +425,15 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
   );
 };
 
+/**
+ * state and setState required!!
+ */
 export const RadioForm = <
   T extends z.ZodType<any, any>,
   S extends string | number = string | number,
 >({
   control,
   formName,
-  label,
   options,
   className,
   labelClass,
@@ -478,6 +490,7 @@ export const RadioForm = <
               ))}
             </div>
           </FormControl>
+          <FormMessage />
           <FormMessage />
         </FormItem>
       )}

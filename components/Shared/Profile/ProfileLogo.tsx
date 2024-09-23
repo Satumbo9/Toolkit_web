@@ -30,7 +30,7 @@ const ProfileLogo = ({ props }: any) => {
                 : props.username}
             </h1>
             <p className="text-dark200_light900 text-[12px]">
-              {props.Department?.title} department
+              {props.department?.title} department
             </p>
           </div>
         </DropdownMenuTrigger>

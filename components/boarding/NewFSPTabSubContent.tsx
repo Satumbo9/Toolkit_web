@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 "use client";
 import {
   ColumnConfig,
@@ -168,6 +169,7 @@ const MerchantDetail = () => {
           <h1 className="my-5 text-2xl font-bold text-sky-500">
             DBA Address Information
           </h1>
+
           <FormGeneration
             formControl={form.control}
             formFields={dbaAddressFspForm}
@@ -1593,8 +1595,10 @@ const ProgrammingRequest = () => {
   });
 
   const onSubmit = (value: z.infer<typeof programmingRequestFspSchema>) => {
-    console.log(value);
+    // Making sure that the value is gonna be right according to
+    // the switches.
     console.log(activeSwitchId);
+    console.log(value);
   };
 
   const columnsConfig: ColumnConfig<DataTypes>[] = [
@@ -1609,10 +1613,13 @@ const ProgrammingRequest = () => {
   const [activeSwitchId, setActiveSwitchId] = useState<string | number>();
 
   const handleToggle = (id: string | number) => {
-    
-    console.log(id)
-    setActiveSwitchId((prevId) => (prevId === id ? 0 : id));
-    
+    if (id === activeSwitchId) {
+      setActiveSwitchId(0);
+      form.setValue("UseExistingAddress", `${0}`);
+    } else {
+      setActiveSwitchId(id);
+      form.setValue("UseExistingAddress", `${id}`);
+    }
   };
 
   const [shipPriority, setShipPriority] = useState("2 Days");
@@ -1830,7 +1837,7 @@ const ProgrammingRequest = () => {
             formControl={form.control}
             formFields={shipToFspForm}
             className={"w-full"}
-            gridCols={"6"}
+            gridCols={"1"}
           />
           <div className="flex gap-10">
             <div className="flex-auto">
@@ -1911,10 +1918,34 @@ const ProgrammingRequest = () => {
           <div className="my-5 flex justify-center gap-6 max-xl:block max-xl:space-y-2">
             <SwitchForm
               control={form.control}
-              formName={"UseExistingAddress"}
+              formName={"UseLegalBusiness"}
               label={"Use Legal Business Address"}
               id={1}
               isActive={activeSwitchId === 1}
+              onToggle={handleToggle}
+            />
+            <SwitchForm
+              control={form.control}
+              formName={"UseLegalBusinessDba"}
+              label={"Use Business Address DBA"}
+              id={2}
+              isActive={activeSwitchId === 2}
+              onToggle={handleToggle}
+            />
+            <SwitchForm
+              control={form.control}
+              formName={"UseAgent"}
+              label={"Use Agent Address"}
+              id={3}
+              isActive={activeSwitchId === 3}
+              onToggle={handleToggle}
+            />
+            <SwitchForm
+              control={form.control}
+              formName={"NoAddress"}
+              label={"No Address"}
+              id={4}
+              isActive={activeSwitchId === 4}
               onToggle={handleToggle}
             />
           </div>

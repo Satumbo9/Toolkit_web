@@ -30,7 +30,7 @@ const SignUpForm = ({ type }: { type: string }) => {
       password: "",
       phone: "",
       UserName: "",
-      departmentId: "",
+      departmentId: "1",
     },
   });
 
@@ -43,6 +43,8 @@ const SignUpForm = ({ type }: { type: string }) => {
         setSuccess(data?.success);
       });
     });
+
+    console.log(values);
   };
 
   const departmentId = [

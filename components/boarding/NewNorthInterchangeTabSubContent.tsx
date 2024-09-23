@@ -488,7 +488,6 @@ const ProgrammingRequest = () => {
       ShipTo: "",
       ShipName: "",
       ShipPriority: "",
-      UseExistingAddress: "",
       ShipAddress: "",
       ShipCity: "",
       ShipState: "",
@@ -514,10 +513,17 @@ const ProgrammingRequest = () => {
 
   const [activeSwitchId, setActiveSwitchId] = useState<string | number>();
   const handleToggle = (id: string | number) => {
-    console.log(id);
-    setActiveSwitchId((prevId) => (prevId === id ? undefined : id));
+    if (id === activeSwitchId) {
+      setActiveSwitchId(0);
+      form.setValue("UseExistingAddress", `${0}`);
+    } else {
+      setActiveSwitchId(id);
+      form.setValue("UseExistingAddress", `${id}`);
+    }
   };
+
   const [shipPriority, setShipPriority] = useState("2 Days");
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
@@ -806,7 +812,7 @@ const ProgrammingRequest = () => {
                 label={item.title}
                 id={item.id}
                 isActive={activeSwitchId === item.id}
-                onToggle={handleToggle}
+                onToggle={() => handleToggle(item.id)}
               />
             ))}
           </div>
@@ -830,7 +836,7 @@ const ProgrammingRequest = () => {
         <FormGeneration
           formControl={form.control}
           formFields={billToFspForm}
-          gridCols={"4"}
+          gridCols={"1"}
         />
         <div className="flex justify-start gap-2">
           <Button className="my-5">View Bank ACH</Button>
