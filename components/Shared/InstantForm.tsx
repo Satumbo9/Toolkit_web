@@ -50,6 +50,7 @@ export const InputForm = <
   type,
   className,
   state,
+  disabled,
   setState,
 }: {
   control: Control<z.infer<T>>;
@@ -59,6 +60,7 @@ export const InputForm = <
   type?: React.HTMLInputTypeAttribute;
   className?: string;
   state?: S;
+  disabled?: any;
   setState?: React.Dispatch<React.SetStateAction<S>>;
 }) => {
   return (
@@ -85,6 +87,7 @@ export const InputForm = <
               }}
               type={type}
               className={className}
+              disabled={disabled}
             />
           </FormControl>
           <FormMessage />
@@ -240,11 +243,13 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
   formName,
   label,
   placeholder,
+  disabled,
 }: {
   control: Control<z.infer<T>>;
   formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder?: string;
+  disabled?: any; 
 }) => {
   const [date, setDate] = useState<Date>();
   return (
@@ -269,6 +274,7 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <Calendar
+                  disabled={disabled}
                   mode="single"
                   selected={date}
                   onSelect={(selectedDate) => {
@@ -440,9 +446,9 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
                 formName={item.formName}
                 label={item.title}
                 placeholder={item.placeholder}
-                valueKey={"value"}
                 content={item.content}
-                displayKey="value"
+                valueKey="id"
+                displayKey="name"
               />
             </div>
           ) : item.type === "checkbox" ? (

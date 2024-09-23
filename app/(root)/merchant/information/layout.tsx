@@ -6,7 +6,7 @@ import MerchantInfoSummary from "@/components/merchants/MerchantInfoSummary";
 
 const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <>
+    <section>
       <MerchantInfoSummary />
       <div className="flex gap-3">
         <MerchantsInformationTab />
@@ -14,7 +14,7 @@ const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
           {children}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

@@ -87,10 +87,18 @@ const page = () => {
                     className="mb-2"
                   />
 
-                  <CustomButtons btnType="default" className="my-2 w-full">
+                  <CustomButtons
+                    btnType="default"
+                    type="submit"
+                    className="my-2 w-full"
+                  >
                     SUBMIT
                   </CustomButtons>
-                  <CustomButtons btnType="success" className="mb-2 w-full">
+                  <CustomButtons
+                    btnType="success"
+                    type="button"
+                    className="mb-2 w-full"
+                  >
                     MERCHANT APPROVED
                   </CustomButtons>
                 </div>
@@ -152,7 +160,7 @@ const page = () => {
                   label="Compliance Date"
                   placeholder="mm/dd/2024"
                 />
-                <CustomButtons btnType="default" className="my-2 w-full">
+                <CustomButtons btnType="default" type="button" className="my-2 w-full">
                   Go To Sale Detail
                 </CustomButtons>
               </div>

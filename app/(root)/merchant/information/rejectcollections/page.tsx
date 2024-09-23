@@ -11,7 +11,6 @@ import { Status } from "@/components/Shared/DataTable/CellFormat";
 import CustomButtons from "@/components/Shared/CustomButtons";
 
 const page = () => {
-
   //  COSTUMIZATION OF THE COLUMN PRICE
   const Price = (row: any) => {
     const amount = parseFloat(row.getValue("price"));
@@ -60,46 +59,44 @@ const page = () => {
   const columns2 = createColumns(columnsConfig2);
 
   return (
-    <>
-      <section className="w-full">
-        <h1 className="mb-3 text-2xl text-sky-500">Reject / Collections</h1>
+    <section className="w-full">
+      <h1 className="mb-3 text-2xl text-sky-500">Reject / Collections</h1>
 
+      <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
+        <DataTable
+          columns={columns1}
+          data={rejectCollectionsTable1}
+          enableColumnFilter={true}
+          filteredBy="DebitAmount"
+        />
+      </div>
+
+      <div className="flex gap-4 max-xl:flex-wrap">
         <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
           <DataTable
-            columns={columns1}
-            data={rejectCollectionsTable1}
+            columns={columns2}
+            data={rejectCollectionsTable2}
             enableColumnFilter={true}
-            filteredBy="DebitAmount"
+            filteredBy="Status"
           />
         </div>
-
-        <div className="flex gap-4 max-xl:flex-wrap">
-          <div className="mb-5 grid flex-auto grid-cols-1 overflow-auto rounded-md">
-            <DataTable
-              columns={columns2}
-              data={rejectCollectionsTable2}
-              enableColumnFilter={true}
-              filteredBy="Status"
-            />
-          </div>
-          <div className="w-fit">
-            <CustomButtons btnType="default" className="mb-2 w-full px-10 ">
-              Create New Collection
-            </CustomButtons>
-            <CustomButtons btnType="default" className="mb-2 w-full">
-              Edit Collection
-            </CustomButtons>
-            <hr className="my-5 border-transparent bg-transparent" />
-            <CustomButtons btnType="success" className="mb-2 w-full">
-              Add Payment
-            </CustomButtons>
-            <CustomButtons btnType="destructive" className="mb-2 w-full">
-              Desactivate Collection
-            </CustomButtons>
-          </div>
+        <div className="w-fit">
+          <CustomButtons btnType="default" type="button" className="mb-2 w-full px-10">
+            Create New Collection
+          </CustomButtons>
+          <CustomButtons btnType="default" type="button" className="mb-2 w-full">
+            Edit Collection
+          </CustomButtons>
+          <hr className="my-5 border-transparent bg-transparent" />
+          <CustomButtons btnType="success" type="button" className="mb-2 w-full">
+            Add Payment
+          </CustomButtons>
+          <CustomButtons btnType="destructive" type="button" className="mb-2 w-full">
+            Desactivate Collection
+          </CustomButtons>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

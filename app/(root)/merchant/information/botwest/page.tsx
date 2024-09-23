@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { InputForm } from "@/components/Shared/InstantForm";
+import CustomButtons from "@/components/Shared/CustomButtons";
 
 const Page = () => {
   const form = useForm<z.infer<typeof bankOfTheWestSchema>>({
@@ -34,11 +35,12 @@ const Page = () => {
   const onSubmit = (value: z.infer<typeof bankOfTheWestSchema>) => {
     console.log(value);
   };
+
   const formList = [
     {
       id: 1,
       title: "Agent / Rep. Name",
-      formName: "",
+      formName: "AgentRepName",
       placeholder: "",
       type: "input",
       value: "",
@@ -46,7 +48,7 @@ const Page = () => {
     {
       id: 2,
       title: "Agent / Rep. Code",
-      formName: "",
+      formName: "AgentRepCode",
       placeholder: "",
       type: "input",
       value: "",
@@ -54,7 +56,7 @@ const Page = () => {
     {
       id: 3,
       title: "Branch Name",
-      formName: "",
+      formName: "BranchName",
       placeholder: "",
       type: "input",
       value: "",
@@ -62,7 +64,7 @@ const Page = () => {
     {
       id: 4,
       title: "Branch Code",
-      formName: "",
+      formName: "BranchCode",
       placeholder: "",
       type: "input",
       value: "",
@@ -70,7 +72,7 @@ const Page = () => {
     {
       id: 5,
       title: "ABA Routing #",
-      formName: "",
+      formName: "AbaRouting",
       placeholder: "",
       type: "input",
       value: "",
@@ -78,7 +80,7 @@ const Page = () => {
     {
       id: 6,
       title: "DDA Checking Act. #",
-      formName: "",
+      formName: "DdaCheckingAct",
       placeholder: "",
       type: "input",
       value: "",
@@ -86,7 +88,7 @@ const Page = () => {
     {
       id: 7,
       title: "Federal Tax ID #",
-      formName: "",
+      formName: "FederalTaxId",
       placeholder: "",
       type: "input",
       value: "",
@@ -94,7 +96,7 @@ const Page = () => {
     {
       id: 8,
       title: "Banker",
-      formName: "",
+      formName: "Banker",
       placeholder: "",
       type: "input",
       value: "",
@@ -102,7 +104,7 @@ const Page = () => {
     {
       id: 9,
       title: "Banker Employee ID",
-      formName: "",
+      formName: "BankerEmployeeId",
       placeholder: "",
       type: "input",
       value: "",
@@ -110,7 +112,7 @@ const Page = () => {
     {
       id: 10,
       title: "Division Name",
-      formName: "",
+      formName: "DivisionName",
       placeholder: "",
       type: "input",
       value: "",
@@ -118,7 +120,7 @@ const Page = () => {
     {
       id: 11,
       title: "Division / LOB #",
-      formName: "",
+      formName: "DivisonLob",
       placeholder: "",
       type: "input",
       value: "",
@@ -126,7 +128,7 @@ const Page = () => {
     {
       id: 12,
       title: "Region Name",
-      formName: "",
+      formName: "RegionName",
       placeholder: "",
       type: "input",
       value: "",
@@ -134,7 +136,7 @@ const Page = () => {
     {
       id: 13,
       title: "Region #",
-      formName: "",
+      formName: "Region",
       placeholder: "",
       type: "input",
       value: "",
@@ -142,7 +144,7 @@ const Page = () => {
     {
       id: 14,
       title: "Segment Name",
-      formName: "",
+      formName: "SegmentName",
       placeholder: "",
       type: "input",
       value: "",
@@ -150,7 +152,7 @@ const Page = () => {
     {
       id: 15,
       title: "Referral Lead #",
-      formName: "",
+      formName: "ReferralLead",
       placeholder: "",
       type: "input",
       value: "",
@@ -158,7 +160,7 @@ const Page = () => {
     {
       id: 16,
       title: "Entity",
-      formName: "",
+      formName: "Entity",
       placeholder: "",
       type: "input",
       value: "",
@@ -166,11 +168,11 @@ const Page = () => {
     {
       id: 17,
       title: "Client Group",
-      formName: "",
+      formName: "ClientGroup",
       placeholder: "",
       type: "input",
       value: "",
-    },
+    }
   ];
 
   return (
@@ -179,13 +181,15 @@ const Page = () => {
 
       {/* FIRST COLUMN */}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="">
           {/* Processor Information */}
-          <h1 className="m-auto text-center text-xl font-bold">Information</h1>
-          <div className="m-auto grid grid-flow-row grid-cols-2 gap-x-4 px-6 max-lg:grid-cols-1">
+          <h1 className="m-auto my-4 text-center text-2xl font-bold">
+            Information
+          </h1>
+          <div className="m-auto grid max-w-[800px] grid-flow-row grid-cols-2 gap-x-4 px-6 max-lg:grid-cols-1">
             {formList.map((item) => {
               return (
-                <div key={item.id} className="m-auto w-full gap-4">
+                <div key={item.id} className="m-auto my-2 w-full gap-4">
                   <InputForm
                     control={form.control}
                     formName={item.formName}
@@ -195,6 +199,11 @@ const Page = () => {
                 </div>
               );
             })}
+          </div>
+          <div className="my-4 text-center">
+            <CustomButtons className="" btnType="default">
+              Save Changes
+            </CustomButtons>
           </div>
         </form>
       </Form>

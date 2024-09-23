@@ -26,7 +26,7 @@ export const newMerchantSchema = z.object({
   DBA: requiredString,
   Phone: requiredString,
   Status: requiredString,
-  Approval: requiredString.date(),
+  Approval: requiredString,
   Filter: requiredString,
   Processor: requiredString,
   Fitler2: requiredString,
@@ -109,6 +109,7 @@ export const MerchantInfoSchema = z.object({
   MCCclassification: requiredString,
   Parent: requiredString,
   CloverID: requiredString,
+  SameAsLegal: z.boolean(),
 });
 
 export type MerchantInfoValues = z.infer<typeof MerchantInfoSchema>;
@@ -665,6 +666,19 @@ export const boardingMerchantInfoSchema = z.object({
   DbaCity: z.string(),
   DbaState: z.string(),
   DbaZip: z.string(),
+});
+
+export const newMerchantReport = z.object({
+  BoolAgent: z.boolean(),
+  BoolAgentDate: z.boolean(),
+  BoolApprovalDate: z.boolean(),
+  BoolProcessor: z.boolean(),
+  BoolMerchant: z.boolean(),
+
+  SelectedAgent: z.string(),
+  DateFrom: z.string(),
+  DateTo: z.string(),
+  
 });
 
 // Order New Equipment
