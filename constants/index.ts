@@ -3950,6 +3950,24 @@ export const merchantForAgentTable = [
   },
 ]
 
+export const LeadTypesList = [
+  {
+    id: 1,
+    title: "MiCamp Leads",
+    value: "micampLead",
+  },
+  {
+    id: 2,
+    title: "North Leads",
+    value: "northLeads",
+  },
+  {
+    id: 3,
+    title: "FSP Leads",
+    value: "fspLeads",
+  },
+];
+
 export const myTicketsTable = [
   {
     Id: 1,
@@ -3984,12 +4002,22 @@ export const mySolvedTicketsTable = [
   },
 ]
 
-export const northLeadsTable = [
+export const LeadsTable = [
   {
     Id: 1,
     Email: "tony@stark.com",
     Name: "Tony Stark",
-    Status: "sent",
+    Date: "09/25/2024",
+    Type: "FSP Lead",
+    Status: "Sent",
+  },
+  {
+    Id: 2,
+    Email: "frusciante@rhcp.com",
+    Name: "John Frusciante",
+    Date: "09/01/2024",
+    Type: "North Lead",
+    Status: "Sent",
   },
 ]
 
@@ -4383,19 +4411,11 @@ export const dbaAddressFspForm = [
     title: "Street: *",
     type: "input",
     placeholder: "Enter a valid address",
-    formName: "Address",
+    formName: "Street",
     value: "",
   },
   {
     id: 2,
-    title: "Search for an existent address:",
-    type: "input",
-    placeholder: "Search to auto-fill your address details",
-    formName: "SearchBar",
-    value: "",
-  },
-  {
-    id: 3,
     title: "City:",
     type: "input",
     placeholder: "City",
@@ -4403,7 +4423,7 @@ export const dbaAddressFspForm = [
     value: "",
   },
   {
-    id: 4,
+    id: 3,
     title: "State:",
     type: "input",
     placeholder: "AZ",
@@ -4411,7 +4431,7 @@ export const dbaAddressFspForm = [
     value: "",
   },
   {
-    id: 5,
+    id: 4,
     title: "Postal Code:",
     type: "input",
     placeholder: "Zip",

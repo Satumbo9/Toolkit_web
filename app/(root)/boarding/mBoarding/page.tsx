@@ -48,11 +48,11 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="flex w-full gap-4 max-2xl:flex-wrap">
-      <div className="flex-auto content-center">
+    <section className="w-full max-2xl:flex-wrap">
+      <div className="flex-auto ">
         <StartApplication />
       </div>
-      <div className="border max-2xl:hidden" />
+      <div className="border" />
       {/* TABLE DIV */}
       <div className="flex-auto">
         <h2 className="mt-5 text-center text-xl">

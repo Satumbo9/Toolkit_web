@@ -59,7 +59,7 @@ import {
   whoShipsFspForm,
 } from "@/constants";
 import { DataTypes } from "@/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "../ui/form";
 import {
   financialInformationFspSchema,
@@ -100,6 +100,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
+import { MapPin } from "lucide-react";
+import { Location } from "@/types/types";
+// import { fetchLocation } from "@/app/api/location/route";
 
 const MerchantDetail = () => {
   const form = useForm<z.infer<typeof merchantInformationFspSchema>>({
@@ -113,7 +116,7 @@ const MerchantDetail = () => {
       ContactPhone: "",
       ContactServicePhone: "",
       BusinessWebsite: "",
-      DateOpen: "",
+      DateOpen: new Date(),
       Street: "",
       AddressSearchBar: "",
       City: "",
@@ -151,6 +154,48 @@ const MerchantDetail = () => {
   const [areaZoned, setAreaZoned] = useState("");
   const [squareFootage, setSquareFootage] = useState("");
 
+  const [data, setData] = useState<any[]>([]);
+  const [search, setSearch] = useState("");
+
+  const { setValue } = form;
+
+  const [debounce, setDebounce] = useState<string>(search);
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      setDebounce(search);
+    }, 1500);
+
+    if (!debounce) return;
+
+    if (debounceTimer) {
+      const getLocation = async () => {
+        const locations = await fetch(`/api/location?q=${search}`);
+
+        if (!locations.ok) return console.log("Location is not feeling well");
+
+        const savedData = await locations.json();
+
+        setData(savedData.items);
+      };
+
+      getLocation();
+    }
+  }, [debounce, search]);
+
+  const handleClick = (value: any) => {
+    setValue("Street", value.street);
+    setValue("City", value.city);
+    setValue("State", value.state);
+    setValue("PostalCode", value.postalCode);
+
+    setData([]);
+    setIsOpen(false);
+    setSearch("");
+  };
+
   return (
     <section className="text-start">
       <Form {...form}>
@@ -169,7 +214,35 @@ const MerchantDetail = () => {
           <h1 className="my-5 text-2xl font-bold text-sky-500">
             DBA Address Information
           </h1>
+          <div className="relative">
+            <Input
+              placeholder={"Search to auto-fill your address details"}
+              id="search"
+              value={search}
+              name="searchInput"
+              className="mb-0 w-1/2"
+              onChange={(event) => {
+                setSearch(event.target.value);
+                if (!isOpen) setIsOpen(true);
+                if (event.target.value === "" && isOpen) setIsOpen(false);
+              }}
+            />
 
+            {isOpen && (
+              <div className="relative my-2 h-60 max-h-60 w-full rounded-md border bg-black p-3">
+                {data.map((location: Location) => (
+                  <div
+                    key={location.title}
+                    className="flex w-full cursor-pointer gap-3 py-2"
+                    onClick={() => handleClick(location.address)}
+                  >
+                    <MapPin />
+                    <p>{location.title}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           <FormGeneration
             formControl={form.control}
             formFields={dbaAddressFspForm}
@@ -864,12 +937,12 @@ const MoToQuestionaire = () => {
     defaultValues: {
       BusinessPercentage: 0,
       IndividualsPercentage: 0,
-      MktNewspapersMagazine: "",
-      MktOutboundTelemarketing: "",
-      MktMail: "",
-      MktInternet: "",
-      MktTelevisionRadio: "",
-      MktOther: "",
+      MktNewspapersMagazine: false,
+      MktOutboundTelemarketing: false,
+      MktMail: false,
+      MktInternet: false,
+      MktTelevisionRadio: false,
+      MktOther: false,
       MktOtherDescription: "",
       CardInfoWhoEnters: "",
       CardInfoOtherDescription: "",

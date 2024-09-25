@@ -22,7 +22,7 @@ import { Form } from "../ui/form";
 import {
   boardingMerchantInfoSchema,
   newFspLeadSchema,
-  newNorthBlindLeadSchema,
+  newLeadSchema,
   newOrderInfoSchema,
 } from "@/lib/utils";
 import { z } from "zod";
@@ -129,15 +129,15 @@ const EquipmentOrders = () => {
 
   const columns2 = createColumns(columnsConfig2);
 
-  const form = useForm<z.infer<typeof newNorthBlindLeadSchema>>({
-    resolver: zodResolver(newNorthBlindLeadSchema),
+  const form = useForm<z.infer<typeof newLeadSchema>>({
+    resolver: zodResolver(newLeadSchema),
     defaultValues: {
       Email: "",
       Name: "",
     },
   });
 
-  const onSubmit = (value: z.infer<typeof newNorthBlindLeadSchema>) => {
+  const onSubmit = (value: z.infer<typeof newLeadSchema>) => {
     console.log(value);
   };
 

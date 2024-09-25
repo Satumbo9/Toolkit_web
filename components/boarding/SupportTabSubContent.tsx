@@ -46,9 +46,9 @@ const MyTickets = () => {
               <DialogTitle className="mb-5 text-center text-2xl font-semibold text-sky-500">
                 Add New Support Ticket
               </DialogTitle>
-              <Description />
-              <NewSupportTicket />
             </DialogHeader>
+            <Description />
+            <NewSupportTicket />
           </DialogContent>
         </Dialog>
       </div>

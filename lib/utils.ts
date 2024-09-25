@@ -674,9 +674,10 @@ export const newSupportTicketSchema = z.object({
   Description: requiredString,
 });
 
-export const newNorthBlindLeadSchema = z.object({
+export const newLeadSchema = z.object({
   Email: requiredString,
   Name: requiredString,
+  LeadType: requiredString,
 });
 
 export const newFspLeadSchema = z.object({
@@ -758,7 +759,7 @@ export const merchantInformationFspSchema = z.object({
   ContactPhone: z.string(),
   ContactServicePhone: z.string(),
   BusinessWebsite: z.string(),
-  DateOpen: z.string(),
+  DateOpen: z.date(),
   // DBA Address Section
   Street: z.string(),
   AddressSearchBar: z.string(),
@@ -867,12 +868,12 @@ export const moToQuestionaireFspSchema = z.object({
   BusinessPercentage: z.number(),
   IndividualsPercentage: z.number(),
   // Methods of Marketing
-  MktNewspapersMagazine: z.string(),
-  MktOutboundTelemarketing: z.string(),
-  MktMail: z.string(),
-  MktInternet: z.string(),
-  MktTelevisionRadio: z.string(),
-  MktOther: z.string(),
+  MktNewspapersMagazine: z.boolean(),
+  MktOutboundTelemarketing: z.boolean(),
+  MktMail: z.boolean(),
+  MktInternet: z.boolean(),
+  MktTelevisionRadio: z.boolean(),
+  MktOther: z.boolean(),
   MktOtherDescription: z.string(),
   // Who enters Card Information Into the Processing System
   CardInfoWhoEnters: z.string(),

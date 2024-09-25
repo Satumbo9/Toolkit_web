@@ -4,9 +4,6 @@ import { useRouter } from "next/navigation";
 
 const BoardingShortcuts = () => {
   const router = useRouter();
-  const handleLeadsTabClick = (value: string) => {
-    router.push(`/boarding/leads?tab=${value}`);
-  };
 
   const handleDocLibTabClick = (value: string) => {
     router.push(`/boarding/docLibrary?tab=${value}`);
@@ -116,39 +113,35 @@ const BoardingShortcuts = () => {
           </div>
         </div>
         {/* LEADS SHORCUT */}
-        <div className="col-auto h-full justify-center space-y-2 rounded-md border p-5 shadow-md transition duration-300 hover:border-sky-500">
-          <h1 className="text-center font-semibold">Leads</h1>
-          <div className="flex gap-4 px-2">
-            <Image
-              className="m-auto flex-none"
-              src="/icon/colorful/leads.svg"
-              alt="Logo"
-              width={55}
-              height={55}
-              priority
-            />
-            {/* Link this to another page first. */}
-            <ul className="flex-1 content-center justify-start px-4 text-sm">
-              {/* Then, when clicking any of these div should pass the props value. */}
-              <div>
-                <li
-                  className="w-fit cursor-pointer list-disc text-nowrap text-sm underline"
-                  onClick={() => handleLeadsTabClick("northLeads")}
-                >
-                  North Leads
-                </li>
-              </div>
-              <div>
-                <li
-                  className="w-fit cursor-pointer list-disc text-nowrap text-sm underline"
-                  onClick={() => handleLeadsTabClick("fspLeads")}
-                >
-                  FSP Leads
-                </li>
-              </div>
-            </ul>
+        <Link href={"/boarding/leads"}>
+          <div className="col-auto h-full justify-center space-y-2 rounded-md border p-5 shadow-md transition duration-300 hover:border-sky-500">
+            <h1 className="text-center font-semibold">Leads</h1>
+            <div className="flex gap-4 px-2">
+              <Image
+                className="m-auto flex-none"
+                src="/icon/colorful/leads.svg"
+                alt="Logo"
+                width={55}
+                height={55}
+                priority
+              />
+              {/* Link this to another page first. */}
+              <ul className="flex-1 content-center justify-start px-4 text-sm">
+                {/* Then, when clicking any of these div should pass the props value. */}
+                <div>
+                  <li className="w-fit cursor-pointer list-disc text-nowrap text-sm underline">
+                    North Leads
+                  </li>
+                </div>
+                <div>
+                  <li className="w-fit cursor-pointer list-disc text-nowrap text-sm underline">
+                    FSP Leads
+                  </li>
+                </div>
+              </ul>
+            </div>
           </div>
-        </div>
+        </Link>
         {/* SUPPORT TICKETS SHORCUT */}
         <Link href={"/boarding/supportTickets"}>
           <div className="col-auto h-full justify-center space-y-2 rounded-md border p-5 shadow-md transition duration-300 hover:border-sky-500">
