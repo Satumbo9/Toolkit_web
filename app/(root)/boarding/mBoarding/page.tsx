@@ -49,17 +49,17 @@ const Page = () => {
 
   return (
     <section className="w-full max-2xl:flex-wrap">
-      <div className="flex-auto ">
+      <div className="flex-auto">
         <StartApplication />
       </div>
-      <div className="border" />
+      {/* <div className="-mx-5 mt-5 border" /> */}
       {/* TABLE DIV */}
-      <div className="flex-auto">
+      <div className="mt-10 flex-auto">
         <h2 className="mt-5 text-center text-xl">
           Merchant Boarding List for
           {!result && <b> {data}</b>}
         </h2>
-        <div className="grid grid-cols-1 overflow-auto">
+        <div className="grid grid-cols-1 overflow-auto ">
           <DataTable
             columns={columns}
             data={merchantBoardingListTable}

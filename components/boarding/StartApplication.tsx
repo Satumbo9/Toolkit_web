@@ -26,12 +26,12 @@ const StartApplication = () => {
   const [route] = useState("/boarding/mBoarding/newFSP");
 
   return (
-    <section className="m-auto my-10">
+    <section className="-m-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
           <div className="flex">
-            <div className="w-1/3">
-              <div className="m-auto max-w-xl gap-3 rounded-xl border bg-gray-50 px-6 py-14 shadow-md dark:bg-black">
+            <div className="w-2/6 content-center justify-center">
+              <div className="m-auto max-w-sm gap-3 rounded-xl border bg-gray-50 px-6 py-14 shadow-md dark:bg-black">
                 <Image
                   className="m-auto flex-none"
                   src="/icon/colorful/new-form.svg"
@@ -128,13 +128,14 @@ const StartApplication = () => {
                 </div>
               </div>
             </div>
-            <div className="h-full w-2/3">
+            <div className="h-max w-4/6">
               <Image
-                className="m-auto flex-none"
-                src="/public/images/dark-blue-bg.png"
-                alt="Logo"
-                width={60}
-                height={60}
+                className="size-full flex-none rounded-tr-lg"
+                src="/images/dark-blue-bg.png"
+                alt="sss"
+                width={1050}
+                height={600}
+                fill={false}
                 priority
               />
             </div>

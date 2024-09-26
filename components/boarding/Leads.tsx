@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { InputForm, SelectForm } from "../Shared/InstantForm";
 import { getUser } from "@/constants/actions/user.action";
+import { Send } from "lucide-react";
 
 const Leads = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
@@ -58,11 +59,14 @@ const Leads = () => {
   }, []);
 
   return (
-    <section className="m-auto mt-4 gap-2 text-start max-2xl:flex-wrap">
+    <section className="m-auto gap-2 text-start max-2xl:flex-wrap">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
           <div className="mx-auto my-20 max-w-lg gap-2 space-y-2">
             <div className="">
+              <div className="justify-center">
+                <Send className="m-auto my-3 size-10" />
+              </div>
               <h1 className="text-center text-2xl font-semibold text-sky-500">
                 Merchant Processing Application
               </h1>
