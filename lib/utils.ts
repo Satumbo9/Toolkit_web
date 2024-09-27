@@ -663,7 +663,7 @@ export const boardingAgentSettingsSchema = z.object({
  */
 export const newBoardingAppliactionSchema = z.object({
   Name: requiredString,
-  Email: requiredString,
+  Email: z.string().email(),
   ApplicationType: requiredString,
 })
 

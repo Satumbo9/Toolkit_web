@@ -26,7 +26,6 @@ import {
   MonitorSmartphone,
   PackagePlus,
   ClipboardMinus,
-  BookText,
   HandCoins,
   Upload,
   User2Icon,
@@ -44,6 +43,7 @@ import {
   Link,
   CircleArrowUp,
   Send,
+  FilePenLine,
 } from "lucide-react";
 import { z } from "zod";
 import { FormData  } from "@/types/types";
@@ -4063,7 +4063,7 @@ export const documentLibraryTabs = [
     id: "2",
     title: "Change Forms",
     value: "changeForms",
-    icon: BookText,
+    icon: FilePenLine,
   },
   {
     id: "3",

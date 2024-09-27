@@ -12,6 +12,7 @@ const CustomButtons = ({
   className,
   title,
   btnType,
+  onClick,
   ...props
 }: CustomButtonProps) => {
   return (
@@ -24,6 +25,7 @@ const CustomButtons = ({
             "flex-1 bg-gradient-to-r from-[#FF3333] to-[#8F0000] text-white hover:opacity-90",
             className,
           )}
+          onClick={onClick}
         >
           {title}
           {props.children}
@@ -38,6 +40,7 @@ const CustomButtons = ({
             "flex-1 bg-gradient-to-r from-[#14ADD6] to-[#384295] text-white hover:opacity-90",
             className,
           )}
+          onClick={onClick}
         >
           {title}
           {props.children}
@@ -52,6 +55,7 @@ const CustomButtons = ({
             "flex-1 bg-gradient-to-r from-[#79CB6C] to-[#285C20] text-white hover:opacity-90",
             className,
           )}
+          onClick={onClick}
         >
           {title}
           {props.children}
@@ -63,6 +67,7 @@ const CustomButtons = ({
           disabled={disabled}
           type={type}
           className={cn("w-full hover:opacity-90", className)}
+          onClick={onClick}
         >
           {title}
           {props.children}

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+"use client";
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
+import React from "react";
 import Image from "next/image";
 import { InputForm } from "../Shared/InstantForm";
 import { useForm } from "react-hook-form";
@@ -7,10 +9,11 @@ import { newBoardingAppliactionSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
 import CustomButtons from "../Shared/CustomButtons";
-import Link from "next/link";
-import { Info } from "lucide-react";
+import { FilePlus2, Info } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const StartApplication = () => {
+  const router = useRouter();
   const [merchantName, setMerchantName] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
 
@@ -23,29 +26,31 @@ const StartApplication = () => {
     console.log(value);
   };
 
-  const [route] = useState("/boarding/mBoarding/newFSP");
+  const selected = document.getElementById("div-image");
+  if (selected) {
+    selected.style.backgroundImage = "url('/images/boarding-wallpaper.png')";
+    selected.style.backgroundSize = "cover";
+  }
 
+  const route = "/boarding/mBoarding/newFSP";
+
+  const handleClick = () => {
+    router.push(route);
+  };
   return (
     <section className="-m-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
-          <div className="flex">
-            <div className="w-2/6 content-center justify-center">
-              <div className="m-auto max-w-sm gap-3 rounded-xl border bg-gray-50 px-6 py-14 shadow-md dark:bg-black">
-                <Image
-                  className="m-auto flex-none"
-                  src="/icon/colorful/new-form.svg"
-                  alt="New Application Logo"
-                  width={64}
-                  height={64}
-                  priority
-                />
-                <h2 className="mt-5 text-center text-xl font-semibold text-sky-500">
-                  Start a New Application
+          <div className="rounded-tr-lg bg-auto py-14" id="div-image">
+            <div className="content-center justify-center">
+              <div className="m-auto max-w-sm gap-3 rounded-xl bg-white bg-opacity-85 px-6 py-10 shadow-md dark:bg-black dark:bg-opacity-70">
+                <FilePlus2 className="m-auto size-10" />
+                <h2 className="mt-5 text-center font-sans text-3xl font-bold text-sky-500">
+                  GET STARTED!
                 </h2>
-                <p className="mb-5 text-center text-xs text-gray-400">
-                  Start the application now, and finish it when you have all you
-                  need.
+                <p className="m-auto mb-5 w-full text-center text-sm text-gray-500">
+                  Start your application process by completing the following
+                  steps.
                 </p>
                 {/* FORM */}
                 <div className="space-y-6">
@@ -65,49 +70,17 @@ const StartApplication = () => {
                     state={email}
                     setState={setEmail}
                   />
-                  {/* <RadioForm
-              control={form.control}
-              formName="ApplicationType"
-              label=""
-              options={[
-                {
-                  label: "MiCamp FSP MPA",
-                  value: "/boarding/mBoarding/newFSP",
-                },
-                {
-                  label: "Fisrt Data NORTH Interchange 2502-2",
-                  value: "/boarding/mBoarding/newInterchange",
-                },
-                {
-                  label: "Fisrt Data NORTH WAVit 2502-2",
-                  value: "/boarding/mBoarding/newWAVit",
-                },
-                {
-                  label: "OMAHA Processing Application and Agreement",
-                  value: "/boarding/mBoarding/newOMAHA",
-                },
-              ]}
-              state={route}
-              setState={setRoute}
-              className="size-4"
-              disabled={!merchantName || !email}
-            /> */}
                   <div className="flex justify-center gap-2">
                     <CustomButtons
-                      btnType="primary"
+                      className="w-full px-10"
+                      btnType="default"
+                      type="submit"
                       disabled={!merchantName || !email}
+                      onClick={() => handleClick()}
+                      // disabled={!merchantName || !email || !route}
                     >
-                      Save it For Later
+                      Start Application
                     </CustomButtons>
-                    <Link href={route}>
-                      <CustomButtons
-                        btnType="default"
-                        disabled={!merchantName || !email}
-                        // disabled={!merchantName || !email || !route}
-                      >
-                        Start Right Now
-                      </CustomButtons>
-                    </Link>
                   </div>
                 </div>
                 <div className="group relative my-4 flex justify-center gap-2">
@@ -128,7 +101,7 @@ const StartApplication = () => {
                 </div>
               </div>
             </div>
-            <div className="h-max w-4/6">
+            <div className="hidden h-max w-4/6">
               <Image
                 className="size-full flex-none rounded-tr-lg"
                 src="/images/dark-blue-bg.png"

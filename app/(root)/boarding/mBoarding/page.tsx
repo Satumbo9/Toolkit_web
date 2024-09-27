@@ -55,11 +55,11 @@ const Page = () => {
       {/* <div className="-mx-5 mt-5 border" /> */}
       {/* TABLE DIV */}
       <div className="mt-10 flex-auto">
-        <h2 className="mt-5 text-center text-xl">
+        <h2 className="mt-10 flex justify-center gap-2 text-2xl">
           Merchant Boarding List for
-          {!result && <b> {data}</b>}
+          {!result && <p className="text-sky-500"> {data}</p>}
         </h2>
-        <div className="grid grid-cols-1 overflow-auto ">
+        <div className="grid grid-cols-1 overflow-auto">
           <DataTable
             columns={columns}
             data={merchantBoardingListTable}

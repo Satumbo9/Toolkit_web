@@ -24,15 +24,16 @@ const DocLibraryTabContent = () => {
       defaultValue={!result ? activeItem : result}
       className="w-full rounded-md p-4 text-center"
     >
-      <TabsList>
+      <TabsList className="gap-2">
         {documentLibraryTabs.map((tab) => (
           <TabsTrigger
             onClick={() => handleClick(tab.value)}
             key={tab.id}
             value={tab.value}
             title={tab.title}
+            className="gap-2"
           >
-            <p className="hidden max-xl:block">{React.createElement(tab.icon)}</p>
+            <p className="max-xl:block">{React.createElement(tab.icon)}</p>
             <p className="max-xl:hidden">{tab.title}</p>
           </TabsTrigger>
         ))}

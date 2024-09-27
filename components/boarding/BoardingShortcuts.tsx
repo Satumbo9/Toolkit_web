@@ -128,16 +128,15 @@ const BoardingShortcuts = () => {
               {/* Link this to another page first. */}
               <ul className="flex-1 content-center justify-start px-4 text-sm">
                 {/* Then, when clicking any of these div should pass the props value. */}
-                <div>
-                  <li className="w-fit cursor-pointer list-disc text-nowrap text-sm underline">
-                    North Leads
-                  </li>
-                </div>
-                <div>
-                  <li className="w-fit cursor-pointer list-disc text-nowrap text-sm underline">
-                    FSP Leads
-                  </li>
-                </div>
+                <li className="w-fit cursor-pointer list-disc text-nowrap text-sm">
+                  MiCamp Leads
+                </li>
+                <li className="w-fit cursor-pointer list-disc text-nowrap text-sm">
+                  North Leads
+                </li>
+                <li className="w-fit cursor-pointer list-disc text-nowrap text-sm">
+                  FSP Leads
+                </li>
               </ul>
             </div>
           </div>
