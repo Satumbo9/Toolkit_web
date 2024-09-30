@@ -1,4 +1,4 @@
-import SupportTabContent from '@/components/boarding/SupportTabContent';
+import SupportTabContent from '@/components/supportTickets/SupportTabContent';
 import React from 'react'
 
 const Page = () => {

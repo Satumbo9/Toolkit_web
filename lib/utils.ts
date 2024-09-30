@@ -659,6 +659,7 @@ export const newSupportTicketSchema = z.object({
   Subject: requiredString,
   Support: z.boolean(),
   Sales: z.boolean(),
+  SupportType: z.string(),
   Description: requiredString,
 });
 

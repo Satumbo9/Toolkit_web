@@ -1,12 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { z } from "zod";
 import { newSupportTicketSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { CheckboxForm, InputForm, TextAreaForm } from "../Shared/InstantForm";
+import { CheckboxForm, InputForm, SelectForm, TextAreaForm } from "../Shared/InstantForm";
+import { activityRecordList, supportTicketList } from "@/constants";
 
 const NewSupportTicket = () => {
   const form = useForm<z.infer<typeof newSupportTicketSchema>>({
@@ -15,13 +16,20 @@ const NewSupportTicket = () => {
       Subject: "",
       Support: true,
       Sales: false,
+      SupportType: "",
       Description: "",
     },
   });
 
   const onSubmit = (value: z.infer<typeof newSupportTicketSchema>) => {
     console.log(value);
+    console.log(form.getValues("SupportType"));
   };
+
+  const [selectStatus, setSelectStatus] = useState<string>("");
+  const handleSelectBox = () => {
+    setSelectStatus(form.getValues("SupportType"));
+  }
 
   return (
     <div className="max-2xl:h-[50vh]">
@@ -49,6 +57,22 @@ const NewSupportTicket = () => {
                 className="flex-1"
               />
             </div>
+            <SelectForm
+                  control={form.control}
+                  formName="SupportType"
+                  label="Select an Activity to Record:"
+                  content={supportTicketList}
+                  placeholder="Select a Status..."
+                  valueKey="title"
+                  displayKey="title"
+                  disabled={false}
+                  className=""
+                  onChange={() => handleSelectBox()}
+                />
+
+            {selectStatus === "" ? <></> : null}
+            {selectStatus === "" ? <></> : <> </>}
+            {selectStatus === "" ? <></> : <> </>}
             <TextAreaForm
               control={form.control}
               formName="Description"

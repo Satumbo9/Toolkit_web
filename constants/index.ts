@@ -879,6 +879,26 @@ export const callLogsTasks = [
   },
 ];
 
+
+export const supportTicketList = [
+  {
+    id: "1",
+    title: "Merchant",
+    value: "merchant",
+  },
+  {
+    id: "2",
+    title: "Merchant",
+    value: "merchant",
+  },
+  {
+    id: "3",
+    title: "Merchant",
+    value: "merchant",
+  },
+]
+
+
 export const activityRecordList = [
   {
     id: 1,
