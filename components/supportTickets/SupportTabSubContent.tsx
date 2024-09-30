@@ -54,8 +54,7 @@ const MyTickets = () => {
 
               <NewSupportTicket />
             </DialogHeader>
-            <Description />
-            <NewSupportTicket />
+    
           </DialogContent>
         </Dialog>
       </div>

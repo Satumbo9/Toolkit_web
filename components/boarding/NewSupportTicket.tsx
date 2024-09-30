@@ -27,8 +27,11 @@ const NewSupportTicket = () => {
   };
 
   const [selectStatus, setSelectStatus] = useState<string>("");
-  const handleSelectBox = () => {
+  const handleSelectField = () => {
     setSelectStatus(form.getValues("SupportType"));
+    console.log(form.getValues("SupportType"));
+
+
   }
 
   return (
@@ -67,12 +70,88 @@ const NewSupportTicket = () => {
                   displayKey="title"
                   disabled={false}
                   className=""
-                  onChange={() => handleSelectBox()}
-                />
+                  onChange={() => handleSelectField()}
+                /> 
+            {selectStatus === "Merchant" && 
+            (<div>
+            <InputForm
+              control={form.control}
+              formName="Subject"
+              label="MID"
+              placeholder="Insert the Merchant ID"
+            />
+            
+            <InputForm
+              control={form.control}
+              formName="Subject"
+              label="Name"
+              placeholder="Insert the Merchant Name"
+            />
+            
+            <InputForm
+              control={form.control}
+              formName="Subject"
+              label="DBA"
+              placeholder="Insert the DBA"
+            />
 
-            {selectStatus === "" ? <></> : null}
-            {selectStatus === "" ? <></> : <> </>}
-            {selectStatus === "" ? <></> : <> </>}
+
+
+            </div>)}
+            {selectStatus === "Equiment" && (
+              <div>
+              
+              <InputForm
+              control={form.control}
+              formName="Subject"
+              label="MID"
+              placeholder="Insert the equiment MID"
+            />
+          <InputForm
+              control={form.control}
+              formName="Subject"
+              label="Order"
+              placeholder="Insert the equiment Order"
+            />
+            <InputForm
+              control={form.control}
+              formName="Subject"
+              label="Serial#"
+              placeholder="Insert the equiment Serial#"
+            />
+              </div>
+              )}
+            {selectStatus === "Agent" && (
+            
+            <div>
+          <InputForm
+              control={form.control}
+              formName="Subject"
+              label="ID"
+              placeholder="Insert the agent ID"
+            />
+                      <InputForm
+              control={form.control}
+              formName="Subject"
+              label="Name"
+              placeholder="Insert the agent Name"
+            />
+                                  <InputForm
+              control={form.control}
+              formName="Subject"
+              label="Email"
+              placeholder="Insert the agent Email"
+            />
+                                  <InputForm
+              control={form.control}
+              formName="Subject"
+              label="Phone numbner"
+              placeholder="Insert the agent Phone numbner"
+            />
+
+            </div>
+          )}
+
             <TextAreaForm
               control={form.control}
               formName="Description"

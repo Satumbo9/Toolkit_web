@@ -894,13 +894,13 @@ export const supportTicketList = [
   },
   {
     id: "2",
-    title: "Merchant",
-    value: "merchant",
+    title: "Equiment",
+    value: "equipment",
   },
   {
     id: "3",
-    title: "Merchant",
-    value: "merchant",
+    title: "Agent",
+    value: "agent",
   },
 ]
 
