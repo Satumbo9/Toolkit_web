@@ -90,6 +90,7 @@ export const InputForm = <
               }}
               type={type}
               className={className}
+
               disabled={disabled}
             />
           </FormControl>
@@ -98,6 +99,7 @@ export const InputForm = <
     />
   );
 };
+
 
 export const SelectForm = <
   T extends z.ZodType<any, any>,

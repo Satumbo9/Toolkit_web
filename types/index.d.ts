@@ -6,6 +6,7 @@ export interface SidebarLink {
   route: string;
   desc: string;
   label: string;
+  name: string;
   options: string[];
 }
 

@@ -53,6 +53,7 @@ import {
   ArrowRightLeft,
   Settings,
   MapPin,
+  HandHelping 
 } from "lucide-react";
 import { z } from "zod";
 import { FormData  } from "@/types/types";
@@ -69,6 +70,7 @@ export const sidebarLinks: SidebarLink[] = [
     route: "/",
     desc: "Home page",
     label: "Home",
+    name: "home",
     options: [],
   },
   {
@@ -76,6 +78,7 @@ export const sidebarLinks: SidebarLink[] = [
     route: "/merchant",
     desc: "Find MID, Agent, and Processor.",
     label: "Merchant",
+    name: "merchant",
     options: ["MID", "Agent", "Processor"],
   },
   {
@@ -83,13 +86,15 @@ export const sidebarLinks: SidebarLink[] = [
     route: "/equipment",
     desc: "Equipments",
     label: "Equipment",
-    options: [],
+    name: "equipment",
+    options: [], 
   },
   {
     icon: Headset,
     route: "/agent",
     desc: "Agents",
     label: "Agent",
+    name: "agent/",
     options: [],
   },
   {
@@ -97,6 +102,7 @@ export const sidebarLinks: SidebarLink[] = [
     route: "/financial",
     desc: "Financial",
     label: "Financial",
+    name: "financial",
     options: [],
   },
   {
@@ -104,6 +110,7 @@ export const sidebarLinks: SidebarLink[] = [
     route: "/services",
     desc: "Services",
     label: "Services",
+    name: "services",
     options: [],
   },
   {
@@ -111,6 +118,7 @@ export const sidebarLinks: SidebarLink[] = [
     route: "/fsp",
     desc: "Report the FSP",
     label: "FSP",
+    name: "fsp",
     options: ["FSP"],
   },
   {
@@ -118,15 +126,28 @@ export const sidebarLinks: SidebarLink[] = [
     route: "/admin",
     desc: "Admin panel",
     label: "Admin",
+    name: "admin",
     options: ["Admin"],
   },
+
   {
     icon: GlobeLock,
     route: "/boarding",
     desc: "Boarding Tool",
     label: "Boarding",
+    name: "boarding",
     options: ["Admin"],
   },
+  {
+    icon: HandHelping,
+    route: "/supportTickets",
+    desc: "Support Ticket",
+    label: "Support Ticket",
+    name: "supportTickets",
+    options: ["Admin"],
+  },
+ 
+
 ];
 
 export const profileLinks = [
@@ -3805,11 +3826,7 @@ export const boardingMainTabs = [
     value: "leads",
     route: "/boarding/leads",
   },
-  {
-    title: "Sup. Tickets",
-    value: "supportTickets",
-    route: "/boarding/supportTickets",
-  },
+
   {
     title: "Doc. Library",
     value: "docLibrary",

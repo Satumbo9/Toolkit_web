@@ -10,8 +10,7 @@ const BoardingMainTabs = () => {
     <div className="mb-0 box-content inline-flex items-end gap-2 rounded-t-lg border border-b-0 px-5 max-lg:gap-0">
       {tabs.map((item) => {
         const isActive =
-          (pathname?.includes(item.value) && item.title.length > 1) ||
-          pathname === item.route;
+          (pathname?.includes(item.value) && item.title.length > 1) || pathname === item.route;
 
         return (
           <React.Fragment key={item.value}>

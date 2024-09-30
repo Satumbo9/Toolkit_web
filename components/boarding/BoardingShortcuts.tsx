@@ -150,7 +150,7 @@ const BoardingShortcuts = () => {
           </div>
         </div>
         {/* SUPPORT TICKETS SHORCUT */}
-        <Link href={"/boarding/supportTickets"}>
+        <Link href={"/supportTickets"}>
           <div className="col-auto h-full justify-center space-y-2 rounded-md border p-5 shadow-md transition duration-300 hover:border-sky-500">
             <h1 className="text-center font-semibold">Support Tickets</h1>
             <span className="flex gap-4 px-2">

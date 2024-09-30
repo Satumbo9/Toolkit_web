@@ -11,6 +11,7 @@ import ThemeIcon from "@/components/ThemeIcon";
 
 const Sidebar = ({ props }: any) => {
   const pathname = usePathname();
+  console.log(pathname);
 
   const role = "admin";
 
@@ -46,10 +47,9 @@ const Sidebar = ({ props }: any) => {
           {sidebarLinks.map((item) => {
             if (item.label === "Admin" && role !== "admin") {
               return null;
+              // /boarding/agentDetails
             }
-            const isActive =
-              (pathname?.includes(item.route) && item.route.length > 1) ||
-              pathname === item.route;
+            const isActive = (pathname?.includes(item.name) && item.route.length > 1) || pathname === item.route;
             return (
               <Link
                 className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex w-full items-center justify-start gap-4 rounded-lg bg-transparent p-3`}
