@@ -1,12 +1,8 @@
-import LeadsTabContent from '@/components/boarding/LeadsTabContent'
-import React from 'react'
+import Leads from "@/components/boarding/Leads";
+import React from "react";
 
 const page = () => {
-  return (
-    <>
-        <LeadsTabContent/>
-    </>
-  )
-}
+  return <Leads />;
+};
 
-export default page
+export default page;

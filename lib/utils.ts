@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
-import qs from 'query-string';
+import qs from "query-string";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -138,7 +138,7 @@ export const merchantFeesProcSchema = z.object({
   RateIncreases: z.boolean(),
   RateStatusNonBilling: z.string(),
   // MiCamp Processing Data
-  LastProcessDate: z.date()
+  LastProcessDate: z.date(),
 });
 
 export const MerchantSoftwareInstallSchema = z.object({
@@ -212,7 +212,7 @@ export const AccountStatusSchema = z.object({
   Method: z.string(),
   ComplianceDate: z.date(),
   ClickVerified: z.date(),
-  // SOLID PORTFOLIO INFO 
+  // SOLID PORTFOLIO INFO
   ChildMid: z.boolean(),
   ComplianceSolidDate: z.date(),
   // SELECT OVERALL STATUS
@@ -280,7 +280,6 @@ export const bankOfTheWestSchema = z.object({
   Entity: z.string(),
   ClientGroup: z.string(),
 });
-
 
 export const AgentSetupSchema = z.object({
   findAgent: requiredString,
@@ -653,7 +652,21 @@ export const boardingAgentSettingsSchema = z.object({
   NorthInterMonthlyStatementFee: requiredNumber,
 })
 
-
+/**
+ * This Schema is to create a generic application,
+ * the user can create or just save it and finish 
+ * the application later.
+ * 
+ * @todo - Check with the boarding users,
+ * what would be the most commom fields to 
+ * start an application and then implement it.
+ *
+ */
+export const newBoardingAppliactionSchema = z.object({
+  Name: requiredString,
+  Email: z.string().email(),
+  ApplicationType: requiredString,
+})
 
 export const newSupportTicketSchema = z.object({
   Subject: requiredString,
@@ -663,9 +676,10 @@ export const newSupportTicketSchema = z.object({
   Description: requiredString,
 });
 
-export const newNorthBlindLeadSchema = z.object({
+export const newLeadSchema = z.object({
   Email: requiredString,
   Name: requiredString,
+  LeadType: requiredString,
 });
 
 export const newFspLeadSchema = z.object({
@@ -740,14 +754,14 @@ export const newOrderInfoSchema = z.object({
 export const merchantInformationFspSchema = z.object({
   // DBA Information Section
   MerchantName: z.string(),
-  EmailStatements: z.string(),
+  EmailStatements: z.string().email(),
   Phone: z.string(),
   Fax: z.string(),
   ContactName: z.string(),
   ContactPhone: z.string(),
   ContactServicePhone: z.string(),
   BusinessWebsite: z.string(),
-  DateOpen: z.string(),
+  DateOpen: z.date(),
   // DBA Address Section
   Street: z.string(),
   AddressSearchBar: z.string(),
@@ -821,7 +835,7 @@ export const financialInformationFspSchema = z.object({
   CashBenefit: z.boolean(),
   FnsAccount: z.number(),
   // SEASONAL MERCHANT
-  SeasonalMerchant: z.boolean(),
+  SeasonalMerchant: z.string(),
   January: z.boolean(),
   February: z.boolean(),
   March: z.boolean(),
@@ -836,11 +850,11 @@ export const financialInformationFspSchema = z.object({
   December: z.boolean(),
   // DOES THE MERCHANT USE AN INDEPENDENT SERVICE THAT
   // STORES, MAINTAINS OR TRANSMITS CARDHOLDER INFO?
-  IndependentService: z.boolean(),
+  IndependentService: z.string(),
   IndependentServiceName: z.string(),
   IndependentServicePhone: z.string(),
   // DOES MERCHANT USE A FULFILLMENT HOUSE TO FULFILL PRODUCT?
-  UsesFulfillHouse: z.boolean(),
+  UsesFulfillHouse: z.string(),
   FulfillHouseName: z.string(),
   FulfillHousePhone: z.string(),
   // GENERAL SETTINGS
@@ -856,18 +870,18 @@ export const moToQuestionaireFspSchema = z.object({
   BusinessPercentage: z.number(),
   IndividualsPercentage: z.number(),
   // Methods of Marketing
-  MktNewspapersMagazine: z.string(),
-  MktOutboundTelemarketing: z.string(),
-  MktMail: z.string(),
-  MktInternet: z.string(),
-  MktTelevisionRadio: z.string(),
-  MktOther: z.string(),
+  MktNewspapersMagazine: z.boolean(),
+  MktOutboundTelemarketing: z.boolean(),
+  MktMail: z.boolean(),
+  MktInternet: z.boolean(),
+  MktTelevisionRadio: z.boolean(),
+  MktOther: z.boolean(),
   MktOtherDescription: z.string(),
   // Who enters Card Information Into the Processing System
   CardInfoWhoEnters: z.string(),
   CardInfoOtherDescription: z.string(),
   // Do you own your own Product/Inventory (if no, wehere is inventory stored)
-  OwnProd: z.boolean(),
+  OwnProd: z.string(),
   OwnProdBusinessOther: z.string(),
   OwnProdOtherDescription: z.string(),
   // Who processes the order
@@ -880,19 +894,19 @@ export const moToQuestionaireFspSchema = z.object({
   WhoShips: z.string(),
   DaysToShip: z.string(),
   // Delivery Receipt Requested
-  DeliveryReceiptRequested: z.boolean(),
+  DeliveryReceiptRequested: z.string(),
   // Is the payment Encrypted By SSL or Better?
-  IsPaymentEncrypted: z.boolean(),
+  IsPaymentEncrypted: z.string(),
   Certificate: z.string(),
   CertificateIssuer: z.string(),
   ExpirationDate: z.date(),
-  IndividualShared: z.boolean(),
+  IndividualShared: z.string(),
 });
 
 // MERCHANT OWNER
 export const merchantOwnerFspSchema = z.object({
   // Has merchant/owner/principals ever filed for bankruptcy
-  HasFiledForBankruptcy: z.boolean(),
+  HasFiledForBankruptcy: z.string(),
   Account: z.number(),
 });
 
@@ -922,7 +936,7 @@ export const addMerchantOwnerFspSchema = z.object({
 // ADD NEW MERCHANT OWNER FORM
 export const pricingInformationFspSchema = z.object({
   // Has merchant/owner/principals ever filed for bankruptcy
-  PassTrueInterchange: z.boolean(),
+  PassTrueInterchange: z.string(),
   PassDuesAndAssesments: z.string(),
   PricingType: z.string(),
   // TIERED
@@ -1022,7 +1036,7 @@ export const programmingRequestFspSchema = z.object({
   AutoCloseTime: z.string(),
   TipLine: z.boolean(),
   TipLineType: z.string(),
-  Server: z.boolean(),
+  Server: z.string(),
   SuggestedTipPercentages: z.string(),
   SalesTax: z.number(),
   MessageToTheBoarding: z.string(),
@@ -1031,6 +1045,10 @@ export const programmingRequestFspSchema = z.object({
   ShipName: z.string(),
   ShipPriority: z.string(),
   UseExistingAddress: z.string(),
+  UseLegalBusiness: z.boolean(),
+  UseLegalBusinessDba: z.boolean(),
+  UseAgent: z.boolean(),
+  NoAddress: z.boolean(),
   ShipAddress: z.string(),
   ShipCity: z.string(),
   ShipState: z.string(),
@@ -1322,7 +1340,6 @@ export const northBoardingInterSchema = z.object({
   PinDebitDeclined: z.number(),
 });
 
-
 // ----------------
 // This is for the NORTH WAViit 2502 Application
 // Merchant Detail TAB form
@@ -1527,7 +1544,6 @@ export const northBoardingWavitSchema = z.object({
   AmericanExpressAuthFee: z.number(),
 });
 
-
 // ----------------
 // This is for the OMAHA PROCESSING APPLICATION
 // Merchant Detail TAB form
@@ -1661,7 +1677,7 @@ export const detailsOmahaSchema = z.object({
   FloorsLevels: z.string(),
   SquareFootage: z.string(),
   DepositRequired: z.boolean(),
-  DepositPercentage: z.number(), 
+  DepositPercentage: z.number(),
   // Information
   ReturnPolicy: z.string(),
   RefundPolicy: z.string(),
@@ -1756,7 +1772,7 @@ const getOrdinalSuffix = (day: number): string => {
   }
 };
 
-const formatTime = (date: Date): string => {
+export const formatTime = (date: Date): string => {
   let hours = date.getHours();
   const minutes = date.getMinutes().toString().padStart(2, "0");
   const ampm = hours >= 12 ? "PM" : "AM";
@@ -1804,22 +1820,54 @@ export const formatRelativeDate = (date: Date): string => {
   }
 };
 
-export const urlKeyRemovalParams = ({params, keysToRemove}: {params: string, keysToRemove: string[]}) => {
+export const formatTimeAgo = (date: Date): string => {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+  const intervals = [
+    { label: "year", seconds: 31557600 }, // Average seconds in a year
+    { label: "month", seconds: 2629800 }, // Average seconds in a month
+    { label: "week", seconds: 604800 }, // Seconds in a week
+    { label: "day", seconds: 86400 }, // Seconds in a day
+    { label: "hour", seconds: 3600 }, // Seconds in an hour
+    { label: "minute", seconds: 60 }, // Seconds in a minute
+    { label: "second", seconds: 1 }, // Seconds in a second
+  ];
+
+  for (const interval of intervals) {
+    const count = Math.floor(diffInSeconds / interval.seconds);
+
+    if (count >= 1) {
+      return `${count} ${interval.label}${count !== 1 ? "s" : ""} ago`;
+    }
+  }
+
+  return "just now";
+};
+
+export const urlKeyRemovalParams = ({
+  params,
+  keysToRemove,
+}: {
+  params: string;
+  keysToRemove: string[];
+}) => {
   const currentUrl = qs.parse(params);
 
   keysToRemove.forEach((key) => {
     delete currentUrl[key];
-  })
+  });
 
   return qs.stringifyUrl(
     {
-      url: window.location.pathname, query: currentUrl
+      url: window.location.pathname,
+      query: currentUrl,
     },
     {
-      skipNull: true
-    }
-  )
-}
+      skipNull: true,
+    },
+  );
+};
 
 export const marketingListSchema = z.object({
   Table: z.string(),

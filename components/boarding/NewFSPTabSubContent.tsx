@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 "use client";
 import {
   ColumnConfig,
@@ -21,7 +22,6 @@ import {
   dbaAddressShipFspForm,
   dbaInformationFspForm,
   dbaLegalInformationFspForm,
-  dbaSelectionFspForm,
   dbaTaxInformationFspForm,
   deliveryReceiptRequestedFspForm,
   equipmentInformationFspForm,
@@ -38,17 +38,15 @@ import {
   otherPricingInformationFspForm,
   OwnersTable,
   ownProdFspForm,
+  ownProdTypeFspForm,
   passDuesAssessmentsFspForm,
   passThroughInterchangeFspForm,
   pciFrequencyFspForm,
   pinDebitFspForm,
-  returnPolicyFspForm,
-  seasonalMerchantFspForm,
   seasonalMonthsFspForm,
   serverFspForm,
   serviceRequestedFspForm,
   shippedByFspForm,
-  shipPriorityFspForm,
   shipToFspForm,
   swipedNonSwipedFspForm,
   tipLineFspForm,
@@ -61,7 +59,7 @@ import {
   whoShipsFspForm,
 } from "@/constants";
 import { DataTypes } from "@/types";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { Form } from "../ui/form";
 import {
   financialInformationFspSchema,
@@ -81,6 +79,7 @@ import {
   TextAreaForm,
   SwitchForm,
   RadioForm,
+  InputButtonForm,
 } from "../Shared/InstantForm";
 import CustomButtons from "../Shared/CustomButtons";
 import { Switch } from "../ui/switch";
@@ -101,6 +100,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
+import { Loader2, MapPin } from "lucide-react";
 
 const MerchantDetail = () => {
   const form = useForm<z.infer<typeof merchantInformationFspSchema>>({
@@ -114,7 +114,7 @@ const MerchantDetail = () => {
       ContactPhone: "",
       ContactServicePhone: "",
       BusinessWebsite: "",
-      DateOpen: "",
+      DateOpen: new Date(),
       Street: "",
       AddressSearchBar: "",
       City: "",
@@ -146,6 +146,63 @@ const MerchantDetail = () => {
   };
 
   const [einSsn, setEinSsn] = useState("");
+  const [mailStatements, setMailStatements] = useState("");
+  const [buildingType, setBuildingType] = useState("");
+  const [merchantType, setMerchantType] = useState("");
+  const [areaZoned, setAreaZoned] = useState("");
+  const [squareFootage, setSquareFootage] = useState("");
+
+  const [search, setSearch] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const [debouncing, setDebouncing] = useState<string>(search);
+  const [fetchResult, setFetchResult] = useState<any[]>([]);
+  const { setValue } = form;
+
+  React.useEffect(() => {
+    try {
+      const debouncingTimer = setTimeout(() => {
+        setDebouncing(search);
+      }, 1500);
+
+      if (!debouncing) return;
+
+      if (debouncingTimer) {
+        const fetching = async () => {
+          const result = await fetch(`/api/location?q=${debouncing}`);
+
+          if (!result.ok) throw new Error("Something went wrong!");
+
+          const data = await result.json();
+
+          console.log(data.items);
+
+          setFetchResult(data.items || []);
+
+          if (!search) setSearch("");
+        };
+        fetching();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [debouncing, search]);
+
+  const hnadleAddressSelect = (address: {
+    city: string;
+    street: string;
+    state: string;
+    postalCode: string;
+  }) => {
+    setValue("Street", address.street);
+    setValue("City", address.city);
+    setValue("State", address.state);
+    setValue("PostalCode", address.postalCode);
+
+    setIsOpen(false);
+    setSearch("");
+  };
+
   return (
     <section className="text-start">
       <Form {...form}>
@@ -164,6 +221,46 @@ const MerchantDetail = () => {
           <h1 className="my-5 text-2xl font-bold text-sky-500">
             DBA Address Information
           </h1>
+
+          <div className="relative">
+            {/* Testing input */}
+            <Input
+              placeholder="Search for your address"
+              className="mb-2"
+              value={search}
+              onChange={(e: any) => {
+                setSearch(e.target.value);
+                if (!isOpen) setIsOpen(true);
+                if (e.target.value === "" && isOpen) {
+                  setIsOpen(false);
+                }
+              }}
+            />
+
+            {isOpen && (
+              <React.Fragment>
+                {!fetchResult ? (
+                  <div>
+                    <Loader2 className="animate-spin text-2xl text-gray-500" />
+                  </div>
+                ) : (
+                  <div className="mb-5 max-h-60 w-full space-y-2 overflow-y-auto rounded-md border p-4 shadow-md">
+                    {fetchResult?.map((item) => (
+                      <div
+                        className="flex cursor-pointer items-center rounded-sm border bg-background p-2"
+                        onClick={() => hnadleAddressSelect(item.address)}
+                        key={item.title}
+                      >
+                        <MapPin />
+                        <p>{item.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </React.Fragment>
+            )}
+          </div>
+
           <FormGeneration
             formControl={form.control}
             formFields={dbaAddressFspForm}
@@ -197,7 +294,7 @@ const MerchantDetail = () => {
             formFields={dbaTaxInformationFspForm}
             gridCols={"2"}
           />
-          <div className="my-4">
+          <div className="my-4 items-center">
             <RadioForm
               control={form.control}
               formName="EinSsn"
@@ -212,7 +309,7 @@ const MerchantDetail = () => {
                   value: "ssn",
                 },
               ]}
-              className="size-fit"
+              className="size-4"
               setState={setEinSsn}
               state={einSsn}
             />
@@ -222,47 +319,33 @@ const MerchantDetail = () => {
           <h1 className="my-5 flex-auto text-2xl font-bold text-sky-500">
             Statements Information
           </h1>
-          <div className="grid w-3/6 grid-cols-2 gap-0 max-xl:w-full">
-            <div className="flex items-center gap-2">
-              <InputForm
-                control={form.control}
-                formName="MailStatements"
-                label=""
-                type="radio"
-                className="ml-4 w-fit"
-              />
-              <label className="mt-2">Mail Statements to DBA Name</label>
-            </div>
-            <div className="flex items-center gap-2">
-              <InputForm
-                control={form.control}
-                formName="MailStatements"
-                label=""
-                type="radio"
-                className="ml-4 w-fit"
-              />
-              <label className="mt-2">Mail Chargebacks to DBA Name</label>
-            </div>
-            <div className="flex items-center gap-2">
-              <InputForm
-                control={form.control}
-                formName="MailStatements"
-                label=""
-                type="radio"
-                className="ml-4 w-fit"
-              />
-              <label className="mt-2">Mail Statements to Legal Name</label>
-            </div>
-            <div className="flex items-center gap-2">
-              <InputForm
-                control={form.control}
-                formName="MailStatements"
-                label=""
-                type="radio"
-                className="ml-4 w-fit"
-              />
-              <label className="mt-2">Mail Chargebacks to DBA Name</label>
-            </div>
+          <div className="my-4 items-center">
+            <RadioForm
+              control={form.control}
+              formName="MailStatements"
+              label=""
+              options={[
+                {
+                  label: "Mail Statements to DBA Name",
+                  value: "statementsToDbaName",
+                },
+                {
+                  label: "Mail Statements to Legal Name",
+                  value: "statementsToLegalName",
+                },
+                {
+                  label: "Mail Chargebacks to DBA Name",
+                  value: "chagebacksToDbaName",
+                },
+                {
+                  label: "Mail Chargebacks to Legal Name",
+                  value: "chagebacksToLegalName",
+                },
+              ]}
+              state={mailStatements}
+              setState={setMailStatements}
+              className="ml-4 size-4"
+            />
           </div>
           <p className="ml-4 text-gray-500">
             NOTE: Statements are {"'Summary'"} for Cash Discount apps &{" "}
@@ -270,130 +353,120 @@ const MerchantDetail = () => {
           </p>
 
           {/* LOCATION SECTION */}
-          <h1 className="my-5 flex-auto text-2xl font-bold text-sky-500">
+          <h1 className="my-5 flex-auto text-center text-2xl font-bold text-sky-500">
             Location Information
           </h1>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="m-auto grid max-w-[1200px] grid-cols-4 gap-2 max-lg:grid-cols-2">
             {/* BUILDING TYPE */}
             <div>
-              <h2 className="text-center text-xl font-semibold">
+              <h2 className="mb-2 text-center text-xl font-semibold">
                 Building Type
               </h2>
-              <div className="flex items-center gap-2">
-                <InputForm
+              <div className="my-2 items-center">
+                <RadioForm
                   control={form.control}
                   formName="BuildingType"
                   label=""
-                  type="radio"
-                  className="ml-4 w-fit"
+                  options={[
+                    {
+                      label: "Shopping Center",
+                      value: "shoppingCenter",
+                    },
+                    {
+                      label: "Office Building",
+                      value: "officeBuilding",
+                    },
+                    {
+                      label: "Industrial Building",
+                      value: "industrialBuilding",
+                    },
+                    {
+                      label: "Residence",
+                      value: "residence",
+                    },
+                  ]}
+                  setState={setBuildingType}
+                  state={buildingType}
+                  className="size-4"
                 />
-                <label className="mt-2">Shopping Center</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <InputForm
-                  control={form.control}
-                  formName="BuildingType"
-                  label=""
-                  type="radio"
-                  className="ml-4 w-fit"
-                />
-                <label className="mt-2">Office Building</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <InputForm
-                  control={form.control}
-                  formName="BuildingType"
-                  label=""
-                  type="radio"
-                  className="ml-4 w-fit"
-                />
-                <label className="mt-2">Industrial Building</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <InputForm
-                  control={form.control}
-                  formName="BuildingType"
-                  label=""
-                  type="radio"
-                  className="ml-4 w-fit"
-                />
-                <label className="mt-2">Residence</label>
               </div>
             </div>
             {/* MERCHANT */}
             <div>
-              <h2 className="text-center text-xl font-semibold">
+              <h2 className="mb-2 text-center text-xl font-semibold">
                 Merchant Type
               </h2>
               <div className="flex items-center gap-2">
-                <InputForm
+                <RadioForm
                   control={form.control}
                   formName="MerchantType"
                   label=""
-                  type="radio"
-                  className="ml-4 w-fit"
+                  options={[
+                    {
+                      label: "Owns",
+                      value: "owns",
+                    },
+                    {
+                      label: "Rent",
+                      value: "rent",
+                    },
+                  ]}
+                  state={merchantType}
+                  setState={setMerchantType}
+                  className="size-4"
                 />
-                <label className="mt-2">Owns</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <InputForm
-                  control={form.control}
-                  formName="MerchantType"
-                  label=""
-                  type="radio"
-                  className="ml-4 w-fit"
-                />
-                <label className="mt-2">Rent</label>
               </div>
             </div>
             {/* AREA ZONED */}
             <div>
-              <h2 className="text-center text-xl font-semibold">Area Zoned</h2>
-              <div className="flex items-center gap-2">
-                <InputForm
+              <h2 className="mb-2 text-center text-xl font-semibold">
+                Area Zoned
+              </h2>
+              <div className="items-center">
+                <RadioForm
                   control={form.control}
                   formName="AreaZoned"
                   label=""
-                  type="radio"
-                  className="ml-4 w-fit"
+                  options={[
+                    {
+                      label: "Commercial",
+                      value: "commercial",
+                    },
+                    {
+                      label: "Residential",
+                      value: "residential",
+                    },
+                  ]}
+                  state={areaZoned}
+                  setState={setAreaZoned}
+                  className="size-4"
                 />
-                <label className="mt-2">Commercial</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <InputForm
-                  control={form.control}
-                  formName="AreaZoned"
-                  label=""
-                  type="radio"
-                  className="ml-4 w-fit"
-                />
-                <label className="mt-2">Residential</label>
               </div>
             </div>
             {/* SQUARE FOOTAGE */}
             <div>
-              <h2 className="text-center text-xl font-semibold">
+              <h2 className="mb-2 text-center text-xl font-semibold">
                 Square Footage
               </h2>
               <div className="flex items-center gap-2">
-                <InputForm
+                <RadioForm
                   control={form.control}
                   formName="SquereFootage"
                   label=""
-                  type="radio"
-                  className="ml-4 w-fit"
+                  options={[
+                    {
+                      label: "0 - 1000",
+                      value: "0-1000",
+                    },
+                    {
+                      label: "1000+",
+                      value: "1000+",
+                    },
+                  ]}
+                  state={squareFootage}
+                  setState={setSquareFootage}
+                  className="size-4"
                 />
-                <label className="mt-2">0 - 1000</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <InputForm
-                  control={form.control}
-                  formName="SquereFootage"
-                  label=""
-                  type="radio"
-                  className="ml-4 w-fit"
-                />
-                <label className="mt-2">1000+</label>
               </div>
             </div>
           </div>
@@ -443,7 +516,7 @@ const FinancialInformation = () => {
       EBT: false,
       CashBenefit: false,
       FnsAccount: 0,
-      SeasonalMerchant: false,
+      SeasonalMerchant: "",
       January: false,
       February: false,
       March: false,
@@ -456,10 +529,10 @@ const FinancialInformation = () => {
       October: false,
       November: false,
       December: false,
-      IndependentService: false,
+      IndependentService: "",
       IndependentServiceName: "",
       IndependentServicePhone: "",
-      UsesFulfillHouse: false,
+      UsesFulfillHouse: "",
       FulfillHouseName: "",
       FulfillHousePhone: "",
       OptOut: false,
@@ -512,6 +585,9 @@ const FinancialInformation = () => {
 
     setlastModify(currentField);
   };
+
+  const [seasonalMerchant, setSeasonalMerchant] = useState("");
+  const [returnPolicy, setReturnPolicy] = useState("");
 
   return (
     <section className="mt-4 text-start">
@@ -713,11 +789,31 @@ const FinancialInformation = () => {
               <h1 className="mt-5 text-2xl font-bold text-sky-500">
                 Seasonal Merchant
               </h1>
-              <FormGeneration
+              <div className="my-2">
+                <RadioForm
+                  control={form.control}
+                  formName={"SeasonalMerchant"}
+                  label=""
+                  options={[
+                    {
+                      label: "Yes",
+                      value: "yes",
+                    },
+                    {
+                      label: "No",
+                      value: "no",
+                    },
+                  ]}
+                  state={seasonalMerchant}
+                  setState={setSeasonalMerchant}
+                  className="size-4"
+                />
+              </div>
+              {/* <FormGeneration
                 formControl={form.control}
                 formFields={seasonalMerchantFspForm}
                 gridCols={"4"}
-              />
+              /> */}
               <p className="my-2">If Yes, indicate which months:</p>
               <div className="grid grid-flow-col grid-rows-4 gap-2 max-xl:grid-rows-6">
                 {seasonalMonthsFspForm.map((item) => {
@@ -803,21 +899,35 @@ const FinancialInformation = () => {
           <h1 className="mt-5 text-2xl font-bold text-sky-500">
             Return Policy
           </h1>
-          <div className="grid w-1/2 grid-cols-3 max-xl:w-full">
-            {returnPolicyFspForm.map((item) => {
-              return (
-                <div key={item.id} className="flex w-full items-center gap-2">
-                  <InputForm
-                    control={form.control}
-                    formName={item.formName}
-                    label=""
-                    type="radio"
-                    className="ml-4 w-fit"
-                  />
-                  <label className="mt-2">{item.title}</label>
-                </div>
-              );
-            })}
+          <div className="w-1/3 max-xl:w-3/4">
+            <div className="my-4">
+              <RadioForm
+                control={form.control}
+                formName="ReturnPolicy"
+                label=""
+                options={[
+                  {
+                    label: "FULL REFUND",
+                    value: "fullRefund",
+                  },
+                  {
+                    label: "EXCHANGE ONLY",
+                    value: "exchangeOnly",
+                  },
+                  {
+                    label: "NONE",
+                    value: "none",
+                  },
+                  {
+                    label: "DESCRIBE",
+                    value: "describe",
+                  },
+                ]}
+                state={returnPolicy}
+                setState={setReturnPolicy}
+                className="size-4"
+              />
+            </div>
             <InputForm
               control={form.control}
               formName="PolicyDescription"
@@ -845,16 +955,16 @@ const MoToQuestionaire = () => {
     defaultValues: {
       BusinessPercentage: 0,
       IndividualsPercentage: 0,
-      MktNewspapersMagazine: "",
-      MktOutboundTelemarketing: "",
-      MktMail: "",
-      MktInternet: "",
-      MktTelevisionRadio: "",
-      MktOther: "",
+      MktNewspapersMagazine: false,
+      MktOutboundTelemarketing: false,
+      MktMail: false,
+      MktInternet: false,
+      MktTelevisionRadio: false,
+      MktOther: false,
       MktOtherDescription: "",
       CardInfoWhoEnters: "",
       CardInfoOtherDescription: "",
-      OwnProd: false,
+      OwnProd: "",
       OwnProdBusinessOther: "",
       OwnProdOtherDescription: "",
       WhoProcesses: "",
@@ -863,11 +973,11 @@ const MoToQuestionaire = () => {
       ShippedOtherDescription: "",
       WhoShips: "",
       DaysToShip: "",
-      DeliveryReceiptRequested: false,
-      IsPaymentEncrypted: false,
+      DeliveryReceiptRequested: "",
+      IsPaymentEncrypted: "",
       Certificate: "",
       CertificateIssuer: "",
-      IndividualShared: false,
+      IndividualShared: "",
     },
   });
 
@@ -901,7 +1011,7 @@ const MoToQuestionaire = () => {
           <h1 className="mt-5 flex gap-2 text-2xl font-bold text-sky-500">
             Methods of Marketing
           </h1>
-          <div className="grid w-3/4 grid-cols-3 gap-2 max-xl:grid-cols-1">
+          <div className="my-2 grid w-3/4 grid-cols-3 gap-2 max-xl:grid-cols-1">
             {marketingMethodsFspForm.map((item) => {
               return (
                 <div key={item.title} className="items-center gap-2">
@@ -925,22 +1035,40 @@ const MoToQuestionaire = () => {
               <h1 className="mb-10 mt-5 flex gap-2 text-xl font-semibold">
                 Who enters Card Information Into the Processing System
               </h1>
-              <FormGeneration
-                formControl={form.control}
-                formFields={whoEntersCardInfoFspForm}
-                gridCols={"2"}
-              />
+              <div className="w-1/2 max-lg:w-full">
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={whoEntersCardInfoFspForm}
+                  gridCols={"1"}
+                />
+              </div>
             </div>
             <div className="col-span-1 content-end">
               <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Do you own your own Product/Inventory (if no, Where is inventory
                 stored)
               </h1>
-              <FormGeneration
-                formControl={form.control}
-                formFields={ownProdFspForm}
-                gridCols={"2"}
-              />
+              <div className="grid grid-cols-2 gap-2">
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={ownProdFspForm}
+                  gridCols={"1"}
+                />
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={ownProdTypeFspForm}
+                  gridCols={"1"}
+                />
+              </div>
+              <div className="">
+                <InputForm
+                  control={form.control}
+                  formName="OwnProdOtherDescription"
+                  label="Other:"
+                  className="w-1/2 max-lg:w-full"
+                  placeholder="Other"
+                />
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
@@ -949,21 +1077,25 @@ const MoToQuestionaire = () => {
               <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Who Processes the Order
               </h1>
-              <FormGeneration
-                formControl={form.control}
-                formFields={whoProcessesFspForm}
-                gridCols={"2"}
-              />
+              <div className="w-1/2 max-lg:w-full">
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={whoProcessesFspForm}
+                  gridCols={"1"}
+                />
+              </div>
             </div>
             <div className="col-span-1">
               <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Product Shipped By (Shipped Via)
               </h1>
-              <FormGeneration
-                formControl={form.control}
-                formFields={shippedByFspForm}
-                gridCols={"2"}
-              />
+              <div className="w-1/2 max-lg:w-full">
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={shippedByFspForm}
+                  gridCols={"1"}
+                />
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
@@ -972,11 +1104,13 @@ const MoToQuestionaire = () => {
               <h1 className="my-5 flex gap-2 text-xl font-semibold">
                 Who Ships Product
               </h1>
-              <FormGeneration
-                formControl={form.control}
-                formFields={whoShipsFspForm}
-                gridCols={"2"}
-              />
+              <div className="w-1/2 max-lg:w-full">
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={whoShipsFspForm}
+                  gridCols={"1"}
+                />
+              </div>
             </div>
             <div className="col-span-1">
               <h1 className="my-5 flex gap-2 text-xl font-semibold">
@@ -990,7 +1124,7 @@ const MoToQuestionaire = () => {
             </div>
           </div>
           {/* IF CARD INFORMATION IS TAKEN */}
-          <h1 className="my-5 flex gap-2 text-xl font-semibold">
+          <h1 className="mt-5 flex gap-2 text-xl font-semibold">
             If Card Information is Taken Over The Internet, Is Payment Encrypted
             By SSL or better?
           </h1>
@@ -1036,7 +1170,7 @@ const MerchantOwner = () => {
   const form = useForm<z.infer<typeof merchantOwnerFspSchema>>({
     resolver: zodResolver(merchantOwnerFspSchema),
     defaultValues: {
-      HasFiledForBankruptcy: false,
+      HasFiledForBankruptcy: "",
       Account: 0,
     },
   });
@@ -1119,7 +1253,7 @@ const PricingInformation = () => {
   const form = useForm<z.infer<typeof pricingInformationFspSchema>>({
     resolver: zodResolver(pricingInformationFspSchema),
     defaultValues: {
-      PassTrueInterchange: false,
+      PassTrueInterchange: "",
       PassDuesAndAssesments: "",
       PricingType: "",
       CreditQual: 0,
@@ -1150,7 +1284,7 @@ const PricingInformation = () => {
       PinDebitDcRate: 0,
       PinDebitAuthRate: 0,
       DailyMonthly: "",
-      PciFrequency: "",
+      PciFrequency: "daily",
       Audio: "",
       AuthrizationFee: 0,
       EbtCashItemFee: 0,
@@ -1188,56 +1322,77 @@ const PricingInformation = () => {
     console.log(value);
   };
 
+  const [dailyMonthly, setDailyMonthly] = useState("");
+  const [useDefaultRate, setUseDefaultRate] = useState(false);
+
+  const handleDefaultRate = () => {
+    const test = !useDefaultRate
+      ? setUseDefaultRate(true)
+      : setUseDefaultRate(false);
+
+    console.log("Test const: ", test, "\nDefault const: ", useDefaultRate);
+
+    if (!useDefaultRate) {
+      form.setValue("ViMcDiscFee", form.getValues("DefaultRate"));
+      form.setValue("ViMcDiscNonPinDebitDCRate", form.getValues("DefaultRate"));
+      form.setValue("AmexDcRate2", form.getValues("DefaultRate"));
+      form.setValue("PayPalDcRate2", form.getValues("DefaultRate"));
+    } else {
+      form.setValue("ViMcDiscFee", form.getValues("DcRate"));
+      form.setValue("ViMcDiscNonPinDebitDCRate", form.getValues("DcRate"));
+      form.setValue("AmexDcRate2", form.getValues("DcRate"));
+      form.setValue("PayPalDcRate2", form.getValues("DcRate"));
+    }
+  };
   return (
     <section className="mt-4 text-start">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
           {/* PRICING INFORMATION */}
-          <h1 className="mt-5 flex gap-2 text-2xl font-bold text-sky-500">
+          <h1 className="mb-2 mt-5 flex gap-2 text-2xl font-bold text-sky-500">
             Pricing Information
           </h1>
-          {/* Pass Through Interchange */}
-          <div className="mt-2 flex gap-10">
-            <p className="mt-1 flex-none content-center">
-              Pass Through Interchange:
-            </p>
-            <FormGeneration
-              formControl={form.control}
-              formFields={passThroughInterchangeFspForm}
-              gridCols={"2"}
-            />
-          </div>
-          {/* Pass Dues & Assessments */}
-          <div className="flex gap-10">
-            <p className="mt-1 flex-none content-center">
-              Pass Dues & Assessments:
-            </p>
-            <FormGeneration
-              formControl={form.control}
-              formFields={passDuesAssessmentsFspForm}
-              gridCols={"2"}
-            />
+          <div className="grid grid-cols-2 gap-2">
+            {/* Pass Through Interchange */}
+            <div className="col-auto">
+              <p className="content-center">Pass Through Interchange:</p>
+              <FormGeneration
+                formControl={form.control}
+                formFields={passThroughInterchangeFspForm}
+                gridCols={"1"}
+              />
+            </div>
+            {/* Pass Dues & Assessments */}
+            <div className="col-auto">
+              <p className="content-center">Pass Dues & Assessments:</p>
+              <FormGeneration
+                formControl={form.control}
+                formFields={passDuesAssessmentsFspForm}
+                gridCols={"1"}
+              />
+            </div>
           </div>
 
           {/* TIERED */}
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>TIERED</AccordionTrigger>
+              <AccordionTrigger>
+                <div className="flex gap-2">
+                  <InputForm
+                    control={form.control}
+                    formName="PricingType"
+                    label=""
+                    type="radio"
+                    placeholder=""
+                    className="flex-none"
+                  />
+                  <h2 className="mt-1 flex-auto content-center text-2xl font-semibold text-sky-500">
+                    TIERED
+                  </h2>
+                </div>
+              </AccordionTrigger>
               <AccordionContent>
                 <div className="my-2 w-full rounded-md border px-4 pb-2">
-                  <div className="flex gap-2">
-                    <InputForm
-                      control={form.control}
-                      formName="PricingType"
-                      label=""
-                      type="radio"
-                      placeholder=""
-                      className="flex-none"
-                    />
-                    <h2 className="mt-1 flex-auto content-center text-2xl font-semibold text-sky-500">
-                      TIERED
-                    </h2>
-                  </div>
                   <div className="my-2 gap-4">
                     <p className="mt-3 text-nowrap text-center max-xl:col-span-2">
                       Vi/MC/Disc D/C Rate:
@@ -1279,56 +1434,60 @@ const PricingInformation = () => {
           {/* INTERCHANGE PLUS */}
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>INTERCHANGE PLUS</AccordionTrigger>
+              <AccordionTrigger>
+                <div className="flex gap-2">
+                  <InputForm
+                    control={form.control}
+                    formName="PricingType"
+                    label=""
+                    type="radio"
+                    placeholder=""
+                    className="flex-none"
+                  />
+                  <h2 className="mt-1 flex-auto content-center text-2xl font-semibold text-sky-500">
+                    INTERCHANGE PLUS
+                  </h2>
+                </div>
+              </AccordionTrigger>
               <AccordionContent>
                 <div className="my-2 w-full rounded-md border px-4 pb-2">
-                  <div className="flex gap-2">
-                    <InputForm
-                      control={form.control}
-                      formName="PricingType"
-                      label=""
-                      type="radio"
-                      placeholder=""
-                      className="flex-none"
+                  <div className="space-y-3">
+                    <FormGeneration
+                      formControl={form.control}
+                      formFields={grossNetFspForm}
+                      gridCols={"3"}
                     />
-                    <h2 className="mt-1 flex-auto content-center text-2xl font-semibold text-sky-500">
-                      INTERCHANGE PLUS
-                    </h2>
+                    <FormGeneration
+                      formControl={form.control}
+                      formFields={interchangePlusRatesFspForm}
+                      gridCols={"4"}
+                    />
                   </div>
-                  <FormGeneration
-                    formControl={form.control}
-                    formFields={grossNetFspForm}
-                    gridCols={"3"}
-                  />
-                  <FormGeneration
-                    formControl={form.control}
-                    formFields={interchangePlusRatesFspForm}
-                    gridCols={"4"}
-                  />
                 </div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
 
-          {/* FLAX RATE */}
+          {/* FLAT RATE */}
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>FLAX RATE</AccordionTrigger>
+              <AccordionTrigger>
+                <div className="flex gap-2">
+                  <InputForm
+                    control={form.control}
+                    formName="PricingType"
+                    label=""
+                    type="radio"
+                    placeholder=""
+                    className="flex-none"
+                  />
+                  <h2 className="mt-1 flex-auto content-center text-2xl font-semibold text-sky-500">
+                    FLAT RATE
+                  </h2>
+                </div>
+              </AccordionTrigger>
               <AccordionContent>
                 <div className="my-2 w-full rounded-md border px-4 pb-2">
-                  <div className="flex gap-2">
-                    <InputForm
-                      control={form.control}
-                      formName="PricingType"
-                      label=""
-                      type="radio"
-                      placeholder=""
-                      className="flex-none"
-                    />
-                    <h2 className="mt-1 flex-auto content-center text-2xl font-semibold text-sky-500">
-                      FLAX RATE
-                    </h2>
-                  </div>
                   <div className="my-3 flex items-end justify-center gap-2">
                     <InputForm
                       control={form.control}
@@ -1337,7 +1496,14 @@ const PricingInformation = () => {
                       placeholder="#"
                       className="flex-auto"
                     />
-                    <Switch className="mb-2 flex-none" />
+                    <SwitchForm
+                      control={form.control}
+                      formName="UseDefaultRate"
+                      label=""
+                      id={"test"}
+                      className="mb-2"
+                      onToggle={() => handleDefaultRate()}
+                    />
                     <InputForm
                       control={form.control}
                       formName="DefaultRate"
@@ -1359,22 +1525,23 @@ const PricingInformation = () => {
           {/* SWIPED / NON-SWIPED */}
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>SWIPED / NON-SWIPED</AccordionTrigger>
+              <AccordionTrigger>
+                <div className="flex gap-2">
+                  <InputForm
+                    control={form.control}
+                    formName="PricingType"
+                    label=""
+                    type="radio"
+                    placeholder=""
+                    className="flex-none"
+                  />
+                  <h2 className="mt-1 flex-auto content-center text-2xl font-semibold text-sky-500">
+                    SWIPED / NON-SWIPED (Fiserv Only)
+                  </h2>
+                </div>
+              </AccordionTrigger>
               <AccordionContent>
                 <div className="my-2 w-full rounded-md border px-4 pb-2">
-                  <div className="flex gap-2">
-                    <InputForm
-                      control={form.control}
-                      formName="PricingType"
-                      label=""
-                      type="radio"
-                      placeholder=""
-                      className="flex-none"
-                    />
-                    <h2 className="mt-1 flex-auto content-center text-2xl font-semibold text-sky-500">
-                      SWIPED / NON-SWIPED (Fiserv Only)
-                    </h2>
-                  </div>
                   <FormGeneration
                     formControl={form.control}
                     formFields={swipedNonSwipedFspForm}
@@ -1404,29 +1571,26 @@ const PricingInformation = () => {
               <p className="my-2 text-xl font-semibold">
                 DISCOUNT COLLECTED FREQUENCY
               </p>
+
               <div className="flex gap-2">
-                <InputForm
+                <RadioForm
                   control={form.control}
                   formName="DailyMonthly"
                   label=""
-                  type="radio"
-                  placeholder=""
-                  className="flex-none"
+                  options={[
+                    {
+                      label: "Daily (Default)",
+                      value: "daily",
+                    },
+                    {
+                      label: "Monthly",
+                      value: "monthly",
+                    },
+                  ]}
+                  state={dailyMonthly}
+                  setState={setDailyMonthly}
+                  className="size-4"
                 />
-                <h2 className="mt-1 flex-auto content-center">
-                  Daily (Default)
-                </h2>
-              </div>
-              <div className="flex gap-2">
-                <InputForm
-                  control={form.control}
-                  formName="DailyMonthly"
-                  label=""
-                  type="radio"
-                  placeholder=""
-                  className="flex-none"
-                />
-                <h2 className="mt-1 flex-auto content-center">Monthly</h2>
               </div>
             </div>
           </div>
@@ -1438,21 +1602,23 @@ const PricingInformation = () => {
                 * All of these $dollar amounts are required
               </span>
             </h1>
-            <div className="my-2">
-              <p className="m-0">PCI Frequency: </p>
-              <FormGeneration
-                formControl={form.control}
-                formFields={pciFrequencyFspForm}
-                gridCols={"4"}
-              />
-            </div>
-            <div className="my-2">
-              <p className="m-0">Audio: </p>
-              <FormGeneration
-                formControl={form.control}
-                formFields={audioFspForm}
-                gridCols={"4"}
-              />
+            <div className="flex">
+              <div className="my-2 flex-auto">
+                <p className="m-0">PCI Frequency: </p>
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={pciFrequencyFspForm}
+                  gridCols={"1"}
+                />
+              </div>
+              <div className="my-2 flex-auto">
+                <p className="m-0">Audio: </p>
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={audioFspForm}
+                  gridCols={"1"}
+                />
+              </div>
             </div>
             <FormGeneration
               formControl={form.control}
@@ -1497,7 +1663,7 @@ const ProgrammingRequest = () => {
       AutoCloseTime: "",
       TipLine: false,
       TipLineType: "",
-      Server: false,
+      Server: "",
       SuggestedTipPercentages: "",
       SalesTax: 0,
       MessageToTheBoarding: "",
@@ -1505,6 +1671,10 @@ const ProgrammingRequest = () => {
       ShipName: "",
       ShipPriority: "",
       UseExistingAddress: "",
+      UseLegalBusiness: false,
+      UseLegalBusinessDba: false,
+      UseAgent: false,
+      NoAddress: false,
       ShipAddress: "",
       ShipCity: "",
       ShipState: "",
@@ -1516,6 +1686,9 @@ const ProgrammingRequest = () => {
   });
 
   const onSubmit = (value: z.infer<typeof programmingRequestFspSchema>) => {
+    // Making sure that the value is gonna be right according to
+    // the switches.
+    console.log(activeSwitchId);
     console.log(value);
   };
 
@@ -1529,14 +1702,25 @@ const ProgrammingRequest = () => {
   const columns = createColumns(columnsConfig);
 
   const [activeSwitchId, setActiveSwitchId] = useState<string | number>();
+
   const handleToggle = (id: string | number) => {
-    console.log(id);
-    setActiveSwitchId((prevId) => (prevId === id ? undefined : id));
+    if (id === activeSwitchId) {
+      setActiveSwitchId(0);
+      form.setValue("UseExistingAddress", `${0}`);
+    } else {
+      setActiveSwitchId(id);
+      form.setValue("UseExistingAddress", `${id}`);
+    }
   };
+
+  const [shipPriority, setShipPriority] = useState("2 Days");
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="m-auto max-w-[1200px]"
+      >
         <div className="mt-5 text-start">
           {/* ACCOUNT INFORMATION */}
           <h1 className="my-5 flex gap-2 text-2xl font-bold text-sky-500">
@@ -1705,7 +1889,7 @@ const ProgrammingRequest = () => {
               </div>
             </div>
             {/* Suggested Tip Percentages */}
-            <div className="w-full">
+            <div className="m-auto w-[70%]">
               <div className="flex gap-2">
                 <div className="flex-auto">
                   <InputForm
@@ -1744,7 +1928,7 @@ const ProgrammingRequest = () => {
             formControl={form.control}
             formFields={shipToFspForm}
             className={"w-full"}
-            gridCols={"6"}
+            gridCols={"1"}
           />
           <div className="flex gap-10">
             <div className="flex-auto">
@@ -1757,15 +1941,107 @@ const ProgrammingRequest = () => {
               />
             </div>
             <div className="flex-auto content-end">
-              <FormGeneration
+              {/* <FormGeneration
                 formControl={form.control}
                 formFields={shipPriorityFspForm}
                 gridCols={"5"}
-              />
+              /> */}
+              <div className="grid grid-cols-5 gap-2">
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"Ground"}
+                  type="button"
+                  value={"Ground"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "Ground"}
+                  onChange={() => setShipPriority("Ground")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"2 Days"}
+                  type="button"
+                  value={"2 Days"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "2 Days"}
+                  onChange={() => setShipPriority("2 Days")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"3 Days"}
+                  type="button"
+                  value={"3 Days"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "3 Days"}
+                  onChange={() => setShipPriority("3 Days")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"Standard"}
+                  type="button"
+                  value={"Standard"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "Standard"}
+                  onChange={() => setShipPriority("Standard")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"Priority"}
+                  type="button"
+                  value={"Priority"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "Priority"}
+                  onChange={() => setShipPriority("Priority")}
+                />
+              </div>
             </div>
           </div>
           {/* DBA Address Selection */}
           <div className="my-5 flex justify-center gap-6 max-xl:block max-xl:space-y-2">
+            <SwitchForm
+              control={form.control}
+              formName={"UseLegalBusiness"}
+              label={"Use Legal Business Address"}
+              id={1}
+              isActive={activeSwitchId === 1}
+              onToggle={handleToggle}
+            />
+            <SwitchForm
+              control={form.control}
+              formName={"UseLegalBusinessDba"}
+              label={"Use Business Address DBA"}
+              id={2}
+              isActive={activeSwitchId === 2}
+              onToggle={handleToggle}
+            />
+            <SwitchForm
+              control={form.control}
+              formName={"UseAgent"}
+              label={"Use Agent Address"}
+              id={3}
+              isActive={activeSwitchId === 3}
+              onToggle={handleToggle}
+            />
+            <SwitchForm
+              control={form.control}
+              formName={"NoAddress"}
+              label={"No Address"}
+              id={4}
+              isActive={activeSwitchId === 4}
+              onToggle={handleToggle}
+            />
+          </div>
+
+          {/* <div className="my-5 flex justify-center gap-6 max-xl:block max-xl:space-y-2">
             {dbaSelectionFspForm.map((item) => (
               <SwitchForm
                 key={item.id}
@@ -1774,15 +2050,15 @@ const ProgrammingRequest = () => {
                 label={item.title}
                 id={item.id}
                 isActive={activeSwitchId === item.id}
-                onToggle={handleToggle}
+                // onToggle={handleToggle}
               />
             ))}
-          </div>
+          </div> */}
           <Input
             name="Search Address"
             title="Search Address"
             placeholder="Search here to auto-fill your address details"
-            className="my-2 w-1/2"
+            className="mb-2 mt-5 w-1/2"
           />
           <FormGeneration
             formControl={form.control}
@@ -1798,7 +2074,7 @@ const ProgrammingRequest = () => {
         <FormGeneration
           formControl={form.control}
           formFields={billToFspForm}
-          gridCols={"6"}
+          gridCols={"1"}
         />
         <div className="flex justify-start gap-2">
           <Button className="my-5">View Bank ACH</Button>

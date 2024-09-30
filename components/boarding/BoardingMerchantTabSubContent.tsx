@@ -16,14 +16,13 @@ import {
   merchantInfoEditForm,
   merchantOptionsForm,
   ModelSelectList,
-  shipMethodMerchantForm,
 } from "@/constants";
 import { DataTypes } from "@/types";
 import { Form } from "../ui/form";
 import {
   boardingMerchantInfoSchema,
   newFspLeadSchema,
-  newNorthBlindLeadSchema,
+  newLeadSchema,
   newOrderInfoSchema,
 } from "@/lib/utils";
 import { z } from "zod";
@@ -31,6 +30,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
   FormGeneration,
+  InputButtonForm,
   InputForm,
   SelectForm,
   SwitchForm,
@@ -129,15 +129,15 @@ const EquipmentOrders = () => {
 
   const columns2 = createColumns(columnsConfig2);
 
-  const form = useForm<z.infer<typeof newNorthBlindLeadSchema>>({
-    resolver: zodResolver(newNorthBlindLeadSchema),
+  const form = useForm<z.infer<typeof newLeadSchema>>({
+    resolver: zodResolver(newLeadSchema),
     defaultValues: {
       Email: "",
       Name: "",
     },
   });
 
-  const onSubmit = (value: z.infer<typeof newNorthBlindLeadSchema>) => {
+  const onSubmit = (value: z.infer<typeof newLeadSchema>) => {
     console.log(value);
   };
 
@@ -233,7 +233,7 @@ const OrderNewEquipment = () => {
     console.log(id);
     setActiveSwitchId((prevId) => (prevId === id ? undefined : id));
   };
-
+  const [shipPriority, setShipPriority] = useState("2 Days");
   return (
     <section className="mt-4 gap-2 text-start max-2xl:flex-wrap">
       <Form {...form}>
@@ -282,12 +282,12 @@ const OrderNewEquipment = () => {
           <div className="w-full">
             {/* Options / Billing */}
             <div className="my-5 flex gap-20">
-              <div className="flex-auto content-end">
-                <p className="mt-4">Options:</p>
+              <div className="flex-auto">
+                <p className="mb-2 mt-4">Options:</p>
                 <FormGeneration
                   formControl={form.control}
                   formFields={merchantOptionsForm}
-                  gridCols={"2"}
+                  gridCols={"1"}
                 />
               </div>
               <div className="flex-auto content-end">
@@ -301,12 +301,66 @@ const OrderNewEquipment = () => {
             </div>
             {/* SHIPPING METHOD */}
             <div className="flex-auto content-end">
-              <p className="my-2 font-semibold">Shipping Method:</p>
-              <FormGeneration
-                formControl={form.control}
-                formFields={shipMethodMerchantForm}
-                gridCols={"5"}
-              />
+              <p className="my-3 text-center text-xl font-semibold">
+                Shipping Method:
+              </p>
+              <div className="m-auto grid max-w-[1000px] grid-cols-5 gap-2">
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"Ground"}
+                  type="button"
+                  value={"Ground"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "Ground"}
+                  onChange={() => setShipPriority("Ground")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"2 Days"}
+                  type="button"
+                  value={"2 Days"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "2 Days"}
+                  onChange={() => setShipPriority("2 Days")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"3 Days"}
+                  type="button"
+                  value={"3 Days"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "3 Days"}
+                  onChange={() => setShipPriority("3 Days")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"Standard"}
+                  type="button"
+                  value={"Standard"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "Standard"}
+                  onChange={() => setShipPriority("Standard")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName={"ShipPriority"}
+                  label={"Priority"}
+                  type="button"
+                  value={"Priority"}
+                  setState={setShipPriority}
+                  state={shipPriority}
+                  isActive={shipPriority === "Priority"}
+                  onChange={() => setShipPriority("Priority")}
+                />
+              </div>
             </div>
             {/* DBA Address Selection */}
             <div className="my-5 flex justify-center gap-6 max-xl:block max-xl:space-y-2">

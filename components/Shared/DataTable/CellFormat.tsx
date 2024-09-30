@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import CustomButtons from "../CustomButtons";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { LinkPreview } from "@/components/ui/link-preview";
 
 type StatusTypes = {
   Success?: string[];
@@ -91,7 +92,7 @@ export const Percentage = (row: string | number | any) => {
 export const NextStep = (row: string) => {
   return (
     <CustomButtons
-      className="relative h-fit w-full text-nowrap text-xs"
+      className="relative w-full text-nowrap max-lg:text-xs"
       btnType="primary"
     >
       {row}
@@ -122,5 +123,23 @@ export const ColumnLink = (row: string, link: string, id?: number) => {
         {row}
       </p>
     </Link>
+  );
+};
+
+export const ColumnLinkPreview = ({
+  id,
+  path,
+  title,
+  className,
+}: {
+  id?: string | number;
+  path: string;
+  title: string | number | any;
+  className?: string;
+}) => {
+  return (
+    <LinkPreview url={`${path}${id || ""}`} className={className}>
+      <p className={className}>{title}</p>
+    </LinkPreview>
   );
 };

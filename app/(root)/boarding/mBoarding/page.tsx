@@ -48,17 +48,15 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="flex w-full gap-4 max-2xl:flex-wrap">
-      <div className="flex-auto content-center">
+    <section className="w-full max-2xl:flex-wrap">
+      <div className="flex-auto">
         <StartApplication />
       </div>
-      <div className="border max-2xl:hidden" />
       {/* TABLE DIV */}
-      <div className="flex-auto">
-        <h2 className="mt-5 text-center text-xl">
+      <div className="mt-10 flex-auto">
+        <h2 className="mt-10 flex justify-center gap-2 text-2xl">
           Merchant Boarding List for
-          {!result && <b> {data}</b>}
-          {/* {!result && <b>{" "}{userRequest?.email}</b>} */}
+          {!result && <p className="text-sky-500"> {data}</p>}
         </h2>
         <div className="grid grid-cols-1 overflow-auto">
           <DataTable

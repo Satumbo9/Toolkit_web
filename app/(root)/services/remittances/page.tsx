@@ -2,7 +2,7 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ImportSplitFile from "@/components/services/remittances/ImportSplitFile";
 import ACHFTP from "@/components/services/remittances/ACH-FTP";
-import { CopyPlus, FilePlus, SquarePen, Upload } from "lucide-react";
+import { CopyPlus, FilePlus, SquarePen } from "lucide-react";
 
 const ServicesRemittances = () => {
   const renderPage = [

@@ -336,7 +336,7 @@ model User {
   lockoutEnd           DateTime?
   language             String?
   accessFailedCount    Int?
-  departmentId         String?
+  departmentId         String
   createdAt            DateTime            @default(now())
   activityLog          ActivityLog[]
   leads                Leads[]
@@ -347,10 +347,37 @@ model User {
   userClaims           UserClaims[]
   userLogins           UserLogins[]
   userRoles            UserRoles[]
-  Department           Department?         @relation(fields: [departmentId], references: [id])
+  department           Department?         @relation(fields: [departmentId], references: [id])
 
   @@index([normalizedEmail])
   @@map("users")
+}
+
+model FormBuilder {
+  id              String            @id
+  userId          String
+  createdAt       DateTime          @default(now())
+  published       Boolean           @default(false)
+  title           String
+  descriptions    String            @default("")
+  content         String            @default("")
+  visits          Int               @default(0)
+  submissions     Int               @default(0)
+  shareURL        String            @default(uuid())
+  formCategory    String
+  FormSubmissions FormSubmissions[]
+
+  @@map("formBuilder")
+}
+
+model FormSubmissions {
+  id        String      @id
+  createdAt DateTime    @default(now())
+  formId    String
+  form      FormBuilder @relation(fields: [formId], references: [id])
+  content   String
+
+  @@map("formSubmissions")
 }
 
 // Onboarding schemas

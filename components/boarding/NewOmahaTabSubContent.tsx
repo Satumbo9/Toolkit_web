@@ -21,7 +21,7 @@ import {
   fileBuildInformationFspForm,
   LegalAddressInfoInterForm,
   LegalInfoInterForm,
-  omahaBoadingForm,
+  omahaBoardingForm,
   OwnersTable,
   salesInterForm,
   serverFspForm,
@@ -52,6 +52,7 @@ import {
   InputForm,
   SwitchForm,
   NorthFormGeneration,
+  InputButtonForm,
 } from "../Shared/InstantForm";
 import CustomButtons from "../Shared/CustomButtons";
 import { Progress } from "@/components/ui/progress";
@@ -101,7 +102,6 @@ const MerchantDetail = () => {
   const onSubmit = (value: z.infer<typeof merchantInformationOmahaSchema>) => {
     console.log(value);
   };
-
 
   return (
     <section className="text-start">
@@ -186,7 +186,6 @@ const MerchantDetail = () => {
               Save Changes
             </CustomButtons>
           </div>
-          
         </form>
       </Form>
     </section>
@@ -519,10 +518,15 @@ const ProgrammingRequest = () => {
 
   const [activeSwitchId, setActiveSwitchId] = useState<string | number>();
   const handleToggle = (id: string | number) => {
-    console.log(id);
-    setActiveSwitchId((prevId) => (prevId === id ? undefined : id));
+    if (id === activeSwitchId) {
+      setActiveSwitchId(0);
+      form.setValue("UseExistingAddress", `${0}`);
+    } else {
+      setActiveSwitchId(id);
+      form.setValue("UseExistingAddress", `${id}`);
+    }
   };
-
+  const [shipPriority, setShipPriority] = useState("2 Days");
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
@@ -737,7 +741,64 @@ const ProgrammingRequest = () => {
                 className=""
               />
             </div>
-            <div className="flex-auto content-end">
+            <div className="grid flex-auto grid-cols-5 items-end gap-2">
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Ground"}
+                type="button"
+                value={"Ground"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Ground"}
+                onChange={() => setShipPriority("Ground")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"2 Days"}
+                type="button"
+                value={"2 Days"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "2 Days"}
+                onChange={() => setShipPriority("2 Days")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"3 Days"}
+                type="button"
+                value={"3 Days"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "3 Days"}
+                onChange={() => setShipPriority("3 Days")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Standard"}
+                type="button"
+                value={"Standard"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Standard"}
+                onChange={() => setShipPriority("Standard")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Priority"}
+                type="button"
+                value={"Priority"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Priority"}
+                onChange={() => setShipPriority("Priority")}
+              />
+            </div>
+            <div className="hidden flex-auto content-end">
               <FormGeneration
                 formControl={form.control}
                 formFields={shipPriorityFspForm}
@@ -755,7 +816,7 @@ const ProgrammingRequest = () => {
                 label={item.title}
                 id={item.id}
                 isActive={activeSwitchId === item.id}
-                onToggle={handleToggle}
+                onToggle={() => handleToggle(item.id)}
               />
             ))}
           </div>
@@ -779,7 +840,7 @@ const ProgrammingRequest = () => {
         <FormGeneration
           formControl={form.control}
           formFields={billToFspForm}
-          gridCols={"5"}
+          gridCols={"1"}
         />
         <div className="flex justify-start gap-2">
           <Button className="my-5">View Bank ACH</Button>
@@ -867,7 +928,7 @@ const OmahaDetails = () => {
           {/* GENERATION OF THE WHOLE OMAHA FORM */}
           <NorthFormGeneration
             formControl={form.control}
-            formFields={omahaBoadingForm}
+            formFields={omahaBoardingForm}
             gridCols={"3"}
           />
           {/* SERVICE FEES */}

@@ -66,8 +66,8 @@ const Page = () => {
           <h1 className="my-3 text-center text-2xl font-medium text-sky-500">
             Residuals
           </h1>
-          <div className="flex items-end justify-between gap-2">
-            <div className="flex flex-auto gap-2">
+          <div className="flex items-end justify-between gap-2 max-lg:flex-wrap">
+            <div className="flex flex-auto items-end gap-2 max-lg:justify-center">
               <DatePickerForm
                 control={form.control}
                 formName="ResidualFromDate"
@@ -85,11 +85,11 @@ const Page = () => {
               />
             </div>
             {/* SAVE OTHER DOCUMENTS BUTTON */}
-            <div className="flex gap-2 p-0">
-              <CustomButtons className="px-10" btnType="default">
+            <div className="flex flex-auto justify-end gap-2 p-0 max-lg:justify-center">
+              <CustomButtons className="flex-1 px-10" btnType="default">
                 Search
               </CustomButtons>
-              <CustomButtons className="px-10" btnType="default">
+              <CustomButtons className="flex-1 px-10" btnType="default">
                 Download .csv
               </CustomButtons>
             </div>

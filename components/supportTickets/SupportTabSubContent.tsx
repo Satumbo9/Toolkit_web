@@ -7,12 +7,6 @@ import {
 import DataTable from "@/components/Shared/DataTable/DataTable";
 import { Button } from "@/components/ui/button";
 import { mySolvedTicketsTable, myTicketsTable } from "@/constants";
-import { newItemDetailSchema } from "@/lib/utils";
-import { SelectForm } from "../Shared/InstantForm";
-import { useForm } from "react-hook-form";
-import {z} from 'zod';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "react-hook-form";
 import { DataTypes } from "@/types";
 import {
   Dialog,
@@ -25,7 +19,7 @@ import NewSupportTicket from "../boarding/NewSupportTicket";
 import { Description } from "@radix-ui/react-dialog";
 
 
-//Just added
+// Just added
 
 
 const MyTickets = () => {
@@ -60,6 +54,8 @@ const MyTickets = () => {
 
               <NewSupportTicket />
             </DialogHeader>
+            <Description />
+            <NewSupportTicket />
           </DialogContent>
         </Dialog>
       </div>

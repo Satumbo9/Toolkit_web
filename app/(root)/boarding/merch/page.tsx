@@ -16,7 +16,11 @@ import { DataTypes } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ColumnLink, Status } from "@/components/Shared/DataTable/CellFormat";
+import {
+  // ColumnLink,
+  ColumnLinkPreview,
+  Status,
+} from "@/components/Shared/DataTable/CellFormat";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
@@ -24,10 +28,26 @@ const Page = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
     { accessorKey: "Id", header: "Id" },
     { accessorKey: "MID", header: "MID" },
+    // {
+    //   accessorKey: "DBA",
+    //   header: "DBA",
+    //   cell: (row) => ColumnLink(row.getValue(), "/boarding/merch/edit"),
+    // },
     {
       accessorKey: "DBA",
       header: "DBA",
-      cell: (row) => ColumnLink(row.getValue(), "/boarding/merch/edit"),
+      cell: (row) => {
+        const title = row.getValue();
+        const path = "https://www.google.com/";
+
+        return (
+          <ColumnLinkPreview
+            title={title}
+            path={path}
+            className="font-semibold text-blue-500"
+          />
+        );
+      },
     },
     {
       accessorKey: "Status",

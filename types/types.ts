@@ -46,3 +46,12 @@ export interface Field {
     name: any;
     type: any;
   }
+
+  export interface Location {
+    name: string,
+    title: string,
+    address: string,
+    city: string,
+    state: string,
+    postalCode: string,
+  }

@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { CheckboxForm, InputForm, SelectForm, TextAreaForm } from "../Shared/InstantForm";
-import { activityRecordList, supportTicketList } from "@/constants";
+import {  supportTicketList } from "@/constants";
 
 const NewSupportTicket = () => {
   const form = useForm<z.infer<typeof newSupportTicketSchema>>({

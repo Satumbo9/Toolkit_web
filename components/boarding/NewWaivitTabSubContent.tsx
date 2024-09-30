@@ -29,7 +29,6 @@ import {
   salesInterForm,
   serverFspForm,
   settingsInterForm,
-  shipPriorityFspForm,
   shipToFspForm,
   taxInformationInterForm,
   tipLineFspForm,
@@ -54,6 +53,7 @@ import {
   InputForm,
   SwitchForm,
   NorthFormGeneration,
+  InputButtonForm,
 } from "../Shared/InstantForm";
 import CustomButtons from "../Shared/CustomButtons";
 import { Progress } from "@/components/ui/progress";
@@ -69,7 +69,6 @@ import AddNewMerchantOwner from "./AddNewMerchantOwner";
 import { Input } from "../ui/input";
 
 const MerchantDetail = () => {
-
   const form = useForm<z.infer<typeof merchantInformationWavitSchema>>({
     resolver: zodResolver(merchantInformationWavitSchema),
     defaultValues: {
@@ -483,7 +482,7 @@ const ProgrammingRequest = () => {
       ShipTo: "",
       ShipName: "",
       ShipPriority: "",
-      UseExistingAddress: "",
+      UseExistingAddress: "0",
       ShipAddress: "",
       ShipCity: "",
       ShipState: "",
@@ -495,7 +494,9 @@ const ProgrammingRequest = () => {
   });
 
   const onSubmit = (value: z.infer<typeof programmingRequestWavitSchema>) => {
+    // form.setValue("UseExistingAddress", `${activeSwitchId}`);
     console.log(value);
+    console.log(activeSwitchId);
   };
 
   const columnsConfig: ColumnConfig<DataTypes>[] = [
@@ -507,12 +508,17 @@ const ProgrammingRequest = () => {
 
   const columns = createColumns(columnsConfig);
 
-  const [activeSwitchId, setActiveSwitchId] = useState<string | number>();
+  const [activeSwitchId, setActiveSwitchId] = useState<string | number>(0);
   const handleToggle = (id: string | number) => {
-    console.log(id);
-    setActiveSwitchId((prevId) => (prevId === id ? undefined : id));
+    if (activeSwitchId === id) {
+      setActiveSwitchId(0);
+      form.setValue("UseExistingAddress", `${0}`);
+    } else {
+      setActiveSwitchId(id);
+      form.setValue("UseExistingAddress", `${id}`);
+    }
   };
-
+  const [shipPriority, setShipPriority] = useState("2 Days");
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
@@ -728,11 +734,61 @@ const ProgrammingRequest = () => {
                 className=""
               />
             </div>
-            <div className="flex-auto content-end">
-              <FormGeneration
-                formControl={form.control}
-                formFields={shipPriorityFspForm}
-                gridCols={"6"}
+            <div className="grid flex-auto grid-cols-5 items-end gap-2">
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Ground"}
+                type="button"
+                value={"Ground"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Ground"}
+                onChange={() => setShipPriority("Ground")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"2 Days"}
+                type="button"
+                value={"2 Days"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "2 Days"}
+                onChange={() => setShipPriority("2 Days")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"3 Days"}
+                type="button"
+                value={"3 Days"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "3 Days"}
+                onChange={() => setShipPriority("3 Days")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Standard"}
+                type="button"
+                value={"Standard"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Standard"}
+                onChange={() => setShipPriority("Standard")}
+              />
+              <InputButtonForm
+                control={form.control}
+                formName={"ShipPriority"}
+                label={"Priority"}
+                type="button"
+                value={"Priority"}
+                setState={setShipPriority}
+                state={shipPriority}
+                isActive={shipPriority === "Priority"}
+                onChange={() => setShipPriority("Priority")}
               />
             </div>
           </div>
@@ -746,7 +802,7 @@ const ProgrammingRequest = () => {
                 label={item.title}
                 id={item.id}
                 isActive={activeSwitchId === item.id}
-                onToggle={handleToggle}
+                onToggle={() => handleToggle(item.id)}
               />
             ))}
           </div>
@@ -771,7 +827,7 @@ const ProgrammingRequest = () => {
           formControl={form.control}
           formFields={billToFspForm}
           className="w-full"
-          gridCols={"4"}
+          gridCols={"1"}
         />
         <div className="flex justify-start gap-2">
           <Button className="my-5">View Bank ACH</Button>
@@ -789,7 +845,6 @@ const ProgrammingRequest = () => {
 };
 
 const NorthInformation = () => {
-
   const form = useForm<z.infer<typeof northBoardingWavitSchema>>({
     resolver: zodResolver(northBoardingWavitSchema),
     defaultValues: {
@@ -945,7 +1000,7 @@ const NorthInformation = () => {
               ))}
             </div>
           </div>
-         
+
           {/* BILLED MONTHLY FEES */}
           <div className="my-2 border p-4">
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
@@ -957,7 +1012,7 @@ const NorthInformation = () => {
               gridCols={"3"}
             />
           </div>
-          
+
           {/* AUTHORIZATION AND AVS FEES  */}
           <div className="my-2 border p-4">
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
