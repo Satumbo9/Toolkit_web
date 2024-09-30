@@ -100,6 +100,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
+import { Loader2, MapPin } from "lucide-react";
 
 const MerchantDetail = () => {
   const form = useForm<z.infer<typeof merchantInformationFspSchema>>({
@@ -151,6 +152,57 @@ const MerchantDetail = () => {
   const [areaZoned, setAreaZoned] = useState("");
   const [squareFootage, setSquareFootage] = useState("");
 
+  const [search, setSearch] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const [debouncing, setDebouncing] = useState<string>(search);
+  const [fetchResult, setFetchResult] = useState<any[]>([]);
+  const { setValue } = form;
+
+  React.useEffect(() => {
+    try {
+      const debouncingTimer = setTimeout(() => {
+        setDebouncing(search);
+      }, 1500);
+
+      if (!debouncing) return;
+
+      if (debouncingTimer) {
+        const fetching = async () => {
+          const result = await fetch(`/api/location?q=${debouncing}`);
+
+          if (!result.ok) throw new Error("Something went wrong!");
+
+          const data = await result.json();
+
+          console.log(data.items);
+
+          setFetchResult(data.items || []);
+
+          if (!search) setSearch("");
+        };
+        fetching();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [debouncing, search]);
+
+  const hnadleAddressSelect = (address: {
+    city: string;
+    street: string;
+    state: string;
+    postalCode: string;
+  }) => {
+    setValue("Street", address.street);
+    setValue("City", address.city);
+    setValue("State", address.state);
+    setValue("PostalCode", address.postalCode);
+
+    setIsOpen(false);
+    setSearch("");
+  };
+
   return (
     <section className="text-start">
       <Form {...form}>
@@ -169,6 +221,45 @@ const MerchantDetail = () => {
           <h1 className="my-5 text-2xl font-bold text-sky-500">
             DBA Address Information
           </h1>
+
+          <div className="relative">
+            {/* Testing input */}
+            <Input
+              placeholder="Search for your address"
+              className="mb-2"
+              value={search}
+              onChange={(e: any) => {
+                setSearch(e.target.value);
+                if (!isOpen) setIsOpen(true);
+                if (e.target.value === "" && isOpen) {
+                  setIsOpen(false);
+                }
+              }}
+            />
+
+            {isOpen && (
+              <React.Fragment>
+                {!fetchResult ? (
+                  <div>
+                    <Loader2 className="animate-spin text-2xl text-gray-500" />
+                  </div>
+                ) : (
+                  <div className="mb-5 max-h-60 w-full space-y-2 overflow-y-auto rounded-md border p-4 shadow-md">
+                    {fetchResult?.map((item) => (
+                      <div
+                        className="flex cursor-pointer items-center rounded-sm border bg-background p-2"
+                        onClick={() => hnadleAddressSelect(item.address)}
+                        key={item.title}
+                      >
+                        <MapPin />
+                        <p>{item.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </React.Fragment>
+            )}
+          </div>
 
           <FormGeneration
             formControl={form.control}

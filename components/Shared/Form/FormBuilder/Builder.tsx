@@ -14,10 +14,8 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 const Builder = ({
-  id,
   result,
 }: {
-  id: string;
   result: {
     id: string;
     userId: string;
@@ -44,6 +42,18 @@ const Builder = ({
       droppedItems.filter((item) => item.instanceId !== instanceId),
     );
   };
+
+  React.useEffect(() => {
+    try {
+      const fetching = async () => {
+        await fetch("/api/location");
+      };
+
+      fetching();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   return (
     <DndContext
       onDragStart={({ active }) => {

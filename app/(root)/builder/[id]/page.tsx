@@ -6,9 +6,10 @@ const BuilderEdit = async ({ params }: { params: { id: string } }) => {
   const result = await GetFormById(params.id);
 
   if (!result) throw new Error("Form not found!");
+
   return (
     <section className="px-12">
-      <Builder id={params.id} result={result} />
+      <Builder result={result} />
     </section>
   );
 };
