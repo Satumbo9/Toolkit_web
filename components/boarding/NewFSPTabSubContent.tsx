@@ -100,9 +100,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
-import { MapPin } from "lucide-react";
-import { Location } from "@/types/types";
-// import { fetchLocation } from "@/app/api/location/route";
+import { Loader2, MapPin } from "lucide-react";
 
 const MerchantDetail = () => {
   const form = useForm<z.infer<typeof merchantInformationFspSchema>>({
@@ -154,44 +152,53 @@ const MerchantDetail = () => {
   const [areaZoned, setAreaZoned] = useState("");
   const [squareFootage, setSquareFootage] = useState("");
 
-  const [data, setData] = useState<any[]>([]);
-  const [search, setSearch] = useState("");
-
-  const { setValue } = form;
-
-  const [debounce, setDebounce] = useState<string>(search);
-
+  const [search, setSearch] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    const debounceTimer = setTimeout(() => {
-      setDebounce(search);
-    }, 1500);
+  const [debouncing, setDebouncing] = useState<string>(search);
+  const [fetchResult, setFetchResult] = useState<any[]>([]);
+  const { setValue } = form;
 
-    if (!debounce) return;
+  React.useEffect(() => {
+    try {
+      const debouncingTimer = setTimeout(() => {
+        setDebouncing(search);
+      }, 1500);
 
-    if (debounceTimer) {
-      const getLocation = async () => {
-        const locations = await fetch(`/api/location?q=${search}`);
+      if (!debouncing) return;
 
-        if (!locations.ok) return console.log("Location is not feeling well");
+      if (debouncingTimer) {
+        const fetching = async () => {
+          const result = await fetch(`/api/location?q=${debouncing}`);
 
-        const savedData = await locations.json();
+          if (!result.ok) throw new Error("Something went wrong!");
 
-        setData(savedData.items);
-      };
+          const data = await result.json();
 
-      getLocation();
+          console.log(data.items);
+
+          setFetchResult(data.items || []);
+
+          if (!search) setSearch("");
+        };
+        fetching();
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }, [debounce, search]);
+  }, [debouncing, search]);
 
-  const handleClick = (value: any) => {
-    setValue("Street", value.street);
-    setValue("City", value.city);
-    setValue("State", value.state);
-    setValue("PostalCode", value.postalCode);
+  const hnadleAddressSelect = (address: {
+    city: string;
+    street: string;
+    state: string;
+    postalCode: string;
+  }) => {
+    setValue("Street", address.street);
+    setValue("City", address.city);
+    setValue("State", address.state);
+    setValue("PostalCode", address.postalCode);
 
-    setData([]);
     setIsOpen(false);
     setSearch("");
   };
@@ -214,35 +221,46 @@ const MerchantDetail = () => {
           <h1 className="my-5 text-2xl font-bold text-sky-500">
             DBA Address Information
           </h1>
+
           <div className="relative">
+            {/* Testing input */}
             <Input
-              placeholder={"Search to auto-fill your address details"}
-              id="search"
+              placeholder="Search for your address"
+              className="mb-2"
               value={search}
-              name="searchInput"
-              className="mb-0 w-1/2"
-              onChange={(event) => {
-                setSearch(event.target.value);
+              onChange={(e: any) => {
+                setSearch(e.target.value);
                 if (!isOpen) setIsOpen(true);
-                if (event.target.value === "" && isOpen) setIsOpen(false);
+                if (e.target.value === "" && isOpen) {
+                  setIsOpen(false);
+                }
               }}
             />
 
             {isOpen && (
-              <div className="relative my-2 h-60 max-h-60 w-full rounded-md border bg-black p-3">
-                {data.map((location: Location) => (
-                  <div
-                    key={location.title}
-                    className="flex w-full cursor-pointer gap-3 py-2"
-                    onClick={() => handleClick(location.address)}
-                  >
-                    <MapPin />
-                    <p>{location.title}</p>
+              <React.Fragment>
+                {!fetchResult ? (
+                  <div>
+                    <Loader2 className="animate-spin text-2xl text-gray-500" />
                   </div>
-                ))}
-              </div>
+                ) : (
+                  <div className="mb-5 max-h-60 w-full space-y-2 overflow-y-auto rounded-md border p-4 shadow-md">
+                    {fetchResult?.map((item) => (
+                      <div
+                        className="flex cursor-pointer items-center rounded-sm border bg-background p-2"
+                        onClick={() => hnadleAddressSelect(item.address)}
+                        key={item.title}
+                      >
+                        <MapPin />
+                        <p>{item.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </React.Fragment>
             )}
           </div>
+
           <FormGeneration
             formControl={form.control}
             formFields={dbaAddressFspForm}

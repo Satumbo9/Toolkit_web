@@ -46,7 +46,7 @@ import {
   FilePenLine,
 } from "lucide-react";
 import { z } from "zod";
-import { FormData  } from "@/types/types";
+import { FormData } from "@/types/types";
 
 export const themes = [
   { value: "light", label: "Light", icon: "icon/sun.svg" },
@@ -128,6 +128,10 @@ export const profileLinks = [
   {
     title: "Tasks",
     url: "/tasks",
+  },
+  {
+    title: "Agent",
+    url: "/agentDetails",
   },
   {
     title: "Logout",
@@ -1792,7 +1796,7 @@ export const agentLeadSourceDataTable = [
     R: "",
     "F/SM": "",
   },
-]
+];
 
 export const AgentSetupTabs = [
   {
@@ -2093,7 +2097,7 @@ export const productFeeForm = [
     type: "checkbox",
     value: "",
   },
-]
+];
 
 export const amountForm = [
   {
@@ -2120,7 +2124,7 @@ export const amountForm = [
     type: "input",
     value: "",
   },
-] 
+];
 
 export const billingMonthForm = [
   {
@@ -2139,7 +2143,7 @@ export const billingMonthForm = [
     type: "selectbox",
     value: "",
   },
-] 
+];
 
 export const statusNonBillingForm = [
   {
@@ -2174,7 +2178,7 @@ export const statusNonBillingForm = [
     type: "selectbox",
     value: "",
   },
-] 
+];
 
 export const merchResidualsTabs = [
   {
@@ -2215,9 +2219,9 @@ export const merchResidualPaymentsTable = [
     PayMonth: "2024-08-12",
     Vol: 22.97,
     Trans: "0",
-    Rev: 393.20,
-    Exp: 0.00,
-    NetInc: 393.20,
+    Rev: 393.2,
+    Exp: 0.0,
+    NetInc: 393.2,
     Split: "22.00%",
     Adj: "0",
     Notes: " ",
@@ -2227,9 +2231,9 @@ export const merchResidualPaymentsTable = [
     PayMonth: "2024-08-12",
     Vol: 22.97,
     Trans: "0",
-    Rev: 393.20,
-    Exp: 0.00,
-    NetInc: 393.20,
+    Rev: 393.2,
+    Exp: 0.0,
+    NetInc: 393.2,
     Split: "22.00%",
     Adj: "0",
     Notes: " ",
@@ -2239,9 +2243,9 @@ export const merchResidualPaymentsTable = [
     PayMonth: "2024-08-12",
     Vol: 22.97,
     Trans: "0",
-    Rev: 393.20,
-    Exp: 0.00,
-    NetInc: 393.20,
+    Rev: 393.2,
+    Exp: 0.0,
+    NetInc: 393.2,
     Split: "22.00%",
     Adj: "0",
     Notes: " ",
@@ -2251,9 +2255,9 @@ export const merchResidualPaymentsTable = [
     PayMonth: "2024-08-12",
     Vol: 22.97,
     Trans: "0",
-    Rev: 393.20,
-    Exp: 0.00,
-    NetInc: 393.20,
+    Rev: 393.2,
+    Exp: 0.0,
+    NetInc: 393.2,
     Split: "22.00%",
     Adj: "0",
     Notes: " ",
@@ -2263,14 +2267,14 @@ export const merchResidualPaymentsTable = [
     PayMonth: "2024-08-12",
     Vol: 22.97,
     Trans: "0",
-    Rev: 393.20,
-    Exp: 0.00,
-    NetInc: 393.20,
+    Rev: 393.2,
+    Exp: 0.0,
+    NetInc: 393.2,
     Split: "22.00%",
     Adj: "0",
     Notes: " ",
   },
-]
+];
 export const wavitInfoTabs = [
   {
     id: "1",
@@ -2408,15 +2412,14 @@ export const wavitSettingsTable = [
   },
 ];
 
-export const newMerchantInfoForm = 
-[
+export const newMerchantInfoForm = [
   {
     id: 1,
     title: "MID:",
     type: "input",
     placeholder: "",
     formName: "MID",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -2424,7 +2427,7 @@ export const newMerchantInfoForm =
     type: "input",
     placeholder: "",
     formName: "LegalName",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -2432,7 +2435,7 @@ export const newMerchantInfoForm =
     type: "input",
     placeholder: "",
     formName: "DBA",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -2440,7 +2443,7 @@ export const newMerchantInfoForm =
     type: "input",
     placeholder: "(___) ___-____",
     formName: "Phone",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -2465,7 +2468,7 @@ export const newMerchantInfoForm =
     type: "input",
     placeholder: "",
     formName: "Filter",
-    value: ""
+    value: "",
   },
   {
     id: 8,
@@ -2482,7 +2485,7 @@ export const newMerchantInfoForm =
     type: "input",
     placeholder: "",
     formName: "Filter2",
-    value: ""
+    value: "",
   },
   {
     id: 10,
@@ -2490,7 +2493,7 @@ export const newMerchantInfoForm =
     type: "number",
     placeholder: "",
     formName: "AgentID",
-    value: ""
+    value: "",
   },
   {
     id: 11,
@@ -2507,7 +2510,7 @@ export const newMerchantInfoForm =
     type: "number",
     placeholder: "",
     formName: "Split",
-    value: ""
+    value: "",
   },
   {
     id: 13,
@@ -2524,7 +2527,7 @@ export const newMerchantInfoForm =
     type: "number",
     placeholder: "",
     formName: "SplitID",
-    value: ""
+    value: "",
   },
   {
     id: 15,
@@ -2533,7 +2536,7 @@ export const newMerchantInfoForm =
     placeholder: "",
     formName: "LeadSource",
     value: "",
-    content: leadSourceList
+    content: leadSourceList,
   },
   {
     id: 16,
@@ -2541,7 +2544,7 @@ export const newMerchantInfoForm =
     type: "number",
     placeholder: "",
     formName: "SplitLead",
-    value: ""
+    value: "",
   },
   {
     id: 17,
@@ -2549,7 +2552,7 @@ export const newMerchantInfoForm =
     type: "number",
     placeholder: "",
     formName: "EstAnnual",
-    value: ""
+    value: "",
   },
   {
     id: 18,
@@ -2557,10 +2560,9 @@ export const newMerchantInfoForm =
     type: "number",
     placeholder: "",
     formName: "Transactions",
-    value: ""
-  }
-]
-
+    value: "",
+  },
+];
 
 // AGENT DATA
 
@@ -3106,7 +3108,7 @@ export const FspCategoryList = [
     id: 3,
     title: "Risk Management",
     value: "RiskManagement",
-  }
+  },
 ];
 
 export const FspReportNameList = [
@@ -3124,7 +3126,7 @@ export const FspReportNameList = [
     id: 3,
     title: "ZeroAuth",
     value: "ZeroAuth",
-  }
+  },
 ];
 
 export const fspForm = [
@@ -3155,7 +3157,6 @@ export const fspForm = [
     value: "",
     content: "",
   },
-
 ];
 // ADMIN DATA
 
@@ -3274,7 +3275,7 @@ export const RolesListTable = [
     description: "Development Team",
     permission: 100,
   },
-]
+];
 
 export const DepartmentListTable = [
   {
@@ -3307,7 +3308,7 @@ export const DepartmentListTable = [
     description: "Dev Team",
     permission: 100,
   },
-]
+];
 
 export const firstDataOmahaForm = [
   {
@@ -3770,6 +3771,14 @@ export const boardingMainTabs = [
     value: "merch",
     route: "/boarding/merch",
   },
+<<<<<<< HEAD
+=======
+  // {
+  //   title: "Agent Details",
+  //   value: "agentDetails",
+  //   route: "/boarding/agentDetails",
+  // },
+>>>>>>> cea0d415d3b752f76c58cf21181f946de834b2f3
   {
     title: "Leads",
     value: "leads",
@@ -3780,7 +3789,6 @@ export const boardingMainTabs = [
     value: "docLibrary",
     route: "/boarding/docLibrary",
   },
-
 ];
 
 export const leadsTabs = [
@@ -3938,7 +3946,7 @@ export const merchantForAgentTable = [
     ClosedDate: "",
     Processor: "First Data Omaha",
   },
-]
+];
 
 export const LeadTypesList = [
   {
@@ -3980,7 +3988,7 @@ export const myTicketsTable = [
     UpdatedAt: "08/14/2024",
     Assignee: "Hellyton Costa",
   },
-]
+];
 
 export const mySolvedTicketsTable = [
   {
@@ -3990,7 +3998,7 @@ export const mySolvedTicketsTable = [
     UpdatedAt: "08/14/2024",
     Assignee: "Hellyton Costa",
   },
-]
+];
 
 export const LeadsTable = [
   {
@@ -4009,11 +4017,9 @@ export const LeadsTable = [
     Type: "North Lead",
     Status: "Sent",
   },
-]
+];
 
-export const fspLeadsTable = [
-
-]
+export const fspLeadsTable = [];
 
 export const boardingMerchantTabs = [
   {
@@ -4047,7 +4053,7 @@ export const documentLibraryTabs = [
     id: "1",
     title: "Blank MPAs & Addendums",
     value: "blankMpaAndAddendums",
-    icon: ClipboardMinus
+    icon: ClipboardMinus,
   },
   {
     id: "2",
@@ -4059,13 +4065,13 @@ export const documentLibraryTabs = [
     id: "3",
     title: "Equipment Pricing",
     value: "equipmentPricing",
-    icon: HandCoins
+    icon: HandCoins,
   },
   {
     id: "4",
     title: "Upload & Send Docs",
     value: "uploadAndSendDocs",
-    icon: Upload
+    icon: Upload,
   },
 ];
 
@@ -4130,7 +4136,7 @@ export const blankMPAsAndAddendumsTable = [
     Size: "617835",
     LastUpdate: "5/20/2024 4:59:01 PM",
   },
-]
+];
 
 export const changeFormsTable = [
   {
@@ -4187,7 +4193,7 @@ export const changeFormsTable = [
     Size: "617835",
     LastUpdate: "5/20/2024 4:59:01 PM",
   },
-]
+];
 
 export const equipmentPricingTable = [
   {
@@ -4219,8 +4225,8 @@ export const equipmentPricingTable = [
     FileName: "Price List - Eff 2023-09-26.pdf",
     Size: "617835",
     LastUpdate: "5/20/2024 4:59:01 PM",
-  } 
-]
+  },
+];
 
 export const newFspApplicationTabs = [
   {
@@ -4249,21 +4255,21 @@ export const newFspApplicationTabs = [
     title: "Merchant Owner",
     value: "merchantOwner",
     abbreviation: "MO",
-    icon: KeyRound
+    icon: KeyRound,
   },
   {
     id: "5",
     title: "Pricing Information",
     value: "pricingInformation",
     abbreviation: "PI",
-    icon: Receipt
+    icon: Receipt,
   },
   {
     id: "6",
     title: "Programming Request",
     value: "programmingRequest",
     abbreviation: "PR",
-    icon: Laptop
+    icon: Laptop,
   },
 ];
 
@@ -4687,7 +4693,6 @@ export const seasonalMonthsFspForm = [
     id: 12,
     formName: "December",
   },
-  
 ];
 
 export const returnPolicyFspForm = [
@@ -4723,11 +4728,11 @@ export const bankingInformationFspForm = [
     options: [
       {
         label: "Checking",
-        value: "checking"
+        value: "checking",
       },
       {
         label: "Savings",
-        value: "savings"
+        value: "savings",
       },
     ],
   },
@@ -4743,11 +4748,11 @@ export const acceptingVisaMcDiscoverFspForm = [
     options: [
       {
         label: "Yes",
-        value: "Yes"
+        value: "Yes",
       },
       {
         label: "No",
-        value: "No"
+        value: "No",
       },
     ],
   },
@@ -4763,11 +4768,11 @@ export const hasBeenTerminatedFspForm = [
     options: [
       {
         label: "Yes",
-        value: "Yes"
+        value: "Yes",
       },
       {
         label: "No",
-        value: "No"
+        value: "No",
       },
     ],
   },
@@ -4783,15 +4788,14 @@ export const americaExpressVolumeFspForm = [
     options: [
       {
         label: "Yes",
-        value: "Yes"
+        value: "Yes",
       },
       {
         label: "No",
-        value: "No"
+        value: "No",
       },
     ],
   },
-
 ];
 
 export const seasonalMerchantFspForm = [
@@ -4804,15 +4808,14 @@ export const seasonalMerchantFspForm = [
     options: [
       {
         label: "Yes",
-        value: "Yes"
+        value: "Yes",
       },
       {
         label: "No",
-        value: "No"
+        value: "No",
       },
     ],
   },
-
 ];
 
 export const independentServiceFspForm = [
@@ -4825,11 +4828,11 @@ export const independentServiceFspForm = [
     options: [
       {
         label: "Yes",
-        value: "Yes"
+        value: "Yes",
       },
       {
         label: "No",
-        value: "No"
+        value: "No",
       },
     ],
   },
@@ -4845,15 +4848,14 @@ export const usesFulfillHouseFspForm = [
     options: [
       {
         label: "Yes",
-        value: "Yes"
+        value: "Yes",
       },
       {
         label: "No",
-        value: "No"
+        value: "No",
       },
     ],
   },
- 
 ];
 
 // MO/TO QUESTIONAIRE
@@ -4927,7 +4929,7 @@ export const whoEntersCardInfoFspForm = [
         label: "Other",
         value: "other",
       },
-    ]
+    ],
   },
   {
     id: 5,
@@ -4950,15 +4952,14 @@ export const ownProdFspForm = [
     options: [
       {
         label: "Yes",
-        value: "Yes"
+        value: "Yes",
       },
       {
         label: "No",
-        value: "No"
+        value: "No",
       },
-    ]
+    ],
   },
-
 ];
 
 export const ownProdTypeFspForm = [
@@ -4972,14 +4973,14 @@ export const ownProdTypeFspForm = [
     options: [
       {
         label: "Business",
-        value: "Business"
+        value: "Business",
       },
       {
         label: "Other",
-        value: "Other"
+        value: "Other",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const whoProcessesFspForm = [
@@ -5003,7 +5004,7 @@ export const whoProcessesFspForm = [
         label: "Other",
         value: "other",
       },
-    ]
+    ],
   },
   {
     id: 2,
@@ -5032,7 +5033,7 @@ export const shippedByFspForm = [
         label: "Other",
         value: "other",
       },
-    ]
+    ],
   },
   {
     id: 2,
@@ -5061,7 +5062,7 @@ export const whoShipsFspForm = [
         label: "Fullfilment Center",
         value: "fullfilmentCenter",
       },
-    ]
+    ],
   },
   {
     id: 2,
@@ -5090,7 +5091,7 @@ export const deliveryReceiptRequestedFspForm = [
         label: "No",
         value: "No",
       },
-    ]
+    ],
   },
 ];
 
@@ -5110,7 +5111,7 @@ export const isPaymentEncryptedFspForm = [
         label: "No",
         value: "No",
       },
-    ]
+    ],
   },
 ];
 
@@ -5130,8 +5131,8 @@ export const individualSharedFspForm = [
         label: "Shared",
         value: "shared",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const certificatesFspForm = [
@@ -5178,7 +5179,7 @@ export const hasFiledForBankruptcyFspForm = [
         label: "No",
         value: "no",
       },
-    ]
+    ],
   },
 ];
 
@@ -5187,13 +5188,13 @@ export const OwnersTable: DataTypes[] = [
     OwnerName: "Jimmy Page",
     Ownership: "55%",
     CellNumber: "12345678",
-    Notes: "This is the main owner",  
+    Notes: "This is the main owner",
   },
   {
     OwnerName: "Ringo Star",
     Ownership: "30%",
     CellNumber: "12345678",
-    Notes: "This is the secondary owner",  
+    Notes: "This is the secondary owner",
   },
 ];
 
@@ -5307,7 +5308,6 @@ export const addNewMerchantOwnerAddressFspForm = [
   },
 ];
 
-
 // PRICING INFORMATION TAB
 export const passThroughInterchangeFspForm = [
   {
@@ -5325,7 +5325,7 @@ export const passThroughInterchangeFspForm = [
         label: "No",
         value: "no",
       },
-    ]
+    ],
   },
 ];
 
@@ -5345,7 +5345,7 @@ export const passDuesAssessmentsFspForm = [
         label: "No",
         value: "no",
       },
-    ]
+    ],
   },
 ];
 
@@ -5553,239 +5553,239 @@ export const pinDebitFspForm = [
 ];
 
 export const otherPricingInformationFspForm = [
-    {
-      id: 3,
-      formName: "AuthrizationFee",
-      title: "Authorization Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 4,
-      formName: "EbtCashItemFee",
-      title: "EBT Cash Item Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 5,
-      formName: "StatementFee",
-      title: "Statement Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 6,
-      formName: "MonthlyMinimumFee",
-      title: "Monthly Minimum Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 7,
-      formName: "PciFee",
-      title: "PCI Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 8,
-      formName: "AddressVerification",
-      title: "Address Verification:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 9,
-      formName: "EftFoodItemFee",
-      title: "EFT Food Item Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 10,
-      formName: "CustomerServiceFee",
-      title: "Customer Service Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 11,
-      formName: "TinInvalidFee",
-      title: "TIN Invalid Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 12,
-      formName: "VoiceAuthorization",
-      title: "Voice Authorization:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 13,
-      formName: "ReturnedTransaction",
-      title: "Returned Transaction:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 14,
-      formName: "OnlineReporting",
-      title: "Online Reporting:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 15,
-      formName: "AchRejectFee",
-      title: "ACH Reject Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 16,
-      formName: "ApplicationFee",
-      title: "Application Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 17,
-      formName: "AudioResponse",
-      title: "Audio Response:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 18,
-      formName: "RegulatoryProductFee",
-      title: "Regulatory Product Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 19,
-      formName: "ChargebackFee",
-      title: "Chargeback Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 20,
-      formName: "EarlyTerminationFee",
-      title: "Early Termination Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 21,
-      formName: "VoiceAddressVerification",
-      title: "Voice Address Verification:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 22,
-      formName: "WirelessFee",
-      title: "Wireless Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 23,
-      formName: "RetrievalFee",
-      title: "Retrieval Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 24,
-      formName: "MerchantFee",
-      title: "Merchant Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 25,
-      formName: "BatchHeaderFee",
-      title: "Batch Header Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 26,
-      formName: "SoftwareFee",
-      title: "Software Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 27,
-      formName: "PciNonComplianceFee",
-      title: "PCI Non-Compliance Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 28,
-      formName: "SalesTrasactionFee",
-      title: "Sales Transaction Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 29,
-      formName: "EquipmentFee",
-      title: "Equipment Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-    {
-      id: 30,
-      formName: "OtherFeeDescription",
-      title: "Other Fee Description:",
-      type: "string",
-      placeholder: "",
-      value: ""
-    },
-    {
-      id: 31,
-      formName: "OtherFee",
-      title: "Other Fee:",
-      type: "number",
-      placeholder: "$0.00",
-      value: ""
-    },
-]
+  {
+    id: 3,
+    formName: "AuthrizationFee",
+    title: "Authorization Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 4,
+    formName: "EbtCashItemFee",
+    title: "EBT Cash Item Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 5,
+    formName: "StatementFee",
+    title: "Statement Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 6,
+    formName: "MonthlyMinimumFee",
+    title: "Monthly Minimum Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 7,
+    formName: "PciFee",
+    title: "PCI Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 8,
+    formName: "AddressVerification",
+    title: "Address Verification:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 9,
+    formName: "EftFoodItemFee",
+    title: "EFT Food Item Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 10,
+    formName: "CustomerServiceFee",
+    title: "Customer Service Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 11,
+    formName: "TinInvalidFee",
+    title: "TIN Invalid Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 12,
+    formName: "VoiceAuthorization",
+    title: "Voice Authorization:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 13,
+    formName: "ReturnedTransaction",
+    title: "Returned Transaction:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 14,
+    formName: "OnlineReporting",
+    title: "Online Reporting:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 15,
+    formName: "AchRejectFee",
+    title: "ACH Reject Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 16,
+    formName: "ApplicationFee",
+    title: "Application Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 17,
+    formName: "AudioResponse",
+    title: "Audio Response:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 18,
+    formName: "RegulatoryProductFee",
+    title: "Regulatory Product Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 19,
+    formName: "ChargebackFee",
+    title: "Chargeback Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 20,
+    formName: "EarlyTerminationFee",
+    title: "Early Termination Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 21,
+    formName: "VoiceAddressVerification",
+    title: "Voice Address Verification:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 22,
+    formName: "WirelessFee",
+    title: "Wireless Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 23,
+    formName: "RetrievalFee",
+    title: "Retrieval Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 24,
+    formName: "MerchantFee",
+    title: "Merchant Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 25,
+    formName: "BatchHeaderFee",
+    title: "Batch Header Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 26,
+    formName: "SoftwareFee",
+    title: "Software Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 27,
+    formName: "PciNonComplianceFee",
+    title: "PCI Non-Compliance Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 28,
+    formName: "SalesTrasactionFee",
+    title: "Sales Transaction Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 29,
+    formName: "EquipmentFee",
+    title: "Equipment Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+  {
+    id: 30,
+    formName: "OtherFeeDescription",
+    title: "Other Fee Description:",
+    type: "string",
+    placeholder: "",
+    value: "",
+  },
+  {
+    id: 31,
+    formName: "OtherFee",
+    title: "Other Fee:",
+    type: "number",
+    placeholder: "$0.00",
+    value: "",
+  },
+];
 
 export const pciFrequencyFspForm = [
   {
@@ -5803,8 +5803,8 @@ export const pciFrequencyFspForm = [
         label: "Monthly",
         value: "monthly",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const audioFspForm = [
@@ -5823,7 +5823,7 @@ export const audioFspForm = [
         label: "Annual Merchant Fee",
         value: "annualMerchantFee",
       },
-    ]
+    ],
   },
 ];
 
@@ -5943,22 +5943,22 @@ export const cloverOnlyFspForm = [
     options: [
       {
         label: "WAVit APP (Merchant does NOT need menu or inventory)",
-        value: "wavitApp"
+        value: "wavitApp",
       },
       {
         label: "Dual Pricing APP",
-        value: "dualPricingApp"
+        value: "dualPricingApp",
       },
       {
         label: "Additional Charge",
-        value: "additionalCharge"
+        value: "additionalCharge",
       },
       {
         label: "None of the Above",
-        value: "None"
-      }
-    ]
-  }
+        value: "None",
+      },
+    ],
+  },
 ];
 
 export const fileBuildInformationFspForm = [
@@ -5986,8 +5986,8 @@ export const fileBuildInformationFspForm = [
         label: "eCommerce",
         value: "eCommerce",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const tipLineFspForm = [
@@ -6007,8 +6007,8 @@ export const tipLineFspForm = [
         label: "Tip on receipt",
         value: "tipOnReceipt",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const serverFspForm = [
@@ -6028,8 +6028,8 @@ export const serverFspForm = [
         label: "No",
         value: "no",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const shipToFspForm = [
@@ -6049,8 +6049,8 @@ export const shipToFspForm = [
         label: "Business",
         value: "business",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const shipPriorityFspForm = [
@@ -6061,7 +6061,6 @@ export const shipPriorityFspForm = [
     type: "button",
     placeholder: "Ground",
     value: "Ground",
-    
   },
   {
     id: 2,
@@ -6195,8 +6194,8 @@ export const billToFspForm = [
         label: "Merchant (must include signed forms)",
         value: "merchant",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 // New First Data NORTH Interchange 2502-2 APPLICATION DATA
@@ -6207,14 +6206,14 @@ export const newInterchangeApplicationTabs = [
     title: "Merchant Detail",
     value: "merchantDetail",
     abbreviation: "MD",
-    icon: User2
+    icon: User2,
   },
   {
     id: "2",
     title: "Financial Information",
     value: "financialInformation",
     abbreviation: "FI",
-    icon:  CircleDollarSign
+    icon: CircleDollarSign,
   },
   {
     id: "3",
@@ -6238,7 +6237,6 @@ export const newInterchangeApplicationTabs = [
     icon: ArrowUp,
   },
 ];
-
 
 export const dbaInformationInterForm = [
   {
@@ -6425,7 +6423,6 @@ export const LegalAddressInfoInterForm = [
   },
 ];
 
-
 export const taxInformationInterForm = [
   {
     id: 1,
@@ -6568,37 +6565,35 @@ export const connectionTypeInterForm = [
     placeholder: "Wireless",
     value: "",
   },
- 
 ];
 
 export const cloverOnlyInterForm = [
-{
-  id: 1,
-  formName: "HowCashDiscountApplied",
-  title: "WAVit APP",
-  type: "radio",
-  placeholder: "",
-  value: "",
-  options: [
-    {
-      label: "WAVit APP (Merchant does NOT need menu or inventory)",
-      value: "wavitApp",
-    },
-    {
-      label: "Dual Pricing APP",
-      value: "dualPricing",
-    },
-    {
-      label: "Additional charge (manually)",
-      value: "additionalCharge",
-    },
-    {
-      label: "None of the Above",
-      value: "none",
-    },
-  ]
-},
-      
+  {
+    id: 1,
+    formName: "HowCashDiscountApplied",
+    title: "WAVit APP",
+    type: "radio",
+    placeholder: "",
+    value: "",
+    options: [
+      {
+        label: "WAVit APP (Merchant does NOT need menu or inventory)",
+        value: "wavitApp",
+      },
+      {
+        label: "Dual Pricing APP",
+        value: "dualPricing",
+      },
+      {
+        label: "Additional charge (manually)",
+        value: "additionalCharge",
+      },
+      {
+        label: "None of the Above",
+        value: "none",
+      },
+    ],
+  },
 ];
 
 export const zoneNorthBoardingForm = [
@@ -6738,7 +6733,6 @@ export const seasonalNorthBoardingForm = [
   },
 ];
 
-
 export const floorsNorthBoardingForm = [
   {
     id: 1,
@@ -6834,7 +6828,6 @@ export const floorsOccupiedNorthBoardingForm = [
     placeholder: "None",
     value: "",
   },
-
 ];
 
 export const nameDisplayedNorthBoardingForm = [
@@ -6873,7 +6866,6 @@ export const timeZoneNorthBoardingForm = [
     placeholder: "",
     value: "",
   },
-
 ];
 
 export const squareFootageNorthBoardingForm = [
@@ -6909,7 +6901,6 @@ export const squareFootageNorthBoardingForm = [
     placeholder: "2001+",
     value: "",
   },
-
 ];
 
 export const employeesNorthBoardingForm = [
@@ -7085,411 +7076,412 @@ export const northBoardingForm = {
   section: [
     // LOCATION AND DISTRIBUTION SECTION
     {
-    sectionName: "",
-    cards: [
-      // 1.ZONE CARD
-      {
-        title: "1. Zone",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "TimeZone",
-            title: "Time Zone",
-            type: "input",
-            placeholder: "",
-            value: "",
-          }
-        ]
-      },
-      // 2. LOCATION
-      { 
-        title: "2. Location",
-        colQty: "2",
-        fields: [
-          {
-            id: 1,
-            formName: "Location",
-            title: "Mall",
-            type: "radio",
-            placeholder: "Mall",
-            value: "",
-            options: [
-              {
-                label: "Mall",
-                value: "mall",
-              },
-              {
-                label: "Isolated",
-                value: "isolated",
-              },
-              {
-                label: "Apartment",
-                value: "apartment",
-              },
-              {
-                label: "Home",
-                value: "home",
-              },
-              {
-                label: "Shopping Area",
-                value: "shoppingArea",
-              },
-              {
-                label: "Office",
-                value: "office",
-              },
-              {
-                label: "Other",
-                value: "other",
-              },
-            ]
-          },
-          {
-            id: 8,
-            formName: "LocationOther",
-            title: "Other Description:",
-            type: "input",
-            placeholder: "",
-            value: "",
-          },
-        ]
-      },
-      // 3. SEASONAL
-      { 
-        title: "3. Seasonal",
-        colQty: "2",
-        fields: [
-          {
-            id: 1,
-            formName: "Seasonal",
-            title: "Yes",
-            type: "radio",
-            placeholder: "Yes",
-            value: "",
-            options: [
-              {
-                label: "Yes",
-                value: "yes",
-              },
-              {
-                label: "No",
-                value: "no",
-              },
-            ]
-          },
-          {
-            id: 3,
-            formName: "MonthsInOpertation",
-            title: "Months in Operation",
-            type: "number",
-            placeholder: "",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "MonthOpenBegin",
-            title: "Month Open Begin",
-            type: "input",
-            placeholder: "e.g. May",
-            value: "",
-          },
-          {
-            id: 5,
-            formName: "MonthOpenEnd",
-            title: "Month Open End",
-            type: "input",
-            placeholder: "e.g. November",
-            value: "",
-          },
-        ]
-      },
-      // 4. FLOORS / LEVELS
-      { 
-        title: "4. Floors / Levels",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "FloorsLevels",
-            title: "1",
-            type: "radio",
-            placeholder: "1",
-            value: "",
-            options: [
-              {
-                label: "1",
-                value: "1",
-              },
-              {
-                label: "2-4",
-                value: "2-4",
-              },
-              {
-                label: "5-10",
-                value: "5-10",
-              },
-              {
-                label: "11+",
-                value: "11+",
-              },
-            ]
-          }
-        ]
-      },
-      // 5. MERCHANT OCCUPIES
-      { 
-        title: "5. Merchant Occupies",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "MerchantOccupies",
-            title: "Ground Floor",
-            type: "radio",
-            placeholder: "Ground Floor",
-            value: "",
-            options: [
-              {
-                label: "Ground Floor",
-                value: "Ground Floor",
-              },
-              {
-                label: "Other",
-                value: "Other",
-              },
-            ]
-          },
-          {
-            id: 2,
-            formName: "MerchantOccupiesOther",
-            title: "OtherDescription",
-            type: "input",
-            placeholder: "Other",
-            value: "",
-          },
-        ]
-      },
-      // 6. FLOORS OCCUPIED BY
-      { 
-        title: "6. Floors Occupied By?",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "FloorsOccupiedBy",
-            title: "Residential",
-            type: "radio",
-            placeholder: "Residential",
-            value: "",
-            options: [
-              {
-                label: "Residential",
-                value: "residential",
-              },
-              {
-                label: "Commercial",
-                value: "commercial",
-              },
-              {
-                label: "Both",
-                value: "both",
-              },
-              {
-                label: "None",
-                value: "none",
-              },
-            ]
-          },
-        ]
-      },
-      // 7. MERCHANT NAME DISPLAYED AT
-      {
-        title: "7. Merchant Name Displayed At",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "MerchantNameDisplayed",
-            title: "Window",
-            type: "radio",
-            placeholder: "Window",
-            value: "",
-            options: [
-              {
-                label: "Window",
-                value: "window",
-              },
-              {
-                label: "Door",
-                value: "door",
-              },
-              {
-                label: "Store Front",
-                value: "storeFront",
-              },
-            ]
-          },
-        ]
-      },
-      // 8. TIME ZONE
-      { 
-        title: "8. Time Zone",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "TimeZone",
-            title: "Time Zone",
-            type: "input",
-            placeholder: "",
-            value: "",
-          },
-        ]
-      },
-      // 9. APPROXIMATE SQUARE FOOTAGE
-      { 
-        title: "9. Approximate Square Footage",
-        colQty: "2",
-        fields: [
-          {
-            id: 1,
-            formName: "SquareFootage",
-            title: "0-250",
-            type: "radio",
-            placeholder: "0-250",
-            value: "",
-            options: [
-              {
-                label: "0-250",
-                value: "0-250",
-              },
-              {
-                label: "251-500",
-                value: "251-500",
-              },
-              {
-                label: "501-2000",
-                value: "501-2000",
-              },
-              {
-                label: "2001+",
-                value: "2001+",
-              },
-            ]
-          },
-        ]
-      },
-      // 10. EMPLOYEES
-      { 
-        title: "10. Employees",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "HowManyEmployees",
-            title: "How Many Employees:",
-            type: "number",
-            placeholder: "",
-            value: "",
-          },
-        ]
-      },
-      // 11. REGISTERS TERMINALS
-      {
-        title: "11. Registers Terminals",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "RegisterTerminals",
-            title: "How Many Registers/Terminals:",
-            type: "number",
-            placeholder: "",
-            value: "",
-          },
-        ]
-      },
-      // 12. RETURN POLICY
-      { 
-        title: "12. Return Policy",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "ReturnPolicy",
-            title: "Full Refund",
-            type: "radio",
-            placeholder: "Full Refund",
-            value: "",
-            options: [
-              {
-                label: "Full Refund",
-                value: "fullRefund",
-              },
-              {
-                label: "Exchange Only",
-                value: "exchangeOnly",
-              },
-              {
-                label: "None",
-                value: "none",
-              },
-            ]
-          },
-        ]
-      },
-      // 13. DO YOU HAVE REFUND POLICY
-      { 
-        title: "13. Do you have a refund policy for your MC/VISA/DISCOVER NETWORK - PAYPAL/AMERICAN EXPRESS OPTBLUE Sales?",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "SpecificReturnPolicy",
-            title: "Yes",
-            type: "radio",
-            placeholder: "Yes",
-            value: "",
-            options: [
-              {
-                label: "Yes",
-                value: "yes",
-              },
-              {
-                label: "No",
-                value: "no",
-              },
-            ]
-          }, 
-        ],
-        title2: "If yes, check one:",
-        fields2: [
-          {
-            id: 1,
-            formName: "SpecificReturnPolicyOther",
-            title: "Exchange",
-            type: "radio",
-            placeholder: "Exchange",
-            value: "",
-            options: [
-              {
-                label: "Exchange",
-                value: "exchange",
-              },
-              {
-                label: "Store Credit",
-                value: "storeCredit",
-              },
-              {
-                label: "Refund Cardholder",
-                value: "refundCardholder",
-              },
-            ]
-          },
-        ]
-      },
-    ]
+      sectionName: "",
+      cards: [
+        // 1.ZONE CARD
+        {
+          title: "1. Zone",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "TimeZone",
+              title: "Time Zone",
+              type: "input",
+              placeholder: "",
+              value: "",
+            },
+          ],
+        },
+        // 2. LOCATION
+        {
+          title: "2. Location",
+          colQty: "2",
+          fields: [
+            {
+              id: 1,
+              formName: "Location",
+              title: "Mall",
+              type: "radio",
+              placeholder: "Mall",
+              value: "",
+              options: [
+                {
+                  label: "Mall",
+                  value: "mall",
+                },
+                {
+                  label: "Isolated",
+                  value: "isolated",
+                },
+                {
+                  label: "Apartment",
+                  value: "apartment",
+                },
+                {
+                  label: "Home",
+                  value: "home",
+                },
+                {
+                  label: "Shopping Area",
+                  value: "shoppingArea",
+                },
+                {
+                  label: "Office",
+                  value: "office",
+                },
+                {
+                  label: "Other",
+                  value: "other",
+                },
+              ],
+            },
+            {
+              id: 8,
+              formName: "LocationOther",
+              title: "Other Description:",
+              type: "input",
+              placeholder: "",
+              value: "",
+            },
+          ],
+        },
+        // 3. SEASONAL
+        {
+          title: "3. Seasonal",
+          colQty: "2",
+          fields: [
+            {
+              id: 1,
+              formName: "Seasonal",
+              title: "Yes",
+              type: "radio",
+              placeholder: "Yes",
+              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "yes",
+                },
+                {
+                  label: "No",
+                  value: "no",
+                },
+              ],
+            },
+            {
+              id: 3,
+              formName: "MonthsInOpertation",
+              title: "Months in Operation",
+              type: "number",
+              placeholder: "",
+              value: "",
+            },
+            {
+              id: 4,
+              formName: "MonthOpenBegin",
+              title: "Month Open Begin",
+              type: "input",
+              placeholder: "e.g. May",
+              value: "",
+            },
+            {
+              id: 5,
+              formName: "MonthOpenEnd",
+              title: "Month Open End",
+              type: "input",
+              placeholder: "e.g. November",
+              value: "",
+            },
+          ],
+        },
+        // 4. FLOORS / LEVELS
+        {
+          title: "4. Floors / Levels",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "FloorsLevels",
+              title: "1",
+              type: "radio",
+              placeholder: "1",
+              value: "",
+              options: [
+                {
+                  label: "1",
+                  value: "1",
+                },
+                {
+                  label: "2-4",
+                  value: "2-4",
+                },
+                {
+                  label: "5-10",
+                  value: "5-10",
+                },
+                {
+                  label: "11+",
+                  value: "11+",
+                },
+              ],
+            },
+          ],
+        },
+        // 5. MERCHANT OCCUPIES
+        {
+          title: "5. Merchant Occupies",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "MerchantOccupies",
+              title: "Ground Floor",
+              type: "radio",
+              placeholder: "Ground Floor",
+              value: "",
+              options: [
+                {
+                  label: "Ground Floor",
+                  value: "Ground Floor",
+                },
+                {
+                  label: "Other",
+                  value: "Other",
+                },
+              ],
+            },
+            {
+              id: 2,
+              formName: "MerchantOccupiesOther",
+              title: "OtherDescription",
+              type: "input",
+              placeholder: "Other",
+              value: "",
+            },
+          ],
+        },
+        // 6. FLOORS OCCUPIED BY
+        {
+          title: "6. Floors Occupied By?",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "FloorsOccupiedBy",
+              title: "Residential",
+              type: "radio",
+              placeholder: "Residential",
+              value: "",
+              options: [
+                {
+                  label: "Residential",
+                  value: "residential",
+                },
+                {
+                  label: "Commercial",
+                  value: "commercial",
+                },
+                {
+                  label: "Both",
+                  value: "both",
+                },
+                {
+                  label: "None",
+                  value: "none",
+                },
+              ],
+            },
+          ],
+        },
+        // 7. MERCHANT NAME DISPLAYED AT
+        {
+          title: "7. Merchant Name Displayed At",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "MerchantNameDisplayed",
+              title: "Window",
+              type: "radio",
+              placeholder: "Window",
+              value: "",
+              options: [
+                {
+                  label: "Window",
+                  value: "window",
+                },
+                {
+                  label: "Door",
+                  value: "door",
+                },
+                {
+                  label: "Store Front",
+                  value: "storeFront",
+                },
+              ],
+            },
+          ],
+        },
+        // 8. TIME ZONE
+        {
+          title: "8. Time Zone",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "TimeZone",
+              title: "Time Zone",
+              type: "input",
+              placeholder: "",
+              value: "",
+            },
+          ],
+        },
+        // 9. APPROXIMATE SQUARE FOOTAGE
+        {
+          title: "9. Approximate Square Footage",
+          colQty: "2",
+          fields: [
+            {
+              id: 1,
+              formName: "SquareFootage",
+              title: "0-250",
+              type: "radio",
+              placeholder: "0-250",
+              value: "",
+              options: [
+                {
+                  label: "0-250",
+                  value: "0-250",
+                },
+                {
+                  label: "251-500",
+                  value: "251-500",
+                },
+                {
+                  label: "501-2000",
+                  value: "501-2000",
+                },
+                {
+                  label: "2001+",
+                  value: "2001+",
+                },
+              ],
+            },
+          ],
+        },
+        // 10. EMPLOYEES
+        {
+          title: "10. Employees",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "HowManyEmployees",
+              title: "How Many Employees:",
+              type: "number",
+              placeholder: "",
+              value: "",
+            },
+          ],
+        },
+        // 11. REGISTERS TERMINALS
+        {
+          title: "11. Registers Terminals",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "RegisterTerminals",
+              title: "How Many Registers/Terminals:",
+              type: "number",
+              placeholder: "",
+              value: "",
+            },
+          ],
+        },
+        // 12. RETURN POLICY
+        {
+          title: "12. Return Policy",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "ReturnPolicy",
+              title: "Full Refund",
+              type: "radio",
+              placeholder: "Full Refund",
+              value: "",
+              options: [
+                {
+                  label: "Full Refund",
+                  value: "fullRefund",
+                },
+                {
+                  label: "Exchange Only",
+                  value: "exchangeOnly",
+                },
+                {
+                  label: "None",
+                  value: "none",
+                },
+              ],
+            },
+          ],
+        },
+        // 13. DO YOU HAVE REFUND POLICY
+        {
+          title:
+            "13. Do you have a refund policy for your MC/VISA/DISCOVER NETWORK - PAYPAL/AMERICAN EXPRESS OPTBLUE Sales?",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "SpecificReturnPolicy",
+              title: "Yes",
+              type: "radio",
+              placeholder: "Yes",
+              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "yes",
+                },
+                {
+                  label: "No",
+                  value: "no",
+                },
+              ],
+            },
+          ],
+          title2: "If yes, check one:",
+          fields2: [
+            {
+              id: 1,
+              formName: "SpecificReturnPolicyOther",
+              title: "Exchange",
+              type: "radio",
+              placeholder: "Exchange",
+              value: "",
+              options: [
+                {
+                  label: "Exchange",
+                  value: "exchange",
+                },
+                {
+                  label: "Store Credit",
+                  value: "storeCredit",
+                },
+                {
+                  label: "Refund Cardholder",
+                  value: "refundCardholder",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     // INFORMATION SECTION
     {
@@ -7497,7 +7489,8 @@ export const northBoardingForm = {
       cards: [
         // -. HOW MANY DAYS DO YOU SUBMIT CREDIT CARD TRANSACTIONS
         {
-          title: "If MC / VISA / DISCOVER / PAYPAL / AMERICAN EXPRESS OPTBLUE Credit, How many days do you submit Credit Card transactions?",
+          title:
+            "If MC / VISA / DISCOVER / PAYPAL / AMERICAN EXPRESS OPTBLUE Credit, How many days do you submit Credit Card transactions?",
           colQty: "4",
           fields: [
             {
@@ -7524,12 +7517,12 @@ export const northBoardingForm = {
                   label: "12-14",
                   value: "12-14",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
         // 14. IS PROPER LICENSE VISIBLE (Liquor, Tax ID, etc.):
-        { 
+        {
           title: "14. Is proper license visible (Liquor, Tax ID, etc.):",
           colQty: "1",
           fields: [
@@ -7549,7 +7542,7 @@ export const northBoardingForm = {
                   label: "No",
                   value: "no",
                 },
-              ]
+              ],
             },
             {
               id: 2,
@@ -7559,10 +7552,10 @@ export const northBoardingForm = {
               placeholder: "Explain",
               value: "",
             },
-          ]
+          ],
         },
         // 15. PREVIOUS PROCESSOR
-        { 
+        {
           title: "15. Previous Processor",
           colQty: "1",
           fields: [
@@ -7574,10 +7567,10 @@ export const northBoardingForm = {
               placeholder: "",
               value: "",
             },
-          ]
+          ],
         },
         // 16. YOUR PREVIOUS MERCHANT #
-        { 
+        {
           title: "16. Your Previous Merchant #",
           colQty: "1",
           fields: [
@@ -7589,10 +7582,10 @@ export const northBoardingForm = {
               placeholder: "#",
               value: "",
             },
-          ]
+          ],
         },
         // 17. CHECK REASON FOR LEAVING
-        { 
+        {
           title: "17. Check reason for Leaving",
           colQty: "1",
           fields: [
@@ -7620,7 +7613,7 @@ export const northBoardingForm = {
                   label: "Other",
                   value: "other",
                 },
-              ]
+              ],
             },
             {
               id: 2,
@@ -7630,11 +7623,12 @@ export const northBoardingForm = {
               placeholder: "Other",
               value: "",
             },
-          ]
+          ],
         },
         // 18. PREVIOUS PROCESSOR STATEMENTS?
-        { 
-          title: "18. Do You Have Previous Processor MC/Visa/ Discover/American Express OptBlue® Statements?",
+        {
+          title:
+            "18. Do You Have Previous Processor MC/Visa/ Discover/American Express OptBlue® Statements?",
           colQty: "1",
           fields: [
             {
@@ -7653,9 +7647,9 @@ export const northBoardingForm = {
                   label: "No",
                   value: "no",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
         // 19. ARE CUSTOMERS REQUIRED TO LEAVE A DEPOSIT?
         {
@@ -7678,7 +7672,7 @@ export const northBoardingForm = {
                   label: "No",
                   value: "no",
                 },
-              ]
+              ],
             },
           ],
           title2: "If Yes, % of deposit required:",
@@ -7691,11 +7685,10 @@ export const northBoardingForm = {
               placeholder: "%",
               value: "",
             },
-            
           ],
         },
         // -- TIME FRAME FOR DELIVERY DAYS
-        { 
+        {
           title: "Time Frame for Delivery Days",
           colQty: "1",
           fields: [
@@ -7707,11 +7700,12 @@ export const northBoardingForm = {
               placeholder: "",
               value: "",
             },
-          ]
+          ],
         },
         // 20. MOBILE APPLICATION
         {
-          title: "20. Does your business offer products and/or services to customers through a mobile application:",
+          title:
+            "20. Does your business offer products and/or services to customers through a mobile application:",
           colQty: "1",
           fields: [
             {
@@ -7729,8 +7723,8 @@ export const northBoardingForm = {
                 {
                   label: "No",
                   value: "no",
-                }
-              ]
+                },
+              ],
             },
           ],
           title2: "",
@@ -7745,16 +7739,15 @@ export const northBoardingForm = {
             },
           ],
         },
-      ]
+      ],
     },
-  ]
-}
+  ],
+};
 
-export const flaxRateInterNorthForm = 
-[
+export const flaxRateInterNorthForm = [
   {
     id: 1,
-    title: "MC Qualified Credit"
+    title: "MC Qualified Credit",
   },
   {
     id: 2,
@@ -7762,7 +7755,7 @@ export const flaxRateInterNorthForm =
     title: "Discount Fee",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -7770,11 +7763,11 @@ export const flaxRateInterNorthForm =
     title: "Transaction Fee",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 4,
-    title: "MC Qualified Non-Pin Debit"
+    title: "MC Qualified Non-Pin Debit",
   },
   {
     id: 5,
@@ -7782,7 +7775,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -7790,11 +7783,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 7,
-    title: "Visa Qual Credit"
+    title: "Visa Qual Credit",
   },
   {
     id: 8,
@@ -7802,7 +7795,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 9,
@@ -7810,11 +7803,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 10,
-    title: "Visa Qual Non-Pin Debit"
+    title: "Visa Qual Non-Pin Debit",
   },
   {
     id: 11,
@@ -7822,7 +7815,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 12,
@@ -7830,11 +7823,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 13,
-    title: "American Express Qual Credit"
+    title: "American Express Qual Credit",
   },
   {
     id: 14,
@@ -7842,7 +7835,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 15,
@@ -7850,11 +7843,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 16,
-    title: "DiscoverNet Qual Credit"
+    title: "DiscoverNet Qual Credit",
   },
   {
     id: 17,
@@ -7862,7 +7855,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 18,
@@ -7870,11 +7863,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 19,
-    title: "DiscoverNet Qual Non-Pin Debit"
+    title: "DiscoverNet Qual Non-Pin Debit",
   },
   {
     id: 20,
@@ -7882,7 +7875,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 21,
@@ -7890,11 +7883,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 22,
-    title: "PayPal Qual Credit"
+    title: "PayPal Qual Credit",
   },
   {
     id: 23,
@@ -7902,7 +7895,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 24,
@@ -7910,11 +7903,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 25,
-    title: "Swiped"
+    title: "Swiped",
   },
   {
     id: 26,
@@ -7922,7 +7915,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 27,
@@ -7930,11 +7923,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 28,
-    title: "Non-Swiped"
+    title: "Non-Swiped",
   },
   {
     id: 29,
@@ -7942,7 +7935,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 30,
@@ -7950,11 +7943,11 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 31,
-    title: "Pin Less"
+    title: "Pin Less",
   },
   {
     id: 32,
@@ -7962,7 +7955,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 33,
@@ -7982,7 +7975,7 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 37,
@@ -7998,19 +7991,18 @@ export const flaxRateInterNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
-export const flexRateFeesNorthForm =
-[
+export const flexRateFeesNorthForm = [
   {
     id: 1,
     formName: "Nameless",
     title: "-",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -8018,7 +8010,7 @@ export const flexRateFeesNorthForm =
     title: "Chargeback Processing",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -8026,7 +8018,7 @@ export const flexRateFeesNorthForm =
     title: "Amex Chargeback Fee",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -8034,7 +8026,7 @@ export const flexRateFeesNorthForm =
     title: "Discover Chargeback Fee",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -8042,7 +8034,7 @@ export const flexRateFeesNorthForm =
     title: "Retrieval Fee",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -8050,7 +8042,7 @@ export const flexRateFeesNorthForm =
     title: "Amex Chargeback Retrieval Fee",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 7,
@@ -8058,7 +8050,7 @@ export const flexRateFeesNorthForm =
     title: "Discover Retrieval Fee",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 8,
@@ -8066,7 +8058,7 @@ export const flexRateFeesNorthForm =
     title: "Visa Mc Disc Chargeback Retrieval Fee",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 9,
@@ -8074,7 +8066,7 @@ export const flexRateFeesNorthForm =
     title: "Batch Settlement Fee",
     type: "input",
     placeholder: "",
-    value: ""
+    value: "",
   },
   {
     id: 10,
@@ -8082,12 +8074,11 @@ export const flexRateFeesNorthForm =
     title: "Tin Tfn Blank Invalid Fee",
     type: "input",
     placeholder: "",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
-export const tieredPricingNorthForm =
-[
+export const tieredPricingNorthForm = [
   {
     id: 1,
     title: "Mc Qual Credit",
@@ -8098,7 +8089,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -8106,7 +8097,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -8118,7 +8109,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -8126,7 +8117,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 7,
@@ -8138,7 +8129,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 9,
@@ -8146,7 +8137,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 10,
@@ -8158,7 +8149,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 12,
@@ -8166,7 +8157,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 13,
@@ -8178,7 +8169,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 15,
@@ -8186,7 +8177,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 16,
@@ -8198,7 +8189,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 18,
@@ -8206,7 +8197,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 19,
@@ -8218,7 +8209,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 21,
@@ -8226,7 +8217,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 22,
@@ -8238,7 +8229,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 24,
@@ -8246,7 +8237,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 25,
@@ -8258,7 +8249,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 27,
@@ -8266,7 +8257,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 28,
@@ -8278,7 +8269,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 30,
@@ -8286,7 +8277,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 31,
@@ -8298,7 +8289,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 33,
@@ -8306,7 +8297,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 34,
@@ -8318,7 +8309,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 36,
@@ -8326,7 +8317,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 37,
@@ -8338,7 +8329,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 39,
@@ -8346,7 +8337,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 40,
@@ -8358,7 +8349,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 42,
@@ -8366,7 +8357,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 43,
@@ -8378,7 +8369,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 45,
@@ -8386,7 +8377,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 46,
@@ -8398,7 +8389,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 48,
@@ -8406,7 +8397,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 49,
@@ -8418,7 +8409,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 51,
@@ -8426,7 +8417,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 52,
@@ -8438,7 +8429,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 54,
@@ -8446,7 +8437,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 55,
@@ -8458,7 +8449,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 57,
@@ -8466,7 +8457,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 58,
@@ -8478,7 +8469,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 60,
@@ -8486,7 +8477,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 61,
@@ -8498,7 +8489,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 63,
@@ -8506,7 +8497,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 64,
@@ -8518,7 +8509,7 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
+    value: "",
   },
   {
     id: 66,
@@ -8526,9 +8517,9 @@ export const tieredPricingNorthForm =
     title: "",
     type: "input",
     placeholder: "%",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
 export const billedMonthlyFeesInterForm = [
   {
@@ -8675,15 +8666,14 @@ export const wexFullFeesInterForm = [
   },
 ];
 
-export const passThroughInterForm =
-[
+export const passThroughInterForm = [
   {
     id: 1,
     title: "MC Qual Credit Discount Fee:",
     type: "number",
     placeholder: "%",
     formName: "PassMcQualCreditDiscountFee",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -8691,7 +8681,7 @@ export const passThroughInterForm =
     type: "number",
     placeholder: "%",
     formName: "PassVisaQualCreditDiscountFee",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -8699,7 +8689,7 @@ export const passThroughInterForm =
     type: "number",
     placeholder: "%",
     formName: "PassDiscNetCreditDiscountFee",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -8707,7 +8697,7 @@ export const passThroughInterForm =
     type: "number",
     placeholder: "%",
     formName: "PassAmeExpCreditDiscountFee",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -8715,7 +8705,7 @@ export const passThroughInterForm =
     type: "number",
     placeholder: "%",
     formName: "PassMcQualNonPinDebitDiscountFee",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -8723,7 +8713,7 @@ export const passThroughInterForm =
     type: "number",
     placeholder: "%",
     formName: "PassVisaQualNonPinDebitDiscountFee",
-    value: ""
+    value: "",
   },
   {
     id: 7,
@@ -8731,7 +8721,7 @@ export const passThroughInterForm =
     type: "number",
     placeholder: "%",
     formName: "PassDiscQualNonPinDebiDiscountFee",
-    value: ""
+    value: "",
   },
   {
     id: 8,
@@ -8739,7 +8729,7 @@ export const passThroughInterForm =
     type: "number",
     placeholder: "$",
     formName: "PassSaleCreditNonPinTransactionFee",
-    value: ""
+    value: "",
   },
   {
     id: 9,
@@ -8747,19 +8737,18 @@ export const passThroughInterForm =
     type: "number",
     placeholder: "$",
     formName: "PassAmeExpTransactionFee",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
-export const authAvsFeesInterForm =
-[
+export const authAvsFeesInterForm = [
   {
     id: 1,
     title: "Mc Auth Fee:",
     type: "number",
     placeholder: "$",
     formName: "McAuthFee",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -8767,7 +8756,7 @@ export const authAvsFeesInterForm =
     type: "number",
     placeholder: "$",
     formName: "VisaAuthFee",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -8775,7 +8764,7 @@ export const authAvsFeesInterForm =
     type: "number",
     placeholder: "$",
     formName: "DiscoverAuthFee",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -8783,19 +8772,18 @@ export const authAvsFeesInterForm =
     type: "number",
     placeholder: "$",
     formName: "AmericanExpressAuthFee",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
-export const pinDebitInterForm =
-[
+export const pinDebitInterForm = [
   {
     id: 1,
     title: "Debit Sales Discount:",
     type: "number",
     placeholder: "$",
     formName: "DebitSalesDiscount",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -8803,7 +8791,7 @@ export const pinDebitInterForm =
     type: "number",
     placeholder: "$",
     formName: "AtmCardTransactionFee",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -8811,7 +8799,7 @@ export const pinDebitInterForm =
     type: "number",
     placeholder: "$",
     formName: "DebitCardAuthorizationFee",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -8819,7 +8807,7 @@ export const pinDebitInterForm =
     type: "number",
     placeholder: "$",
     formName: "DebitDeclineInterchangeFee",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -8827,7 +8815,7 @@ export const pinDebitInterForm =
     type: "number",
     placeholder: "$",
     formName: "DebitInterchangeFee",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -8835,7 +8823,7 @@ export const pinDebitInterForm =
     type: "number",
     placeholder: "$",
     formName: "DebitPreAuth",
-    value: ""
+    value: "",
   },
   {
     id: 7,
@@ -8843,7 +8831,7 @@ export const pinDebitInterForm =
     type: "number",
     placeholder: "$",
     formName: "AdjustmentFee",
-    value: ""
+    value: "",
   },
   {
     id: 8,
@@ -8851,9 +8839,9 @@ export const pinDebitInterForm =
     type: "number",
     placeholder: "$",
     formName: "PinDebitDeclined",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
 // FSP APPLICATIONS - MANUAL ENTRIES
 export const fspManualEntryForm = [
@@ -8933,14 +8921,14 @@ export const newWavitApplicationTabs = [
     title: "Merchant Detail",
     value: "merchantDetail",
     abbreviation: "MD",
-    icon: User2
+    icon: User2,
   },
   {
     id: "2",
     title: "Financial Information",
     value: "financialInformation",
     abbreviation: "FI",
-    icon:  CircleDollarSign
+    icon: CircleDollarSign,
   },
   {
     id: "3",
@@ -8965,7 +8953,6 @@ export const newWavitApplicationTabs = [
   },
 ];
 
-
 // New OMAHA APPLICATION AND AGREEMENT DATA
 export const newOmahaApplicationTabs = [
   {
@@ -8973,14 +8960,14 @@ export const newOmahaApplicationTabs = [
     title: "Merchant Detail",
     value: "merchantDetail",
     abbreviation: "MD",
-    icon: User2
+    icon: User2,
   },
   {
     id: "2",
     title: "Financial Information",
     value: "financialInformation",
     abbreviation: "FI",
-    icon:  CircleDollarSign
+    icon: CircleDollarSign,
   },
   {
     id: "3",
@@ -9011,432 +8998,434 @@ export const omahaBoardingForm = {
   section: [
     // LOCATION AND DISTRIBUTION SECTION
     {
-    sectionName: "",
-    cards: [
-      // 1.ZONE CARD
-      {
-        title: "1. Zone",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "Zone",
-            title: "Business District",
-            type: "radio",
-            placeholder: "Business District",
-            value: "",
-            options: [
-              {
-                label: "Business District",
-                value: "businessDistrict",
-              },
-              {
-                label: "Residential",
-                value: "residential",
-              },
-              {
-                label: "Industrial",
-                value: "industrial",
-              },
-            ]
-          },
-        ]
-      },
-      // 2. LOCATION
-      { 
-        title: "2. Location",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "Location",
-            title: "",
-            type: "radio",
-            placeholder: "",
-            value: "",
-            options: [
-              {
-                label: "Home",
-                value: "Home",
-              },
-              {
-                label: "Apartment",
-                value: "Apartment",
-              },
-              {
-                label: "Office",
-                value: "Office",
-              },
-              {
-                label: "Shopping Area",
-                value: "ShoppingArea",
-              },
-              {
-                label: "Flea Market",
-                value: "Flea Market",
-              },
-              {
-                label: "Isolated",
-                value: "Isolated",
-              },
-              {
-                label: "Door To Door",
-                value: "DoorToDoor",
-              },
-              {
-                label: "Mall",
-                value: "Mall",
-              },
-              {
-                label: "Other",
-                value: "other",
-              },
-            ]
-          },
-        ]
-      },
-      // 3. HOW MANY EMPLOYEES
-      { 
-        title: "3. Employees",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "HowManyEmployees",
-            title: "How many employess?",
-            type: "input",
-            placeholder: "0",
-            value: "",
-          },
-        ]
-      },
-      // 4. REGISTER TERMINALS
-      { 
-        title: "4. Register Terminals",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "RegisterTerminals",
-            title: "How many registers/Terminals:",
-            type: "input",
-            placeholder: "0",
-            value: "",
-          },
-        ]
-      },
-      // 5. IS PROPER LICENSE VISIBLE
-      { 
-        title: "5. Is Proper License Visible",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "ProperLicenseVisible",
-            title: "Yes",
-            type: "radio",
-            placeholder: "Yes",
-            value: "",
-            options: [
-              {
-                label: "Yes",
-                value: "Yes",
-              },
-              {
-                label: "No",
-                value: "No",
-              },
-            ]
-          },
-          {
-            id: 2,
-            formName: "Explanation",
-            title: "Explanation",
-            type: "input",
-            placeholder: "",
-            value: "",
-          },
-        ]
-      },
-      // 6. MERCHANT NAME DISPLAYED AT?
-      { 
-        title: "6. Merchant Name Displayed At?",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "MerchantNameDisplayed",
-            title: "Window",
-            type: "radio",
-            placeholder: "Window",
-            value: "",
-            options: [
-              {
-                label: "Window",
-                value: "window",
-              },
-              {
-                label: "Door",
-                value: "Door",
-              },
-              {
-                label: "Store Front",
-                value: "StoreFront",
-              },
-            ]
-          },
-        ]
-      },
-      // 7. FLOORS OCCUPIED BY
-      {
-        title: "7. Floors Occupied by?",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "FloorsOccupiedBy",
-            title: "Residential",
-            type: "radio",
-            placeholder: "Residential",
-            value: "",
-            options: [
-              {
-                label: "Residential",
-                value: "Residential",
-              },
-              {
-                label: "Commercial",
-                value: "Commercial",
-              },
-              {
-                label: "Both",
-                value: "Both",
-              },
-              {
-                label: "None",
-                value: "None",
-              },
-            ]
-          },
-        ]
-      },
-      // 8. MERCHANT OCCUPIES
-      { 
-        title: "8. Merchant Occupies",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "MerchantOccupies",
-            title: "Ground Floor",
-            type: "radio",
-            placeholder: "Ground Floor",
-            value: "",
-            options: [
-              {
-                label: "Ground Floor",
-                value: "GroundFloor",
-              },
-              {
-                label: "Other",
-                value: "other",
-              },
-            ]
-          },
-          {
-            id: 2,
-            formName: "MerchantOccupiesOther",
-            title: "",
-            type: "input",
-            placeholder: "Other",
-            value: "",
-          },
-        ]
-      },
-      // 9. FLOORS / LEVELS
-      { 
-        title: "9. Floors / Levels",
-        colQty: "2",
-        fields: [
-          {
-            id: 1,
-            formName: "FloorsLevels",
-            title: "1-2",
-            type: "radio",
-            placeholder: "1-2",
-            value: "",
-            options: [
-              {
-                label: "1-2",
-                value: "1-2",
-              },
-              {
-                label: "3-4",
-                value: "3-4",
-              },
-              {
-                label: "5-10",
-                value: "5-10",
-              },
-              {
-                label: "11+",
-                value: "11+",
-              },
-            ]
-          },
-        ]
-      },
-      // 10. APPROXIMATE SQUARE FOOTAGE
-      { 
-        title: "10. Approximate Square Footage",
-        colQty: "4",
-        fields: [
-          {
-            id: 1,
-            formName: "SquareFootage",
-            title: "0-250",
-            type: "ratio",
-            placeholder: "0-250",
-            value: "",
-            options: [
-              {
-                label: "0-250",
-                value: "0-250",
-              },
-              {
-                label: "251-500",
-                value: "251-500",
-              },
-              {
-                label: "501-2000",
-                value: "501-2000",
-              },
-              {
-                label: "2001+",
-                value: "2001+",
-              },
-            ]
-          },
-        ]
-      },
-      // 11. DEPOSIT
-      {
-        title: "11. Deposit",
-        colQty: "1",
-        fields: [
-          {
-            id: 1,
-            formName: "DepositRequired",
-            title: "No",
-            type: "radio",
-            placeholder: "No",
-            value: "",
-            options: [
-              {
-                label: "Yes",
-                value: "Yes",
-              },
-              {
-                label: "No",
-                value: "No",
-              }
-            ]
-          },
-          {
-            id: 2,
-            formName: "DepositPercentage",
-            title: "If Yes, % of deposit required:",
-            type: "input",
-            placeholder: "%",
-            value: "",
-          },
-        ]
-      },
-    ]
+      sectionName: "",
+      cards: [
+        // 1.ZONE CARD
+        {
+          title: "1. Zone",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "Zone",
+              title: "Business District",
+              type: "radio",
+              placeholder: "Business District",
+              value: "",
+              options: [
+                {
+                  label: "Business District",
+                  value: "businessDistrict",
+                },
+                {
+                  label: "Residential",
+                  value: "residential",
+                },
+                {
+                  label: "Industrial",
+                  value: "industrial",
+                },
+              ],
+            },
+          ],
+        },
+        // 2. LOCATION
+        {
+          title: "2. Location",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "Location",
+              title: "",
+              type: "radio",
+              placeholder: "",
+              value: "",
+              options: [
+                {
+                  label: "Home",
+                  value: "Home",
+                },
+                {
+                  label: "Apartment",
+                  value: "Apartment",
+                },
+                {
+                  label: "Office",
+                  value: "Office",
+                },
+                {
+                  label: "Shopping Area",
+                  value: "ShoppingArea",
+                },
+                {
+                  label: "Flea Market",
+                  value: "Flea Market",
+                },
+                {
+                  label: "Isolated",
+                  value: "Isolated",
+                },
+                {
+                  label: "Door To Door",
+                  value: "DoorToDoor",
+                },
+                {
+                  label: "Mall",
+                  value: "Mall",
+                },
+                {
+                  label: "Other",
+                  value: "other",
+                },
+              ],
+            },
+          ],
+        },
+        // 3. HOW MANY EMPLOYEES
+        {
+          title: "3. Employees",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "HowManyEmployees",
+              title: "How many employess?",
+              type: "input",
+              placeholder: "0",
+              value: "",
+            },
+          ],
+        },
+        // 4. REGISTER TERMINALS
+        {
+          title: "4. Register Terminals",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "RegisterTerminals",
+              title: "How many registers/Terminals:",
+              type: "input",
+              placeholder: "0",
+              value: "",
+            },
+          ],
+        },
+        // 5. IS PROPER LICENSE VISIBLE
+        {
+          title: "5. Is Proper License Visible",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "ProperLicenseVisible",
+              title: "Yes",
+              type: "radio",
+              placeholder: "Yes",
+              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "Yes",
+                },
+                {
+                  label: "No",
+                  value: "No",
+                },
+              ],
+            },
+            {
+              id: 2,
+              formName: "Explanation",
+              title: "Explanation",
+              type: "input",
+              placeholder: "",
+              value: "",
+            },
+          ],
+        },
+        // 6. MERCHANT NAME DISPLAYED AT?
+        {
+          title: "6. Merchant Name Displayed At?",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "MerchantNameDisplayed",
+              title: "Window",
+              type: "radio",
+              placeholder: "Window",
+              value: "",
+              options: [
+                {
+                  label: "Window",
+                  value: "window",
+                },
+                {
+                  label: "Door",
+                  value: "Door",
+                },
+                {
+                  label: "Store Front",
+                  value: "StoreFront",
+                },
+              ],
+            },
+          ],
+        },
+        // 7. FLOORS OCCUPIED BY
+        {
+          title: "7. Floors Occupied by?",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "FloorsOccupiedBy",
+              title: "Residential",
+              type: "radio",
+              placeholder: "Residential",
+              value: "",
+              options: [
+                {
+                  label: "Residential",
+                  value: "Residential",
+                },
+                {
+                  label: "Commercial",
+                  value: "Commercial",
+                },
+                {
+                  label: "Both",
+                  value: "Both",
+                },
+                {
+                  label: "None",
+                  value: "None",
+                },
+              ],
+            },
+          ],
+        },
+        // 8. MERCHANT OCCUPIES
+        {
+          title: "8. Merchant Occupies",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "MerchantOccupies",
+              title: "Ground Floor",
+              type: "radio",
+              placeholder: "Ground Floor",
+              value: "",
+              options: [
+                {
+                  label: "Ground Floor",
+                  value: "GroundFloor",
+                },
+                {
+                  label: "Other",
+                  value: "other",
+                },
+              ],
+            },
+            {
+              id: 2,
+              formName: "MerchantOccupiesOther",
+              title: "",
+              type: "input",
+              placeholder: "Other",
+              value: "",
+            },
+          ],
+        },
+        // 9. FLOORS / LEVELS
+        {
+          title: "9. Floors / Levels",
+          colQty: "2",
+          fields: [
+            {
+              id: 1,
+              formName: "FloorsLevels",
+              title: "1-2",
+              type: "radio",
+              placeholder: "1-2",
+              value: "",
+              options: [
+                {
+                  label: "1-2",
+                  value: "1-2",
+                },
+                {
+                  label: "3-4",
+                  value: "3-4",
+                },
+                {
+                  label: "5-10",
+                  value: "5-10",
+                },
+                {
+                  label: "11+",
+                  value: "11+",
+                },
+              ],
+            },
+          ],
+        },
+        // 10. APPROXIMATE SQUARE FOOTAGE
+        {
+          title: "10. Approximate Square Footage",
+          colQty: "4",
+          fields: [
+            {
+              id: 1,
+              formName: "SquareFootage",
+              title: "0-250",
+              type: "ratio",
+              placeholder: "0-250",
+              value: "",
+              options: [
+                {
+                  label: "0-250",
+                  value: "0-250",
+                },
+                {
+                  label: "251-500",
+                  value: "251-500",
+                },
+                {
+                  label: "501-2000",
+                  value: "501-2000",
+                },
+                {
+                  label: "2001+",
+                  value: "2001+",
+                },
+              ],
+            },
+          ],
+        },
+        // 11. DEPOSIT
+        {
+          title: "11. Deposit",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "DepositRequired",
+              title: "No",
+              type: "radio",
+              placeholder: "No",
+              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "Yes",
+                },
+                {
+                  label: "No",
+                  value: "No",
+                },
+              ],
+            },
+            {
+              id: 2,
+              formName: "DepositPercentage",
+              title: "If Yes, % of deposit required:",
+              type: "input",
+              placeholder: "%",
+              value: "",
+            },
+          ],
+        },
+      ],
     },
     // INFORMATION SECTION
     {
       sectionName: "Information",
       cards: [
-          // 12. RETURN POLICY
-          { 
-            title: "12. Return Policy",
-            colQty: "1",
-            fields: [
-              {
-                id: 1,
-                formName: "ReturnPolicy",
-                title: "Full Refund",
-                type: "radio",
-                placeholder: "Full Refund",
-                value: "",
-                options: [
-                  {
-                    label: "Full Refund",
-                    value: "FullRefund",
-                  },
-                  {
-                    label: "Exchange Only",
-                    value: "ExchangeOnly",
-                  },
-                  {
-                    label: "None",
-                    value: "None",
-                  },
-                ]
-              },
-            ]
-          },
-          // 13. DO YOU HAVE REFUND POLICY
-          { 
-            title: "13. Do you have a refund policy for Mastercard / Visa / Discover / PayPal?",
-            colQty: "1",
-            fields: [
-              {
-                id: 1,
-                formName: "RefundPolicy",
-                title: "Yes",
-                type: "radio",
-                placeholder: "Yes",
-                value: "",
-                options: [
-                  {
-                    label: "Yes",
-                    value: "yes",
-                  },
-                  {
-                    label: "No",
-                    value: "no",
-                  },
-                ]
-              }            
-            ],
-            title2: "If yes, check one:",
-            fields2: [
-              {
-                id: 1,
-                formName: "RefundPolicySpecific",
-                title: "Exchange",
-                type: "radio",
-                placeholder: "Exchange",
-                value: "",
-                options: [
-                  {
-                    label: "Exchange",
-                    value: "Exchange",
-                  },
-                  {
-                    label: "Store Credit",
-                    value: "StoreCredit",
-                  },
-                  {
-                    label: "Mastercard/Visa/Dicover Network-PayPal/American Express",
-                    value: "RefundCardholder",
-                  },
-                ]
-              },
-            ]
-          },
+        // 12. RETURN POLICY
+        {
+          title: "12. Return Policy",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "ReturnPolicy",
+              title: "Full Refund",
+              type: "radio",
+              placeholder: "Full Refund",
+              value: "",
+              options: [
+                {
+                  label: "Full Refund",
+                  value: "FullRefund",
+                },
+                {
+                  label: "Exchange Only",
+                  value: "ExchangeOnly",
+                },
+                {
+                  label: "None",
+                  value: "None",
+                },
+              ],
+            },
+          ],
+        },
+        // 13. DO YOU HAVE REFUND POLICY
+        {
+          title:
+            "13. Do you have a refund policy for Mastercard / Visa / Discover / PayPal?",
+          colQty: "1",
+          fields: [
+            {
+              id: 1,
+              formName: "RefundPolicy",
+              title: "Yes",
+              type: "radio",
+              placeholder: "Yes",
+              value: "",
+              options: [
+                {
+                  label: "Yes",
+                  value: "yes",
+                },
+                {
+                  label: "No",
+                  value: "no",
+                },
+              ],
+            },
+          ],
+          title2: "If yes, check one:",
+          fields2: [
+            {
+              id: 1,
+              formName: "RefundPolicySpecific",
+              title: "Exchange",
+              type: "radio",
+              placeholder: "Exchange",
+              value: "",
+              options: [
+                {
+                  label: "Exchange",
+                  value: "Exchange",
+                },
+                {
+                  label: "Store Credit",
+                  value: "StoreCredit",
+                },
+                {
+                  label:
+                    "Mastercard/Visa/Dicover Network-PayPal/American Express",
+                  value: "RefundCardholder",
+                },
+              ],
+            },
+          ],
+        },
         // -. HOW MANY DAYS DO YOU SUBMIT CREDIT CARD TRANSACTIONS
         {
           title: "How many days?",
@@ -9466,12 +9455,12 @@ export const omahaBoardingForm = {
                   label: "Over 14",
                   value: "14+",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
         // 14. ADVERTISING METHOD
-        { 
+        {
           title: "14. Advertising Method",
           colQty: "2",
           fields: [
@@ -9539,10 +9528,10 @@ export const omahaBoardingForm = {
               placeholder: "Other",
               value: "",
             },
-          ]
+          ],
         },
         // 15. PREVIOUS PROCESSOR
-        { 
+        {
           title: "15. Previous Processor",
           colQty: "1",
           fields: [
@@ -9554,10 +9543,10 @@ export const omahaBoardingForm = {
               placeholder: "",
               value: "",
             },
-          ]
+          ],
         },
         // 16. CHECK REASON FOR LEAVING
-        { 
+        {
           title: "16. Check reason for Leaving",
           colQty: "1",
           fields: [
@@ -9585,7 +9574,7 @@ export const omahaBoardingForm = {
                   label: "Other Reason",
                   value: "OtherReason",
                 },
-              ]
+              ],
             },
             {
               id: 2,
@@ -9595,11 +9584,12 @@ export const omahaBoardingForm = {
               placeholder: "Other",
               value: "",
             },
-          ]
+          ],
         },
         // 17. MOBILE APPLICATION
         {
-          title: "17. Does your business offer products and/or services to customers through a mobile application:",
+          title:
+            "17. Does your business offer products and/or services to customers through a mobile application:",
           colQty: "1",
           fields: [
             {
@@ -9618,7 +9608,7 @@ export const omahaBoardingForm = {
                   label: "No",
                   value: "No",
                 },
-              ]
+              ],
             },
           ],
           title2: "",
@@ -9631,17 +9621,16 @@ export const omahaBoardingForm = {
               placeholder: "",
               value: "",
             },
-            
           ],
         },
-      ]
+      ],
     },
     // MISCELLANEOUS SECTION
     {
       sectionName: "Miscellaneous Fees / TIN/TFN & Regulatory Product Fees",
       cards: [
         // Monthly Statement Fee
-        { 
+        {
           title: "Monthly Statement Fee",
           colQty: "1",
           fields: [
@@ -9653,9 +9642,9 @@ export const omahaBoardingForm = {
               placeholder: "$",
               value: "",
             },
-          ]
+          ],
         },
-        { 
+        {
           title: "TIN/TFN & Regulatory Product Fees",
           colQty: "1",
           fields: [
@@ -9675,24 +9664,21 @@ export const omahaBoardingForm = {
               placeholder: "%",
               value: "",
             },
-          ]
+          ],
         },
-        
-      ]
+      ],
     },
+  ],
+};
 
-  ]
-}
-
-export const serviceFeesOmahaForm = 
-[
+export const serviceFeesOmahaForm = [
   {
     id: 1,
     title: "Dues and Assessments:",
     type: "checkbox",
     placeholder: "",
     formName: "DuesAndAssessments",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -9700,7 +9686,7 @@ export const serviceFeesOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "MastercardQualCredit",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -9708,7 +9694,7 @@ export const serviceFeesOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "MastercardQualDebit",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -9716,7 +9702,7 @@ export const serviceFeesOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "VisaQualCredit",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -9724,7 +9710,7 @@ export const serviceFeesOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "VisaQualDebit",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -9732,7 +9718,7 @@ export const serviceFeesOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "DiscoverNetPaypalQualCredit",
-    value: ""
+    value: "",
   },
   {
     id: 7,
@@ -9740,7 +9726,7 @@ export const serviceFeesOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "DiscoverNetPaypalQualDebit",
-    value: ""
+    value: "",
   },
   {
     id: 8,
@@ -9748,19 +9734,18 @@ export const serviceFeesOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "AmExQualCredit",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
-export const authCaptureOmahaForm = 
-[
+export const authCaptureOmahaForm = [
   {
     id: 1,
     title: "Mastercard Visa Auth Capture Fee:",
     type: "number",
     placeholder: "$",
     formName: "MastercardVisaAuthCaptureFee",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -9768,7 +9753,7 @@ export const authCaptureOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "DiscoverNetPayPalAuthCaptureFee",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -9776,22 +9761,20 @@ export const authCaptureOmahaForm =
     type: "number",
     placeholder: "$",
     formName: "AmexOpBlueAuthCaptureFee",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
-
-// EDIT MERCHANT - 
+// EDIT MERCHANT -
 // Merchant Information
-export const merchantInfoEditForm =
-[
+export const merchantInfoEditForm = [
   {
     id: 1,
     title: "MID:",
     type: "string",
     placeholder: "811237",
     formName: "MID",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -9799,7 +9782,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "Legal Name",
     formName: "LegalName",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -9807,7 +9790,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "Contact Name",
     formName: "ContactName",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -9815,7 +9798,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "Insert the Address",
     formName: "Address",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -9823,7 +9806,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "",
     formName: "SteApt",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -9831,7 +9814,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "Scottsdale",
     formName: "City",
-    value: ""
+    value: "",
   },
   {
     id: 7,
@@ -9839,7 +9822,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "AZ",
     formName: "State",
-    value: ""
+    value: "",
   },
   {
     id: 8,
@@ -9847,7 +9830,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "Zipcode",
     formName: "Zip",
-    value: ""
+    value: "",
   },
   {
     id: 9,
@@ -9855,7 +9838,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "",
     formName: "phone1",
-    value: ""
+    value: "",
   },
   {
     id: 10,
@@ -9863,7 +9846,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "",
     formName: "Ext1",
-    value: ""
+    value: "",
   },
   {
     id: 11,
@@ -9871,7 +9854,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "",
     formName: "Phone2",
-    value: ""
+    value: "",
   },
   {
     id: 12,
@@ -9879,7 +9862,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "",
     formName: "Ext2",
-    value: ""
+    value: "",
   },
   {
     id: 13,
@@ -9887,7 +9870,7 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "example@email.com",
     formName: "Email",
-    value: ""
+    value: "",
   },
   {
     id: 14,
@@ -9895,19 +9878,18 @@ export const merchantInfoEditForm =
     type: "string",
     placeholder: "www.mysite.com",
     formName: "Website",
-    value: ""
+    value: "",
   },
-]
+];
 
-export const dbaInfoForm =
-[
+export const dbaInfoForm = [
   {
     id: 1,
     title: "DBA Legal Name:",
     type: "string",
     placeholder: "",
     formName: "DbaLegalName",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -9915,7 +9897,7 @@ export const dbaInfoForm =
     type: "string",
     placeholder: "",
     formName: "DbaContactName",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -9923,7 +9905,7 @@ export const dbaInfoForm =
     type: "string",
     placeholder: "",
     formName: "DbaAddress",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -9931,7 +9913,7 @@ export const dbaInfoForm =
     type: "string",
     placeholder: "",
     formName: "DbaSteApt",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -9939,7 +9921,7 @@ export const dbaInfoForm =
     type: "string",
     placeholder: "",
     formName: "DbaCity",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -9947,7 +9929,7 @@ export const dbaInfoForm =
     type: "string",
     placeholder: "",
     formName: "DbaState",
-    value: ""
+    value: "",
   },
   {
     id: 7,
@@ -9955,9 +9937,9 @@ export const dbaInfoForm =
     type: "string",
     placeholder: "",
     formName: "DbaZip",
-    value: ""
-  }
-]
+    value: "",
+  },
+];
 
 export const merchantEquipmentOrderTable = [
   {
@@ -9966,7 +9948,7 @@ export const merchantEquipmentOrderTable = [
     Description: "ChargeAnywhere Bluetooth Swiper BT3X",
     Serial: "",
     Tracking: "",
-    Price: 124.00,
+    Price: 124.0,
     Status: "1 - In Process",
     Edit: "",
     Delete: "",
@@ -9977,12 +9959,12 @@ export const merchantEquipmentOrderTable = [
     Description: "Dejavoo DJ-02",
     Serial: "SR90283",
     Tracking: "",
-    Price: 654.00,
+    Price: 654.0,
     Status: "3 - Shipped",
     Edit: "",
     Delete: "",
   },
-]
+];
 
 export const merchantEquipmentTrackingTable = [
   {
@@ -10008,8 +9990,8 @@ export const merchantEquipmentTrackingTable = [
     Date: "",
     Tracking: "T22891273",
     Details: "",
-  }, 
-]
+  },
+];
 
 export const merchantOptionsForm = [
   {
@@ -10051,8 +10033,8 @@ export const merchantBillingForm = [
         label: "Other",
         value: "Other",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const shipMethodMerchantForm = [
@@ -10122,15 +10104,14 @@ export const dbaSelectionMerchantForm = [
   },
 ];
 
-export const contactInfoMerchantForm = 
-[
+export const contactInfoMerchantForm = [
   {
     id: 1,
     title: "Contact Name:",
     type: "string",
     placeholder: "",
     formName: "ContactName",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -10138,7 +10119,7 @@ export const contactInfoMerchantForm =
     type: "string",
     placeholder: "",
     formName: "Address",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -10146,7 +10127,7 @@ export const contactInfoMerchantForm =
     type: "string",
     placeholder: "",
     formName: "Address2",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -10154,7 +10135,7 @@ export const contactInfoMerchantForm =
     type: "string",
     placeholder: "",
     formName: "City",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -10162,7 +10143,7 @@ export const contactInfoMerchantForm =
     type: "string",
     placeholder: "",
     formName: "State",
-    value: ""
+    value: "",
   },
   {
     id: 6,
@@ -10170,7 +10151,7 @@ export const contactInfoMerchantForm =
     type: "string",
     placeholder: "",
     formName: "PostalCode",
-    value: ""
+    value: "",
   },
   {
     id: 7,
@@ -10178,7 +10159,7 @@ export const contactInfoMerchantForm =
     type: "string",
     placeholder: "",
     formName: "ContactPhone",
-    value: ""
+    value: "",
   },
   {
     id: 8,
@@ -10186,10 +10167,9 @@ export const contactInfoMerchantForm =
     type: "string",
     placeholder: "",
     formName: "ContactEmail",
-    value: ""
-  }
-]
-
+    value: "",
+  },
+];
 
 // AGENT SETTINGS FORM
 
@@ -10212,240 +10192,240 @@ export const boardingAgentSettingsForm = {
   formTitle: "Agent Settings",
   description: "",
   section: [
-    // 
+    //
     {
-    sectionName: "",
-    cards: [
-      // Common To ALL (North / Omaha / WAVit Interchange / FSP)
-      {
-        title: "Common To ALL (North / Omaha / WAVit Interchange / FSP)",
-        colQty: "4",
-        fields: [
-          {
-            id: 1,
-            formName: "EarlyTerminationFee",
-            title: "Early Termination Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 2,
-            formName: "MonthlyFee",
-            title: "Monthly Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "Zone",
-            title: "Hide Equipment Price",
-            type: "checkbox",
-            placeholder: "Hide Equipment Price",
-            value: "",
-          },
-        ]
-      },
-      // FSP Only
-      { 
-        title: "FSP Only",
-        colQty: "4",
-        fields: [
-          {
-            id: 1,
-            formName: "VoiceAuthorization",
-            title: "Voice Authorization $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 2,
-            formName: "AudioResponse",
-            title: "Audio Response (ARU) $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "VoiceAddressVerification",
-            title: "Voice Address Verification #:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "TinInvalidFee",
-            title: "TIN Invalid Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 5,
-            formName: "AchRejectFee",
-            title: "ACH Reject Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 6,
-            formName: "ChargebackFee",
-            title: "Chargeback Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 7,
-            formName: "MonthlyStatementFee",
-            title: "Monthly Statement Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-        ]
-      },
-      // Common To North / Omaha
-      { 
-        title: "Common To North / Omaha",
-        colQty: "4",
-        fields: [
-          {
-            id: 1,
-            formName: "NorthOmahaMonthlyFee",
-            title: "Monthly Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 2,
-            formName: "NorthOmahaAchRejectFee",
-            title: "ACH Reject Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-        ]
-      },
-      // Cash Discount Flat Rate (WAVit Only)
-      { 
-        title: "Cash Discount Flat Rate (WAVit Only)",
-        colQty: "4",
-        fields: [
-          {
-            id: 1,
-            formName: "WavitCashDiscountRate",
-            title: "Cash Discount Rate %:",
-            type: "number",
-            placeholder: "%",
-            value: "",
-          },
-          {
-            id: 2,
-            formName: "WavitDiscount",
-            title: "Discount %:",
-            type: "number",
-            placeholder: "%",
-            value: "",
-          },
-        ]
-      },
-      // Omaha Interchange Only
-      { 
-        title: "Omaha Interchange Only",
-        colQty: "4",
-        fields: [
-          {
-            id: 1,
-            formName: "VisaMcChagebackFee",
-            title: "Visa/MC Chargeback Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 2,
-            formName: "VisaMcRetrievalFee",
-            title: "Visa/MC Retrieval Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-        ]
-      },
-      // North WAVit and Interchange Only
-      { 
-        title: "North WAVit and Interchange Only",
-        colQty: "3",
-        fields: [
-          {
-            id: 1,
-            formName: "AmexChargebackFee",
-            title: "Amex Chargeback Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 2,
-            formName: "DiscoverChargebackFee",
-            title: "Discover Chargeback Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 3,
-            formName: "RetrievalFee",
-            title: "Retrieval Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 4,
-            formName: "AmexChargebackRetrievalFee",
-            title: "Amex Chargeback Retrieval Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 5,
-            formName: "DiscoverRetrievalFee",
-            title: "Discover Retrieval Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 6,
-            formName: "VisaMcDiscoverChargebackRetrievalFee",
-            title: "Visa/MC/Discover Chargeback Retrieval Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-          {
-            id: 7,
-            formName: "NorthInterMonthlyStatementFee",
-            title: "Monthly Statement Fee $:",
-            type: "number",
-            placeholder: "$",
-            value: "",
-          },
-        ]
-      },
-    ]
+      sectionName: "",
+      cards: [
+        // Common To ALL (North / Omaha / WAVit Interchange / FSP)
+        {
+          title: "Common To ALL (North / Omaha / WAVit Interchange / FSP)",
+          colQty: "4",
+          fields: [
+            {
+              id: 1,
+              formName: "EarlyTerminationFee",
+              title: "Early Termination Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "MonthlyFee",
+              title: "Monthly Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 3,
+              formName: "Zone",
+              title: "Hide Equipment Price",
+              type: "checkbox",
+              placeholder: "Hide Equipment Price",
+              value: "",
+            },
+          ],
+        },
+        // FSP Only
+        {
+          title: "FSP Only",
+          colQty: "4",
+          fields: [
+            {
+              id: 1,
+              formName: "VoiceAuthorization",
+              title: "Voice Authorization $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "AudioResponse",
+              title: "Audio Response (ARU) $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 3,
+              formName: "VoiceAddressVerification",
+              title: "Voice Address Verification #:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 4,
+              formName: "TinInvalidFee",
+              title: "TIN Invalid Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 5,
+              formName: "AchRejectFee",
+              title: "ACH Reject Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 6,
+              formName: "ChargebackFee",
+              title: "Chargeback Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 7,
+              formName: "MonthlyStatementFee",
+              title: "Monthly Statement Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+          ],
+        },
+        // Common To North / Omaha
+        {
+          title: "Common To North / Omaha",
+          colQty: "4",
+          fields: [
+            {
+              id: 1,
+              formName: "NorthOmahaMonthlyFee",
+              title: "Monthly Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "NorthOmahaAchRejectFee",
+              title: "ACH Reject Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+          ],
+        },
+        // Cash Discount Flat Rate (WAVit Only)
+        {
+          title: "Cash Discount Flat Rate (WAVit Only)",
+          colQty: "4",
+          fields: [
+            {
+              id: 1,
+              formName: "WavitCashDiscountRate",
+              title: "Cash Discount Rate %:",
+              type: "number",
+              placeholder: "%",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "WavitDiscount",
+              title: "Discount %:",
+              type: "number",
+              placeholder: "%",
+              value: "",
+            },
+          ],
+        },
+        // Omaha Interchange Only
+        {
+          title: "Omaha Interchange Only",
+          colQty: "4",
+          fields: [
+            {
+              id: 1,
+              formName: "VisaMcChagebackFee",
+              title: "Visa/MC Chargeback Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "VisaMcRetrievalFee",
+              title: "Visa/MC Retrieval Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+          ],
+        },
+        // North WAVit and Interchange Only
+        {
+          title: "North WAVit and Interchange Only",
+          colQty: "3",
+          fields: [
+            {
+              id: 1,
+              formName: "AmexChargebackFee",
+              title: "Amex Chargeback Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 2,
+              formName: "DiscoverChargebackFee",
+              title: "Discover Chargeback Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 3,
+              formName: "RetrievalFee",
+              title: "Retrieval Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 4,
+              formName: "AmexChargebackRetrievalFee",
+              title: "Amex Chargeback Retrieval Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 5,
+              formName: "DiscoverRetrievalFee",
+              title: "Discover Retrieval Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 6,
+              formName: "VisaMcDiscoverChargebackRetrievalFee",
+              title: "Visa/MC/Discover Chargeback Retrieval Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+            {
+              id: 7,
+              formName: "NorthInterMonthlyStatementFee",
+              title: "Monthly Statement Fee $:",
+              type: "number",
+              placeholder: "$",
+              value: "",
+            },
+          ],
+        },
+      ],
     },
-  ]
-}
+  ],
+};
 
 export const marketingDocumentsTable: DataTypes[] = [
   {
@@ -10542,7 +10522,6 @@ export const marketingSelectList = [
   },
 ];
 
-
 // ADMIN PANEL DATA
 export const YesNoList = [
   { id: 1, name: "Yes", value: "Yes" },
@@ -10577,7 +10556,7 @@ export const addNewUserForm = [
     type: "input",
     placeholder: "Insert a new user name",
     formName: "Username",
-    value: ""
+    value: "",
   },
   {
     id: 2,
@@ -10585,7 +10564,7 @@ export const addNewUserForm = [
     type: "input",
     placeholder: "email@example.com",
     formName: "Email",
-    value: ""
+    value: "",
   },
   {
     id: 3,
@@ -10593,7 +10572,7 @@ export const addNewUserForm = [
     type: "input",
     placeholder: "(___) ___-____",
     formName: "CellPhone",
-    value: ""
+    value: "",
   },
   {
     id: 4,
@@ -10601,7 +10580,7 @@ export const addNewUserForm = [
     type: "input",
     placeholder: "001",
     formName: "Extension",
-    value: ""
+    value: "",
   },
   {
     id: 5,
@@ -10654,7 +10633,7 @@ export const addNewUserForm = [
     type: "switch",
     placeholder: "",
     formName: "Lock",
-    value: ""
+    value: "",
   },
 ];
 
@@ -10665,7 +10644,7 @@ export const addNewUserPasswordForm = [
     type: "password",
     placeholder: "",
     formName: "Password",
-    value: ""
+    value: "",
   },
   {
     id: 12,
@@ -10673,7 +10652,7 @@ export const addNewUserPasswordForm = [
     type: "password",
     placeholder: "",
     formName: "ConfirmPassword",
-    value: ""
+    value: "",
   },
 ];
 
@@ -10684,7 +10663,7 @@ export const addNewUserTypeForm = [
     type: "checkbox",
     placeholder: "",
     formName: "Toolkit",
-    value: false
+    value: false,
   },
   {
     id: 19,
@@ -10692,10 +10671,9 @@ export const addNewUserTypeForm = [
     type: "checkbox",
     placeholder: "",
     formName: "Boarding",
-    value: false
-  }
+    value: false,
+  },
 ];
-
 
 export const testForm = [
   {
@@ -10704,7 +10682,7 @@ export const testForm = [
     type: "checkbox",
     placeholder: "",
     formName: "Boarding",
-    value: false
+    value: false,
   },
   {
     id: 21,
@@ -10712,11 +10690,9 @@ export const testForm = [
     type: "checkbox",
     placeholder: "",
     formName: "Toolkit",
-    value: false
+    value: false,
   },
 ];
-
-
 
 export const testingForm: FormData = {
   formTitle: "Testing form",
@@ -10744,8 +10720,8 @@ export const testingForm: FormData = {
                   type: "input",
                   placeholder: "",
                   value: "",
-                }
-              ]
+                },
+              ],
             },
             // 2. TEST CARD
             {
@@ -10759,7 +10735,7 @@ export const testingForm: FormData = {
                   type: "input",
                   placeholder: "",
                   value: "",
-                }
+                },
               ],
               title2: "2.1 testing a lot",
               fields2: [
@@ -10779,8 +10755,7 @@ export const testingForm: FormData = {
                   placeholder: "12:00:00 AM UTC-8",
                   value: "",
                 },
-              ]
-
+              ],
             },
           ],
           fields: [
@@ -10833,7 +10808,6 @@ export const testingForm: FormData = {
               value: "",
             },
           ],
-          
         },
         // SECOND SECTION
         {
@@ -10887,53 +10861,52 @@ export const testingForm: FormData = {
                   placeholder: "85257",
                   value: "",
                 },
-              ]
-            }
+              ],
+            },
           ],
           cards: [
-            // - 
-          {
-            title: "Testing second one card",
-            colQty: "4",
-            fields: [
-              {
-                id: 1,
-                formName: "DaysToSubmitTransactions",
-                title: "0-3",
-                type: "radio",
-                placeholder: "0-3",
-                value: "",
-              },
-              {
-                id: 2,
-                formName: "DaysToSubmitTransactions",
-                title: "4-7",
-                type: "radio",
-                placeholder: "4-7",
-                value: "",
-              },
-              {
-                id: 3,
-                formName: "DaysToSubmitTransactions",
-                title: "8-14",
-                type: "radio",
-                placeholder: "8-14",
-                value: "",
-              },
-              {
-                id: 4,
-                formName: "DaysToSubmitTransactions",
-                title: "12-14",
-                type: "radio",
-                placeholder: "12-14",
-                value: "",
-              },
-            ]
-          },
-            
-          ]
+            // -
+            {
+              title: "Testing second one card",
+              colQty: "4",
+              fields: [
+                {
+                  id: 1,
+                  formName: "DaysToSubmitTransactions",
+                  title: "0-3",
+                  type: "radio",
+                  placeholder: "0-3",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  formName: "DaysToSubmitTransactions",
+                  title: "4-7",
+                  type: "radio",
+                  placeholder: "4-7",
+                  value: "",
+                },
+                {
+                  id: 3,
+                  formName: "DaysToSubmitTransactions",
+                  title: "8-14",
+                  type: "radio",
+                  placeholder: "8-14",
+                  value: "",
+                },
+                {
+                  id: 4,
+                  formName: "DaysToSubmitTransactions",
+                  title: "12-14",
+                  type: "radio",
+                  placeholder: "12-14",
+                  value: "",
+                },
+              ],
+            },
+          ],
         },
-      ]
+      ],
     },
     // TAB 2
     {
@@ -10943,60 +10916,60 @@ export const testingForm: FormData = {
       section: [
         // FIRST SECTION
         {
-        sectionName: "Bank Info",
-        fields: [
-          {
-            id: 1,
-            formName: "BankName",
-            title: "Bank Name",
-            type: "input",
-            placeholder: "Type the Bank name",
-            value: "",
-          },
-          {
-            id: 2,
-            type: "multiple",
-            formName: "",
-            title: "",
-            placeholder: "",
-            value: "",
-            multipleFields: [
-              {
-                id: 1,
-                formName: "BankRouting",
-                title: "Bank Routing: *",
-                type: "input",
-                placeholder: "Type the Bank name",
-                value: "",
-              },
-              {
-                id: 2,
-                formName: "BankAccounting",
-                title: "Bank Accounting: *",
-                type: "input",
-                placeholder: "Type the Bank name",
-                value: "",
-              },
-            ]
-          },
-        ],
-        cards: [
-          // 1. TEST CARD
-          {
-            title: "1. Zone",
-            colQty: "1",
-            fields: [
-              {
-                id: 1,
-                formName: "TimeZone",
-                title: "Time Zone",
-                type: "input",
-                placeholder: "",
-                value: "",
-              }
-            ]
-          },
-        ],
+          sectionName: "Bank Info",
+          fields: [
+            {
+              id: 1,
+              formName: "BankName",
+              title: "Bank Name",
+              type: "input",
+              placeholder: "Type the Bank name",
+              value: "",
+            },
+            {
+              id: 2,
+              type: "multiple",
+              formName: "",
+              title: "",
+              placeholder: "",
+              value: "",
+              multipleFields: [
+                {
+                  id: 1,
+                  formName: "BankRouting",
+                  title: "Bank Routing: *",
+                  type: "input",
+                  placeholder: "Type the Bank name",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  formName: "BankAccounting",
+                  title: "Bank Accounting: *",
+                  type: "input",
+                  placeholder: "Type the Bank name",
+                  value: "",
+                },
+              ],
+            },
+          ],
+          cards: [
+            // 1. TEST CARD
+            {
+              title: "1. Zone",
+              colQty: "1",
+              fields: [
+                {
+                  id: 1,
+                  formName: "TimeZone",
+                  title: "Time Zone",
+                  type: "input",
+                  placeholder: "",
+                  value: "",
+                },
+              ],
+            },
+          ],
         },
         // SECOND SECTION
         {
@@ -11028,49 +11001,48 @@ export const testingForm: FormData = {
             },
           ],
           cards: [
-            // - 
-          {
-            title: "Testing second one card",
-            colQty: "4",
-            fields: [
-              {
-                id: 1,
-                formName: "DaysToSubmitTransactions",
-                title: "0-3",
-                type: "radio",
-                placeholder: "0-3",
-                value: "",
-              },
-              {
-                id: 2,
-                formName: "DaysToSubmitTransactions",
-                title: "4-7",
-                type: "radio",
-                placeholder: "4-7",
-                value: "",
-              },
-              {
-                id: 3,
-                formName: "DaysToSubmitTransactions",
-                title: "8-14",
-                type: "radio",
-                placeholder: "8-14",
-                value: "",
-              },
-              {
-                id: 4,
-                formName: "DaysToSubmitTransactions",
-                title: "12-14",
-                type: "radio",
-                placeholder: "12-14",
-                value: "",
-              },
-            ]
-          },
-            
-          ]
+            // -
+            {
+              title: "Testing second one card",
+              colQty: "4",
+              fields: [
+                {
+                  id: 1,
+                  formName: "DaysToSubmitTransactions",
+                  title: "0-3",
+                  type: "radio",
+                  placeholder: "0-3",
+                  value: "",
+                },
+                {
+                  id: 2,
+                  formName: "DaysToSubmitTransactions",
+                  title: "4-7",
+                  type: "radio",
+                  placeholder: "4-7",
+                  value: "",
+                },
+                {
+                  id: 3,
+                  formName: "DaysToSubmitTransactions",
+                  title: "8-14",
+                  type: "radio",
+                  placeholder: "8-14",
+                  value: "",
+                },
+                {
+                  id: 4,
+                  formName: "DaysToSubmitTransactions",
+                  title: "12-14",
+                  type: "radio",
+                  placeholder: "12-14",
+                  value: "",
+                },
+              ],
+            },
+          ],
         },
-      ]
+      ],
     },
     // TAB 3
     {
@@ -11080,28 +11052,27 @@ export const testingForm: FormData = {
       section: [
         // FIRST SECTION
         {
-        sectionName: "Programmimg Info",
-    
-        cards: [
-          // 1. TEST CARD
-          {
-            title: "1. Zone",
-            colQty: "1",
-            fields: [
-              {
-                id: 1,
-                formName: "TimeZone",
-                title: "Time Zone",
-                type: "input",
-                placeholder: "",
-                value: "",
-              }
-            ]
-          },
-          
-        ]
+          sectionName: "Programmimg Info",
+
+          cards: [
+            // 1. TEST CARD
+            {
+              title: "1. Zone",
+              colQty: "1",
+              fields: [
+                {
+                  id: 1,
+                  formName: "TimeZone",
+                  title: "Time Zone",
+                  type: "input",
+                  placeholder: "",
+                  value: "",
+                },
+              ],
+            },
+          ],
         },
-      ]
+      ],
     },
   ],
   buttons: [
@@ -11110,6 +11081,11 @@ export const testingForm: FormData = {
       title: "Save Changes",
       type: "default",
     },
+<<<<<<< HEAD
   ]
 }
 
+=======
+  ],
+};
+>>>>>>> cea0d415d3b752f76c58cf21181f946de834b2f3

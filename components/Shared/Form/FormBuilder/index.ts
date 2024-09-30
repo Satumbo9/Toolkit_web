@@ -61,12 +61,12 @@ export const FormElements = [
     icon: [CalendarRange],
   },
   {
-    id: "9",
+    id: "10",
     title: "Select",
     icon: [ChevronDown],
   },
   {
-    id: "9",
+    id: "11",
     title: "Checkbox",
     icon: [CircleCheck],
   },

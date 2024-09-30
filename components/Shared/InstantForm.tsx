@@ -147,7 +147,7 @@ export const InputButtonForm = <
               value={value}
               onClick={(e) => {
                 field.onChange(value);
-                if(onChange) {
+                if (onChange) {
                   onChange();
                 }
               }}
@@ -155,10 +155,9 @@ export const InputButtonForm = <
               className={cn(
                 className,
                 classActive,
-                "transition delay-50 cursor-pointer duration-300 hover:border-sky-500",
+                "delay-50 cursor-pointer transition duration-300 hover:border-sky-500",
               )}
               disabled={disabled}
-              
             />
           </FormControl>
         </FormItem>
@@ -166,8 +165,6 @@ export const InputButtonForm = <
     />
   );
 };
-
-
 
 export const SelectForm = <
   T extends z.ZodType<any, any>,
@@ -373,7 +370,10 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
  *
  * @returns A Switch Input.
  */
-export const SwitchForm = <T extends z.ZodType<any, any>>({
+export const SwitchForm = <
+  T extends z.ZodType<any, any>,
+  S extends string | number | boolean = string | number | boolean,
+>({
   control,
   formName,
   label,
@@ -381,6 +381,8 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
   id,
   isActive,
   onToggle,
+  state,
+  setState,
 }: {
   control: Control<z.infer<T>>;
   formName: FieldPath<z.infer<T>>;
@@ -389,6 +391,8 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
   id?: string | number;
   isActive?: boolean;
   onToggle?: (id: string | number) => void;
+  state?: S;
+  setState?: React.Dispatch<React.SetStateAction<S>>;
 }) => {
   return (
     <FormField
@@ -401,11 +405,27 @@ export const SwitchForm = <T extends z.ZodType<any, any>>({
               <FormControl>
                 <Switch
                   // checked={!isActive ? field.value : isActive}
-                  checked={isActive}
+                  checked={
+                    state !== undefined
+                      ? state === (isActive ? 1 : 0)
+                      : field.value
+                  }
                   onChange={(e) => {
                     e.stopPropagation();
                   }}
-                  onCheckedChange={field.onChange}
+                  onCheckedChange={(checked) => {
+                    const value = checked
+                      ? isActive
+                        ? 1
+                        : 0
+                      : isActive
+                        ? 0
+                        : 1;
+                    field.onChange(value);
+                    if (setState) {
+                      setState(value as S);
+                    }
+                  }}
                   onClick={() => {
                     if (id) {
                       if (id !== undefined && onToggle) {
@@ -482,7 +502,7 @@ export const RadioForm = <
                   />
                   <FormLabel
                     htmlFor={`${formName}-${option.value}`}
-                    className="pt-0.5 cursor-pointer"
+                    className="cursor-pointer pt-0.5"
                   >
                     {option.label}
                   </FormLabel>
