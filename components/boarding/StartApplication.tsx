@@ -11,6 +11,7 @@ import { Form } from "../ui/form";
 import CustomButtons from "../Shared/CustomButtons";
 import { FilePlus2, Info } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const StartApplication = () => {
   const router = useRouter();
@@ -82,10 +83,18 @@ const StartApplication = () => {
                       Start Application
                     </CustomButtons>
                   </div>
+                  <div className="mb-5 text-center">
+                    <Link
+                      href={"/boarding/mBoarding/newManualEntry"}
+                      className="m-auto my-5 cursor-pointer text-center text-sky-500"
+                    >
+                      Manual Entry
+                    </Link>
+                  </div>
                 </div>
-                <div className="group relative my-4 flex justify-center gap-2">
+                <div className="group relative my-5 flex justify-center gap-2">
                   <Info />
-                  <p>What now? </p>
+                  <p>What now?</p>
                   <div className="absolute mt-8 hidden max-w-96 rounded bg-gray-800 p-4 text-sm text-white shadow-lg group-hover:block dark:bg-gray-600">
                     <h1 className="my-3 text-center text-lg">
                       Here, we gonna leave instructions to the users.

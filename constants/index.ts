@@ -3771,19 +3771,9 @@ export const boardingMainTabs = [
     route: "/boarding/merch",
   },
   {
-    title: "Agent Details",
-    value: "agentDetails",
-    route: "/boarding/agentDetails",
-  },
-  {
     title: "Leads",
     value: "leads",
     route: "/boarding/leads",
-  },
-  {
-    title: "Sup. Tickets",
-    value: "supportTickets",
-    route: "/boarding/supportTickets",
   },
   {
     title: "Doc. Library",
@@ -8865,6 +8855,76 @@ export const pinDebitInterForm =
   }
 ]
 
+// FSP APPLICATIONS - MANUAL ENTRIES
+export const fspManualEntryForm = [
+  {
+    id: 1,
+    title: "Client Business Name DBA",
+    type: "input",
+    placeholder: "",
+    formName: "DebitSalesDiscount",
+    value: ""
+  },
+  {
+    id: 2,
+    title: "Client Phone:",
+    type: "number",
+    placeholder: "(___) ___-____",
+    formName: "DebitSalesDiscount",
+    value: ""
+  },
+  {
+    id: 3,
+    title: "Email Statements to:",
+    type: "input",
+    placeholder: "name@email.com",
+    formName: "DebitSalesDiscount",
+    value: ""
+  },
+  {
+    id: 4,
+    title: "Fax:",
+    type: "number",
+    placeholder: "(___) ___-____",
+    formName: "DebitSalesDiscount",
+    value: ""
+  },
+]
+export const fspManualLocationEntryForm = [
+  {
+    id: 1,
+    title: "Street",
+    type: "input",
+    placeholder: "123 North Road",
+    formName: "DebitSalesDiscount",
+    value: ""
+  },
+  {
+    id: 2,
+    title: "City:",
+    type: "input",
+    placeholder: "",
+    formName: "DebitSalesDiscount",
+    value: ""
+  },
+  {
+    id: 3,
+    title: "State:",
+    type: "input",
+    placeholder: "Arizona",
+    formName: "DebitSalesDiscount",
+    value: ""
+  },
+  {
+    id: 4,
+    title: "Postal Code:",
+    type: "number",
+    placeholder: "ZipCode",
+    formName: "DebitSalesDiscount",
+    value: ""
+  },
+]
+
 // New First Data NORTH WAVit 2502-2 APPLICATION DATA
 
 export const newWavitApplicationTabs = [
@@ -11052,5 +11112,4 @@ export const testingForm: FormData = {
     },
   ]
 }
-
 

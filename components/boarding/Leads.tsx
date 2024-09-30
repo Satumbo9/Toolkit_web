@@ -42,6 +42,10 @@ const Leads = () => {
   const onSubmit = (value: z.infer<typeof newLeadSchema>) => {
     console.log(value);
     setEmailSent(true);
+
+    setTimeout(() => {
+      setEmailSent(false);
+    }, 3500);
   };
 
   const [data, setData] = useState<string | null>();
@@ -102,7 +106,7 @@ const Leads = () => {
                   displayKey="title"
                   valueKey="value"
                 />
-                <div className="">
+                <div className="relative">
                   <Button
                     className="my-4 flex w-full gap-2 px-10 text-white"
                     variant={"submit"}
@@ -110,7 +114,7 @@ const Leads = () => {
                     Send Lead
                   </Button>
                   {emailSent && (
-                    <p className="m-auto w-min text-nowrap rounded-full bg-green-500 px-5 py-2 text-white">
+                    <p className="absolute inset-x-0 top-12 m-auto w-min text-nowrap rounded-full bg-green-500 px-5 py-2 text-white">
                       Email sent!
                     </p>
                   )}

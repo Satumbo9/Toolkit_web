@@ -52,7 +52,6 @@ const Page = () => {
       <div className="flex-auto">
         <StartApplication />
       </div>
-      {/* <div className="-mx-5 mt-5 border" /> */}
       {/* TABLE DIV */}
       <div className="mt-10 flex-auto">
         <h2 className="mt-10 flex justify-center gap-2 text-2xl">
