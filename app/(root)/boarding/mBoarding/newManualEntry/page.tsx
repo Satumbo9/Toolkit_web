@@ -2,7 +2,6 @@
 import {
   FormGeneration,
   InputButtonForm,
-  InputForm,
   TextAreaForm,
 } from "@/components/Shared/InstantForm";
 import { Form } from "@/components/ui/form";
@@ -32,103 +31,123 @@ const Page = () => {
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
-          <div className="mx-auto my-5 max-w-7xl">
-            <h2 className="my-2 text-xl font-semibold text-sky-500">
-              Basic Customer Information
-            </h2>
-            <FormGeneration
-              formControl={form.control}
-              formFields={fspManualEntryForm}
-              gridCols={"2"}
-            />
-            <h2 className="mb-2 mt-5 text-xl font-semibold text-sky-500">
-              DBA Legal Address
-            </h2>
-            <FormGeneration
-              formControl={form.control}
-              formFields={fspManualLocationEntryForm}
-              gridCols={"2"}
-            />
-            <h2 className="mb-4 mt-7 text-center text-xl font-semibold text-sky-500">
-              Application Type
-            </h2>
-            <div className="mx-auto grid max-w-5xl grid-cols-4 items-end gap-2 max-lg:grid-cols-2">
-              <InputButtonForm
-                control={form.control}
-                formName="testButton"
-                label="MiCamp FSP MPA"
-                value={"MiCamp FSP MPA"}
-                type="button"
-                className={
-                  applicationType === "fspApplication" ? "text-white" : ""
-                }
-                setState={setApplicationType}
-                state={applicationType}
-                isActive={applicationType === "fspApplication"}
-                onChange={() => setApplicationType("fspApplication")}
+          <div className="mx-auto my-5 flex gap-2">
+            <div className="flex-1">
+              <h2 className="my-2 text-xl font-semibold text-sky-500">
+                Basic Customer Information
+              </h2>
+              <FormGeneration
+                formControl={form.control}
+                formFields={fspManualEntryForm}
+                gridCols={"2"}
               />
-              <InputButtonForm
-                control={form.control}
-                formName="testButton"
-                label="NORTH WAVit"
-                value={"NORTH WAVit"}
-                type="button"
-                className={applicationType === "wavit" ? "text-white" : ""}
-                setState={setApplicationType}
-                state={applicationType}
-                isActive={applicationType === "wavit"}
-                onChange={() => setApplicationType("wavit")}
+              <h2 className="mb-2 mt-5 text-xl font-semibold text-sky-500">
+                DBA Legal Address
+              </h2>
+              <FormGeneration
+                formControl={form.control}
+                formFields={fspManualLocationEntryForm}
+                gridCols={"2"}
               />
-              <InputButtonForm
-                control={form.control}
-                formName="testButton"
-                label="NORTH Interchange"
-                value={"NORTH Interchange"}
-                type="button"
-                className={
-                  applicationType === "interchange" ? "text-white" : ""
-                }
-                setState={setApplicationType}
-                state={applicationType}
-                isActive={applicationType === "interchange"}
-                onChange={() => setApplicationType("interchange")}
-              />
-              <InputButtonForm
-                control={form.control}
-                formName="testButton"
-                label="OMAHA"
-                value={"OMAHA"}
-                type="button"
-                className={applicationType === "omaha" ? "text-white" : ""}
-                setState={setApplicationType}
-                state={applicationType}
-                isActive={applicationType === "omaha"}
-                onChange={() => setApplicationType("omaha")}
-              />
+              <h2 className="mb-4 mt-7 text-center text-xl font-semibold text-sky-500">
+                Application Type
+              </h2>
+              <div className="mx-auto grid max-w-5xl grid-cols-4 items-end gap-2 max-lg:grid-cols-2">
+                <InputButtonForm
+                  control={form.control}
+                  formName="testButton"
+                  label="MiCamp FSP MPA"
+                  value={"MiCamp FSP MPA"}
+                  type="button"
+                  className={
+                    applicationType === "fspApplication" ? "text-white" : ""
+                  }
+                  setState={setApplicationType}
+                  state={applicationType}
+                  isActive={applicationType === "fspApplication"}
+                  onChange={() => setApplicationType("fspApplication")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName="testButton"
+                  label="NORTH WAVit"
+                  value={"NORTH WAVit"}
+                  type="button"
+                  className={applicationType === "wavit" ? "text-white" : ""}
+                  setState={setApplicationType}
+                  state={applicationType}
+                  isActive={applicationType === "wavit"}
+                  onChange={() => setApplicationType("wavit")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName="testButton"
+                  label="NORTH Interchange"
+                  value={"NORTH Interchange"}
+                  type="button"
+                  className={
+                    applicationType === "interchange" ? "text-white" : ""
+                  }
+                  setState={setApplicationType}
+                  state={applicationType}
+                  isActive={applicationType === "interchange"}
+                  onChange={() => setApplicationType("interchange")}
+                />
+                <InputButtonForm
+                  control={form.control}
+                  formName="testButton"
+                  label="OMAHA"
+                  value={"OMAHA"}
+                  type="button"
+                  className={applicationType === "omaha" ? "text-white" : ""}
+                  setState={setApplicationType}
+                  state={applicationType}
+                  isActive={applicationType === "omaha"}
+                  onChange={() => setApplicationType("omaha")}
+                />
+              </div>
             </div>
-            <div className="my-5">
-              <h1 className="mb-5 mt-10 text-center text-2xl font-semibold">
-                Upload Documents
-              </h1>
-              <div className="mx-auto my-2 max-w-2xl rounded-md border p-4">
-                <h3 className="mb-4 text-center text-xl font-semibold text-sky-500">
-                  Document 1
-                </h3>
-
-                <div className="max-w-2xl flex-auto space-y-3 p-2">
-                  <div className="my-2">
-                    <UploadFileBtn />
+            <div className="flex-1">
+              <div className="my-5">
+                <h1 className="mb-5 mt-10 text-center text-2xl font-semibold">
+                  Upload Documents
+                </h1>
+                <div className="mx-auto my-2 max-w-2xl rounded-md border p-4">
+                  <h3 className="mb-4 text-center text-xl font-semibold text-sky-500">
+                    Document 1
+                  </h3>
+                  <div className="max-w-2xl flex-auto space-y-3 p-2">
+                    <div className="my-2 max-w-fit">
+                      <UploadFileBtn />
+                    </div>
+                    
+                    {/* <InputForm
+                      control={form.control}
+                      formName="123"
+                      label="Document Description:"
+                    /> */}
+                    <TextAreaForm
+                      control={form.control}
+                      formName="1234"
+                      label="Document Description"
+                    />
                   </div>
-                  <InputForm
-                    control={form.control}
-                    formName="123"
-                    label="Document Name"
-                  />
-                  <TextAreaForm
-                    control={form.control}
-                    formName="123"
-                    label="Document Description"
-                  />
+                </div>
+                <div className="mx-auto my-2 max-w-2xl rounded-md border p-4">
+                  <h3 className="mb-4 text-center text-xl font-semibold text-sky-500">
+                    Document 2
+                  </h3>
+                  <div className="max-w-2xl flex-auto space-y-3 p-2">
+                    <div className="my-2 max-w-fit">
+                      <UploadFileBtn />
+                    </div>
+
+                    <TextAreaForm
+                      control={form.control}
+                      formName="123"
+                      label="Document Description"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

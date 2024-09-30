@@ -53,8 +53,6 @@ import {
   Settings,
   MapPin,
   HandHelping ,
-  CircleArrowUp,
-  Send,
   FilePenLine,
 } from "lucide-react";
 import { z } from "zod";

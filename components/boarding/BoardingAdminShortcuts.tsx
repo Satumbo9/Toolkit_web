@@ -4,7 +4,7 @@ import Link from "next/link";
 const BoardingAdminShortcuts = () => {
   return (
     <section className="mb-5 w-full">
-      <div className="m-auto grid w-3/4 grid-cols-3 gap-4 rounded-md text-lg max-xl:grid-cols-1">
+      <div className="m-auto grid w-3/4 grid-cols-3 gap-4 rounded-md text-lg max-xl:w-full">
         {/* RESIDUALS SHORCUT */}
         <Link
           href={"/boarding/residuals"}
@@ -20,7 +20,7 @@ const BoardingAdminShortcuts = () => {
               height={50}
               priority
             />
-            <p className="flex-1 content-center justify-start text-base">
+            <p className="flex-1 content-center justify-start text-base max-lg:text-sm">
               Get Residuals Information
             </p>
           </div>
@@ -40,7 +40,7 @@ const BoardingAdminShortcuts = () => {
               height={64}
               priority
             />
-            <p className="flex-1 content-center justify-start text-base">
+            <p className="flex-1 content-center justify-start text-base max-lg:text-sm">
               View all Marketing Information
             </p>
           </div>
@@ -60,7 +60,7 @@ const BoardingAdminShortcuts = () => {
               height={64}
               priority
             />
-            <p className="flex-1 content-center justify-start text-base">
+            <p className="flex-1 content-center justify-start text-base max-lg:text-sm">
               View User / Roles List
             </p>
           </div>
