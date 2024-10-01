@@ -1,19 +1,14 @@
-"use client";
-import {
-  FormGeneration,
-  InputButtonForm,
-  TextAreaForm,
-} from "@/components/Shared/InstantForm";
-import { Form } from "@/components/ui/form";
-import UploadFileBtn from "@/components/ui/UploadButton";
-import { fspManualEntryForm, fspManualLocationEntryForm } from "@/constants";
 import { newBoardingAppliactionSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { FormGeneration, InputButtonForm, TextAreaForm } from "../Shared/InstantForm";
+import { fspManualEntryForm, fspManualLocationEntryForm } from "@/constants";
+import UploadFileBtn from "../ui/UploadButton";
+import { Form } from "../ui/form";
 
-const Page = () => {
+const NewManualEntry = () => {
   const form = useForm<z.infer<typeof newBoardingAppliactionSchema>>({
     resolver: zodResolver(newBoardingAppliactionSchema),
     defaultValues: {},
@@ -25,8 +20,8 @@ const Page = () => {
   const [applicationType, setApplicationType] = useState("fspApplication");
 
   return (
-    <section className="w-full">
-      <h1 className="my-2 text-center text-2xl font-semibold">
+    <section className="mt-5 w-full">
+      <h1 className="my-2 text-center text-xl font-semibold">
         Manual Entry for FSP Applications
       </h1>
       <Form {...form}>
@@ -153,4 +148,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default NewManualEntry;

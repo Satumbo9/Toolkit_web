@@ -59,7 +59,7 @@ import {
   whoShipsFspForm,
 } from "@/constants";
 import { DataTypes } from "@/types";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Form } from "../ui/form";
 import {
   financialInformationFspSchema,
@@ -188,7 +188,7 @@ const MerchantDetail = () => {
     }
   }, [debouncing, search]);
 
-  const hnadleAddressSelect = (address: {
+  const handleAddressSelect = (address: {
     city: string;
     street: string;
     state: string;
@@ -198,7 +198,6 @@ const MerchantDetail = () => {
     setValue("City", address.city);
     setValue("State", address.state);
     setValue("PostalCode", address.postalCode);
-
     setIsOpen(false);
     setSearch("");
   };
@@ -206,7 +205,10 @@ const MerchantDetail = () => {
   return (
     <section className="text-start">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="mx-auto max-w-[1700px] max-2xl:max-w-5xl"
+        >
           {/* DBA Information Section */}
           <h1 className="my-5 text-2xl font-bold text-sky-500">
             DBA Information
@@ -248,7 +250,7 @@ const MerchantDetail = () => {
                     {fetchResult?.map((item) => (
                       <div
                         className="flex cursor-pointer items-center rounded-sm border bg-background p-2"
-                        onClick={() => hnadleAddressSelect(item.address)}
+                        onClick={() => handleAddressSelect(item.address)}
                         key={item.title}
                       >
                         <MapPin />
@@ -309,7 +311,7 @@ const MerchantDetail = () => {
                   value: "ssn",
                 },
               ]}
-              className="size-4"
+              className="grid size-4 grid-rows-1"
               setState={setEinSsn}
               state={einSsn}
             />

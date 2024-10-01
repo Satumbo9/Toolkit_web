@@ -85,7 +85,7 @@ const StartApplication = () => {
                   </div>
                   <div className="mb-5 text-center">
                     <Link
-                      href={"/boarding/mBoarding/newManualEntry"}
+                      href={"/boarding/mBoarding/newApplication"}
                       className="m-auto my-5 cursor-pointer text-center text-sky-500"
                     >
                       Manual Entry

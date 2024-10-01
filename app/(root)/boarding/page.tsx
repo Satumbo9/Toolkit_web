@@ -24,7 +24,7 @@ const Page = () => {
   //           Solutions consistently delivers reliable and efficient payment
   //           processing solutions, ensuring businesses can operate smoothly and
   //           grow confidently.`;
-  
+
   const divMicamp = document.getElementById("divMicamp");
   const theme = useTheme();
   
@@ -61,8 +61,6 @@ const Page = () => {
             <div className="w-full">
               <p className="flex-auto">{text1}</p>
             </div>
-            {/* <div className="flex-none border max-lg:hidden"></div> */}
-            {/* <p className="flex-auto text-start">{text2}</p> */}
           </div>
           <span className="flex w-full justify-center">
             <hr className="w-[35rem] border" />
