@@ -92,7 +92,7 @@ export const Percentage = (row: string | number | any) => {
 export const NextStep = (row: string) => {
   return (
     <CustomButtons
-      className="relative w-full text-nowrap max-lg:text-xs"
+      className="relative w-2/4 text-nowrap max-lg:text-xs"
       btnType="primary"
     >
       {row}

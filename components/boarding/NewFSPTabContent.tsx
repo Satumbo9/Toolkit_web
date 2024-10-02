@@ -13,7 +13,7 @@ const NewFSPTabContent = () => {
   };
   return (
     <Tabs
-      defaultValue="merchantDetail"
+      defaultValue="moToQuestionaire"
       className="w-full rounded-md p-4 text-center"
     >
       <TabsList className="gap-1">
@@ -30,7 +30,7 @@ const NewFSPTabContent = () => {
           </TabsTrigger>
         ))}
       </TabsList>
-      {RenderNewFspComponents(activeItem || "merchantDetail")}
+      {RenderNewFspComponents(activeItem || "moToQuestionaire")}
     </Tabs>
   );
 };

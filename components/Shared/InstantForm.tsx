@@ -461,6 +461,7 @@ export const RadioForm = <
   labelClass,
   state,
   disabled,
+  gridCols,
   setState,
   onClick,
 }: {
@@ -472,9 +473,14 @@ export const RadioForm = <
   labelClass?: string;
   state: S;
   disabled?: boolean;
+  gridCols?: string;
   setState: React.Dispatch<React.SetStateAction<S>>;
   onClick?: () => void;
 }) => {
+  if(gridCols === "0" || !gridCols){
+    gridCols = "1";
+  }
+
   return (
     <FormField
       control={control}
@@ -482,7 +488,7 @@ export const RadioForm = <
       render={({ field }) => (
         <FormItem>
           <FormControl>
-            <div className="space-y-6">
+            <div className={` grid grid-cols-${gridCols} gap-4`}>
               {options.map((option) => (
                 <div key={option.value} className="flex gap-2">
                   <Input
@@ -545,6 +551,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
           type: string;
           formName: string;
           title: string;
+          gridCols?: string;
           value?: string | number;
           options: { label: string; value: string }[];
           placeholder?: string | undefined;
@@ -580,12 +587,13 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
               />
             </div>
           ) : item.options ? (
-            <div key={item.id} className="my-3 flex w-full gap-3">
+            <div key={item.id} className="my-3  flex w-full gap-3">
               <RadioForm
                 control={formControl}
                 formName={item.formName}
                 label=""
-                className="size-4"
+                gridCols={item.gridCols}
+                className="size-4 mb-2"
                 options={item.options}
                 state={radioStatus}
                 setState={setRadioStatus}

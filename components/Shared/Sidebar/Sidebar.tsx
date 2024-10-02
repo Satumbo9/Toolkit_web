@@ -17,8 +17,8 @@ const Sidebar = ({ props }: any) => {
 
   return (
     <React.Fragment>
-      <section className="sticky left-0 top-0 flex h-screen w-64 flex-col justify-between overflow-y-auto border-r p-4 pt-16 dark:shadow-none max-2xl:w-fit max-md:hidden 2xl:w-[266px]">
-        <div className="flex w-fit flex-1 flex-col gap-6">
+      <section className="sticky left-0 top-0 flex h-screen w-64 flex-col justify-between overflow-y-auto border-r p-4 pt-10 dark:shadow-none max-2xl:w-fit max-md:hidden 2xl:w-[266px]">
+        <div className="flex w-fit flex-1 flex-col gap-4">
           <div className="w-fit">
             <Link href="/" className="hidden 2xl:block">
               <Image
@@ -47,16 +47,20 @@ const Sidebar = ({ props }: any) => {
           {sidebarLinks.map((item) => {
             if (item.label === "Admin" && role !== "admin") {
               return null;
-              // /boarding/agentDetails
             }
-            const isActive = (pathname?.includes(item.name) && item.route.length > 1) || pathname === item.route;
+            const isActive =
+              (pathname?.includes(item.name) && item.route.length > 1) ||
+              pathname === item.route;
             return (
               <Link
                 className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex w-full items-center justify-start gap-4 rounded-lg bg-transparent p-2`}
                 key={item.label}
                 href={item.route}
+                title={item.label}
               >
-                {React.createElement(item.icon)}
+                <i className="m-0 p-0 max-2xl:mx-auto">
+                  {React.createElement(item.icon)}
+                </i>
                 <p
                   className={`${isActive ? "base-bold" : "base-medium"} max-2xl:hidden`}
                 >

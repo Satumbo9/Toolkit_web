@@ -4295,6 +4295,23 @@ export const equipmentPricingTable = [
 export const newFspApplicationTabs = [
   {
     id: "1",
+    title: "MO/TO Questionarie",
+    value: "moToQuestionaire",
+    abbreviation: "MQ",
+    icon: FileText,
+  },
+  {
+    id: "2",
+    title: "Pricing Information",
+    value: "pricingInformation",
+    abbreviation: "PI",
+    icon: Receipt,
+  },
+];
+
+export const newMpaApplicationTabs = [
+  {
+    id: "1",
     title: "Merchant Detail",
     value: "merchantDetail",
     abbreviation: "MD",
@@ -4309,27 +4326,13 @@ export const newFspApplicationTabs = [
   },
   {
     id: "3",
-    title: "MO/TO Questionarie",
-    value: "moToQuestionaire",
-    abbreviation: "MQ",
-    icon: FileText,
-  },
-  {
-    id: "4",
     title: "Merchant Owner",
     value: "merchantOwner",
     abbreviation: "MO",
     icon: KeyRound,
   },
   {
-    id: "5",
-    title: "Pricing Information",
-    value: "pricingInformation",
-    abbreviation: "PI",
-    icon: Receipt,
-  },
-  {
-    id: "6",
+    id: "4",
     title: "Programming Request",
     value: "programmingRequest",
     abbreviation: "PR",
@@ -4789,6 +4792,7 @@ export const bankingInformationFspForm = [
     title: "Checking",
     placeholder: "Checking",
     type: "radio",
+    gridCols: "2",
     options: [
       {
         label: "Checking",
@@ -4809,6 +4813,7 @@ export const acceptingVisaMcDiscoverFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
+    gridCols: "2",
     options: [
       {
         label: "Yes",
@@ -4829,6 +4834,7 @@ export const hasBeenTerminatedFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
+    gridCols: "2",
     options: [
       {
         label: "Yes",
@@ -4849,6 +4855,7 @@ export const americaExpressVolumeFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
+    gridCols: "2",
     options: [
       {
         label: "Yes",
@@ -6267,34 +6274,6 @@ export const billToFspForm = [
 export const newInterchangeApplicationTabs = [
   {
     id: "1",
-    title: "Merchant Detail",
-    value: "merchantDetail",
-    abbreviation: "MD",
-    icon: User2,
-  },
-  {
-    id: "2",
-    title: "Financial Information",
-    value: "financialInformation",
-    abbreviation: "FI",
-    icon: CircleDollarSign,
-  },
-  {
-    id: "3",
-    title: "Merchant Owner",
-    value: "merchantOwner",
-    abbreviation: "MO",
-    icon: KeyRound,
-  },
-  {
-    id: "4",
-    title: "Programming Request",
-    value: "programmingRequest",
-    abbreviation: "PR",
-    icon: Laptop,
-  },
-  {
-    id: "5",
     title: "North Details",
     value: "northDetails",
     abbreviation: "ND",
@@ -9021,34 +9000,6 @@ export const newWavitApplicationTabs = [
 export const newOmahaApplicationTabs = [
   {
     id: "1",
-    title: "Merchant Detail",
-    value: "merchantDetail",
-    abbreviation: "MD",
-    icon: User2,
-  },
-  {
-    id: "2",
-    title: "Financial Information",
-    value: "financialInformation",
-    abbreviation: "FI",
-    icon: CircleDollarSign,
-  },
-  {
-    id: "3",
-    title: "Merchant Owner",
-    value: "merchantOwner",
-    abbreviation: "MO",
-    icon: KeyRound,
-  },
-  {
-    id: "4",
-    title: "Programming Request",
-    value: "programmingRequest",
-    abbreviation: "PR",
-    icon: Laptop,
-  },
-  {
-    id: "5",
     title: "OMAHA Details",
     value: "omahaDetails",
     abbreviation: "OD",
