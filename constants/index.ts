@@ -56,9 +56,11 @@ import {
   CircleArrowUp,
   Send,
   FilePenLine,
+  Building2,
 } from "lucide-react";
 import { z } from "zod";
 import { FormData } from "@/types/types";
+import { Value } from "@radix-ui/react-select";
 
 export const themes = [
   { value: "light", label: "Light", icon: "icon/sun.svg" },
@@ -3579,6 +3581,12 @@ export const userAdminTabs = [
     value: "departments",
     icon: UsersRound,
   },
+  {
+    id:"4",
+    title: "Organizations",
+    value: "organizations",
+    icon: Building2
+  }
 ];
 
 export const usersTable = [

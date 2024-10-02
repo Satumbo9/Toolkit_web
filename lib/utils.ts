@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { z } from "zod";
+import { boolean, z } from "zod";
 import qs from "query-string";
 
 export function cn(...inputs: ClassValue[]) {
@@ -588,6 +588,15 @@ export const newDepartmentSchema = z.object({
   Department: requiredString,
   Description: requiredString,
   Permission: requiredString,
+});
+
+export const newOrganizationSchema = z.object({
+  Id: z.string(),
+  Department: requiredString,
+  Description: requiredString,
+  Permission: requiredString,
+  Manager: z.boolean(),
+  Boarding: z.boolean(),
 });
 
 // BOARDING TOOL SCHEMAS
