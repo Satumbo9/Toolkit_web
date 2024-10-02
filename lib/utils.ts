@@ -592,9 +592,11 @@ export const newDepartmentSchema = z.object({
 
 export const newOrganizationSchema = z.object({
   Id: z.string(),
-  Department: requiredString,
+  AgentID: z.string(),
   Description: requiredString,
-  Permission: requiredString,
+  Name:requiredString,
+  Status: z.union([z.string(), z.null()]),
+  AliasName: requiredString, 
   Manager: z.boolean(),
   Boarding: z.boolean(),
 });

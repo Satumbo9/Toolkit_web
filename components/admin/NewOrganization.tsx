@@ -19,8 +19,11 @@ const NewOrganization = ({
     resolver: zodResolver(newOrganizationSchema),
     defaultValues: {
       Id: "1",
+      Name: "",
+      Status: null,
+      AgentID:"1",
+      AliasName:"",
       Description: "",
-      Permission: "",
       Manager: false,
       Boarding: false,
     },
@@ -51,7 +54,33 @@ const NewOrganization = ({
             formName="Name"
             label="Name:"
             type="text"
+            placeholder="Name"
+            disabled={false}
+          />
+
+        <InputForm
+            control={form.control}
+            formName="Id"
+            label="ID:"
+            type="text"
             placeholder="ID"
+            disabled={false}
+          />
+        
+         <InputForm
+            control={form.control}
+            formName="Status"
+            label="Status:"
+            type="text"
+            placeholder="Status"
+            disabled={false}
+          />
+                   <InputForm
+            control={form.control}
+            formName="AgentID"
+            label="AgentID:"
+            type="text"
+            placeholder="AgentID"
             disabled={false}
           />
           <InputForm
@@ -60,14 +89,18 @@ const NewOrganization = ({
             label="Organization:"
             placeholder="e.g. Sales"
           />
-          
-          <div className="grid grid-cols-3 gap-2">
-            <CheckboxForm
+                              <InputForm
             control={form.control}
-            formName="Toolkit"
-            label=""
-            placeholder="Toolkit"
-            />
+            formName="AliasName"
+            label="Alias Name:"
+            type="text"
+            placeholder="AliasName"
+            disabled={false}
+          />
+        
+          {/* PlaceHolder for not the final data  */}
+          <div className="grid grid-cols-3 gap-2">
+
             <CheckboxForm
             control={form.control}
             formName="Boarding"
