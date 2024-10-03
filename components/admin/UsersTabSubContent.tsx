@@ -5,7 +5,7 @@ import {
 } from "@/components/Shared/DataTable/Columns";
 import DataTable from "@/components/Shared/DataTable/DataTable";
 import { Button } from "@/components/ui/button";
-import { DepartmentListTable, RolesListTable, usersTable } from "@/constants";
+import { DepartmentListTable, OrganizationListTable, RolesListTable, usersTable } from "@/constants";
 import { DataTypes } from "@/types";
 import React from "react";
 import Link from "next/link";
@@ -177,8 +177,12 @@ const Departments = () => {
 const Organization = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
     { accessorKey: "id", header: "ID" },
-    { accessorKey: "department", header: "Department" },
+    { accessorKey: "name", header: "Name" },
+    { accessorKey: "status", header: "Status" },
+    { accessorKey: "agentID", header: "AgentID" },
+    { accessorKey: "Organization", header: "Department" },
     { accessorKey: "description", header: "Description" },
+    { accessorKey: "aliasName", header: "AliasName" },
   ];
 
   const columns = createColumns(columnsConfig);
@@ -209,11 +213,10 @@ const Organization = () => {
       </div>
 
 
-{/* Content inside Organization */}
       <div className="grid grid-cols-1 overflow-auto">
         <DataTable
           columns={columns}
-          data={DepartmentListTable}
+          data={OrganizationListTable}
           enableSorting={true}
           enableColumnFilter={true}
           filteredBy="department"

@@ -33,7 +33,7 @@ const NewOrganization = ({
     console.log(values);
   };
 
-//Conditional Checker to make someone manager 
+// Conditional Checker to make someone manager 
   const [show, setShow] = useState(false);
   const handleUserType = () => {
     !show ? setShow(true) : setShow(false);

@@ -3378,6 +3378,58 @@ export const DepartmentListTable = [
   },
 ];
 
+export const OrganizationListTable = [
+  {
+    id: 4321,
+    Organization: "Finance",
+    description: "Finance Team",    name: 'Micamp',
+    status: 'Completed',
+    agentID: 133,
+    aliasName: 'Mimicamp'
+  
+  },
+  {
+    id: 4322,
+    Organization: "Sales",
+    description: "Sales Dept.",    name: 'Micamp',
+    status: 'Completed',
+    agentID: 133,
+    aliasName: 'Mimicamp'
+    
+    
+  },
+  {
+    id: 4323,
+    Organization: "Support",
+    description: "Support Team",
+    name: 'Micamp',
+    status: 'Completed',
+    agentID: 133,
+    aliasName: 'Mimicamp'
+    
+  },
+  {
+    id: 4324,
+    Organization: "Equipment",
+    description: "Equipment/Shipping Team",
+    name: 'Micamp',
+    status: 'Completed',
+    agentID: 133,
+    aliasName: 'Mimicamp'
+    
+  },
+  {
+    id: 4325,
+    Organization: "Development",
+    description: "Dev Team",
+    name: 'Micamp',
+    status: 'Completed',
+    agentID: 133,
+    aliasName: 'Mimicamp'
+    
+  },
+];
+
 export const firstDataOmahaForm = [
   {
     id: 1,
