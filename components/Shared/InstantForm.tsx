@@ -542,7 +542,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
   const [radioStatus, setRadioStatus] = useState("");
   return (
     <div
-      className={`grid grid-cols-${gridCols} gap-2 max-xl:grid-cols-${roundedCols}`}
+      className={`grid grid-cols-${gridCols} items-end gap-2 max-xl:grid-cols-${roundedCols}`}
     >
       {formFields.map(
         (item: {
@@ -635,6 +635,7 @@ export const FormGeneration = ({ formControl, formFields, gridCols }: any) => {
                 formName={item.formName}
                 label={item.title}
                 placeholder={item.placeholder}
+                className=""
               />
             </div>
           ),

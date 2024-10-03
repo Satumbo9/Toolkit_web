@@ -1,8 +1,11 @@
 "use client";
 import NewMpaTabContent from "@/components/boarding/NewMpaTabContent";
+import CustomButtons from "@/components/Shared/CustomButtons";
 import { Form } from "@/components/ui/form";
 import { startMerchantApplication } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -52,12 +55,31 @@ const Page = () => {
   return (
     <section>
       <div className="-mx-5 -mt-5 mb-5 rounded-b-2xl rounded-tr-lg bg-zinc-200 px-5 py-10 dark:bg-zinc-800">
-        <h1 className="text-center text-2xl text-sky-500">
-          MiCamp MPA Applications
-        </h1>
-        <p className="text-center">
-          Fill the merchant information and at the end, select your MPA type.
-        </p>
+        <div className="mx-auto flex max-w-[1600px] gap-2 max-xl:flex-col max-xl:text-center">
+          <div className="flex-none">
+            <h1 className="my-3 text-2xl text-sky-500">
+              MiCamp MPA Applications
+            </h1>
+            <p className="">
+              Fill the merchant information and at the end, select your MPA
+              type.
+            </p>
+          </div>
+          <div className="flex-1 text-end max-xl:text-center">
+            <div className="ml-auto mr-0 w-min max-xl:mx-auto">
+              <Link href={"/boarding/mBoarding/finishApplication"} className="">
+                <CustomButtons
+                  btnType="default"
+                  className="my-2 justify-end gap-2 max-xl:justify-center"
+                >
+                  Finish the application
+                  <ArrowRight className="size-5" />
+                </CustomButtons>
+              </Link>
+            </div>
+            <p className="">Go to the last part of the application.</p>
+          </div>
+        </div>
       </div>
       <NewMpaTabContent />
       <Form {...form}>

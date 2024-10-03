@@ -63,7 +63,7 @@ const StartApplication = () => {
                     state={merchantName}
                     setState={setMerchantName}
                   />
-                  <div className="m-auto w-3/4 justify-center gap-2">
+                  <div className="m-auto w-3/4 justify-center gap-2 space-y-2">
                     <CustomButtons
                       className="w-full"
                       btnType="default"
@@ -73,8 +73,6 @@ const StartApplication = () => {
                     >
                       Start Application
                     </CustomButtons>
-                  </div>
-                  <div className="m-auto w-3/4 justify-center gap-2">
                     <CustomButtons
                       className="w-full"
                       btnType="primary"
@@ -96,7 +94,7 @@ const StartApplication = () => {
                 </div>
                 <div className="group relative mt-5 flex justify-center gap-2">
                   <Info />
-                  <p>What now?</p>
+                  <p></p>
                   <div className="absolute mt-8 hidden max-w-96 rounded bg-gray-800 p-4 text-sm text-white shadow-lg group-hover:block dark:bg-gray-600">
                     <h1 className="my-3 text-center text-lg">
                       Here, we gonna leave instructions to the users.
