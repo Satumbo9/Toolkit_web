@@ -488,7 +488,7 @@ export const RadioForm = <
       render={({ field }) => (
         <FormItem>
           <FormControl>
-            <div className={` grid grid-cols-${gridCols} gap-4`}>
+            <div className={` grid grid-cols-${gridCols} max-xl:grid-cols-1 gap-4`}>
               {options.map((option) => (
                 <div key={option.value} className="flex gap-2">
                   <Input

@@ -5241,6 +5241,7 @@ export const hasFiledForBankruptcyFspForm = [
     title: "Yes",
     placeholder: "Yes",
     type: "radio",
+    gridCols: "2",
     options: [
       {
         label: "Yes",
@@ -5258,12 +5259,14 @@ export const OwnersTable: DataTypes[] = [
   {
     OwnerName: "Jimmy Page",
     Ownership: "55%",
+    MainOwner: "true",
     CellNumber: "12345678",
     Notes: "This is the main owner",
   },
   {
     OwnerName: "Ringo Star",
     Ownership: "30%",
+    MainOwner: "false",
     CellNumber: "12345678",
     Notes: "This is the secondary owner",
   },
@@ -6038,6 +6041,7 @@ export const fileBuildInformationFspForm = [
     formName: "BuildType",
     title: "Retail",
     type: "radio",
+    gridCols: "4",
     placeholder: "Retail",
     value: "",
     options: [
@@ -6069,6 +6073,7 @@ export const tipLineFspForm = [
     type: "radio",
     placeholder: "Tip at time of sale",
     value: "",
+    gridCols: "2",
     options: [
       {
         label: "Tip at time of sale",
@@ -6090,6 +6095,7 @@ export const serverFspForm = [
     type: "radio",
     placeholder: "Yes",
     value: "",
+    gridCols: "2",
     options: [
       {
         label: "Yes",
@@ -6111,6 +6117,7 @@ export const shipToFspForm = [
     type: "radio",
     placeholder: "Rep",
     value: "",
+    gridCols: "2",
     options: [
       {
         label: "Rep",
@@ -6256,6 +6263,7 @@ export const billToFspForm = [
     title: "Rep",
     placeholder: "Rep",
     type: "radio",
+    gridCols: "2",
     options: [
       {
         label: "Rep",

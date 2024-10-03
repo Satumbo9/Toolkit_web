@@ -66,8 +66,9 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import AddNewMerchantOwner from "./AddNewMerchantOwner";
-import { Input } from "../ui/input";
 import { Loader2, MapPin } from "lucide-react";
+import { InputMap } from "../ui/inputAddress";
+import { MainOwner } from "../Shared/DataTable/CellFormat";
 
 const MerchantDetail = () => {
   const form = useForm<z.infer<typeof merchantInformationFspSchema>>({
@@ -174,10 +175,10 @@ const MerchantDetail = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="mx-auto max-w-[1700px] max-2xl:max-w-5xl"
+          className="mx-auto max-w-[1600px] py-5 max-2xl:max-w-5xl"
         >
           {/* DBA Information Section */}
-          <h1 className="my-5 text-2xl font-bold text-sky-500">
+          <h1 className="mb-5 text-center text-2xl text-sky-500">
             DBA Information
           </h1>
           <FormGeneration
@@ -185,26 +186,27 @@ const MerchantDetail = () => {
             formFields={dbaInformationFspForm}
             gridCols={"2"}
           />
-
+          <hr className="my-10 border-2" />
           {/* DBA Address Section */}
-          <h1 className="my-5 text-2xl font-bold text-sky-500">
+          <h1 className="my-5 text-center text-2xl text-sky-500">
             DBA Address Information
           </h1>
-
           <div className="relative">
             {/* Testing input */}
-            <Input
-              placeholder="Search for your address"
-              className="mb-2"
-              value={search}
-              onChange={(e: any) => {
-                setSearch(e.target.value);
-                if (!isOpen) setIsOpen(true);
-                if (e.target.value === "" && isOpen) {
-                  setIsOpen(false);
-                }
-              }}
-            />
+            <div className="w-1/2">
+              <InputMap
+                placeholder="Search for your address"
+                className="mb-2 flex-auto"
+                value={search}
+                onChange={(e: any) => {
+                  setSearch(e.target.value);
+                  if (!isOpen) setIsOpen(true);
+                  if (e.target.value === "" && isOpen) {
+                    setIsOpen(false);
+                  }
+                }}
+              />
+            </div>
 
             {isOpen && (
               <React.Fragment>
@@ -229,15 +231,14 @@ const MerchantDetail = () => {
               </React.Fragment>
             )}
           </div>
-
           <FormGeneration
             formControl={form.control}
             formFields={dbaAddressFspForm}
             gridCols={"2"}
           />
-
+          <hr className="my-10 border-2" />
           {/* LEGAL INFORMATION Section */}
-          <h1 className="my-5 flex-auto text-2xl font-bold text-sky-500">
+          <h1 className="my-5 flex-auto text-center text-2xl text-sky-500">
             Legal Information
           </h1>
           <div className="mb-2 flex gap-2">
@@ -249,9 +250,9 @@ const MerchantDetail = () => {
             formFields={dbaLegalInformationFspForm}
             gridCols={"2"}
           />
-
+          <hr className="my-10 border-2" />
           {/* TAX INFORMATION Section */}
-          <h1 className="my-5 flex-auto text-2xl font-bold text-sky-500">
+          <h1 className="my-5 flex-auto text-center text-2xl text-sky-500">
             Tax Information
           </h1>
           <div className="mb-2 flex gap-2">
@@ -263,7 +264,7 @@ const MerchantDetail = () => {
             formFields={dbaTaxInformationFspForm}
             gridCols={"2"}
           />
-          <div className="my-4 w-1/2 content-end items-end">
+          <div className="my-4 w-1/4 content-end items-end">
             <RadioForm
               control={form.control}
               formName="EinSsn"
@@ -279,14 +280,14 @@ const MerchantDetail = () => {
                 },
               ]}
               className="size-4"
-              gridCols="2"
+              gridCols="3"
               setState={setEinSsn}
               state={einSsn}
             />
-          </div>
-
+          </div>{" "}
+          <hr className="my-10 border-2" />
           {/* STATEMENTS INFORMATION SECTION */}
-          <h1 className="my-5 flex-auto text-2xl font-bold text-sky-500">
+          <h1 className="my-5 flex-auto text-center text-2xl text-sky-500">
             Statements Information
           </h1>
           <div className="my-4 items-center">
@@ -315,21 +316,22 @@ const MerchantDetail = () => {
               state={mailStatements}
               setState={setMailStatements}
               className="ml-4 size-4"
+              gridCols="4"
             />
           </div>
           <p className="ml-4 text-gray-500">
             NOTE: Statements are {"'Summary'"} for Cash Discount apps &{" "}
             {"'Detailed'"}{" "}
           </p>
-
+          <hr className="my-10 border-2" />
           {/* LOCATION SECTION */}
-          <h1 className="my-5 flex-auto text-center text-2xl font-bold text-sky-500">
+          <h1 className="my-5 flex-auto text-center text-2xl text-sky-500">
             Location Information
           </h1>
-          <div className="m-auto grid max-w-[1200px] grid-cols-4 gap-2 max-lg:grid-cols-2">
+          <div className="m-auto grid max-w-[1000px] grid-cols-4 gap-2 max-lg:grid-cols-2">
             {/* BUILDING TYPE */}
             <div>
-              <h2 className="mb-2 text-center text-xl font-semibold">
+              <h2 className="mb-4 text-start text-xl font-semibold">
                 Building Type
               </h2>
               <div className="my-2 items-center">
@@ -363,7 +365,7 @@ const MerchantDetail = () => {
             </div>
             {/* MERCHANT */}
             <div>
-              <h2 className="mb-2 text-center text-xl font-semibold">
+              <h2 className="mb-4 text-start text-xl font-semibold">
                 Merchant Type
               </h2>
               <div className="flex items-center gap-2">
@@ -389,7 +391,7 @@ const MerchantDetail = () => {
             </div>
             {/* AREA ZONED */}
             <div>
-              <h2 className="mb-2 text-center text-xl font-semibold">
+              <h2 className="mb-4 text-start text-xl font-semibold">
                 Area Zoned
               </h2>
               <div className="items-center">
@@ -415,7 +417,7 @@ const MerchantDetail = () => {
             </div>
             {/* SQUARE FOOTAGE */}
             <div>
-              <h2 className="mb-2 text-center text-xl font-semibold">
+              <h2 className="mb-4 text-start text-xl font-semibold">
                 Square Footage
               </h2>
               <div className="flex items-center gap-2">
@@ -440,7 +442,6 @@ const MerchantDetail = () => {
               </div>
             </div>
           </div>
-
           <div className="m-auto text-center">
             <CustomButtons className="m-auto my-5" btnType="default">
               Save Changes
@@ -560,7 +561,7 @@ const FinancialInformation = () => {
   const [returnPolicy, setReturnPolicy] = useState("");
 
   return (
-    <section className="mt-4 text-start">
+    <section className="mx-auto mt-4 max-w-[1600px] text-start">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
           {/* BANK INFORMATION */}
@@ -574,7 +575,7 @@ const FinancialInformation = () => {
               gridCols={"1"}
             />
           </div>
-          <div className="my-5 grid grid-cols-4 items-end gap-2 px-20">
+          <div className="grid grid-cols-4 items-end gap-2 px-20">
             <div className="col-span-2">
               <InputForm
                 control={form.control}
@@ -599,6 +600,7 @@ const FinancialInformation = () => {
               className="col-auto"
             />
           </div>
+          <hr className="my-10 border-2" />
           {/* SALES INFORMATION */}
           <h1 className="mt-5 text-center text-2xl text-sky-500">Sales</h1>
           <div className="flex px-20">
@@ -637,6 +639,7 @@ const FinancialInformation = () => {
               </div>
             </div>
           </div>
+          <hr className="my-10 border-2" />
           {/* SETTINGS INFORMATION */}
           <h1 className="mt-5 text-center text-2xl text-sky-500">Settings</h1>
           <p className="mb-3 text-center">
@@ -677,19 +680,19 @@ const FinancialInformation = () => {
               Progress: {front + interest + manually}%
             </Progress>
           </div>
-
+          <hr className="my-10 border-2" />
           {/* SERVICE REQUESTED */}
           <h1 className="mt-5 text-center text-2xl text-sky-500">
             Service Requested
           </h1>
-          <div className="px-32">
+          <div className="px-20">
             <FormGeneration
               formControl={form.control}
               formFields={serviceRequestedFspForm}
               gridCols={"3"}
             />
           </div>
-
+          <hr className="my-10 border-2" />
           {/* AMERICAN EXPRESS VOLUME */}
           <h1 className="mt-5 text-center text-2xl text-sky-500">
             American Express Volume {">"} $1,000,000 Annually?
@@ -710,6 +713,7 @@ const FinancialInformation = () => {
               className="mx-auto"
             />
           </div>
+          <hr className="my-10 border-2" />
           {/* DISCOVER RETAINED / CARD TYPES */}
           <div className="grid grid-cols-2 gap-4 px-20 max-xl:grid-cols-1">
             <div className="col-span-1">
@@ -747,6 +751,7 @@ const FinancialInformation = () => {
               </div>
             </div>
           </div>
+
           {/* EBT / CASH BENEFIT  */}
           <h1 className="mb-2 mt-5 px-20 text-2xl font-bold text-sky-500">
             --
@@ -778,6 +783,7 @@ const FinancialInformation = () => {
               className="w-1/2"
             />
           </div>
+          <hr className="my-10 border-2" />
           {/* SEASONAL MERCHANT  */}
           <div className="flex w-full gap-2 px-20">
             <div className="flex-1">
@@ -849,83 +855,91 @@ const FinancialInformation = () => {
               />
             </div>
           </div>
+          <hr className="my-10 border-2" />
           {/* DOES MERCHANT USE A FULFILLMENT HOUSE  */}
-          <h1 className="mt-5 text-2xl font-bold text-sky-500">
-            Does Merchant use a fulfillment house to fulfill product?
-          </h1>
-          <FormGeneration
-            formControl={form.control}
-            formFields={usesFulfillHouseFspForm}
-            gridCols={"6"}
-          />
-          <InputForm
-            control={form.control}
-            formName="FulfillHouseName"
-            label="Name:"
-            placeholder="Enter the name"
-            className="w-1/2"
-          />
-          <InputForm
-            control={form.control}
-            formName="FulfillHousePhone"
-            label="Phone:"
-            placeholder="(___) ___-_____"
-            className="w-1/2"
-          />
-          {/* GENERAL SETTINGS  */}
-          <h1 className="mt-5 text-2xl font-bold text-sky-500">
-            General Settings
-          </h1>
-          <div className="flex w-1/2 items-center gap-2 max-xl:w-full">
-            <CheckboxForm
-              control={form.control}
-              formName="OptOut"
-              label=""
-              placeholder="Opt Out (by checking this box, Merchant will not receive future
-              commercial marketing communications from AmEx)"
-            />
-          </div>
-          {/* RETURN POLICY  */}
-          <h1 className="mt-5 text-2xl font-bold text-sky-500">
-            Return Policy
-          </h1>
-          <div className="w-1/3 max-xl:w-3/4">
-            <div className="my-4">
-              <RadioForm
+          <div className="flex gap-2 px-20">
+            <div className="flex-auto">
+              <h1 className="mt-5 text-2xl text-sky-500">
+                Does Merchant use a fulfillment house to fulfill product?
+              </h1>
+              <FormGeneration
+                formControl={form.control}
+                formFields={usesFulfillHouseFspForm}
+                gridCols={"6"}
+              />
+              <InputForm
                 control={form.control}
-                formName="ReturnPolicy"
-                label=""
-                options={[
-                  {
-                    label: "FULL REFUND",
-                    value: "fullRefund",
-                  },
-                  {
-                    label: "EXCHANGE ONLY",
-                    value: "exchangeOnly",
-                  },
-                  {
-                    label: "NONE",
-                    value: "none",
-                  },
-                  {
-                    label: "DESCRIBE",
-                    value: "describe",
-                  },
-                ]}
-                state={returnPolicy}
-                setState={setReturnPolicy}
-                className="size-4"
+                formName="FulfillHouseName"
+                label="Name:"
+                placeholder="Enter the name"
+                className="w-1/2"
+              />
+              <InputForm
+                control={form.control}
+                formName="FulfillHousePhone"
+                label="Phone:"
+                placeholder="(___) ___-_____"
+                className="w-1/2"
               />
             </div>
-            <InputForm
-              control={form.control}
-              formName="PolicyDescription"
-              label=""
-              placeholder="Enter the name"
-              className="w-full"
-            />
+            {/* GENERAL SETTINGS  */}
+            <div className="flex-auto">
+              <h1 className="mb-2 mt-5 text-2xl text-sky-500">
+                General Settings
+              </h1>
+              <div className="flex w-1/2 items-center gap-2 max-xl:w-full">
+                <CheckboxForm
+                  control={form.control}
+                  formName="OptOut"
+                  label=""
+                  placeholder="Opt Out (by checking this box, Merchant will not receive future
+              commercial marketing communications from AmEx)"
+                />
+              </div>
+              {/* RETURN POLICY  */}
+              <h1 className="mt-5 text-2xl text-sky-500">Return Policy</h1>
+              <div className="">
+                <div className="my-4">
+                  <RadioForm
+                    control={form.control}
+                    formName="ReturnPolicy"
+                    label=""
+                    gridCols="4"
+                    options={[
+                      {
+                        label: "FULL REFUND",
+                        value: "fullRefund",
+                      },
+                      {
+                        label: "EXCHANGE ONLY",
+                        value: "exchangeOnly",
+                      },
+                      {
+                        label: "NONE",
+                        value: "none",
+                      },
+                      {
+                        label: "DESCRIBE",
+                        value: "describe",
+                      },
+                    ]}
+                    state={returnPolicy}
+                    setState={setReturnPolicy}
+                    className="size-4"
+                  />
+                </div>
+                <InputForm
+                  control={form.control}
+                  formName="PolicyDescription"
+                  label=""
+                  placeholder="Enter the name"
+                  className="w-2/4"
+                />
+              </div>
+            </div>
           </div>
+          <hr className="my-10 border-2" />
+
           <div className="m-auto text-center">
             <CustomButtons className="m-auto my-5" btnType="default">
               Save Changes
@@ -943,6 +957,11 @@ const MerchantOwner = () => {
   const columnsConfig: ColumnConfig<DataTypes>[] = [
     { accessorKey: "OwnerName", header: "Owner Name" },
     { accessorKey: "Ownership", header: "Ownership %" },
+    {
+      accessorKey: "MainOwner",
+      header: "Primary Owner",
+      cell: (row) => MainOwner(row.getValue()),
+    },
     { accessorKey: "CellNumber", header: "Cell Number (used for DocuSign)" },
     { accessorKey: "Notes", header: "Notes" },
   ];
@@ -966,10 +985,10 @@ const MerchantOwner = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
           {/* OWNERS */}
-          <h1 className="mt-5 flex gap-2 text-2xl font-bold text-sky-500">
+          <h1 className="mt-5 gap-2 text-center text-3xl text-sky-500">
             Owners
           </h1>
-          <p className="font-normal">
+          <p className="text-center font-normal">
             * All signers must be collectively own at least 25% of the company
             to continue.
           </p>
@@ -978,7 +997,7 @@ const MerchantOwner = () => {
             <DialogTrigger asChild>
               <Button
                 className={
-                  "my-5 flex-1 bg-gradient-to-r from-[#14ADD6] to-[#384295] text-white hover:opacity-90"
+                  "my-5 flex-1 bg-[#14ADD6] from-[#14ADD6] to-[#384295] text-white hover:opacity-90"
                 }
               >
                 + Add New Owner
@@ -1010,14 +1029,14 @@ const MerchantOwner = () => {
           <FormGeneration
             formControl={form.control}
             formFields={hasFiledForBankruptcyFspForm}
-            gridCols={"6"}
+            gridCols={"1"}
           />
           <InputForm
             control={form.control}
             formName="Account"
             label="Account #:"
             placeholder="#"
-            className="w-1/2"
+            className="max-w-96"
           />
           {/* BUTTON SAVE CHANGES */}
           <div className="m-auto text-center">
@@ -1112,11 +1131,11 @@ const ProgrammingRequest = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="m-auto max-w-[1200px]"
+        className="m-auto max-w-[1600px]"
       >
         <div className="mt-5 text-start">
           {/* ACCOUNT INFORMATION */}
-          <h1 className="my-5 flex gap-2 text-2xl font-bold text-sky-500">
+          <h1 className="my-5 flex gap-2 text-center text-2xl text-sky-500">
             Account Information
           </h1>
           <FormGeneration
@@ -1150,16 +1169,17 @@ const ProgrammingRequest = () => {
             placeholder=""
             className="my-3 w-1/3"
           />
+          <hr className="my-10 border-2" />
           <div className="mt-3 flex gap-2 max-xl:flex-wrap">
             {/* WAVIT APP ONLY */}
-            <div className="my-2 w-full rounded-md border px-4 pb-2">
-              <h1 className="mt-2 gap-2 text-2xl font-bold text-sky-500">
+            <div className="my-2 w-full rounded-md border px-5 py-3 pb-2">
+              <h1 className="mt-2 gap-2 text-2xl text-sky-500">
                 WAVIT APP ONLY
               </h1>
-              <p className="text-xl text-sky-500">
+              <p className="my-1 text-xl">
                 NOTE: Works only on PAZ A920 on TSYS or CLOVER without inventory
               </p>
-              <p>(Check all that apply)</p>
+              <p className="my-1">(Check all that apply)</p>
               <FormGeneration
                 formControl={form.control}
                 formFields={wavitAppOnlyFspForm}
@@ -1167,8 +1187,8 @@ const ProgrammingRequest = () => {
               />
             </div>
             {/* CONNECTION TYPE */}
-            <div className="my-2 w-full rounded-md border px-4 pb-2">
-              <h1 className="my-2 gap-2 text-2xl font-bold text-sky-500">
+            <div className="my-2 w-full rounded-md border px-5 py-3">
+              <h1 className="my-2 gap-2 text-2xl text-sky-500">
                 CONNECTION TYPE
               </h1>
               <FormGeneration
@@ -1179,10 +1199,8 @@ const ProgrammingRequest = () => {
             </div>
           </div>
           {/* CLOVER ONLY */}
-          <div className="my-2 w-full rounded-md border px-4 pb-2">
-            <h1 className="my-2 gap-2 text-2xl font-bold text-sky-500">
-              (CLOVER ONLY)
-            </h1>
+          <div className="my-2 w-full rounded-md border px-5 py-3">
+            <h1 className="my-2 gap-2 text-2xl text-sky-500">(CLOVER ONLY)</h1>
             <CheckboxForm
               control={form.control}
               formName="NeedMenuOrInventory"
@@ -1199,7 +1217,7 @@ const ProgrammingRequest = () => {
               gridCols={"2"}
             />
           </div>
-
+          <hr className="my-10 border-2" />
           <div className="mt-10 flex gap-2 max-2xl:flex-wrap">
             {/* FILE BUILDING INFORMATION */}
             <div className="w-full">
@@ -1209,7 +1227,7 @@ const ProgrammingRequest = () => {
               <FormGeneration
                 formControl={form.control}
                 formFields={fileBuildInformationFspForm}
-                gridCols={"4"}
+                gridCols={"1"}
               />
               <CheckboxForm
                 control={form.control}
@@ -1261,19 +1279,19 @@ const ProgrammingRequest = () => {
                   placeholder="Tip Line"
                   className="text-nowrap"
                 />
-                <p className="mt-3 text-nowrap px-2 text-sm">
+                <p className="text-nowrap px-2 text-sm">
                   If tip line checked, choose one:
                 </p>
                 <FormGeneration
                   formControl={form.control}
                   formFields={tipLineFspForm}
                   className={"w-full text-sm"}
-                  gridCols={"2"}
+                  gridCols={""}
                 />
               </div>
               {/* SERVER */}
               <div className="flex items-center gap-2">
-                <p className="mt-3 px-7">Server:</p>
+                <p className="mb-1.5 mr-3">Server:</p>
                 <FormGeneration
                   formControl={form.control}
                   formFields={serverFspForm}
@@ -1311,18 +1329,20 @@ const ProgrammingRequest = () => {
               />
             </div>
           </div>
-
+          <hr className="my-10 border-2" />
           {/* SHIPPING INFORMATION */}
-          <h1 className="mb-2 mt-5 gap-2 text-2xl font-bold text-sky-500">
+          <h1 className="mb-2 mt-5 gap-2 text-center text-2xl text-sky-500">
             Shipping Information
           </h1>
-          <p className="mt-4">Ship To:</p>
-          <FormGeneration
-            formControl={form.control}
-            formFields={shipToFspForm}
-            className={"w-full"}
-            gridCols={"1"}
-          />
+          <p className="mt-4 text-center">Ship To:</p>
+          <div className="mx-auto flex justify-center">
+            <FormGeneration
+              formControl={form.control}
+              formFields={shipToFspForm}
+              className={"w-full"}
+              gridCols={"1"}
+            />
+          </div>
           <div className="flex gap-10">
             <div className="flex-auto">
               <InputForm
@@ -1334,11 +1354,6 @@ const ProgrammingRequest = () => {
               />
             </div>
             <div className="flex-auto content-end">
-              {/* <FormGeneration
-                formControl={form.control}
-                formFields={shipPriorityFspForm}
-                gridCols={"5"}
-              /> */}
               <div className="grid grid-cols-5 gap-2">
                 <InputButtonForm
                   control={form.control}
@@ -1350,6 +1365,7 @@ const ProgrammingRequest = () => {
                   state={shipPriority}
                   isActive={shipPriority === "Ground"}
                   onChange={() => setShipPriority("Ground")}
+                  className={shipPriority === "Ground" ? `text-white` : ``}
                 />
                 <InputButtonForm
                   control={form.control}
@@ -1361,6 +1377,7 @@ const ProgrammingRequest = () => {
                   state={shipPriority}
                   isActive={shipPriority === "2 Days"}
                   onChange={() => setShipPriority("2 Days")}
+                  className={shipPriority === "2 Days" ? `text-white` : ``}
                 />
                 <InputButtonForm
                   control={form.control}
@@ -1372,6 +1389,7 @@ const ProgrammingRequest = () => {
                   state={shipPriority}
                   isActive={shipPriority === "3 Days"}
                   onChange={() => setShipPriority("3 Days")}
+                  className={shipPriority === "3 Days" ? `text-white` : ``}
                 />
                 <InputButtonForm
                   control={form.control}
@@ -1383,6 +1401,7 @@ const ProgrammingRequest = () => {
                   state={shipPriority}
                   isActive={shipPriority === "Standard"}
                   onChange={() => setShipPriority("Standard")}
+                  className={shipPriority === "Standard" ? `text-white` : ``}
                 />
                 <InputButtonForm
                   control={form.control}
@@ -1391,6 +1410,7 @@ const ProgrammingRequest = () => {
                   type="button"
                   value={"Priority"}
                   setState={setShipPriority}
+                  className={shipPriority === "Priority" ? `text-white` : ``}
                   state={shipPriority}
                   isActive={shipPriority === "Priority"}
                   onChange={() => setShipPriority("Priority")}
@@ -1399,7 +1419,7 @@ const ProgrammingRequest = () => {
             </div>
           </div>
           {/* DBA Address Selection */}
-          <div className="my-5 flex justify-center gap-6 max-xl:block max-xl:space-y-2">
+          <div className="my-10 flex justify-center gap-6 max-xl:block max-xl:space-y-2">
             <SwitchForm
               control={form.control}
               formName={"UseLegalBusiness"}
@@ -1434,32 +1454,39 @@ const ProgrammingRequest = () => {
             />
           </div>
 
-          <Input
-            name="Search Address"
-            title="Search Address"
-            placeholder="Search here to auto-fill your address details"
-            className="mb-2 mt-5 w-1/2"
-          />
+          <div className="my-2 w-1/2">
+            <InputMap
+              name="Search Address"
+              title="Search Address"
+              placeholder="Search here to auto-fill your address details"
+              className="mb-2"
+            />
+          </div>
           <FormGeneration
             formControl={form.control}
             formFields={dbaAddressShipFspForm}
             gridCols={"2"}
           />
         </div>
+        <hr className="my-10 border-2" />
         {/* Billing Information */}
-        <h1 className="mb-2 mt-5 gap-2 text-start text-2xl font-bold text-sky-500">
+        <h1 className="mb-2 mt-5 gap-2 text-center text-2xl text-sky-500">
           Billing Information
         </h1>
-        <p className="text-start">Bill To:</p>
-        <FormGeneration
-          formControl={form.control}
-          formFields={billToFspForm}
-          gridCols={"1"}
-        />
-        <div className="flex justify-start gap-2">
+        <p className="text-center">Bill To:</p>
+        <div className="mx-auto w-fit">
+          <FormGeneration
+            formControl={form.control}
+            formFields={billToFspForm}
+            gridCols={"1"}
+          />
+        </div>
+        <hr className="my-10 border-2" />
+        <div className="flex justify-center gap-2">
           <Button className="my-5">View Bank ACH</Button>
           <Button className="my-5">View CC ACH</Button>
         </div>
+        <hr className="my-10 border-2" />
         {/* SAVE CHANGES BUTTON */}
         <div className="m-auto text-center">
           <CustomButtons className="m-auto my-5" btnType="default">
