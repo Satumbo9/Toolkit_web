@@ -13,23 +13,24 @@ const NewFSPTabContent = () => {
   };
   return (
     <Tabs
-      defaultValue="merchantDetail"
+      defaultValue="moToQuestionaire"
       className="w-full rounded-md p-4 text-center"
     >
-      <TabsList className="">
+      <TabsList className="gap-1">
         {newFspApplicationTabs.map((tab) => (
           <TabsTrigger
             onClick={() => handleClick(tab.value)}
             key={tab.id}
             value={tab.value}
             title={tab.title}
+            className="gap-2"
           >
-            <p className="hidden max-xl:block">{React.createElement(tab.icon)}</p>
+            <p className="">{React.createElement(tab.icon)}</p>
             <p className="max-xl:hidden">{tab.title}</p>
           </TabsTrigger>
         ))}
       </TabsList>
-      {RenderNewFspComponents(activeItem || "merchantDetail")}
+      {RenderNewFspComponents(activeItem || "moToQuestionaire")}
     </Tabs>
   );
 };

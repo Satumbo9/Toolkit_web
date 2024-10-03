@@ -1,7 +1,6 @@
 "use client";
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import React from "react";
-import Image from "next/image";
 import { InputForm } from "../Shared/InstantForm";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,7 +15,6 @@ import Link from "next/link";
 const StartApplication = () => {
   const router = useRouter();
   const [merchantName, setMerchantName] = React.useState<string>("");
-  const [email, setEmail] = React.useState<string>("");
 
   const form = useForm<z.infer<typeof newBoardingAppliactionSchema>>({
     resolver: zodResolver(newBoardingAppliactionSchema),
@@ -33,25 +31,27 @@ const StartApplication = () => {
     selected.style.backgroundSize = "cover";
   }
 
-  const route = "/boarding/mBoarding/newFSP";
-
+  const route = "/boarding/mBoarding/newApplication";
   const handleClick = () => {
     router.push(route);
   };
+  const handleClickManual = () => {
+    router.push("/boarding/mBoarding/newManualEntry");
+  };
+
   return (
     <section className="-m-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
           <div className="rounded-tr-lg bg-auto py-14" id="div-image">
             <div className="content-center justify-center">
-              <div className="m-auto max-w-sm gap-3 rounded-xl bg-white bg-opacity-85 px-6 py-10 shadow-md dark:bg-black dark:bg-opacity-70">
+              <div className="m-auto max-w-sm gap-3 rounded-xl bg-white bg-opacity-85 p-6 shadow-md dark:bg-black dark:bg-opacity-70">
                 <FilePlus2 className="m-auto size-10" />
                 <h2 className="mt-5 text-center font-sans text-3xl font-bold text-sky-500">
                   GET STARTED!
                 </h2>
                 <p className="m-auto mb-5 w-full text-center text-sm text-gray-500">
-                  Start your application process by completing the following
-                  steps.
+                  Fill out the name and start a new application.
                 </p>
                 {/* FORM */}
                 <div className="space-y-6">
@@ -63,36 +63,38 @@ const StartApplication = () => {
                     state={merchantName}
                     setState={setMerchantName}
                   />
-                  <InputForm
-                    control={form.control}
-                    formName="Email"
-                    label="Merchant Email:*"
-                    placeholder="example@email.com"
-                    state={email}
-                    setState={setEmail}
-                  />
-                  <div className="flex justify-center gap-2">
+                  <div className="m-auto w-3/4 justify-center gap-2">
                     <CustomButtons
-                      className="w-full px-10"
+                      className="w-full"
                       btnType="default"
                       type="submit"
-                      disabled={!merchantName || !email}
+                      disabled={!merchantName}
                       onClick={() => handleClick()}
-                      // disabled={!merchantName || !email || !route}
                     >
                       Start Application
                     </CustomButtons>
                   </div>
-                  <div className="mb-5 text-center">
+                  <div className="m-auto w-3/4 justify-center gap-2">
+                    <CustomButtons
+                      className="w-full"
+                      btnType="primary"
+                      type="submit"
+                      disabled={!merchantName}
+                      onClick={handleClickManual}
+                    >
+                      Start a Pre-Signed Form
+                    </CustomButtons>
+                  </div>
+                  <div className="mb-5 hidden text-center">
                     <Link
                       href={"/boarding/mBoarding/newManualEntry"}
                       className="m-auto my-5 cursor-pointer text-center text-sky-500"
                     >
-                      Manual Entry
+                      Pre Signed Form
                     </Link>
                   </div>
                 </div>
-                <div className="group relative my-5 flex justify-center gap-2">
+                <div className="group relative mt-5 flex justify-center gap-2">
                   <Info />
                   <p>What now?</p>
                   <div className="absolute mt-8 hidden max-w-96 rounded bg-gray-800 p-4 text-sm text-white shadow-lg group-hover:block dark:bg-gray-600">
@@ -109,17 +111,6 @@ const StartApplication = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="hidden h-max w-4/6">
-              <Image
-                className="size-full flex-none rounded-tr-lg"
-                src="/images/dark-blue-bg.png"
-                alt="sss"
-                width={1050}
-                height={600}
-                fill={false}
-                priority
-              />
             </div>
           </div>
         </form>

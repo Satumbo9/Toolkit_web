@@ -10,7 +10,7 @@ const BoardingShortcuts = () => {
   };
   return (
     <section className="w-full">
-      <div className="m-auto grid w-3/4 grid-cols-3 gap-4 rounded-md text-lg max-xl:grid-cols-2 max-lg:grid-cols-1">
+      <div className="m-auto grid w-3/4 grid-cols-3 gap-4 rounded-md text-lg max-xl:w-full max-xl:grid-cols-2">
         {/* MERCHANT BOARDING LIST SHORCUT */}
         <Link href={"/boarding/mBoarding"}>
           <div className="col-auto h-full justify-center space-y-2 rounded-md border p-5 shadow-md transition duration-300 hover:border-sky-500">

@@ -37,7 +37,7 @@ const CustomButtons = ({
           disabled={disabled}
           type={type}
           className={cn(
-            "flex-1 bg-gradient-to-r from-[#14ADD6] to-[#384295] text-white hover:opacity-90",
+            "flex-1  bg-sky-500 text-white hover:opacity-90",
             className,
           )}
           onClick={onClick}

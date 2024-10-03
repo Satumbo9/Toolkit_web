@@ -603,6 +603,11 @@ export const newOrganizationSchema = z.object({
 
 // BOARDING TOOL SCHEMAS
 
+
+export const startMerchantApplication = z.object({
+  ApplicationType: z.string(),
+})
+
 export const searchMerchantSchema = z.object({
   MerchantName: requiredString,
   Agent: requiredString,

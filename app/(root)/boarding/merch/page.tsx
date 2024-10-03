@@ -38,13 +38,13 @@ const Page = () => {
       header: "DBA",
       cell: (row) => {
         const title = row.getValue();
-        const path = "https://www.google.com/";
+        const path = "/boarding/merch/edit";
 
         return (
           <ColumnLinkPreview
             title={title}
             path={path}
-            className="font-semibold text-blue-500"
+            className="font-semibold text-sky-500"
           />
         );
       },
@@ -95,24 +95,18 @@ const Page = () => {
 
           {/* SEARCH DIV */}
           <div className="w-3/6 space-y-2 max-xl:w-5/6">
-            <div className="m-auto flex w-full items-end gap-2">
-              <div className="w-3/4">
-                <InputForm
-                  control={form.control}
-                  formName={"MerchantName"}
-                  label="Search by the Merchant's Name"
-                  placeholder="Search for names..."
-                />
-              </div>
-              <Button className="mt-2 flex-auto bg-gradient-to-r from-[#14ADD6] to-[#384295] px-2 text-white hover:opacity-90">
-                Search For Merchant
-              </Button>
-            </div>
-            <div className="w-3/4">
+            <div className="grid w-full grid-cols-3 items-end gap-4">
+              <InputForm
+                control={form.control}
+                formName={"MerchantName"}
+                label="Filter by the Merchant's Name"
+                placeholder="Search for names..."
+                className="flex-1"
+              />
               <SelectForm
                 control={form.control}
                 formName={"Agent"}
-                label="Agent / Company Name (choose one and 'Search')"
+                label="Agent / Company Name"
                 placeholder={"Select Agent or Company Name"}
                 content={agentCompanyNameSelectList}
                 valueKey="value"
@@ -120,6 +114,9 @@ const Page = () => {
                 disabled={false}
                 className=""
               />
+              <Button className=" flex-auto bg-gradient-to-r from-[#14ADD6] to-[#384295] text-white hover:opacity-90">
+                Search For Merchant
+              </Button>
             </div>
           </div>
 

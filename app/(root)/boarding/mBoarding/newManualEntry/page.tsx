@@ -1,9 +1,8 @@
 "use client";
+import CustomButtons from "@/components/Shared/CustomButtons";
 import {
   FormGeneration,
   InputButtonForm,
-  InputForm,
-  TextAreaForm,
 } from "@/components/Shared/InstantForm";
 import { Form } from "@/components/ui/form";
 import UploadFileBtn from "@/components/ui/UploadButton";
@@ -31,104 +30,300 @@ const Page = () => {
         Manual Entry for FSP Applications
       </h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="">
-          <div className="mx-auto my-5 max-w-7xl">
-            <h2 className="my-2 text-xl font-semibold text-sky-500">
-              Basic Customer Information
-            </h2>
-            <FormGeneration
-              formControl={form.control}
-              formFields={fspManualEntryForm}
-              gridCols={"2"}
-            />
-            <h2 className="mb-2 mt-5 text-xl font-semibold text-sky-500">
-              DBA Legal Address
-            </h2>
-            <FormGeneration
-              formControl={form.control}
-              formFields={fspManualLocationEntryForm}
-              gridCols={"2"}
-            />
-            <h2 className="mb-4 mt-7 text-center text-xl font-semibold text-sky-500">
-              Application Type
-            </h2>
-            <div className="mx-auto grid max-w-5xl grid-cols-4 items-end gap-2 max-lg:grid-cols-2">
-              <InputButtonForm
-                control={form.control}
-                formName="testButton"
-                label="MiCamp FSP MPA"
-                value={"MiCamp FSP MPA"}
-                type="button"
-                className={
-                  applicationType === "fspApplication" ? "text-white" : ""
-                }
-                setState={setApplicationType}
-                state={applicationType}
-                isActive={applicationType === "fspApplication"}
-                onChange={() => setApplicationType("fspApplication")}
-              />
-              <InputButtonForm
-                control={form.control}
-                formName="testButton"
-                label="NORTH WAVit"
-                value={"NORTH WAVit"}
-                type="button"
-                className={applicationType === "wavit" ? "text-white" : ""}
-                setState={setApplicationType}
-                state={applicationType}
-                isActive={applicationType === "wavit"}
-                onChange={() => setApplicationType("wavit")}
-              />
-              <InputButtonForm
-                control={form.control}
-                formName="testButton"
-                label="NORTH Interchange"
-                value={"NORTH Interchange"}
-                type="button"
-                className={
-                  applicationType === "interchange" ? "text-white" : ""
-                }
-                setState={setApplicationType}
-                state={applicationType}
-                isActive={applicationType === "interchange"}
-                onChange={() => setApplicationType("interchange")}
-              />
-              <InputButtonForm
-                control={form.control}
-                formName="testButton"
-                label="OMAHA"
-                value={"OMAHA"}
-                type="button"
-                className={applicationType === "omaha" ? "text-white" : ""}
-                setState={setApplicationType}
-                state={applicationType}
-                isActive={applicationType === "omaha"}
-                onChange={() => setApplicationType("omaha")}
-              />
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="mx-auto max-w-[1600px]"
+        >
+          <div className="mx-auto my-5 flex gap-2">
+            <div className="mx-auto flex-1 justify-center">
+              <div className="mx-auto max-w-2xl">
+                <h2 className="mb-2 mt-5 text-xl text-sky-500">
+                  Basic Customer Information
+                </h2>
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={fspManualEntryForm}
+                  gridCols={"2"}
+                />
+                <h2 className="mb-2 mt-5 text-xl text-sky-500">
+                  DBA Legal Address
+                </h2>
+                <FormGeneration
+                  formControl={form.control}
+                  formFields={fspManualLocationEntryForm}
+                  gridCols={"2"}
+                />
+                <h2 className="mb-4 mt-7 text-center text-xl font-semibold text-sky-500">
+                  Application Type
+                </h2>
+                <div className="mx-auto grid max-w-5xl grid-cols-4 items-end gap-2 max-xl:grid-cols-2">
+                  <InputButtonForm
+                    control={form.control}
+                    formName="testButton"
+                    label="MiCamp FSP MPA"
+                    value={"MiCamp FSP MPA"}
+                    type="button"
+                    className={
+                      applicationType === "fspApplication" ? "text-white" : ""
+                    }
+                    setState={setApplicationType}
+                    state={applicationType}
+                    isActive={applicationType === "fspApplication"}
+                    onChange={() => setApplicationType("fspApplication")}
+                  />
+                  <InputButtonForm
+                    control={form.control}
+                    formName="testButton"
+                    label="NORTH WAVit"
+                    value={"NORTH WAVit"}
+                    type="button"
+                    className={applicationType === "wavit" ? "text-white" : ""}
+                    setState={setApplicationType}
+                    state={applicationType}
+                    isActive={applicationType === "wavit"}
+                    onChange={() => setApplicationType("wavit")}
+                  />
+                  <InputButtonForm
+                    control={form.control}
+                    formName="testButton"
+                    label="NORTH Inter."
+                    value={"NORTH Inter."}
+                    type="button"
+                    className={
+                      applicationType === "interchange" ? "text-white" : ""
+                    }
+                    setState={setApplicationType}
+                    state={applicationType}
+                    isActive={applicationType === "interchange"}
+                    onChange={() => setApplicationType("interchange")}
+                  />
+                  <InputButtonForm
+                    control={form.control}
+                    formName="testButton"
+                    label="OMAHA"
+                    value={"OMAHA"}
+                    type="button"
+                    className={applicationType === "omaha" ? "text-white" : ""}
+                    setState={setApplicationType}
+                    state={applicationType}
+                    isActive={applicationType === "omaha"}
+                    onChange={() => setApplicationType("omaha")}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="my-5">
-              <h1 className="mb-5 mt-10 text-center text-2xl font-semibold">
-                Upload Documents
-              </h1>
-              <div className="mx-auto my-2 max-w-2xl rounded-md border p-4">
-                <h3 className="mb-4 text-center text-xl font-semibold text-sky-500">
-                  Document 1
-                </h3>
+            <div className="flex-1">
+              <div className="space-y-3">
+                <h1 className="mt-5 text-xl font-medium text-sky-500">
+                  Upload Documents
+                </h1>
+                <p className="mb-5 text-base">
+                  * Choose file(s) and click Save. (Click on the filenames to
+                  view them.)
+                </p>
+                {/* UPLOAD VOIDED CHECK / BANK LETTER */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload Voided Check / Bank Letter
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
 
-                <div className="max-w-2xl flex-auto space-y-3 p-2">
-                  <div className="my-2">
-                    <UploadFileBtn />
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
                   </div>
-                  <InputForm
-                    control={form.control}
-                    formName="123"
-                    label="Document Name"
-                  />
-                  <TextAreaForm
-                    control={form.control}
-                    formName="123"
-                    label="Document Description"
-                  />
+                </div>
+                {/* UPLOAD DRIVER'S LICENSE */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    {"Upload Driver's License"}
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
+                </div>
+                {/* UPLOAD BANK STATEMENT */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload Bank Statement
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
+                </div>
+                {/* UPLOAD PROCESSOR STATEMENT */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload Processor Statement
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
+                </div>
+                <hr className="my-5 border-2" />
+                <h2 className="mb-2 text-center text-xl font-semibold">
+                  Other documents:
+                </h2>
+                {/* UPLOAD TAX DOCUMENTS */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload Tax Documents
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
+                </div>
+                {/* UPLOAD COMPANY / BUSINESS DOCUMENTS */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload Company / Business Documents
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
+                </div>
+                {/* UPLOAD CERTIFICATIONS */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload Certifications
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
+                </div>
+                {/* UPLOAD ACH FORMS */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload ACH Forms
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
+                </div>
+                {/* UPLOAD OTHER IDENTIFICATION */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload Other Identification Documents
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
+                </div>
+                {/* UPLOAD MISCELLANEOUS DOCUMENTS */}
+                <div className="rounded-md border p-4">
+                  <h3 className="mb-4 text-xl text-sky-500">
+                    Upload Miscellaneous Documents
+                  </h3>
+                  <div className="flex gap-2">
+                    <div className="w-fit flex-none space-y-3">
+                      <UploadFileBtn />
+                      <CustomButtons btnType="primary" className="w-full">
+                        Send Upload Link
+                      </CustomButtons>
+                    </div>
+
+                    <div className="flex-auto p-2">
+                      <p>1. Docname1.pdf</p>
+                      <p>2. Docname1.pdf</p>
+                      <p>3. </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

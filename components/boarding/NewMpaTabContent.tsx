@@ -2,11 +2,10 @@
 
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { newInterchangeApplicationTabs } from "@/constants";
-import RenderNorthInterchangeComponents from "./NewNorthInterchangeTabSubContent";
+import { newMpaApplicationTabs } from "@/constants";
+import RenderNewMpaComponents from "./NewMpaTabSubContent";
 
-
-const NewNorthInterchangeTabContent = () => {
+const NewMpaTabContent = () => {
   const [activeItem, setActiveItem] = useState<string>("");
 
   const handleClick = (value: string) => {
@@ -14,25 +13,26 @@ const NewNorthInterchangeTabContent = () => {
   };
   return (
     <Tabs
-      defaultValue="northDetails"
+      defaultValue="merchantDetail"
       className="w-full rounded-md p-4 text-center"
     >
-      <TabsList className="">
-        {newInterchangeApplicationTabs.map((tab) => (
+      <TabsList className="gap-1">
+        {newMpaApplicationTabs.map((tab) => (
           <TabsTrigger
             onClick={() => handleClick(tab.value)}
             key={tab.id}
             value={tab.value}
             title={tab.title}
+            className="gap-2"
           >
-            <p className="hidden max-xl:block">{React.createElement(tab.icon)}</p>
+            <p className="">{React.createElement(tab.icon)}</p>
             <p className="max-xl:hidden">{tab.title}</p>
           </TabsTrigger>
         ))}
       </TabsList>
-      {RenderNorthInterchangeComponents(activeItem || "northDetails")}
+      {RenderNewMpaComponents(activeItem || "merchantDetail")}
     </Tabs>
   );
 };
 
-export default NewNorthInterchangeTabContent;
+export default NewMpaTabContent;

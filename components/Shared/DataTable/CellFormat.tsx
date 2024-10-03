@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import CustomButtons from "../CustomButtons";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Crown } from "lucide-react";
 import Link from "next/link";
 import { LinkPreview } from "@/components/ui/link-preview";
 
@@ -83,6 +83,10 @@ export const Percentage = (row: string | number | any) => {
   return <span>%{value.toFixed(2)}</span>;
 };
 
+export const MainOwner = (row: any) => {
+  return (row === "true" ? <Crown className="text-yellow-600" /> : <p></p>);
+}
+
 /**
  * Used on the tables to show the next step of the MPA application on Boarding.
  *
@@ -92,7 +96,7 @@ export const Percentage = (row: string | number | any) => {
 export const NextStep = (row: string) => {
   return (
     <CustomButtons
-      className="relative w-full text-nowrap max-lg:text-xs"
+      className="relative w-2/4 text-nowrap max-lg:text-xs"
       btnType="primary"
     >
       {row}
