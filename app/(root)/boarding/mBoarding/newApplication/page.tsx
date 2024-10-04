@@ -72,12 +72,12 @@ const Page = () => {
                   btnType="default"
                   className="my-2 justify-end gap-2 max-xl:justify-center"
                 >
-                  Finish the application
+                  Last Step
                   <ArrowRight className="size-5" />
                 </CustomButtons>
               </Link>
             </div>
-            <p className="">Go to the last part of the application.</p>
+            <p className="">1/2</p>
           </div>
         </div>
       </div>

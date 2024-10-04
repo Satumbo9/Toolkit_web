@@ -340,9 +340,7 @@ const MerchantDetail = () => {
           <div className="m-auto grid max-w-[1000px] grid-cols-4 gap-2 max-lg:grid-cols-2">
             {/* BUILDING TYPE */}
             <div>
-              <h2 className="mb-4 text-start text-xl ">
-                Building Type
-              </h2>
+              <h2 className="mb-4 text-start text-xl">Building Type</h2>
               <div className="my-2 items-center">
                 <RadioForm
                   control={form.control}
@@ -374,9 +372,7 @@ const MerchantDetail = () => {
             </div>
             {/* MERCHANT */}
             <div>
-              <h2 className="mb-4 text-start text-xl">
-                Merchant Type
-              </h2>
+              <h2 className="mb-4 text-start text-xl">Merchant Type</h2>
               <div className="flex items-center gap-2">
                 <RadioForm
                   control={form.control}
@@ -629,7 +625,9 @@ const FinancialInformation = () => {
           </div>
           <hr className="my-10 border-2" />
           {/* SALES INFORMATION */}
-          <h1 className="mt-5 text-center text-2xl text-sky-500">Sales</h1>
+          <h1 className="mt-5 text-center text-2xl text-sky-500">
+            Sales Information
+          </h1>
           <div className="mx-auto flex w-2/3">
             <div className="flex-1">
               <p className="mb-2 mt-5">
@@ -638,7 +636,7 @@ const FinancialInformation = () => {
               <FormGeneration
                 formControl={form.control}
                 formFields={acceptingVisaMcDiscoverFspForm}
-                gridCols={"5"}
+                gridCols={"4"}
               />
             </div>
             <div className="flex-1">
@@ -1480,7 +1478,7 @@ const ProgrammingRequest = () => {
             />
           </div>
 
-          <div className="my-2 w-1/2">
+          <div className="mx-auto my-2 w-2/3">
             <InputMap
               name="Search Address"
               title="Search Address"

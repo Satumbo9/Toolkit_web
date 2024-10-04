@@ -1,9 +1,10 @@
 import React from "react";
 import { Button, ButtonProps } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { Save } from "lucide-react";
 
 interface CustomButtonProps extends ButtonProps {
-  btnType: "destructive" | "default" | "success" | "primary";
+  btnType: "destructive" | "default" | "success" | "primary" | "save";
 }
 
 const CustomButtons = ({
@@ -69,6 +70,22 @@ const CustomButtons = ({
           className={cn("w-full hover:opacity-90", className)}
           onClick={onClick}
         >
+          {title}
+          {props.children}
+        </Button>
+      )}
+
+      {btnType === "save" && (
+        <Button
+          disabled={disabled}
+          type={type}
+          className={cn(
+            "flex-1 gap-2 bg-sky-500 text-white hover:opacity-90 dark:hover:text-black",
+            className,
+          )}
+          onClick={onClick}
+        >
+          <Save className="size-5" />
           {title}
           {props.children}
         </Button>

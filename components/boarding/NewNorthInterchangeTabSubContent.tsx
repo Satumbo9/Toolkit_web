@@ -13,9 +13,7 @@ import {
 } from "@/constants";
 import React from "react";
 import { Form } from "../ui/form";
-import {
-  northBoardingInterSchema,
-} from "@/lib/utils";
+import { northBoardingInterSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -26,7 +24,6 @@ import {
   NorthFormGeneration,
 } from "../Shared/InstantForm";
 import CustomButtons from "../Shared/CustomButtons";
-
 
 const NorthInformation = () => {
   const form = useForm<z.infer<typeof northBoardingInterSchema>>({
@@ -216,7 +213,7 @@ const NorthInformation = () => {
             gridCols={"3"}
           />
 
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             {/* FLAT RATE */}
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               Flat Rate
@@ -238,7 +235,7 @@ const NorthInformation = () => {
               ))}
             </div>
           </div>
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             {/* FLAT RATE FEES */}
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               Flat Rate Fees
@@ -255,7 +252,7 @@ const NorthInformation = () => {
               ))}
             </div>
           </div>
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             {/* TIERED PRICING */}
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               Tiered Pricing
@@ -278,7 +275,7 @@ const NorthInformation = () => {
             </div>
           </div>
           {/* BILLED MONTHLY FEES */}
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               Billed Monthly Fees
             </h1>
@@ -289,7 +286,7 @@ const NorthInformation = () => {
             />
           </div>
           {/* BUYPASS & AUTHORIZATION FEES */}
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               Buypass & Authorization Fees
             </h1>
@@ -300,7 +297,7 @@ const NorthInformation = () => {
             />
           </div>
           {/* WEX FULL ACQUIRING FEES */}
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               WEX Full Acquiring Fees
             </h1>
@@ -311,7 +308,7 @@ const NorthInformation = () => {
             />
           </div>
           {/* PASS THROUGH INTERCHANGE  */}
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               Pass Through Interchange
             </h1>
@@ -322,7 +319,7 @@ const NorthInformation = () => {
             />
           </div>
           {/* AUTHORIZATION AND AVS FEES  */}
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               Authorization and AVS Fees
             </h1>
@@ -333,7 +330,7 @@ const NorthInformation = () => {
             />
           </div>
           {/* PIN DEBIT  */}
-          <div className="my-2 border p-4">
+          <div className="my-2 hidden border p-4">
             <h1 className="my-5 flex justify-center gap-2 text-center text-4xl font-semibold text-sky-500">
               PIN Debit
             </h1>
