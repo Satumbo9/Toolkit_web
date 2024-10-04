@@ -13,7 +13,7 @@ export const GET = async (req: NextRequest) => {
     }
 
     const response = await fetch(
-      `${process.env.PUBLICROUTE}?apiKey=${process.env.GEOAPI}&q=${query}`,
+      `${process.env.PUBLICROUTE}?apiKey=${process.env.HERE_API_KEY}&q=${query}`,
       {
         method: "GET",
         headers: {

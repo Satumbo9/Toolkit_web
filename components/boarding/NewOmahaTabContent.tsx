@@ -114,7 +114,7 @@ const NewOmahaTabContent = () => {
       {/* THIS IS THE STANDARD CODE TO THE CONVENTIONAL TABS - KEEP IT FOR NOW (HC) */}
 
       <Tabs
-        defaultValue="merchantDetail"
+        defaultValue="omahaDetails"
         className="w-full rounded-md p-4 text-center"
       >
         <TabsList className="">
@@ -132,7 +132,7 @@ const NewOmahaTabContent = () => {
             </TabsTrigger>
           ))}
         </TabsList>
-        {RenderNewOmahaComponents(activeItem || "merchantDetail")}
+        {RenderNewOmahaComponents(activeItem || "omahaDetails")}
       </Tabs>
     </div>
   );

@@ -117,7 +117,7 @@ const OmahaDetails = () => {
 
           {/* BUTTON SAVE CHANGES */}
           <div className="m-auto text-center">
-            <CustomButtons className="m-auto my-5" btnType="default">
+            <CustomButtons className="m-auto  my-5" btnType="save">
               Save Changes
             </CustomButtons>
           </div>

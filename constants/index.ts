@@ -4956,6 +4956,7 @@ export const independentServiceFspForm = [
     type: "radio",
     placeholder: "Yes",
     title: "Yes",
+    gridCols: "2",
     options: [
       {
         label: "Yes",

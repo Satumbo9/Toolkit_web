@@ -66,7 +66,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import AddNewMerchantOwner from "./AddNewMerchantOwner";
-import { Loader2, MapPin } from "lucide-react";
+import { CirclePlus, Eye, Loader2, MapPin, Save } from "lucide-react";
 import { InputMap } from "../ui/inputAddress";
 import { MainOwner } from "../Shared/DataTable/CellFormat";
 
@@ -181,11 +181,13 @@ const MerchantDetail = () => {
           <h1 className="mb-5 text-center text-2xl text-sky-500">
             DBA Information
           </h1>
-          <FormGeneration
-            formControl={form.control}
-            formFields={dbaInformationFspForm}
-            gridCols={"2"}
-          />
+          <div className="mx-auto w-2/3">
+            <FormGeneration
+              formControl={form.control}
+              formFields={dbaInformationFspForm}
+              gridCols={"2"}
+            />
+          </div>
           <hr className="my-10 border-2" />
           {/* DBA Address Section */}
           <h1 className="my-5 text-center text-2xl text-sky-500">
@@ -193,7 +195,7 @@ const MerchantDetail = () => {
           </h1>
           <div className="relative">
             {/* Testing input */}
-            <div className="w-1/2">
+            <div className="mx-auto w-2/3">
               <InputMap
                 placeholder="Search for your address"
                 className="mb-2 flex-auto"
@@ -231,66 +233,73 @@ const MerchantDetail = () => {
               </React.Fragment>
             )}
           </div>
-          <FormGeneration
-            formControl={form.control}
-            formFields={dbaAddressFspForm}
-            gridCols={"2"}
-          />
+          <div className="mx-auto w-2/3">
+            <FormGeneration
+              formControl={form.control}
+              formFields={dbaAddressFspForm}
+              gridCols={"2"}
+            />
+          </div>
           <hr className="my-10 border-2" />
           {/* LEGAL INFORMATION Section */}
           <h1 className="my-5 flex-auto text-center text-2xl text-sky-500">
             Legal Information
           </h1>
-          <div className="mb-2 flex gap-2">
-            <Switch className="flex-none" />
-            <p className="flex-auto">Use Business Address DBA</p>
+          <div className="mx-auto w-2/3">
+            <div className="mb-2 flex justify-center gap-2">
+              <Switch className="flex-none" />
+              <p className="flex-auto">Use Business Address DBA</p>
+            </div>
+            <FormGeneration
+              formControl={form.control}
+              formFields={dbaLegalInformationFspForm}
+              gridCols={"2"}
+            />
           </div>
-          <FormGeneration
-            formControl={form.control}
-            formFields={dbaLegalInformationFspForm}
-            gridCols={"2"}
-          />
           <hr className="my-10 border-2" />
           {/* TAX INFORMATION Section */}
           <h1 className="my-5 flex-auto text-center text-2xl text-sky-500">
             Tax Information
           </h1>
-          <div className="mb-2 flex gap-2">
-            <Switch className="flex-none" />
-            <p className="flex-auto">Use Corporate Legal Name</p>
-          </div>
-          <FormGeneration
-            formControl={form.control}
-            formFields={dbaTaxInformationFspForm}
-            gridCols={"2"}
-          />
-          <div className="my-4 w-1/4 content-end items-end">
-            <RadioForm
-              control={form.control}
-              formName="EinSsn"
-              label=""
-              options={[
-                {
-                  label: "EIN",
-                  value: "ein",
-                },
-                {
-                  label: "SSN",
-                  value: "ssn",
-                },
-              ]}
-              className="size-4"
-              gridCols="3"
-              setState={setEinSsn}
-              state={einSsn}
+          <div className="mx-auto w-2/3">
+            <div className="mb-2 flex gap-2">
+              <Switch className="flex-none" />
+              <p className="flex-auto">Use Corporate Legal Name</p>
+            </div>
+            <FormGeneration
+              formControl={form.control}
+              formFields={dbaTaxInformationFspForm}
+              gridCols={"2"}
             />
-          </div>{" "}
+            <div className="my-4 w-1/4 content-end items-end">
+              <RadioForm
+                control={form.control}
+                formName="EinSsn"
+                label=""
+                options={[
+                  {
+                    label: "EIN",
+                    value: "ein",
+                  },
+                  {
+                    label: "SSN",
+                    value: "ssn",
+                  },
+                ]}
+                className="size-4"
+                gridCols="3"
+                setState={setEinSsn}
+                state={einSsn}
+              />
+            </div>
+          </div>
           <hr className="my-10 border-2" />
           {/* STATEMENTS INFORMATION SECTION */}
           <h1 className="my-5 flex-auto text-center text-2xl text-sky-500">
             Statements Information
           </h1>
-          <div className="my-4 items-center">
+
+          <div className="my-4 items-center px-20">
             <RadioForm
               control={form.control}
               formName="MailStatements"
@@ -331,9 +340,7 @@ const MerchantDetail = () => {
           <div className="m-auto grid max-w-[1000px] grid-cols-4 gap-2 max-lg:grid-cols-2">
             {/* BUILDING TYPE */}
             <div>
-              <h2 className="mb-4 text-start text-xl font-semibold">
-                Building Type
-              </h2>
+              <h2 className="mb-4 text-start text-xl">Building Type</h2>
               <div className="my-2 items-center">
                 <RadioForm
                   control={form.control}
@@ -365,9 +372,7 @@ const MerchantDetail = () => {
             </div>
             {/* MERCHANT */}
             <div>
-              <h2 className="mb-4 text-start text-xl font-semibold">
-                Merchant Type
-              </h2>
+              <h2 className="mb-4 text-start text-xl">Merchant Type</h2>
               <div className="flex items-center gap-2">
                 <RadioForm
                   control={form.control}
@@ -443,7 +448,8 @@ const MerchantDetail = () => {
             </div>
           </div>
           <div className="m-auto text-center">
-            <CustomButtons className="m-auto my-5" btnType="default">
+            <CustomButtons className="m-auto my-5 gap-2" btnType="default">
+              <Save className="size-5" />
               Save Changes
             </CustomButtons>
           </div>
@@ -560,6 +566,15 @@ const FinancialInformation = () => {
   const [seasonalMerchant, setSeasonalMerchant] = useState("");
   const [returnPolicy, setReturnPolicy] = useState("");
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    if (!showPassword) {
+      setShowPassword(true);
+    } else {
+      setShowPassword(false);
+    }
+  };
   return (
     <section className="mx-auto mt-4 max-w-[1600px] text-start">
       <Form {...form}>
@@ -575,7 +590,7 @@ const FinancialInformation = () => {
               gridCols={"1"}
             />
           </div>
-          <div className="grid grid-cols-4 items-end gap-2 px-20">
+          <div className="mx-auto grid w-2/3 grid-cols-4 items-end gap-2 px-20 max-xl:w-full max-xl:grid-cols-2">
             <div className="col-span-2">
               <InputForm
                 control={form.control}
@@ -590,20 +605,30 @@ const FinancialInformation = () => {
               formName="BankRouting"
               label="Bank Routing #: *"
               placeholder="#"
+              type={showPassword === true ? `` : `password`}
               className="col-auto"
             />
-            <InputForm
-              control={form.control}
-              formName="BankAccounting"
-              label="Bank Accounting #: *"
-              placeholder="#"
-              className="col-auto"
-            />
+            <div className="col-auto flex items-end gap-2">
+              <InputForm
+                control={form.control}
+                formName="BankAccounting"
+                label="Bank Accounting #: *"
+                placeholder="#"
+                type={showPassword === true ? `` : `password`}
+                className="flex-auto"
+              />
+              <div className="cursor-pointer" onClick={handleShowPassword}>
+                {}
+                <Eye className="mb-2 flex-none" />
+              </div>
+            </div>
           </div>
           <hr className="my-10 border-2" />
           {/* SALES INFORMATION */}
-          <h1 className="mt-5 text-center text-2xl text-sky-500">Sales</h1>
-          <div className="flex px-20">
+          <h1 className="mt-5 text-center text-2xl text-sky-500">
+            Sales Information
+          </h1>
+          <div className="mx-auto flex w-2/3">
             <div className="flex-1">
               <p className="mb-2 mt-5">
                 Currently Accepting Visa/mastercard/Discover/AMEX?
@@ -611,7 +636,7 @@ const FinancialInformation = () => {
               <FormGeneration
                 formControl={form.control}
                 formFields={acceptingVisaMcDiscoverFspForm}
-                gridCols={"5"}
+                gridCols={"4"}
               />
             </div>
             <div className="flex-1">
@@ -646,7 +671,7 @@ const FinancialInformation = () => {
             Sales Distribution - Fil the sales distribution of each category to
             add up to 100.
           </p>
-          <div className="m-auto grid w-3/4 grid-cols-3 items-end gap-2">
+          <div className="m-auto grid w-2/3 grid-cols-3 items-end gap-2">
             <InputForm
               control={form.control}
               formName="StoreFrontSwipe"
@@ -675,7 +700,7 @@ const FinancialInformation = () => {
               setState={(value) => adjustValues("manually", Number(value))}
             />
           </div>
-          <div className="m-auto my-3 w-3/4 rounded-full bg-gray-200 dark:bg-gray-700">
+          <div className="m-auto my-3 w-2/3 rounded-full bg-gray-200 dark:bg-gray-700">
             <Progress value={front + interest + manually}>
               Progress: {front + interest + manually}%
             </Progress>
@@ -685,7 +710,7 @@ const FinancialInformation = () => {
           <h1 className="mt-5 text-center text-2xl text-sky-500">
             Service Requested
           </h1>
-          <div className="px-20">
+          <div className="mx-auto w-2/3">
             <FormGeneration
               formControl={form.control}
               formFields={serviceRequestedFspForm}
@@ -715,7 +740,7 @@ const FinancialInformation = () => {
           </div>
           <hr className="my-10 border-2" />
           {/* DISCOVER RETAINED / CARD TYPES */}
-          <div className="grid grid-cols-2 gap-4 px-20 max-xl:grid-cols-1">
+          <div className="mx-auto grid w-2/3 grid-cols-2 gap-4 max-xl:grid-cols-1">
             <div className="col-span-1">
               <h1 className="mb-2 mt-5 text-2xl text-sky-500">
                 Discover Retained
@@ -753,10 +778,10 @@ const FinancialInformation = () => {
           </div>
 
           {/* EBT / CASH BENEFIT  */}
-          <h1 className="mb-2 mt-5 px-20 text-2xl font-bold text-sky-500">
+          <h1 className="mx-auto mb-2 mt-5 w-2/3 text-2xl font-bold text-sky-500">
             --
           </h1>
-          <div className="mx-20 flex gap-10">
+          <div className="mx-auto flex w-2/3 gap-10">
             <div className="flex-none items-center gap-2">
               <CheckboxForm
                 control={form.control}
@@ -774,7 +799,7 @@ const FinancialInformation = () => {
               />
             </div>
           </div>
-          <div className="px-20">
+          <div className="mx-auto w-2/3">
             <InputForm
               control={form.control}
               formName="FnsAccount"
@@ -785,7 +810,7 @@ const FinancialInformation = () => {
           </div>
           <hr className="my-10 border-2" />
           {/* SEASONAL MERCHANT  */}
-          <div className="flex w-full gap-2 px-20">
+          <div className="mx-auto flex w-2/3 gap-2">
             <div className="flex-1">
               <h1 className="mt-5 text-2xl text-sky-500">Seasonal Merchant</h1>
               <div className="my-4">
@@ -793,7 +818,7 @@ const FinancialInformation = () => {
                   control={form.control}
                   formName={"SeasonalMerchant"}
                   label=""
-                  gridCols="3"
+                  gridCols="4"
                   options={[
                     {
                       label: "Yes",
@@ -837,7 +862,7 @@ const FinancialInformation = () => {
               <FormGeneration
                 formControl={form.control}
                 formFields={independentServiceFspForm}
-                gridCols={"4"}
+                gridCols={"1"}
               />
               <InputForm
                 control={form.control}
@@ -857,7 +882,7 @@ const FinancialInformation = () => {
           </div>
           <hr className="my-10 border-2" />
           {/* DOES MERCHANT USE A FULFILLMENT HOUSE  */}
-          <div className="flex gap-2 px-20">
+          <div className="mx-auto flex w-2/3 gap-2">
             <div className="flex-auto">
               <h1 className="mt-5 text-2xl text-sky-500">
                 Does Merchant use a fulfillment house to fulfill product?
@@ -872,14 +897,14 @@ const FinancialInformation = () => {
                 formName="FulfillHouseName"
                 label="Name:"
                 placeholder="Enter the name"
-                className="w-1/2"
+                className="w-3/4"
               />
               <InputForm
                 control={form.control}
                 formName="FulfillHousePhone"
                 label="Phone:"
                 placeholder="(___) ___-_____"
-                className="w-1/2"
+                className="w-3/4"
               />
             </div>
             {/* GENERAL SETTINGS  */}
@@ -887,13 +912,13 @@ const FinancialInformation = () => {
               <h1 className="mb-2 mt-5 text-2xl text-sky-500">
                 General Settings
               </h1>
-              <div className="flex w-1/2 items-center gap-2 max-xl:w-full">
+              <div className="flex items-center gap-2 max-xl:w-full">
                 <CheckboxForm
                   control={form.control}
                   formName="OptOut"
                   label=""
                   placeholder="Opt Out (by checking this box, Merchant will not receive future
-              commercial marketing communications from AmEx)"
+                  commercial marketing communications from AmEx)"
                 />
               </div>
               {/* RETURN POLICY  */}
@@ -938,10 +963,9 @@ const FinancialInformation = () => {
               </div>
             </div>
           </div>
-          <hr className="my-10 border-2" />
-
           <div className="m-auto text-center">
-            <CustomButtons className="m-auto my-5" btnType="default">
+            <CustomButtons className="m-auto my-5 gap-2" btnType="default">
+              <Save className="size-5" />
               Save Changes
             </CustomButtons>
           </div>
@@ -995,13 +1019,10 @@ const MerchantOwner = () => {
           {/* MODAL ADD NEW MERCHANT OWNER */}
           <Dialog>
             <DialogTrigger asChild>
-              <Button
-                className={
-                  "my-5 flex-1 bg-[#14ADD6] from-[#14ADD6] to-[#384295] text-white hover:opacity-90"
-                }
-              >
-                + Add New Owner
-              </Button>
+              <CustomButtons btnType="default" className="my-5 gap-2">
+                <CirclePlus className="size-5" />
+                Add New Owner
+              </CustomButtons>
             </DialogTrigger>
             <DialogContent className="2xl:[1200px] max-lg:max-w-[500px] lg:max-w-[800px]">
               <DialogHeader>
@@ -1040,7 +1061,8 @@ const MerchantOwner = () => {
           />
           {/* BUTTON SAVE CHANGES */}
           <div className="m-auto text-center">
-            <CustomButtons className="m-auto my-5" btnType="default">
+            <CustomButtons className="m-auto my-5 gap-2" btnType="default">
+              <Save className="size-5" />
               Save Changes
             </CustomButtons>
           </div>
@@ -1135,14 +1157,16 @@ const ProgrammingRequest = () => {
       >
         <div className="mt-5 text-start">
           {/* ACCOUNT INFORMATION */}
-          <h1 className="my-5 flex gap-2 text-center text-2xl text-sky-500">
+          <h1 className="my-5 flex justify-center gap-2 text-2xl text-sky-500">
             Account Information
           </h1>
-          <FormGeneration
-            formControl={form.control}
-            formFields={accountInformationFspForm}
-            gridCols={"3"}
-          />
+          <div className="mx-auto mb-5 justify-center px-44">
+            <FormGeneration
+              formControl={form.control}
+              formFields={accountInformationFspForm}
+              gridCols={"2"}
+            />
+          </div>
           <div className="my-2 grid grid-cols-1 overflow-auto">
             <DataTable
               columns={columns}
@@ -1454,7 +1478,7 @@ const ProgrammingRequest = () => {
             />
           </div>
 
-          <div className="my-2 w-1/2">
+          <div className="mx-auto my-2 w-2/3">
             <InputMap
               name="Search Address"
               title="Search Address"
@@ -1462,11 +1486,13 @@ const ProgrammingRequest = () => {
               className="mb-2"
             />
           </div>
-          <FormGeneration
-            formControl={form.control}
-            formFields={dbaAddressShipFspForm}
-            gridCols={"2"}
-          />
+          <div className="mx-auto w-2/3">
+            <FormGeneration
+              formControl={form.control}
+              formFields={dbaAddressShipFspForm}
+              gridCols={"2"}
+            />
+          </div>
         </div>
         <hr className="my-10 border-2" />
         {/* Billing Information */}
@@ -1486,10 +1512,10 @@ const ProgrammingRequest = () => {
           <Button className="my-5">View Bank ACH</Button>
           <Button className="my-5">View CC ACH</Button>
         </div>
-        <hr className="my-10 border-2" />
         {/* SAVE CHANGES BUTTON */}
         <div className="m-auto text-center">
-          <CustomButtons className="m-auto my-5" btnType="default">
+          <CustomButtons className="m-auto my-5 gap-2" btnType="default">
+            <Save className="size-5" />
             Save Changes
           </CustomButtons>
         </div>
